@@ -6,9 +6,12 @@
 @tailwind utilities;
 body {
   @apply leading-[normal] m-0;
+  background-color: #F7F7F8;
 }
 *,
 ::before,
 ::after {
   border-width: 0;
 }
+
+
