@@ -40,7 +40,7 @@ export default function ProfileChange() {
                 <div className="flex-1 flex flex-row items-center justify-between max-w-full gap-[20px]">
                     <div className="w-[130px] flex flex-col items-start justify-start pt-1 box-border">
                         <img className="relative object-cover cursor-pointer"
-                            onClick={onLogoClick} src="/logo.png" />
+                            onClick={onLogoClick} src="/LOGO.png" />
                     </div>
                     <div className="w-[548px] flex flex-row items-center justify-start pt-1.5 pb-[5px] pr-[22px] pl-2 box-border relative max-w-full z-[1] text-smi text-silver font-small-m">
                         <div className="h-full w-full absolute !m-[0] top-[0.5px] right-[0px] bottom-[-0.5px] left-[0px] rounded-3xs bg-whitesmoke-300" />
