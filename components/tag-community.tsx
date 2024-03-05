@@ -36,7 +36,7 @@ export default function TagCommunity() {
     
       <div className="self-stretch flex flex-row items-start justify-start py-0 pr-4 pl-[5px] text-mini">
         <b className="h-[25px] flex-1 relative flex items-center z-[1]">
-          인증 태그
+          구독한 뱃지
         </b>
       </div>
       <div className="self-stretch h-[9px] flex flex-row items-start justify-start pt-0 px-px pb-[9px] box-border">
@@ -51,7 +51,7 @@ export default function TagCommunity() {
       
       <div className="self-stretch flex flex-row items-start justify-start py-0 pr-4 pl-[5px] text-mini pt-10">
         <b className="h-[25px] flex-1 relative flex items-center z-[1]">
-          커뮤니티
+          가입한 클럽
         </b>
       </div>
       <div className="self-stretch h-[9px] flex flex-row items-start justify-start pt-0 px-px pb-[9px] box-border">
