@@ -81,7 +81,7 @@ export default function HotFeed() {
       
       <div className="self-stretch flex flex-row items-start justify-start py-0 pr-4 pl-[5px] text-mini pt-20">
         <b className="h-[25px] flex-1 relative flex items-center z-[1]">
-          핫한 인증 태그
+          핫한 뱃지
         </b>
       </div>
       <div className="self-stretch h-[9px] flex flex-row items-start justify-start pt-0 px-px pb-[9px] box-border">
