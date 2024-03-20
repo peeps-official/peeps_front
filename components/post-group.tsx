@@ -115,11 +115,11 @@ const PostGroup: NextPage<PostGroupType> = ({
 
   return (
     <div
-      className="self-stretch flex flex-col items-start justify-start gap-[20px] max-w-full text-left text-sm text-black font-small-m"
+      className=" flex flex-col items-start justify-start gap-[20px] max-w-full text-left text-sm text-black font-small-m"
       style={PostGroupStyle}
     >
-      <div className="self-stretch h-[70px] relative">
-        <div className="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-8xs bg-white box-border border-[1px] border-solid border-whitesmoke-300" />
+      <div className="w-[580px] shadow-box self-stretch h-[70px] relative">
+        <div className="absolute h-full w-full top-[0%] right-[0%] bottom-[0%] left-[0%] rounded-8xs bg-white" />
         <img className={profile} src={prop} style={ellipseIconStyle} />
         <div className="flex flex-center absolute h-[57.14%] w-[86.44%] top-[21.43%] right-[2.89%] bottom-[21.43%] left-[10.67%] rounded-8xs bg-whitesmoke-300 z-[1]">
           <input
