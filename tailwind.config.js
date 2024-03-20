@@ -45,6 +45,8 @@ module.exports = {
         silver: '#b7b7bf',
         dark: '#191a20',
         'gray-30': '#8c8d96',
+        kakao: '#fee500',
+        naver: '#03c75a',
       },
       spacing: {},
       fontFamily: {
