@@ -3,7 +3,7 @@ import { Badge } from './Badge'
 export default function TagCommunity() {
   let tag = 'w-fit rounded-10xs bg-gray-300 items-center'
   return (
-    <div className="w-[254px] rounded-8xs bg-white flex flex-col items-center justify-start pt-[13px] pb-[273px] pr-4 pl-[17px] box-border gap-[5px] text-left text-sm text-black font-inter ">
+    <div className="w-[254px] rounded-8xs bg-white flex flex-col items-center justify-start pt-[13px] pb-[273px] pr-4 pl-[17px] box-border gap-[5px] text-left text-sm text-black  ">
       <div className="self-stretch flex flex-row items-start justify-start py-0 pr-4 pl-[5px] text-mini">
         <b className="h-[25px] flex-1 relative flex items-center z-[1]">
           팔로우한 뱃지
