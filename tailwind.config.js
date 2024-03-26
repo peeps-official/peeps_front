@@ -50,9 +50,7 @@ module.exports = {
       },
       spacing: {},
       fontFamily: {
-        inter: 'Inter',
-        'small-m': "'Noto Sans KR'",
-        lato: 'Lato',
+        kr: '"Noto Sans KR", sans-serif',
       },
       borderRadius: {
         '8xs': '5px',
@@ -72,7 +70,7 @@ module.exports = {
       '2xs': '11px',
       smi: '13px',
       xl: '20px',
-      lg: '18px',
+      lg: '24px',
       inherit: 'inherit',
     },
     screens: {
@@ -91,6 +89,7 @@ module.exports = {
     },
     boxShadow: {
       box: '0px 1px 1px rgba(0, 0, 0, 0.1), 0px 0px 1px rgba(0, 0, 0, 0.25)',
+      loginBox: '0 8px 16px rgba(182,190,204,.5)',
     },
   },
   corePlugins: {
