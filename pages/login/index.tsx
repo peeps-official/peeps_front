@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import NextImg from '../../components/utils/NextImg'
 
-const loginBtnStyle = 'w-full hidden'
+const loginBtnStyle = 'w-full'
 
 const naverUrl =
   'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=' +
@@ -33,27 +33,29 @@ export default function Login() {
             우리들만의 커뮤니티, 핍스
           </div>
         </div>
-        <div className="self-stretch h-[100px] flex flex-row items-start justify-center">
-          <div className="self-stretch w-full flex flex-col items-end justify-start gap-[20px]">
-            <button className="cursor-pointer [border:none] pt-[1.3px] px-[1.2px] pb-[1.5px] bg-limegreen self-stretch h-[31px] rounded-md flex flex-row items-start justify-start box-border gap-[44.4px] z-[1]">
-              <div className={loginBtnStyle} />
-              <NextImg
-                src="/images/login/naver.svg"
-                alt="네이버 로그인"
-                styles="h-[40px] w-full"              
-              />
+        {/* <div className="self-stretch h-[100px] flex flex-row items-start justify-center"> */}
+          <div className="self-stretch w-full flex flex-col items-end justify-start gap-[10px]">
+            <button className="cursor-pointer [border:none] self-stretch flex flex-row items-start justify-start box-border z-[1]">
+              <a href={naverUrl} className={loginBtnStyle}>
+                <NextImg
+                  src="/images/login/naver.svg"
+                  alt="네이버 로그인"
+                  styles="h-[40px] w-full"        
+                /> 
+              </a>
             </button>
-            <button className="cursor-pointer [border:none] pt-[1.3px] px-[1.2px] pb-[1.5px] bg-limegreen self-stretch h-[31px] rounded-md flex flex-row items-start justify-start box-border gap-[44.4px] z-[1]">
-              <div className={loginBtnStyle} />
-              <NextImg
-                src="images/login/kakao.svg"
-                alt="카카오 로그인"
-                styles="h-[40px] w-full"              
-              />
+            <button className="cursor-pointer [border:none] self-stretch flex flex-row items-start justify-start box-border z-[1]">
+              <a href={kakaoUrl} className={loginBtnStyle}>
+                <NextImg
+                  src="/images/login/kakao.svg"
+                  alt="카카오 로그인"
+                  styles="h-[40px] w-full"              
+                />
+              </a>
             </button>
           </div>
         </div>
       </div>
-    </div>
+    // </div>
   )
 }
