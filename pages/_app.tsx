@@ -3,10 +3,10 @@ import Head from 'next/head'
 import type { AppProps } from 'next/app'
 import './global.css'
 import GlobalHeader from '../components/GlobalHeader'
+import GlobalSidebarLeft from '../components/GlobalSidebarLeft'
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const hideHeader = router.pathname === '/login'
-  const headerPadding = hideHeader ? '' : 'pt-header bg-background'
   return (
     <>
       <Head>
@@ -25,9 +25,12 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         />
       </Head>
       {!hideHeader && <GlobalHeader />}
-      <div className={headerPadding}>
-        <Component {...pageProps} />
-      </div>
+      <main className={`self-stretch flex flex-row pt-[68px] ${hideHeader ? 'justify-center items-center' : ''}`}>
+          {!hideHeader && <GlobalSidebarLeft />}
+          <section className="flex-grow bg-white pl-[80px] overflow-auto">
+            <Component {...pageProps} />
+          </section>
+      </main>
     </>
   )
 }
