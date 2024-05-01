@@ -21,7 +21,7 @@ const kakaoUrl =
 
 export default function Login() {
   return (
-    <div className=" min-h-screen flex flex-row items-center justify-center text-center text-white font-kr">
+    <div className="min-h-screen flex flex-row items-center justify-center text-center text-white font-kr">
       <div className="w-[440px] max-w-md rounded-3xs bg-white shadow-loginBox flex flex-col pb-[34px] gap-[34px]">
         <div className="self-stretch rounded-t-3xs rounded-b-none bg-primary-blue flex flex-col items-center justify-start py-10 px-5 gap-[10px] z-[1]">
           <div className="flex flex-row items-start justify-start py-0 px-7">
