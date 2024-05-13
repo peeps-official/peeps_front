@@ -24,7 +24,7 @@ module.exports = {
       },
       colors: {
         background: '#f7f7f8',
-        "primary-blue": "#0066ff",
+        'primary-blue': '#0066ff',
         white: '#fff',
         gray: {
           10: '#e0e2e7',
@@ -97,11 +97,16 @@ module.exports = {
       },
     },
     zIndex: {
+      default: '1',
       header: '1000',
+      modalBackground: '2000',
+      modal: '2001',
     },
     boxShadow: {
       box: '0px 1px 1px rgba(0, 0, 0, 0.1), 0px 0px 1px rgba(0, 0, 0, 0.25)',
       loginBox: '0 8px 16px rgba(182,190,204,.5)',
+      popupBox:
+        '0px 0px 1px 0px rgba(0, 0, 0, 0.25), 0px 1px 1px 0px rgba(0, 0, 0, 0.10);',
     },
   },
   corePlugins: {

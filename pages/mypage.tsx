@@ -3,6 +3,7 @@ import PostGroup from '../components/post-group'
 import MyProfile from '../components/myprofile'
 import MyProfileHome from '../components/myprofilehome'
 import MyProfileFeed from '../components/myprofilefeed'
+import './mypage/styles/mypage.module.css'
 
 export default function ProfileChange() {
   return (
