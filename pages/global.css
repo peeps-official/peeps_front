@@ -1,14 +1,78 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .kr-normal-24 {
+    color: #000;
+    font-family: 'Noto Sans KR';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 34px;
+    /* 141.667% */
+    letter-spacing: -0.24px;
+  }
+
+  .kr-normal-18 {
+    color: #000;
+
+    /* Medium/B */
+    font-family: 'Noto Sans KR';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px; /* 155.556% */
+    letter-spacing: -0.36px;
+  }
+
+  .kr-bold-14 {
+    color: #000;
+    font-family: 'Noto Sans KR';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 171.429% */
+    letter-spacing: -0.14px;
+  }
+
+  .kr-normal-14 {
+    color: #000;
+    font-family: 'Noto Sans KR';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+    letter-spacing: -0.14px;
+  }
+
+  .kr-normal-13 {
+    font-family: 'Noto Sans KR';
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 13px; /* 100% */
+    letter-spacing: -0.13px;
+  }
+
+  .kr-normal-12 {
+    font-family: 'Noto Sans KR';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: -0.06px;
+  }
+}
+
 body {
   @apply leading-[normal] m-0;
   min-width: 1140px;
-  background-color: #F7F7F8;
+  background-color: #f7f7f8;
 }
 
 *,
@@ -24,7 +88,6 @@ body {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
-
 
 h1 {
   margin: 0;
@@ -144,7 +207,7 @@ time,
 mark,
 audio,
 video {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   margin: 0;
   padding: 0;
   border: 0;

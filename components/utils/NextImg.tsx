@@ -1,7 +1,9 @@
 import Image from 'next/image'
 
 /*
-  
+  src: string
+  alt: string
+  styles: string
 */
 
 export default function NextImg({ src, alt, styles }: any) {
