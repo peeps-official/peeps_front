@@ -1,15 +1,16 @@
-import MyInfo from '../components/myinfo'
-import PostGroup from '../components/post-group'
-import MyProfile from '../components/myprofile'
-import MyProfileHome from '../components/myprofilehome'
-import MyProfileFeed from '../components/myprofilefeed'
-import './mypage/styles/mypage.module.css'
+import MyInfo from '../../components/myinfo'
+import PostGroup from '../../components/post-group'
+import MyProfile from '../../components/myprofile'
+import MyProfileHome from '../../components/myprofilehome'
+import MyProfileFeed from '../../components/myprofilefeed'
+
+import './styles/mypage.module.css'
 
 export default function ProfileChange() {
   return (
     <div className="w-full overflow-auto">
-      <section className="flex-1 flex flex-col items-start justify-start pt-3 px-0 pb-0 box-border text-left text-sm text-black font-detail-b">
-        <div className="self-stretch flex flex-col items-start justify-start">
+      <section className="box-border flex flex-col items-start justify-start flex-1 px-0 pt-3 pb-0 text-sm text-left text-black font-detail-b">
+        <div className="flex flex-col items-start self-stretch justify-start">
           <div className="self-stretch flex flex-col items-start justify-start gap-[17px]">
             {/* 프로필 */}
             <MyProfile />
@@ -24,7 +25,7 @@ export default function ProfileChange() {
                 <div className="w-full h-[3px] absolute !m-[0] right-[0px] bottom-[-2px] left-[0px] bg-black z-[1]" />
               </div>
               <div className="overflow-hidden flex flex-row items-start justify-start py-4 px-[18px] box-border min-w-[48px] text-dimgray-200">
-                <div className="w-3 flex flex-row items-start justify-start">
+                <div className="flex flex-row items-start justify-start w-3">
                   <b className="ml-[-5px] w-[23px] relative flex items-center justify-center min-w-[23px] shrink-0 [debug_commit:1de1738]">
                     피드
                   </b>
@@ -43,7 +44,7 @@ export default function ProfileChange() {
     // <div className="w-full py-[18px]">
     //   <section className="mb-[-203px] mx-auto flex flex-row justify-center items-start pb-3 justify-start box-border gap-[45px] shrink-0 text-left text-base text-black font-small-m">
     //     <MyInfo />
-    //     <div className="flex flex-col items-start justify-start pt-1s box-border ">
+    //     <div className="box-border flex flex-col items-start justify-start pt-1s ">
     //       <PostGroup />
     //     </div>
     //   </section>
