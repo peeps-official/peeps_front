@@ -1,5 +1,5 @@
 import NextImg from '../../../components/utils/NextImg'
-import { popUpData } from '../data/dummy'
+import { popUpData } from '../../../data/dummy'
 
 const data = popUpData
 
