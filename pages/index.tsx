@@ -4,7 +4,7 @@ import HotFeed from '../components/hot-feed'
 
 export default function Main() {
   return (
-    <div className="w-full h-full flex bg-gray-10 items-center justify-center">
+    <div className="flex items-center justify-center w-full h-full bg-gray-10">
       <div className="text-black text-bold text-large">🛠️ 공사중 🛠️</div>
     </div>
     // // <div className="flex flex-col items-center py-[18px]">

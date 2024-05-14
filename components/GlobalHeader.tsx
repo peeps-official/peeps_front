@@ -5,7 +5,7 @@ export default function GlobalHeader() {
   const router = useRouter()
 
   const onProfileClick = useCallback(() => {
-    router.push('/mypage')
+    router.push('/')
   }, [router])
 
   const onLogoClick = useCallback(() => {
@@ -39,7 +39,7 @@ export default function GlobalHeader() {
       <div className="flex flex-col items-start justify-start py-2.5 pl-5 pr-[18px]">
         <div className="flex flex-col items-center justify-center box-border gap-[6px]">
           <img 
-            className="h-full object-cover cursor-pointer" 
+            className="object-cover h-full cursor-pointer" 
             // onClick={onmenuClick}
             alt="collapsed menu icon" 
             src="/images/menu.svg" />
@@ -50,7 +50,7 @@ export default function GlobalHeader() {
         {/* 로고 */}
         <div className="w-[240px] h-[30px] flex flex-col items-start justify-start pt-2.5 pb-0 box-border">
           <img
-            className="h-full object-cover cursor-pointer"
+            className="object-cover h-full cursor-pointer"
             onClick={onLogoClick}
             alt="PEEPS logo"
             src="/images/NEW_LOGO.png"
@@ -93,7 +93,7 @@ export default function GlobalHeader() {
             alt=""
             src="/images/alarm.svg"
           />
-          <div className="flex flex-col items-start justify-start pt-1 px-0 pb-0">
+          <div className="flex flex-col items-start justify-start px-0 pt-1 pb-0">
             <img
               className="h-10 w-10 relative rounded-[50%] object-cover cursor-pointer"
               alt=""
