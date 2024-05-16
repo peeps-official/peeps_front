@@ -18,12 +18,12 @@ export default function ProfileModal({ setIsModalOpen }: any) {
         {/* 팝업 헤더 */}
         <div className="flex flex-row items-center justify-between w-full">
           <div className="kr-normal-24">프로필</div>
-          {/* <button
+          <button
               onClick={() => setIsModalOpen(false)}
-              className="text-lg font-bold text-black"
+              className="text-micro font-bold text-white bg-secondary-blue rounded-8xs py-[5px] px-[9px] hover:bg-primary-blue"
             >
               프로필 수정
-            </button> */}
+            </button>
         </div>
 
         {/* 팝업 컨텐츠 */}
@@ -58,12 +58,100 @@ export default function ProfileModal({ setIsModalOpen }: any) {
               </div>
             </div>
             {/* 뱃지 */}
-            <div className="w-full shadow-popupBox px-[16px] py-[14px]">
-              <div>뱃지</div>
-              <div>뱃지 리스트</div>
-              <div>
-                <div>뱃지 정보</div>
-                <div>인증 상세 정보</div>
+            <div className="flex flex-col gap-[10px] w-full rounded-[8px] shadow-popupBox px-[16px] py-[14px]">
+              <div className="text-left kr-bold-14">뱃지</div>
+              <div className="self-stretch flex flex-row items-start justify-start pt-0 px-0 pb-[15px] box-border max-w-full">
+                <div className="flex-1 box-border overflow-x-auto flex flex-row items-start justify-start pt-[3px] px-0.5 pb-1 gap-[10px] max-w-full border-b-[1px] border-solid border-gray-100">
+                  <img
+                    className="h-[18px] w-[18px] relative shrink-0 object-cover min-h-[18px]"
+                    alt=""
+                    src="/mask-group-3@2x.png"
+                  />
+                  <img
+                    className="h-[18px] w-[18px] relative shrink-0 object-cover min-h-[18px]"
+                    alt=""
+                    src="/mask-group-4@2x.png"
+                  />
+                  <img
+                    className="h-[18px] w-[18px] relative shrink-0 object-cover min-h-[18px]"
+                    alt=""
+                    src="/mask-group-5@2x.png"
+                  />
+                  <img
+                    className="h-[18px] w-[18px] relative rounded-[50%] shrink-0 object-cover min-h-[18px]"
+                    alt=""
+                    src="/ellipse-88-1@2x.png"
+                  />
+                </div>
+              </div>
+              <div className="self-stretch h-[5px] relative hidden" />
+              <div className="self-stretch flex flex-col items-start justify-start gap-[10px] text-9xl">
+                <div className="self-stretch flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
+                  <div className="flex flex-row items-start justify-start gap-[10px]">
+                    <img
+                      className="h-[60px] w-[60px] relative object-cover min-h-[60px]"
+                      loading="lazy"
+                      alt=""
+                      src="/rectangle-4187@2x.png"
+                    />
+                    <div className="flex flex-col items-start justify-start pt-0 px-0 pb-2 gap-[10px]">
+                      <div className="flex flex-col items-start justify-start">
+                        <h1 className="m-0 relative text-inherit tracking-[-0.01em] leading-[100%] text-huge font-bold font-inherit inline-block min-w-[128px] mq450:text-3xl mq450:leading-[22px]">
+                          고려대학교
+                        </h1>
+                      </div>
+                      <div className="flex flex-row items-center justify-start overflow-hidden text-small text-dimgray-100 font-roboto">
+                        <div className="relative tracking-[-0.01em] leading-[14px] font-medium inline-block min-w-[78px]">
+                          인증 300만명
+                        </div>
+                        <div className="w-3 relative tracking-[-0.01em] leading-[14px] font-medium text-center flex items-center justify-center shrink-0">
+                          ‧
+                        </div>
+                        <div className="relative tracking-[-0.01em] leading-[14px] font-medium inline-block min-w-[91px]">
+                          팔로잉 127만명
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button 
+                      // onClick={() => }
+                      className="text-detail text-dimgray-100 bg-gray-100/10 rounded-8xs py-[5px] px-[9px] hover:bg-darkslategray"
+                    >
+                      구경가기
+                    </button>
+                </div>
+                <div className="self-stretch h-2.5 relative" />
+                <div className="self-stretch flex flex-col items-start justify-start gap-[14px] text-mini">
+                  <b className="w-32 relative tracking-[-0.01em] leading-[100%] flex items-center font-bold">
+                    상세정보
+                  </b>
+                  <div className="self-stretch flex flex-col items-start justify-start gap-[12px] text-micro text-dimgray-100">
+                    <div className="self-stretch overflow-hidden flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
+                      <div className="relative tracking-[-0.01em] leading-[100%] inline-block min-w-[47px]">
+                        인증 날짜
+                      </div>
+                      <b className="relative tracking-[-0.01em] leading-[100%] inline-block text-black font-bold min-w-[50px]">
+                        23.03.02
+                      </b>
+                    </div>
+                    <div className="self-stretch overflow-hidden flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
+                      <div className="relative tracking-[-0.01em] leading-[100%] inline-block min-w-[47px]">
+                        인증 방식
+                      </div>
+                      <b className="relative tracking-[-0.01em] leading-[100%] inline-block text-black font-bold min-w-[58px]">
+                        이메일 인증
+                      </b>
+                    </div>
+                    <div className="self-stretch overflow-hidden flex flex-row items-start justify-between gap-[20px]">
+                      <div className="relative tracking-[-0.01em] leading-[100%] inline-block min-w-[47px]">
+                        추가 정보
+                      </div>
+                      <b className="relative tracking-[-0.01em] leading-[100%] inline-block text-black font-bold min-w-[5px]">
+                        -
+                      </b>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
