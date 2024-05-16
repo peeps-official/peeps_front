@@ -25,6 +25,7 @@ module.exports = {
       colors: {
         background: '#f7f7f8',
         'primary-blue': '#0066ff',
+        'secondary-blue': '#5D9EFF',
         white: '#fff',
         gray: {
           10: '#e0e2e7',
@@ -84,6 +85,7 @@ module.exports = {
       semilarge: '20px',
       large: '24px',
       inherit: 'inherit',
+      huge: '28px'
     },
     screens: {
       mq825: {
