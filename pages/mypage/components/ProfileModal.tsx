@@ -13,7 +13,7 @@ export default function ProfileModal({ setIsModalOpen }: any) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white rounded-[10px] flex flex-col items-start justify-start py-[24px] px-[42px] gap-[10px]"
+        className=" h-[90vh] overflow-scroll bg-white rounded-[10px] flex flex-col items-start justify-start py-[24px] px-[42px] gap-[10px]"
       >
         {/* 팝업 헤더 */}
         <div className="flex flex-row items-center justify-between w-full">
