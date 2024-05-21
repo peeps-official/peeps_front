@@ -13,7 +13,7 @@ export default function ProfileModal({ setIsModalOpen }: any) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className=" h-[90vh] overflow-scroll bg-white rounded-[10px] flex flex-col items-start justify-start py-[24px] px-[42px] gap-[10px]"
+        className="h-[90vh] scrollbarstyle overflow-y-auto bg-white rounded-[10px] flex flex-col items-start justify-start py-[24px] px-[42px] gap-[10px]"
       >
         {/* 팝업 헤더 */}
         <div className="flex flex-row items-center justify-between w-full">
@@ -67,6 +67,7 @@ export default function ProfileModal({ setIsModalOpen }: any) {
                     alt=""
                     src="/mask-group-3@2x.png"
                   />
+                  
                   <img
                     className="h-[18px] w-[18px] relative shrink-0 object-cover min-h-[18px]"
                     alt=""
@@ -214,6 +215,36 @@ export default function ProfileModal({ setIsModalOpen }: any) {
                 )
               })}
             </div>
+
+            {/* 이력 */}
+            <div className="flex flex-col gap-[10px] w-full shadow-popupBox px-[16px] py-[14px]">
+              <div className="text-left kr-bold-14">이력</div>
+
+              {data.career.map((data) => {
+                return (
+                  <div className="flex items-start flex-start gap-[32px] pb-[24px]">
+                    <div className="h-[14px] w-[93px] flex items-center flex-start kr-normal-13 text-[#666]">
+                      <NextImg
+                        src="/images/profile/profileDot.svg"
+                        alt="dot"
+                        styles="w-[8px] h-[8px] mr-[8px]"
+                      />
+                      <div className="w-[83px] text-left">
+                        {data.dateStart} -
+                        {data.dateEnd ? data.dateEnd : '진행 중'}
+                      </div>
+                    </div>
+                    <div className="text-left kr-normal-14">
+                      <div className="mb-[15px]">{data.title}</div>
+                      {data.subEx.map((data) => {
+                        return <div className="text-[#666]">{data}</div>
+                      })}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
           </div>
         </div>
       </div>

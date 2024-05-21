@@ -2,8 +2,6 @@ import MyProfile from './components'
 import MyProfileHome from './components/myprofilehome'
 import MyProfileFeed from './components/myprofilefeed'
 
-import './styles/mypage.module.css'
-
 export default function ProfileChange() {
   return (
     <div className="w-full overflow-auto">
