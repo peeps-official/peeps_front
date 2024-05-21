@@ -19,7 +19,6 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         {/* google font */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        
       </Head>
       {!hideHeader && <GlobalHeader />}
       <main className={`self-stretch flex flex-row pt-[68px] ${hideHeader ? 'justify-center items-center' : ''}`}>
