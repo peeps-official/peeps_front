@@ -15,7 +15,7 @@ export default function GlobalHeader() {
   // 검색창 기능 //
   const [search, setSearch] = useState('')
 
-  const clickSearch = async () => {
+  async function clickSearch() {
     try {
       if (search) {
         console.log(search)
