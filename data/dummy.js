@@ -39,3 +39,20 @@ export const popUpData = {
     },
   ],
 }
+
+export const mypageData = {
+  profile: {
+    img: '/images/mimi.jpg',
+    bgimg: '/images/profilebg.png',
+    name: '미미미누',
+    nickname: '@mi3nu',
+    follow: '127만',
+    info: '안녕하세요, 미미미누입니다!',
+    badge: {
+      1: '/images/badge_koreaUniv.png',
+      2: "/images/badge_Youtube.png",
+      3: "/images/badge_Instagram.png",
+      4: "/images/badge_Facebook.png",
+    },
+  }
+}

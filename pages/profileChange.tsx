@@ -18,7 +18,7 @@ export default function ProfileChange() {
 
         <MyInfo />
         
-        <div className="flex-1 flex flex-col items-start justify-start pt-1s box-border max-w-full ">
+        <div className="box-border flex flex-col items-start justify-start flex-1 max-w-full pt-1s ">
           <p>프로필 변경</p>
           <div>
             <Button

@@ -1,6 +1,6 @@
 import { useSearchParams } from 'next/navigation'
 
-export default function callback() {
+export default function Callback() {
   const params = useSearchParams()
 
   //여러개의 값을 한번에 가져오고 싶다면
