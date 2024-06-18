@@ -1,10 +1,16 @@
 import { useState } from 'react'
 import NextImg from '../../../components/utils/NextImg'
-import { popUpData, mypageData } from '../../../data/dummy'
-import { ClickContainer, UnclickContainer, IconContainer, Icon, TextStyle, InfoContainer, InfoIcon, InfoNumberStyle, InfoAddressStyle, EditComponent } from "./ProfileChangeModalStyle"
+import { popUpData } from '../../../data/dummy'
+import tw from "tailwind-styled-components"
 
 const data = popUpData
-const popdata = mypageData
+
+// style conponents : tw
+const ClickContainer = tw.div`flex flex-row items-start self-stretch justify-start px-4 py-3 bg-whitesmoke-300 rounded-8xs gap-[10px]`
+const UnclickContainer = tw.div`flex flex-row items-start self-stretch justify-start px-4 py-3 bg-white rounded-8xs gap-[10px]`
+const IconContainer = tw.div`flex flex-col items-start justify-start pt-[5px] px-0 pb-0`
+const Icon = tw.div`relative w-6 h-6 bg-gray-400`
+const TextStyle = tw.div`flex relative tracking-[-0.01em] leading-[34px]`
 
 export default function ProfileChangeModal({ setIsModal2Open }: any) {
 
@@ -32,7 +38,7 @@ export default function ProfileChangeModal({ setIsModal2Open }: any) {
         </div>
 
         {/* 팝업 컨텐츠 */}
-        <div className="flex flex-row items-start justify-start flex-1 max-w-full">
+        <div className="flex-1 flex flex-row items-start justify-start gap-[10px] max-w-full">
           {/* 왼쪽 */}
           <div className="self-stretch flex flex-row items-start justify-start max-w-full [row-gap:20px]">
             {/* 선택바 */}
@@ -60,90 +66,12 @@ export default function ProfileChangeModal({ setIsModal2Open }: any) {
           </div>
 
           {/* 오른쪽 */}
-          <div className="h-[858px] min-w-[368px] flex-1 flex flex-col items-start justify-start py-0 pr-0 pl-[42px]">
-            {/* 프로필 미리보기 */}
-            <div className='min-w-[156px] flex flex-row items-start justify-start shadow-popupBox rounded-8xs py-[17px] px-2.5 gap-[14px]'>
-                {/* 프로필 미리보기 사진 */}
-                <NextImg
-                    src={data.profile.img}
-                    alt="profile"
-                    styles="h-[114px] w-[114px] relative rounded-8xs object-cover"
-                />
-                {/* 프로필 미리보기 내용 */}
-                <div className="flex-1 flex flex-col items-start justify-start min-w-[156px]">
-                    {/* 이름 & top 뱃지 */}
-                    <div className="self-stretch flex flex-row items-center justify-between gap-[173px]">
-                      <b className="relative tracking-[-0.02em] leading-[28px] inline-block min-w-[49px] font-bold text-medium">
-                        김민우
-                      </b>
-                      <NextImg 
-                        src={popdata.profile.badge[2]}
-                        alt="badge of Youtube"
-                        styles="h-[18px] w-[18px] relative object-cover"
-                    />
-                    </div>
-                    {/* 소개글 & 기타 정보 */}
-                    <div className="flex flex-col items-start justify-start gap-[12px] font-normal text-micro">
-                        {/* 소개글 */}
-                        <div className="self-stretch relative leading-[16px]">
-                            <p className="m-0">{`입시 & 교육 컨텐츠 크리에이터`}</p>
-                        </div>
-                        {/* 기타 정보 */}
-                        <div className="flex flex-col items-start justify-start text-detail">
-                            {/* phone number */}
-                            <InfoContainer>
-                                <InfoIcon
-                                    alt='phone number'
-                                    src='images\icons\phone.svg'
-                                />
-                                <InfoNumberStyle>+82-10-1234-5679</InfoNumberStyle>
-                            </InfoContainer>
-                            {/* email address */}
-                            <InfoContainer>
-                                <InfoIcon
-                                    alt='email address'
-                                    src='images\icons\mail.svg'
-                                />
-                                <InfoAddressStyle 
-                                    href="mailto:ks8553v@gmail.com"
-                                    target='_blank'
-                                >
-                                    ks8553v@gmail.com
-                                </InfoAddressStyle>
-                            </InfoContainer>
-                            {/* website address */}
-                            <InfoContainer>
-                                <InfoIcon
-                                    alt='website address'
-                                    src='images\icons\globe.svg'
-                                />
-                                <InfoAddressStyle 
-                                    href="mailto:ks8553v@gmail.com"
-                                    target='_blank'
-                                >
-                                    ks8553v@gmail.com
-                                </InfoAddressStyle>
-                            </InfoContainer>
-                            {/* company phone number */}
-                            <InfoContainer>
-                                <InfoIcon
-                                    alt='phone number'
-                                    src='images\icons\map.svg'
-                                />
-                                <InfoNumberStyle>{`+82-10-1234-5679`}</InfoNumberStyle>
-                            </InfoContainer>
-                        </div>
-                    </div>
-                </div>
+          <div className="flex flex-col items-start justify-start gap-[23px] w-[368px]">
+            {/* 미리보기 */}
+            
+            {/* 수정 */}
+            
 
-            </div>
-            {/* 프로필 편집 내용 */}
-            <EditComponent prop='이름' placeholder={`김민우`} type='text' />
-            <EditComponent prop='소개글' placeholder={`입시 & 교육 컨텐츠 크리에이터`} type='text' propMinWidth='44px' />
-            <EditComponent prop='전화번호' placeholder={`+82-10-1234-5679`} type='text' propMinWidth='59px' />
-            <EditComponent prop='이메일' placeholder={`ks8553v@gmail.com`} type='text' propMinWidth='44px' />
-            <EditComponent prop='url' placeholder={`instagram.com`} type='text' propMinWidth='22px' />
-            <EditComponent prop='뱃지' placeholder={`인스타그램`} type='text' propMinWidth='30px' />
           </div>
         </div>
       </div>

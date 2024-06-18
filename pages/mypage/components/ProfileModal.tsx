@@ -1,15 +1,9 @@
 import { useState, useEffect } from 'react'
 import ProfileChangeModal from './ProfileChangeModal'
 import NextImg from '../../../components/utils/NextImg'
-import { popUpData, mypageData } from '../../../data/dummy'
-import { Next } from 'react-bootstrap/esm/PageItem'
-import tw from "tailwind-styled-components"
+import { popUpData } from '../../../data/dummy'
 
 const data = popUpData
-const popdata = mypageData
-
-// styles components : tw
-const Dot = tw.div`w-[8px] h-[8px] mr-[8px] bg-underline rounded-full`
 
 export default function ProfileModal({ setIsModalOpen }: any) {
   const [isModal2Open, setIsModal2Open] = useState(false);
@@ -73,26 +67,27 @@ export default function ProfileModal({ setIsModalOpen }: any) {
             <div className="flex flex-col gap-[10px] w-full rounded-[8px] shadow-popupBox px-[16px] py-[14px]">
               <div className="text-left kr-bold-14">뱃지</div>
               <div className="self-stretch flex flex-row items-start justify-start pt-0 px-0 pb-[15px] box-border max-w-full">
-                <div className="flex-1 box-border overflow-x-auto flex flex-row items-start justify-start pt-[3px] px-0.5 pb-1 gap-[10px] max-w-full border-b-[1px] border-solid border-underline">
-                  <NextImg
-                    styles="h-[18px] w-[18px] relative shrink-0 object-cover min-h-[18px]"
-                    alt="badge of Korea.Univ"
-                    src={popdata.profile.badge[1]}
+                <div className="flex-1 box-border overflow-x-auto flex flex-row items-start justify-start pt-[3px] px-0.5 pb-1 gap-[10px] max-w-full border-b-[1px] border-solid border-gray-100">
+                  <img
+                    className="h-[18px] w-[18px] relative shrink-0 object-cover min-h-[18px]"
+                    alt=""
+                    src="/mask-group-3@2x.png"
                   />
-                  <NextImg
-                    styles="h-[18px] w-[18px] relative shrink-0 object-cover min-h-[18px]"
-                    alt="badge of Youtube"
-                    src={popdata.profile.badge[2]}
+                  
+                  <img
+                    className="h-[18px] w-[18px] relative shrink-0 object-cover min-h-[18px]"
+                    alt=""
+                    src="/mask-group-4@2x.png"
                   />
-                  <NextImg
-                    styles="h-[18px] w-[18px] relative shrink-0 object-cover min-h-[18px]"
-                    alt="badge of Instagram"
-                    src={popdata.profile.badge[3]}
+                  <img
+                    className="h-[18px] w-[18px] relative shrink-0 object-cover min-h-[18px]"
+                    alt=""
+                    src="/mask-group-5@2x.png"
                   />
-                  <NextImg
-                    styles="h-[18px] w-[18px] relative rounded-[50%] shrink-0 object-cover min-h-[18px]"
-                    alt="badge of Facebook"
-                    src={popdata.profile.badge[4]}
+                  <img
+                    className="h-[18px] w-[18px] relative rounded-[50%] shrink-0 object-cover min-h-[18px]"
+                    alt=""
+                    src="/ellipse-88-1@2x.png"
                   />
                 </div>
               </div>
@@ -100,10 +95,11 @@ export default function ProfileModal({ setIsModalOpen }: any) {
               <div className="self-stretch flex flex-col items-start justify-start gap-[10px] text-9xl">
                 <div className="self-stretch flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
                   <div className="flex flex-row items-start justify-start gap-[10px]">
-                    <NextImg
-                      styles="h-[60px] w-[60px] relative object-cover min-h-[60px]"
-                      alt="badge of Korea.Univ"
-                      src={popdata.profile.topbadge}
+                    <img
+                      className="h-[60px] w-[60px] relative object-cover min-h-[60px]"
+                      loading="lazy"
+                      alt=""
+                      src="/rectangle-4187@2x.png"
                     />
                     <div className="flex flex-col items-start justify-start pt-0 px-0 pb-2 gap-[10px]">
                       <div className="flex flex-col items-start justify-start">
@@ -177,7 +173,11 @@ export default function ProfileModal({ setIsModalOpen }: any) {
                 return (
                   <div className="flex items-start flex-start gap-[32px] pb-[24px]">
                     <div className="h-[14px] w-[93px] flex items-center flex-start kr-normal-13 text-[#666]">
-                      <Dot />
+                      <NextImg
+                        src="/images/profile/profileDot.svg"
+                        alt="dot"
+                        styles="w-[8px] h-[8px] mr-[8px]"
+                      />
                       <div className="w-[83px] text-left">
                         {data.dateStart} -
                         {data.dateEnd ? data.dateEnd : '진행 중'}
@@ -201,7 +201,11 @@ export default function ProfileModal({ setIsModalOpen }: any) {
                 return (
                   <div className="flex items-start flex-start gap-[32px] pb-[24px]">
                     <div className="h-[14px] w-[93px] flex items-center flex-start kr-normal-13 text-[#666]">
-                      <Dot />
+                      <NextImg
+                        src="/images/profile/profileDot.svg"
+                        alt="dot"
+                        styles="w-[8px] h-[8px] mr-[8px]"
+                      />
                       <div className="w-[83px] text-left">
                         {data.dateStart} -
                         {data.dateEnd ? data.dateEnd : '진행 중'}
@@ -226,7 +230,11 @@ export default function ProfileModal({ setIsModalOpen }: any) {
                 return (
                   <div className="flex items-start flex-start gap-[32px] pb-[24px]">
                     <div className="h-[14px] w-[93px] flex items-center flex-start kr-normal-13 text-[#666]">
-                      <Dot />
+                      <NextImg
+                        src="/images/profile/profileDot.svg"
+                        alt="dot"
+                        styles="w-[8px] h-[8px] mr-[8px]"
+                      />
                       <div className="w-[83px] text-left">
                         {data.dateStart} -
                         {data.dateEnd ? data.dateEnd : '진행 중'}
