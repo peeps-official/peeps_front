@@ -1,13 +1,9 @@
-import { useState, useEffect } from 'react'
-import ProfileChangeModal from './ProfileChangeModal'
 import NextImg from '../../../components/utils/NextImg'
 import { popUpData } from '../../../data/dummy'
 
 const data = popUpData
 
 export default function ProfileModal({ setIsModalOpen }: any) {
-  const [isModal2Open, setIsModal2Open] = useState(false);
-
   return (
     <div
       className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50 z-modal"
@@ -23,13 +19,11 @@ export default function ProfileModal({ setIsModalOpen }: any) {
         <div className="flex flex-row items-center justify-between w-full">
           <div className="kr-normal-24">프로필</div>
           <button
-              onClick={() => setIsModal2Open(true)}
+              onClick={() => setIsModalOpen(false)}
               className="text-micro font-bold text-white bg-secondary-blue rounded-8xs py-[5px] px-[9px] hover:bg-primary-blue"
             >
               프로필 수정
             </button>
-            {isModal2Open && <ProfileChangeModal setIsModal2Open={setIsModal2Open} />}
-            {}
         </div>
 
         {/* 팝업 컨텐츠 */}
@@ -37,7 +31,7 @@ export default function ProfileModal({ setIsModalOpen }: any) {
           {/* 왼쪽 */}
           <div className="flex flex-col items-center justify-start gap-[15px] w-[368px]">
             {/* 프로필 */}
-            <div className="flex gap-[14px] rounded-[8px] shadow-popupBox w-full px-[10px] py-[17px]">
+            <div className="flex gap-[14px] shadow-popupBox w-full px-[10px] py-[17px]">
               <NextImg
                 src={data.profile.img}
                 alt="profile"
@@ -166,7 +160,7 @@ export default function ProfileModal({ setIsModalOpen }: any) {
           {/* 오른쪽 */}
           <div className="flex flex-col items-start justify-start gap-[23px] w-[368px]">
             {/* 학력 */}
-            <div className="flex flex-col gap-[10px] w-full rounded-[8px] shadow-popupBox px-[16px] py-[14px]">
+            <div className="flex flex-col gap-[10px] w-full shadow-popupBox px-[16px] py-[14px]">
               <div className="text-left kr-bold-14">학력 </div>
 
               {data.educate.map((data) => {
@@ -194,7 +188,7 @@ export default function ProfileModal({ setIsModalOpen }: any) {
               })}
             </div>
             {/* 이력 */}
-            <div className="flex flex-col gap-[10px] w-full rounded-[8px] shadow-popupBox px-[16px] py-[14px]">
+            <div className="flex flex-col gap-[10px] w-full shadow-popupBox px-[16px] py-[14px]">
               <div className="text-left kr-bold-14">이력</div>
 
               {data.career.map((data) => {
@@ -223,7 +217,7 @@ export default function ProfileModal({ setIsModalOpen }: any) {
             </div>
 
             {/* 이력 */}
-            <div className="flex flex-col gap-[10px] w-full rounded-[8px] shadow-popupBox px-[16px] py-[14px]">
+            <div className="flex flex-col gap-[10px] w-full shadow-popupBox px-[16px] py-[14px]">
               <div className="text-left kr-bold-14">이력</div>
 
               {data.career.map((data) => {
