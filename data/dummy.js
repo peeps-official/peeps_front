@@ -54,5 +54,6 @@ export const mypageData = {
       3: "/images/badge_Instagram.png",
       4: "/images/badge_Facebook.png",
     },
+    topbadge: '/images/top_badge_koreaUniv.png',
   }
 }

@@ -34,7 +34,7 @@ module.exports = {
           300: 'rgba(0, 0, 0, 0.04)',
           400: '#D9D9D9',
         },
-        underline: '#D6D6D6',
+        underline: 'rgba(0, 0, 0, 0.1)',
         black: '#000',
         whitesmoke: {
           100: '#f5f5f7',
@@ -65,6 +65,7 @@ module.exports = {
       },
     },
     fontWeight: {
+      //font
       thin: '100',
       extralight: '200',
       light: '300',
@@ -76,6 +77,7 @@ module.exports = {
       black: '900',
     },
     fontSize: {
+      //text
       detail: '10px',
       micro: '12px',
       tiny: '13px',
