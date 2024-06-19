@@ -1,6 +1,6 @@
-import tw from "tailwind-styled-components"
-import type { NextPage } from "next";
-import { useMemo, type CSSProperties } from "react";
+import tw from 'tailwind-styled-components'
+import type { NextPage } from 'next'
+import { useMemo, type CSSProperties } from 'react'
 
 // style components : tw
 // 선택창
@@ -18,27 +18,27 @@ const InfoAddressStyle = tw.a`relative leading-[16px] text-[inherit] inline-bloc
 
 // 프로필 편집 내용
 export type ComponentType = {
-  className?: string;
-  prop?: string;
-  placeholder?: string;
-  type?: string;
+  className?: string
+  prop?: string
+  placeholder?: string
+  type?: string
 
   /** Style props */
-  propMinWidth?: CSSProperties["minWidth"];
-};
+  propMinWidth?: CSSProperties['minWidth']
+}
 
-const EditComponent: NextPage<ComponentType> = ({
-  className = "",
+export default function EditComponent({
+  className = '',
   prop,
   placeholder,
   type,
   propMinWidth,
-}) => {
+}: ComponentType) {
   const bStyle: CSSProperties = useMemo(() => {
     return {
       minWidth: propMinWidth,
-    };
-  }, [propMinWidth]);
+    }
+  }, [propMinWidth])
 
   return (
     <div
@@ -60,9 +60,18 @@ const EditComponent: NextPage<ComponentType> = ({
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export {ClickContainer, UnclickContainer, IconContainer, Icon, TextStyle, 
-    InfoContainer, InfoIcon, InfoNumberStyle, InfoAddressStyle,
-    EditComponent}
+export {
+  ClickContainer,
+  UnclickContainer,
+  IconContainer,
+  Icon,
+  TextStyle,
+  InfoContainer,
+  InfoIcon,
+  InfoNumberStyle,
+  InfoAddressStyle,
+  EditComponent,
+}
