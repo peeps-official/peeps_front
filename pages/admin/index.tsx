@@ -71,7 +71,7 @@ export default function Component() {
           <h1 className="flex-1 text-lg font-semibold">Admin Dashboard</h1>
           <div className="flex items-center gap-4">
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
+              <DropdownMenuTrigger asChild={false}>
                 <Button className="rounded-full" size="icon" variant="ghost">
                   <img
                     alt="Avatar"
