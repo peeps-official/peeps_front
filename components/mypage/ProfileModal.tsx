@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import ProfileChangeModal from './ProfileEditModal'
-import NextImg from '../../../components/utils/NextImg'
-import { popUpData, mypageData } from '../../../data/dummy'
 import { Next } from 'react-bootstrap/esm/PageItem'
-import tw from "tailwind-styled-components"
+import tw from 'tailwind-styled-components'
+import { mypageData, popUpData } from '@/data/dummy'
+import NextImg from '@/common/utils/NextImg'
 
 const data = popUpData
 const popdata = mypageData
@@ -12,7 +12,7 @@ const popdata = mypageData
 const Dot = tw.div`w-[8px] h-[8px] mr-[8px] bg-underline rounded-full`
 
 export default function ProfileModal({ setIsProfileModalOpen }: any) {
-  const [isProfileEditModalOpen, setIsProfileEditModalOpen] = useState(false);
+  const [isProfileEditModalOpen, setIsProfileEditModalOpen] = useState(false)
 
   return (
     <div
@@ -29,15 +29,17 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
         <div className="flex flex-row items-center justify-between w-full">
           <div className="kr-normal-24">프로필</div>
           <button
-              onClick={() => setIsProfileEditModalOpen(true)}
-              className="text-micro font-bold text-white bg-secondary-blue rounded-8xs py-[5px] px-[9px] hover:bg-primary-blue"
-            >
-              프로필 수정
-            </button>
+            onClick={() => setIsProfileEditModalOpen(true)}
+            className="text-micro font-bold text-white bg-secondary-blue rounded-8xs py-[5px] px-[9px] hover:bg-primary-blue"
+          >
+            프로필 수정
+          </button>
         </div>
 
-        {isProfileEditModalOpen ? ( 
-          <ProfileChangeModal setIsProfileEditModalOpen={setIsProfileEditModalOpen} /> 
+        {isProfileEditModalOpen ? (
+          <ProfileChangeModal
+            setIsProfileEditModalOpen={setIsProfileEditModalOpen}
+          />
         ) : (
           // 팝업 컨텐츠
           <div className="flex gap-[14px]">
@@ -125,12 +127,12 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
                         </div>
                       </div>
                     </div>
-                    <button 
-                        // onClick={() => }
-                        className="text-detail text-dimgray-100 bg-gray-100/10 rounded-8xs py-[5px] px-[9px] hover:bg-darkslategray"
-                      >
-                        구경가기
-                      </button>
+                    <button
+                      // onClick={() => }
+                      className="text-detail text-dimgray-100 bg-gray-100/10 rounded-8xs py-[5px] px-[9px] hover:bg-darkslategray"
+                    >
+                      구경가기
+                    </button>
                   </div>
                   <div className="self-stretch h-2.5 relative" />
                   <div className="self-stretch flex flex-col items-start justify-start gap-[14px] text-mini">
@@ -243,12 +245,9 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
                   )
                 })}
               </div>
-
             </div>
           </div>
-        ) }
-        
-        
+        )}
       </div>
     </div>
   )

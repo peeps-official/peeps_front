@@ -1,9 +1,9 @@
 import { RecoilRoot } from 'recoil'
-import AdminHeader from './components/AdminHeader'
-import { AdminTableTitle, AdminTable } from './components/AdminTable'
-import { AdminTableWrapper } from './components/AdminTableWrapper'
+import AdminHeader from '../../components/admin/AdminHeader'
+import { AdminTableTitle, AdminTable } from '../../components/admin/AdminTable'
+import { AdminTableWrapper } from '../../components/admin/AdminTableWrapper'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { uerData, userDataKey, userDataUrl } from './tableState'
+import { uerData, userDataKey, userDataUrl } from '../../state/tableState'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 const queryClient = new QueryClient()

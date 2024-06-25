@@ -3,7 +3,7 @@ import {
   KeyIcon,
   ShieldCheckIcon,
   UsersIcon,
-} from '@/components/icon/icon'
+} from '@/common/icon/icon'
 import Link from 'next/link'
 
 export default function AdminSidebar() {

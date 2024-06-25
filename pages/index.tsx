@@ -1,6 +1,6 @@
-import TagCommunity from '../components/tag-community'
-import PostGroup from '../components/post-group'
-import HotFeed from '../components/hot-feed'
+import TagCommunity from '../common/tag-community'
+import PostGroup from '../common/post-group'
+import HotFeed from '../common/hot-feed'
 
 export default function Main() {
   return (
