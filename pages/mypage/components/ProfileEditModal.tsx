@@ -6,13 +6,13 @@ import { ClickContainer, UnclickContainer, IconContainer, Icon, TextStyle, InfoC
 const data = popUpData
 const popdata = mypageData
 
-export default function ProfileChangeModal({ setIsModal2Open }: any) {
+export default function ProfileChangeModal({ setIsProfileEditModalOpen }: any) {
 
   return (
     <div
       className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-black bg-opacity-50 z-modal"
       onClick={() => {
-        setIsModal2Open(false)
+        setIsProfileEditModalOpen(false)
       }}
     >
       <div
@@ -23,7 +23,7 @@ export default function ProfileChangeModal({ setIsModal2Open }: any) {
         <div className="flex flex-row items-center justify-between w-full">
           <div className="kr-normal-24">프로필 편집</div>
           <button
-              onClick={() => setIsModal2Open(true)}
+              onClick={() => setIsProfileEditModalOpen(true)}
               className="text-micro font-bold text-white bg-secondary-blue rounded-8xs py-[5px] px-[9px] hover:bg-primary-blue"
             >
               저장

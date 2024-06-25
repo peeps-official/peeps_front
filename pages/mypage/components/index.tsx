@@ -5,7 +5,7 @@ import { mypageData } from '../../../data/dummy'
 const data = mypageData
 
 export default function MyProfile() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
   const [isFollowing, setIsFollowing] = useState(false);
 
   const handleFollowClick = () => {
@@ -13,18 +13,18 @@ export default function MyProfile() {
   };
 
   // useEffect(() => {
-  //   return () => setIsModalOpen(false)
+  //   return () => setIsProfileModalOpen(false)
   // }, [])
 
   useEffect(() => {
-    if (isModalOpen) {
+    if (isProfileModalOpen) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'auto'
     }
-  }, [isModalOpen])
+  }, [isProfileModalOpen])
 
-  console.log(isModalOpen)
+  console.log(isProfileModalOpen)
 
   return (
     <div className="box-border flex flex-row items-start self-stretch justify-start max-w-full py-0 pl-4 pr-5 shrink-0">
@@ -113,14 +113,14 @@ export default function MyProfile() {
                 </button>
               </div>
               <button
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => setIsProfileModalOpen(true)}
                 className="rounded-[15px] bg-primary-blue overflow-hidden flex flex-row items-center justify-center py-0 px-[11px] whitespace-nowrap text-white"
               >
                 <b className="w-[68px] relative tracking-[-0.01em] leading-[34px] text-small flex items-center justify-center min-w-[68px]">
                   프로필 보기
                 </b>
               </button>
-              {isModalOpen && <ProfileModal setIsModalOpen={setIsModalOpen} />}
+              {isProfileModalOpen && <ProfileModal setIsProfileModalOpen={setIsProfileModalOpen} />}
             </div>
           </div>
         </div>
