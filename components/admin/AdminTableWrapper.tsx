@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { RecoilState, atom, useRecoilState } from 'recoil'
-import { UserData } from '../tableState'
+import { UserData } from '../../state/tableState'
 import { useEffect } from 'react'
 
 interface AdminTableWrapperProps {

@@ -1,4 +1,4 @@
-// components/ui/dropdown-menu.js
+// common/ui/dropdown-menu.js
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 

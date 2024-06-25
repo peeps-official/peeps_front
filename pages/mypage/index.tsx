@@ -1,6 +1,6 @@
-import MyProfile from './components'
-import MyProfileHome from './components/myprofilehome'
-import MyProfileFeed from './components/myprofilefeed'
+import MyProfile from '@/components/mypage'
+import MyProfileFeed from '@/components/mypage/myprofilefeed'
+import MyProfileHome from '@/components/mypage/myprofilehome'
 
 export default function ProfileChange() {
   return (

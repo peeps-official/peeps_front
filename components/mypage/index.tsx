@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
 import ProfileModal from './ProfileModal'
-import { mypageData } from '../../../data/dummy'
+import { mypageData } from '@/data/dummy'
 
 const data = mypageData
 
 export default function MyProfile() {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false)
 
   const handleFollowClick = () => {
-    setIsFollowing(prevState => !prevState);
-  };
+    setIsFollowing((prevState) => !prevState)
+  }
 
   // useEffect(() => {
   //   return () => setIsProfileModalOpen(false)
@@ -102,10 +102,14 @@ export default function MyProfile() {
             {/* 팔로우하기 및 프로필 상세보기 */}
             <div className="flex flex-row items-center justify-start gap-[10px] text-center">
               <div className="flex flex-row items-start justify-start">
-                <button 
+                <button
                   onClick={handleFollowClick}
                   className={`rounded-[15px] overflow-hidden flex flex-row items-center justify-center py-0 px-3 whitespace-nowrap
-                              ${isFollowing ? 'bg-gray-100/10 text-black' : 'bg-black text-white'}`}
+                              ${
+                                isFollowing
+                                  ? 'bg-gray-100/10 text-black'
+                                  : 'bg-black text-white'
+                              }`}
                 >
                   <b className="w-[55px] relative tracking-[-0.01em] leading-[34px] font-medium text-small flex items-center justify-center min-w-[55px]">
                     {isFollowing ? '팔로우 중' : '팔로우'}
@@ -120,7 +124,9 @@ export default function MyProfile() {
                   프로필 보기
                 </b>
               </button>
-              {isProfileModalOpen && <ProfileModal setIsProfileModalOpen={setIsProfileModalOpen} />}
+              {isProfileModalOpen && (
+                <ProfileModal setIsProfileModalOpen={setIsProfileModalOpen} />
+              )}
             </div>
           </div>
         </div>

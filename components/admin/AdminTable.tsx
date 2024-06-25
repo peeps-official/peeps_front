@@ -1,19 +1,19 @@
-import { MoveHorizontalIcon } from '@/components/icon/icon'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { MoveHorizontalIcon } from '@/common/icon/icon'
+import { Badge } from '@/common/ui/badge'
+import { Button } from '@/common/ui/button'
 import {
   CardTitle,
   CardDescription,
   CardHeader,
   CardContent,
   Card,
-} from '@/components/ui/card'
+} from '@/common/ui/card'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from '@/common/ui/dropdown-menu'
 import {
   TableHead,
   TableRow,
@@ -21,8 +21,8 @@ import {
   TableCell,
   TableBody,
   Table,
-} from '@/components/ui/table'
-import { UserData, tableHead } from '../tableState'
+} from '@/common/ui/table'
+import { UserData, tableHead } from '../../state/tableState'
 import { RecoilState, useRecoilState } from 'recoil'
 import { Fragment } from 'react'
 

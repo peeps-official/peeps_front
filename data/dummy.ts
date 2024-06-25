@@ -50,10 +50,10 @@ export const mypageData = {
     info: '안녕하세요, 미미미누입니다!',
     badge: {
       1: '/images/badge_koreaUniv.png',
-      2: "/images/badge_Youtube.png",
-      3: "/images/badge_Instagram.png",
-      4: "/images/badge_Facebook.png",
+      2: '/images/badge_Youtube.png',
+      3: '/images/badge_Instagram.png',
+      4: '/images/badge_Facebook.png',
     },
     topbadge: '/images/top_badge_koreaUniv.png',
-  }
+  },
 }
