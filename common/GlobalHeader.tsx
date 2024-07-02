@@ -1,5 +1,6 @@
 import { useCallback, useState, ChangeEvent } from 'react'
 import { useRouter } from 'next/router'
+import NextImg from './utils/NextImg'
 
 export default function GlobalHeader() {
   const router = useRouter()
@@ -34,73 +35,67 @@ export default function GlobalHeader() {
   ////
 
   return (
-    <div className="fixed w-full self-stretch flex flex-row flex-wrap bg-white items-start justify-start box-border z-[1]">
+    <div className="fixed flex items-center justify-center w-full bg-white h-header z-header min-w-[800px]">
       {/* 헤더 영역 I */}
-      <div className="flex flex-col items-start justify-start py-2.5 pl-5 pr-[18px]">
-        <div className="flex flex-col items-center justify-center box-border gap-[6px]">
-          <img 
-            className="object-cover h-full cursor-pointer" 
-            // onClick={onmenuClick}
-            alt="collapsed menu icon" 
-            src="/images/menu.svg" />
-        </div>
+      <div className="w-[64px] h-full py-[10px] pl-[19px] pr-[4px]">
+        <button
+          // onClick={onmenuClick}
+          className="w-full h-full"
+        >
+          <NextImg
+            alt="collapsed menu icon"
+            src="/images/menu.svg"
+            styles="object-cover h-full cursor-pointer"
+          />
+        </button>
       </div>
+
       {/* 헤더 영역 II */}
-      <div className="flex-1 flex flex-row items-start justify-between py-2.5 px-5 box-border relative min-w-[847px] max-w-full gap-5 lg:flex-wrap">
+      <div className="flex-1 flex items-center justify-between pl-[20px] pr-[20px] min-w-[847px] h-full">
         {/* 로고 */}
-        <div className="w-[240px] h-[30px] flex flex-col items-start justify-start pt-2.5 pb-0 box-border">
-          <img
-            className="object-cover h-full cursor-pointer"
-            onClick={onLogoClick}
+        <button onClick={onLogoClick} className="w-[85px] h-full py-[20px]">
+          <NextImg
+            //
             alt="PEEPS logo"
             src="/images/NEW_LOGO.png"
+            styles="object-cover cursor-pointer"
           />
-        </div>
+        </button>
+
         {/* 검색 */}
-        <div className="w-[548px] flex flex-row items-center justify-start py-0.5 px-1 box-border relative max-w-full">
-          <div className="self-stretch flex flex-row items-center justify-center py-2 px-1.5 box-border relative max-w-full z-[1]">
-            <div className="h-full w-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] rounded-3xs bg-whitesmoke-300" />
-            <div className="h-[21.3px] w-[518px] flex flex-row items-center justify-center py-2 px-0 box-border gap-[6px] max-w-full z-[1]">
-              <img
-                className="h-[22px] w-[22px] relative object-cover cursor-pointer"
-                onClick={clickSearch}
-                alt="search icon"
-                src="/images/search.svg"
-              />
-              <input
-                type="text"
-                placeholder="커뮤니티 검색해보기"
-                className="w-[calc(100%_-_22px)] [border:none] [outline:none] font-medium font-kr text-tiny bg-[transparent] h-5 flex-1 relative tracking-[-0.01em] leading-[20px] text-silver text-left inline-block min-w-[250px] max-w-[calc(100%_-_28px)] p-0"
-                onChange={handleSearchValue}
-              />
-            </div>
-          </div>
-        </div>
-        {/* 프로필 & 버튼 */}
-        <div className="flex flex-row items-start justify-start gap-[10px] z-[1]">
-          <img
-            className="h-12 w-12 relative min-h-[40px]"
-            alt=""
-            src="/images/club.svg"
-          />
-          <img
-            className="h-12 w-12 relative min-h-[40px]"
-            alt=""
-            src="/images/Message.svg"
-          />
-          <img
-            className="h-12 w-12 relative min-h-[40px]"
-            alt=""
-            src="/images/alarm.svg"
-          />
-          <div className="flex flex-col items-start justify-start px-0 pt-1 pb-0">
-            <img
-              className="h-10 w-10 relative rounded-[50%] object-cover cursor-pointer"
-              alt=""
-              src="images/myprofile.png"
-              onClick={onProfileClick}
+        <div className="w-[321px] h-[36px] pl-[8px] pr-[20px]  flex items-center justify-center gap-[6px] rounded-3xs bg-whitesmoke-300">
+          <button onClick={clickSearch} className="w-[20px] h-[20px] pt-[1px]">
+            <NextImg
+              alt="search icon"
+              src="/images/search.svg"
+              styles="object-cover cursor-pointer"
             />
+          </button>
+          <input
+            type="text"
+            placeholder="커뮤니티 검색해보기"
+            className="w-full h-full flex-1 font-[400] text-[15px] leading-[1.2]"
+            onChange={handleSearchValue}
+          />
+        </div>
+
+        {/* 프로필 & 버튼 */}
+        <div className="flex items-center justify-start gap-[10px]">
+          <div className="w-[50px] h-[50px]">
+            <NextImg alt="club icon" src="/images/club.svg" />
           </div>
+          <div className="w-[50px] h-[50px]">
+            <NextImg alt="message icon" src="/images/Message.svg" />
+          </div>
+          <div className="w-[50px] h-[50px]">
+            <NextImg alt="" src="/images/alarm.svg" />
+          </div>
+          <button
+            onClick={onProfileClick}
+            className="w-[38px] h-[38px] rounded-[50%] object-cover cursor-pointer overflow-hidden"
+          >
+            <NextImg alt="profile icon" src="images/myprofile.png" />
+          </button>
         </div>
       </div>
     </div>
