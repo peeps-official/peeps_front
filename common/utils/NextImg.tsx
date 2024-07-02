@@ -1,13 +1,13 @@
 import Image from 'next/image'
 
-/*
+interface NextImgProps {
   src: string
   alt: string
-  styles: string
-*/
+  styles?: string
+}
 
-export default function NextImg({ src, alt, styles }: any) {
-  let classStyle = `relative ${styles}`
+export default function NextImg({ src, alt, styles }: NextImgProps) {
+  let classStyle = `relative ${styles} w-full h-full`
 
   return (
     <div className={classStyle}>

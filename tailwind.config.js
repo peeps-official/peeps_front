@@ -1,10 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 
 export const mainWidth = '1140px'
-export const headerSize = '64px'
+export const headerSize = '60px'
 
 module.exports = {
   content: [
+    './common/**/*.{js,ts,jsx,tsx}',
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
@@ -88,7 +89,7 @@ module.exports = {
       semilarge: '20px',
       large: '24px',
       inherit: 'inherit',
-      huge: '28px'
+      huge: '28px',
     },
     screens: {
       mq825: {

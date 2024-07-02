@@ -40,7 +40,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         <>
           <GlobalHeader />
           <main
-            className={`self-stretch flex flex-row pt-[68px] ${
+            className={`self-stretch flex flex-row pt-header ${
               hideHeader ? 'justify-center items-center' : ''
             }`}
           >
