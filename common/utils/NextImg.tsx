@@ -11,7 +11,7 @@ export default function NextImg({ src, alt, styles }: NextImgProps) {
 
   return (
     <div className={classStyle}>
-      <Image alt={alt} src={src} layout="fill" />
+      <Image alt={alt} src={src} fill />
     </div>
   )
 }
