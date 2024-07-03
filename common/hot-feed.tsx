@@ -11,15 +11,15 @@ export type feedType = {
 const Feed: NextPage<feedType> = ({ name, property, text }) => {
   return (
     <div className="flex flex-col gap-[5px]">
-      <div className="flex flex-row justify-between">
+      <div className="flex justify-between">
         <div className="font-extrabold">{name}</div>
-        <div className="h-4 rounded-10xs  flex flex-row text-xs text-gray-200 flex-wrap gap-[6px]">
+        <div className="h-4 rounded-10xs  flex text-xs text-gray-200 flex-wrap gap-[6px]">
           {property.map((a, i) => {
             return <Tag title={a} />
           })}
         </div>
       </div>
-      <div className="pb-4 w-[212px] relative text-3xs leading-[142%] text-black inline-block z-[1]">
+      <div className="pb-4 w-[212px] relative text-3xs leading-[142%] text-black inline-block ">
         {text}
       </div>
     </div>
@@ -28,15 +28,15 @@ const Feed: NextPage<feedType> = ({ name, property, text }) => {
 
 export default function HotFeed() {
   return (
-    <div className="w-[254px] rounded-8xs bg-white flex flex-col items-center justify-start pt-[13px] pb-[273px] pr-4 pl-[17px] box-border gap-[5px] text-left text-sm text-black ">
-      <div className="self-stretch flex flex-col items-end justify-start py-0 px-[5px] gap-[8px] pb-10">
-        <div className="self-stretch flex flex-row items-start justify-start py-0   text-mini">
-          <b className="h-[25px] flex-1 relative flex items-center z-[1]">
+    <div className="w-[254px] rounded-8xs bg-white flex flex-col items-center pt-[13px] pb-[273px] pr-4 pl-[17px] box-border gap-[5px] text-left text-sm text-black ">
+      <div className="self-stretch flex flex-col items-end    py-0 px-[5px] gap-[8px] pb-10">
+        <div className="self-stretch flex py-0   text-mini">
+          <b className="h-[25px] flex-1 relative flex items-center ">
             전체 인기 글
           </b>
         </div>
-        <div className="self-stretch h-[9px] flex flex-row items-start justify-start pt-0 px-px pb-[9px] box-border">
-          <div className="h-px flex-1 relative box-border z-[1] border-t-[1px] border-solid border-whitesmoke-100" />
+        <div className="self-stretch h-[9px] flex pt-0 px-px pb-[9px] box-border">
+          <div className="h-px flex-1 relative box-border  border-t-[1px] border-solid border-whitesmoke-100" />
         </div>
 
         <Feed
@@ -56,13 +56,11 @@ export default function HotFeed() {
         />
       </div>
 
-      <div className="self-stretch flex flex-row items-start justify-start py-0 pr-4 text-mini pt-20">
-        <b className="h-[25px] flex-1 relative flex items-center z-[1]">
-          핫한 뱃지
-        </b>
+      <div className="self-stretch flex py-0 pr-4 text-mini pt-20">
+        <b className="h-[25px] flex-1 relative flex items-center ">핫한 뱃지</b>
       </div>
-      <div className="self-stretch h-[9px] flex flex-row items-start justify-start pt-0 px-px pb-[9px] box-border">
-        <div className="h-px flex-1 relative box-border z-[1] border-t-[1px] border-solid border-whitesmoke-100" />
+      <div className="self-stretch h-[9px] flex pt-0 px-px pb-[9px] box-border">
+        <div className="h-px flex-1 relative box-border  border-t-[1px] border-solid border-whitesmoke-100" />
       </div>
       <Badge
         name="비트코인"

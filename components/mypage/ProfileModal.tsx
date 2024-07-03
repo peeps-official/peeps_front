@@ -23,10 +23,10 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="h-[90vh] scrollbarstyle overflow-y-auto bg-white rounded-[10px] flex flex-col items-start justify-start py-[24px] px-[42px] gap-[10px]"
+        className="h-[90vh] scrollbarstyle overflow-y-auto bg-white rounded-[10px] flex flex-col py-[24px] px-[42px] gap-[10px]"
       >
         {/* 팝업 헤더 */}
-        <div className="flex flex-row items-center justify-between w-full">
+        <div className="flex items-center justify-between w-full">
           <div className="kr-normal-24">프로필</div>
           <button
             onClick={() => setIsProfileEditModalOpen(true)}
@@ -44,7 +44,7 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
           // 팝업 컨텐츠
           <div className="flex gap-[14px]">
             {/* 왼쪽 */}
-            <div className="flex flex-col items-center justify-start gap-[15px] w-[368px]">
+            <div className="flex flex-col items-center gap-[15px] w-[368px]">
               {/* 프로필 */}
               <div className="flex gap-[14px] rounded-[8px] shadow-popupBox w-full px-[10px] py-[17px]">
                 <NextImg
@@ -75,8 +75,8 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
               {/* 뱃지 */}
               <div className="flex flex-col gap-[10px] w-full rounded-[8px] shadow-popupBox px-[16px] py-[14px]">
                 <div className="text-left kr-bold-14">뱃지</div>
-                <div className="self-stretch flex flex-row items-start justify-start pt-0 px-0 pb-[15px] box-border max-w-full">
-                  <div className="flex-1 box-border overflow-x-auto flex flex-row items-start justify-start pt-[3px] px-0.5 pb-1 gap-[10px] max-w-full border-b-[1px] border-solid border-underline">
+                <div className="self-stretch flex pt-0 px-0 pb-[15px] box-border max-w-full">
+                  <div className="flex-1 box-border overflow-x-auto flex pt-[3px] px-0.5 pb-1 gap-[10px] max-w-full border-b-[1px] border-solid border-underline">
                     <NextImg
                       styles="h-[18px] w-[18px] relative shrink-0 object-cover min-h-[18px]"
                       alt="badge of Korea.Univ"
@@ -100,21 +100,21 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
                   </div>
                 </div>
                 <div className="self-stretch h-[5px] relative hidden" />
-                <div className="self-stretch flex flex-col items-start justify-start gap-[10px] text-9xl">
-                  <div className="self-stretch flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
-                    <div className="flex flex-row items-start justify-start gap-[10px]">
+                <div className="self-stretch flex flex-col gap-[10px] text-9xl">
+                  <div className="self-stretch flex justify-between gap-[20px] mq450:flex-wrap">
+                    <div className="flex gap-[10px]">
                       <NextImg
                         styles="h-[60px] w-[60px] relative object-cover min-h-[60px]"
                         alt="badge of Korea.Univ"
                         src={popdata.profile.topbadge}
                       />
-                      <div className="flex flex-col items-start justify-start pt-0 px-0 pb-2 gap-[10px]">
-                        <div className="flex flex-col items-start justify-start">
+                      <div className="flex flex-col pt-0 px-0 pb-2 gap-[10px]">
+                        <div className="flex flex-col     ">
                           <h1 className="m-0 relative text-inherit tracking-[-0.01em] leading-[100%] text-huge font-bold font-inherit inline-block min-w-[128px] mq450:text-3xl mq450:leading-[22px]">
                             고려대학교
                           </h1>
                         </div>
-                        <div className="flex flex-row items-center justify-start overflow-hidden text-small text-dimgray-100 font-roboto">
+                        <div className="flex items-center overflow-hidden text-small text-dimgray-100 font-roboto">
                           <div className="relative tracking-[-0.01em] leading-[14px] font-medium inline-block min-w-[78px]">
                             인증 300만명
                           </div>
@@ -135,12 +135,12 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
                     </button>
                   </div>
                   <div className="self-stretch h-2.5 relative" />
-                  <div className="self-stretch flex flex-col items-start justify-start gap-[14px] text-mini">
+                  <div className="self-stretch flex flex-col gap-[14px] text-mini">
                     <b className="w-32 relative tracking-[-0.01em] leading-[100%] flex items-center font-bold">
                       상세정보
                     </b>
-                    <div className="self-stretch flex flex-col items-start justify-start gap-[12px] text-micro text-dimgray-100">
-                      <div className="self-stretch overflow-hidden flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
+                    <div className="self-stretch flex flex-col gap-[12px] text-micro text-dimgray-100">
+                      <div className="self-stretch overflow-hidden flex justify-between gap-[20px] mq450:flex-wrap">
                         <div className="relative tracking-[-0.01em] leading-[100%] inline-block min-w-[47px]">
                           인증 날짜
                         </div>
@@ -148,7 +148,7 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
                           23.03.02
                         </b>
                       </div>
-                      <div className="self-stretch overflow-hidden flex flex-row items-start justify-between gap-[20px] mq450:flex-wrap">
+                      <div className="self-stretch overflow-hidden flex justify-between gap-[20px] mq450:flex-wrap">
                         <div className="relative tracking-[-0.01em] leading-[100%] inline-block min-w-[47px]">
                           인증 방식
                         </div>
@@ -156,7 +156,7 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
                           이메일 인증
                         </b>
                       </div>
-                      <div className="self-stretch overflow-hidden flex flex-row items-start justify-between gap-[20px]">
+                      <div className="self-stretch overflow-hidden flex justify-between gap-[20px]">
                         <div className="relative tracking-[-0.01em] leading-[100%] inline-block min-w-[47px]">
                           추가 정보
                         </div>
@@ -171,14 +171,14 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
             </div>
 
             {/* 오른쪽 */}
-            <div className="flex flex-col items-start justify-start gap-[23px] w-[368px]">
+            <div className="flex flex-col gap-[23px] w-[368px]">
               {/* 학력 */}
               <div className="flex flex-col gap-[10px] w-full rounded-[8px] shadow-popupBox px-[16px] py-[14px]">
                 <div className="text-left kr-bold-14">학력 </div>
 
                 {data.educate.map((data) => {
                   return (
-                    <div className="flex items-start flex-start gap-[32px] pb-[24px]">
+                    <div className="flex flex-start gap-[32px] pb-[24px]">
                       <div className="h-[14px] w-[93px] flex items-center flex-start kr-normal-13 text-[#666]">
                         <Dot />
                         <div className="w-[83px] text-left">
@@ -202,7 +202,7 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
 
                 {data.career.map((data) => {
                   return (
-                    <div className="flex items-start flex-start gap-[32px] pb-[24px]">
+                    <div className="flex flex-start gap-[32px] pb-[24px]">
                       <div className="h-[14px] w-[93px] flex items-center flex-start kr-normal-13 text-[#666]">
                         <Dot />
                         <div className="w-[83px] text-left">
@@ -227,7 +227,7 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
 
                 {data.career.map((data) => {
                   return (
-                    <div className="flex items-start flex-start gap-[32px] pb-[24px]">
+                    <div className="flex flex-start gap-[32px] pb-[24px]">
                       <div className="h-[14px] w-[93px] flex items-center flex-start kr-normal-13 text-[#666]">
                         <Dot />
                         <div className="w-[83px] text-left">

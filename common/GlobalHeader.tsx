@@ -80,7 +80,7 @@ export default function GlobalHeader() {
         </div>
 
         {/* 프로필 & 버튼 */}
-        <div className="flex items-center justify-start gap-[10px]">
+        <div className="flex items-center gap-[10px]">
           <div className="w-[50px] h-[50px]">
             <NextImg alt="club icon" src="/images/club.svg" />
           </div>
