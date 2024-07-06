@@ -1,8 +1,12 @@
 import { useCallback, useState, ChangeEvent } from 'react'
 import { useRouter } from 'next/router'
 import NextImg from './utils/NextImg'
+import { useRecoilState } from 'recoil'
+import { uerDataState } from '@/state/userState'
 
 export default function GlobalHeader() {
+  const [recoilData, setRecoilData] = useRecoilState(uerDataState)
+  console.log('reocil: ', recoilData)
   const router = useRouter()
 
   const onProfileClick = useCallback(() => {
@@ -94,7 +98,10 @@ export default function GlobalHeader() {
             onClick={onProfileClick}
             className="w-[38px] h-[38px] rounded-[50%] object-cover cursor-pointer overflow-hidden"
           >
-            <NextImg alt="profile icon" src="images/myprofile.png" />
+            <NextImg
+              alt="profile icon"
+              src={recoilData?.profileImage ?? '/images/profile.svg'}
+            />
           </button>
         </div>
       </div>

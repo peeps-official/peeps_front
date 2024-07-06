@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react'
 import ProfileModal from './ProfileModal'
 import { mypageData } from '@/data/dummy'
+import { useRecoilState } from 'recoil'
+import { uerDataState } from '@/state/userState'
+import NextImg from '@/common/utils/NextImg'
 
 const data = mypageData
 
 export default function MyProfile() {
+  const [recoilData, setRecoilData] = useRecoilState(uerDataState)
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
   const [isFollowing, setIsFollowing] = useState(false)
 
@@ -24,13 +28,11 @@ export default function MyProfile() {
     }
   }, [isProfileModalOpen])
 
-  console.log(isProfileModalOpen)
-
   return (
-    <div className="box-border flex self-stretch    max-w-full py-0 pl-4 pr-5 shrink-0">
+    <div className="box-border flex self-stretch max-w-full py-0 pl-4 pr-5 shrink-0">
       <div className="flex-1 flex flex-col gap-[20px] max-w-full">
         {/* 프로필 배경화면 설정 */}
-        <header className="box-border flex self-stretch    max-w-full py-0 pl-px pr-0">
+        <header className="box-border flex self-stretch max-w-full py-0 pl-px pr-0">
           <img
             className="h-[204px] flex-1 relative rounded-[15px] max-w-full overflow-hidden object-cover"
             alt="profile bgimg"
@@ -40,18 +42,17 @@ export default function MyProfile() {
         {/* 프로필 설정 */}
         <div className="flex gap-[10px]">
           {/* 프로필 사진 */}
-          <button className="cursor-pointer [border:none] p-1 bg-[transparent] overflow-hidden flex items-center justify-center">
-            <img
-              className="h-24 w-24 relative rounded-[50%] object-cover"
+          <button className="object-cover w-24 h-24 overflow-hidden rounded-full cursor-pointer">
+            <NextImg
               alt="profile image"
-              src={data.profile.img}
+              src={recoilData?.profileImage ?? '/images/profile.svg'}
             />
           </button>
           {/* 프로필 내용 */}
           <div className="flex flex-col gap-[11px]">
             {/* 이름 */}
             <h1 className="m-0 relative text-[28px] tracking-[-0.01em] leading-[34px] font-bold font-inherit inline-block min-w-[103px]">
-              {data.profile.name}
+              {recoilData?.nickname ?? '...'}
             </h1>
             {/* 닉네임 및 팔로워 수 */}
             <div className="flex text-dimgray-100 font-roboto">

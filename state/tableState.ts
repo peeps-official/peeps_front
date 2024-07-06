@@ -6,17 +6,17 @@ import { atom } from 'recoil'
  * atom, fetch될 data type, tableHead 등 테이블과 관련된 상태를 관리하는 파일
  */
 
-export const userDataKey: string = 'user'
+export const adminDatakey: string = 'adminDataKey'
 
 export const userDataUrl: string = 'http://localhost:9090/user/admin'
 
 export const uerData = atom<Array<UserData>>({
-  key: userDataKey,
+  key: adminDatakey,
   default: [
     {
       id: '',
       nickname: '',
-      profileImage: '',
+      profileImage: null,
       backgroundImage: null,
       info: null,
       mobile: '',
@@ -31,7 +31,7 @@ export const uerData = atom<Array<UserData>>({
 export interface UserData {
   id: string
   nickname: string
-  profileImage: string
+  profileImage: string | null
   backgroundImage: string | null
   info: string | null
   mobile: string
