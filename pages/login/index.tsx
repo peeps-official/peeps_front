@@ -14,7 +14,7 @@ const kakaoUrl =
   'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=' +
   process.env.NEXT_PUBLIC_KAKAO_ID +
   '&redirect_uri=' +
-  process.env.NEXT_PUBLIC_KKAKAO_CALLBACK
+  process.env.NEXT_PUBLIC_KAKAO_CALLBACK
 
 export default function LoginPage() {
   return (
@@ -26,7 +26,7 @@ export default function LoginPage() {
               PEEPS
             </h1>
           </div>
-          <div className="relative text-micro font-normal ">
+          <div className="relative font-normal text-micro ">
             우리들만의 커뮤니티, 핍스
           </div>
         </div>
