@@ -1,6 +1,6 @@
 'use client'
 
-import FetchUserProfileCom from '../fetch/UserProfileData'
+import FetchUserProfileCom from '@/common/fetch/UserProfileData'
 
 interface DataWrapperForMainPageProps {
   children: React.ReactNode
