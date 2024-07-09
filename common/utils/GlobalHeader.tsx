@@ -1,8 +1,9 @@
 import { useCallback, useState, ChangeEvent } from 'react'
 import { useRouter } from 'next/router'
-import NextImg from './utils/NextImg'
+
+import NextImg from './NextImg'
 import { useRecoilState } from 'recoil'
-import { uerDataState } from '@/state/userState'
+import { uerDataState } from '../recoil/userAtom'
 
 export default function GlobalHeader() {
   const [recoilData, setRecoilData] = useRecoilState(uerDataState)

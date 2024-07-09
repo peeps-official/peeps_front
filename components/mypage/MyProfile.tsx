@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import ProfileModal from './ProfileModal'
 import { mypageData } from '@/data/dummy'
 import { useRecoilState } from 'recoil'
-import { uerDataState } from '@/state/userState'
+import { uerDataState } from '@/common/recoil/userAtom'
 import NextImg from '@/common/utils/NextImg'
 
 const data = mypageData
