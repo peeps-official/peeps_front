@@ -2,9 +2,10 @@ import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
-import { uerDataState } from '@/state/userState'
-import { fetchUserProfileData } from '@/common/query/axios'
+
 import DataWrapperForMainPage from '@/components/main/DataWrapperForMainPage'
+import { fetchUserProfileData } from '@/common/api/mypage'
+import { uerDataState } from '@/common/recoil/userAtom'
 
 export default function Main() {
   const [recoilData, setRecoilData] = useRecoilState(uerDataState)

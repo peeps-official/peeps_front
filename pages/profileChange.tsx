@@ -1,4 +1,4 @@
-import MyInfo from '../common/myinfo'
+import MyInfo from '../common/MyInfo'
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 import 'bootstrap/dist/css/bootstrap.min.css'

@@ -1,7 +1,7 @@
 'use client'
 
-import { fetchUserProfileData } from '@/common/query/axios'
-import { uerDataState } from '@/state/userState'
+import { fetchUserProfileData } from '@/common/api/mypage'
+import { uerDataState } from '@/common/recoil/userAtom'
 import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'

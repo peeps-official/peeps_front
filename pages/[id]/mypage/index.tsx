@@ -1,3 +1,4 @@
+import HotFeed from '@/common/hot-feed'
 import DataWrapperForMyPage from '@/components/mypage/DataWrapperForMyPage'
 import MyProfile from '@/components/mypage/MyProfile'
 import MyProfileFeed from '@/components/mypage/MyProfileFeed'

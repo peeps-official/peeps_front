@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
-import GlobalHeader from '../common/GlobalHeader'
-import GlobalSidebarLeft from '../common/GlobalSidebarLeft'
+import GlobalHeader from '../common/utils/GlobalHeader'
+import GlobalSidebarLeft from '../common/utils/GlobalSidebarLeft'
 
 import { Archivo } from 'next/font/google'
 import { DM_Sans } from 'next/font/google'

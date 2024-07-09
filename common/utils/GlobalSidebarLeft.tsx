@@ -1,7 +1,7 @@
-import { uerDataState } from '@/state/userState'
 import { useRecoilState } from 'recoil'
-import NextImg from './utils/NextImg'
 import Link from 'next/link'
+import { uerDataState } from '../recoil/userAtom'
+import NextImg from './NextImg'
 
 export default function GlobalSidebarLeft() {
   const [recoilData, setRecoilData] = useRecoilState(uerDataState)

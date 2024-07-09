@@ -1,30 +1,19 @@
-import { MoveHorizontalIcon } from '@/common/icon/icon'
-import { Badge } from '@/common/ui/badge'
-import { Button } from '@/common/ui/button'
+import { UserData } from '../../state/tableState'
+import { RecoilState, useRecoilState } from 'recoil'
 import {
-  CardTitle,
+  CardContent,
   CardDescription,
   CardHeader,
-  CardContent,
-  Card,
-} from '@/common/ui/card'
+  CardTitle,
+} from '@/common/assets/ui/card'
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/common/ui/dropdown-menu'
-import {
-  TableHead,
-  TableRow,
-  TableHeader,
-  TableCell,
-  TableBody,
   Table,
-} from '@/common/ui/table'
-import { UserData, tableHead } from '../../state/tableState'
-import { RecoilState, useRecoilState } from 'recoil'
-import { Fragment } from 'react'
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/common/assets/ui/table'
 
 interface AdminTableTitleProps {
   title: string
@@ -43,6 +32,19 @@ export function AdminTableTitle({ title, description }: AdminTableTitleProps) {
 interface AdminTableWrapperProps {
   recoilState: RecoilState<UserData[]>
 }
+
+export const tableHead: (keyof UserData)[] = [
+  'id',
+  'nickname',
+  'profileImage',
+  'backgroundImage',
+  'info',
+  'mobile',
+  'name',
+  'birthday',
+  'birthyear',
+  'boards',
+]
 
 export function AdminTable({ recoilState }: AdminTableWrapperProps) {
   const [recoilData, setRecoilData] = useRecoilState(recoilState)
