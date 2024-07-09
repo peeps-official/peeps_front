@@ -6,10 +6,12 @@ import Link from 'next/link'
 export default function GlobalSidebarLeft() {
   const [recoilData, setRecoilData] = useRecoilState(uerDataState)
 
+  const mypage = `/${recoilData.id}/mypage`
+
   return (
     <div className="fixed flex flex-col items-center h-screen text-left bg-white text-mini text-dimgray-100 font-kr">
       {/* 본인 프로필 및 닉네임 */}
-      <Link href="/mypage" className="flex items-center pt-1 px-[15px] pb-2.5">
+      <Link href={mypage} className="flex items-center pt-1 px-[15px] pb-2.5">
         <div className="flex flex-col items-center gap-[4px]">
           <div className="w-12 h-12 overflow-hidden rounded-full ">
             <NextImg

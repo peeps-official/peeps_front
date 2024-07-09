@@ -19,6 +19,7 @@ export default function Main() {
     if (isSuccess) {
       console.log(data)
       setRecoilData(data)
+      router.push(`${data.id}/mypage`)
     }
 
     if (isError) {
