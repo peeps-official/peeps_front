@@ -9,6 +9,7 @@ import { DM_Sans } from 'next/font/google'
 import '@/src/app/global.css'
 import '@/src/app/styles.css'
 import DataContextProvider from '../_components/DataContextProvider'
+import { Metadata } from 'next'
 
 const archivo = Archivo({
   subsets: ['latin'],
@@ -29,17 +30,15 @@ interface layoutProps {
 export default function DefaultLayout({ children }: layoutProps) {
   return (
     <>
-      <DataContextProvider>
-        <GlobalHeader />
-        <main className={`pt-header w-full`}>
-          <div className={`${archivo.variable + ' ' + dm_sans.variable}`}>
-            <GlobalSidebarLeft />
-            <section className="flex-grow bg-white pl-[80px] overflow-auto">
-              {children}
-            </section>
-          </div>
-        </main>
-      </DataContextProvider>
+      <GlobalHeader />
+      <main className={`pt-header w-full`}>
+        <div className={`${archivo.variable + ' ' + dm_sans.variable}`}>
+          <GlobalSidebarLeft />
+          <section className="flex-grow bg-white pl-[80px] overflow-auto">
+            {children}
+          </section>
+        </div>
+      </main>
     </>
   )
 }
