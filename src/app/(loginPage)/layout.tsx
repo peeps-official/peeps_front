@@ -5,7 +5,7 @@ import { DM_Sans } from 'next/font/google'
 
 import '@/src/app/global.css'
 import '@/src/app/styles.css'
-import DataContextProvider from '@/src/app/_components/DataContextProvider'
+import DataContextProvider from '../_components/DataContextProvider'
 
 const archivo = Archivo({
   subsets: ['latin'],
@@ -26,7 +26,7 @@ export default function DefaultLayout({ children }: layoutProps) {
   return (
     <>
       <div className={`${archivo.variable + ' ' + dm_sans.variable}`}>
-        <DataContextProvider>{children}</DataContextProvider>
+        {children}
       </div>
     </>
   )
