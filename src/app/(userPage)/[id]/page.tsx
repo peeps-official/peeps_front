@@ -1,7 +1,13 @@
-import DataWrapperForMyPage from '../_components/DataWrapperForMyPage'
+import { Metadata } from 'next'
+import DataWrapperForMyPage from '../_wrapper/DataWrapperForMyPage'
 import MyProfile from '../_components/MyProfile'
 import MyProfileFeed from '../_components/MyProfileFeed'
 import MyProfileHome from '../_components/MyProfileHome'
+
+export const metadata: Metadata = {
+  title: 'PEEPS',
+  description: 'PEEPS',
+}
 
 export default function MyPage() {
   return (
