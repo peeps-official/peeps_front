@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { UserData } from '../types/user'
+import { UserData, UserProfile } from '../types/user'
 
 // admin
 export const adminDatakey: string = 'adminDataKey'
@@ -58,5 +58,14 @@ export const uerDataState = atom<UserData>({
     birthday: '',
     birthyear: '',
     boards: [],
+  },
+})
+
+export const userProfileState = atom<UserProfile>({
+  key: 'userProfileState',
+  default: {
+    nickname: '',
+    profileImage: null,
+    backgroundImage: null,
   },
 })
