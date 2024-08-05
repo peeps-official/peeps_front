@@ -6,44 +6,48 @@ import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import { fetchUserProfileData } from '../common/api/mypage'
 import DataWrapperForMainPage from './_components/DataWrapperForMainPage'
-import { uerDataState } from '../common/recoil/userAtom'
+import { userProfileState } from '../common/recoil/userAtom'
 import Link from 'next/link'
+import { UserProfile } from '../common/types/user'
 
 export default function Main() {
-  const [recoilData, setRecoilData] = useRecoilState(uerDataState)
-  const router = useRouter()
+  const [recoilData, setRecoilData] =
+    useRecoilState<UserProfile>(userProfileState)
 
-  const { isSuccess, isError, error, data } = useQuery({
+  const { data, isSuccess, isError, error } = useQuery<UserProfile>({
     queryKey: ['login'],
     queryFn: () => fetchUserProfileData(),
   })
 
-  useEffect(() => {
-    if (isSuccess) {
-      console.log('로그인: ', data)
-      setRecoilData(data)
-      router.push(`mypage/${data.nickname}`)
-    }
-
-    if (isError) {
-      console.log(error.message)
-      router.push('/login')
-    }
-  }, [isSuccess, error])
-
   return (
     <DataWrapperForMainPage>
       <div className="flex items-center justify-center w-full h-full bg-gray-10">
-        <div>
-          <div className="m-auto text-center text-black text-bold text-large">
+        <div className="">
+          <div className="p-[1rem] text-center text-black text-bold text-large">
             🛠️ 공사중 🛠️
           </div>
-          <Link href="/login" className="text-blue-10 text-bold text-large">
-            로그인 페이지
-          </Link>
-          <Link href="/admin" className="text-blue-10 text-bold text-large">
-            관리자 페이지
-          </Link>
+
+          <div className="flex gap-[10px]">
+            <Link
+              href={`/${data?.nickname}`}
+              className="block px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+            >
+              {data?.nickname}님의 페이지
+            </Link>
+            <Link
+              href="/login"
+              className="block px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+            >
+              로그인 페이지
+            </Link>
+
+            <Link
+              href="/admin"
+              className="block px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+            >
+              관리자 페이지
+            </Link>
+          </div>
         </div>
       </div>
     </DataWrapperForMainPage>
