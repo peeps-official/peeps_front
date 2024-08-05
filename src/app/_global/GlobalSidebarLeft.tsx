@@ -8,36 +8,29 @@ import NextImg from '@/src/common/utils/NextImg'
 
 export default function GlobalSidebarLeft() {
   const [recoilData, setRecoilData] = useRecoilState(uerDataState)
-  const [mypage, setMypage] = useState('')
-
-  useEffect(() => {
-    if (recoilData && recoilData.id) setMypage(`/${recoilData.id}/mypage`)
-  }, [recoilData])
-
-  console.log('mypage: ', mypage)
 
   return (
     <div className="fixed flex flex-col items-center h-screen text-left bg-white text-mini text-dimgray-100 font-kr">
       {/* 본인 프로필 및 닉네임 */}
-      {mypage ? (
-        <Link href={mypage} className="flex items-center pt-1 px-[15px] pb-2.5">
-          <div className="flex flex-col items-center gap-[4px]">
-            <div className="w-12 h-12 overflow-hidden rounded-full ">
-              <NextImg
-                alt="profile"
-                src={recoilData?.profileImage ?? '/images/profile.svg'}
-              />
-            </div>
-            <div className="flex items-center px-1 py-0">
-              <b className="relative leading-[16px] font-bold inline-block min-w-[28px]">
-                {recoilData?.nickname ?? '어서오세요'}
-              </b>
-            </div>
+      <Link
+        href={`/${recoilData?.nickname}`}
+        className="flex items-center pt-1 px-[15px] pb-2.5"
+      >
+        <div className="flex flex-col items-center gap-[4px]">
+          <div className="w-12 h-12 overflow-hidden rounded-full ">
+            <NextImg
+              alt="profile"
+              src={recoilData?.profileImage ?? '/images/profile.svg'}
+            />
           </div>
-        </Link>
-      ) : (
-        <>로드중입니다...</>
-      )}
+          <div className="flex items-center px-1 py-0">
+            <b className="relative leading-[16px] font-bold inline-block min-w-[28px]">
+              {recoilData?.nickname ?? '어서오세요'}
+            </b>
+          </div>
+        </div>
+      </Link>
+
       {/* 구분선 */}
       <div className="flex items-center py-0 px-[15px]">
         <div className="h-[2px] w-12 relative bg-gray-10" />
