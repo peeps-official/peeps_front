@@ -10,3 +10,9 @@ export interface UserData {
   birthyear: string
   boards: any[]
 }
+
+export interface UserProfile {
+  nickname: string
+  profileImage: string | null
+  backgroundImage: string | null
+}
