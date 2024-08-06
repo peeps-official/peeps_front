@@ -3,11 +3,11 @@ import { useRecoilState } from 'recoil'
 import Link from 'next/link'
 
 import { useEffect, useState } from 'react'
-import { uerDataState } from '@/src/common/recoil/userAtom'
+import { uerDataStateAtom } from '@/src/common/recoil/userAtom'
 import NextImg from '@/src/common/utils/NextImg'
 
 export default function GlobalSidebarLeft() {
-  const [recoilData, setRecoilData] = useRecoilState(uerDataState)
+  const [recoilData, setRecoilData] = useRecoilState(uerDataStateAtom)
 
   return (
     <div className="fixed flex flex-col items-center h-screen text-left bg-white text-mini text-dimgray-100 font-kr">

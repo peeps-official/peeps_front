@@ -1,10 +1,10 @@
 import { atom } from 'recoil'
-import { UserData, UserProfile } from '../types/user'
+import { UserData_T, UserProfile_T } from '../types/user'
 
 // admin
 export const adminDatakey: string = 'adminDataKey'
 
-export const uerDataAtom = atom<Array<UserData>>({
+export const uerDataAtom = atom<Array<UserData_T>>({
   key: adminDatakey,
   default: [
     {
@@ -24,7 +24,7 @@ export const uerDataAtom = atom<Array<UserData>>({
 
 export const adminBadgeListKey: string = 'adminBadgeListKey'
 
-export const badgeAtom = atom<Array<UserData>>({
+export const badgeAtom = atom<Array<UserData_T>>({
   key: adminBadgeListKey,
   default: [
     {
@@ -45,7 +45,7 @@ export const badgeAtom = atom<Array<UserData>>({
 // user
 export const userDataKey: string = 'userDataKey'
 
-export const uerDataState = atom<UserData>({
+export const uerDataStateAtom = atom<UserData_T>({
   key: userDataKey,
   default: {
     id: '',
@@ -61,8 +61,8 @@ export const uerDataState = atom<UserData>({
   },
 })
 
-export const userProfileState = atom<UserProfile>({
-  key: 'userProfileState',
+export const UserProfileStateAtom = atom<UserProfile_T>({
+  key: 'UserProfileStateAtom',
   default: {
     nickname: '',
     profileImage: null,

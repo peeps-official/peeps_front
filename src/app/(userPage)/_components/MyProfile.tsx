@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react'
 import ProfileModal from './ProfileModal'
 
 import { useRecoilState } from 'recoil'
-import { uerDataState } from '@/src/common/recoil/userAtom'
+import { uerDataStateAtom } from '@/src/common/recoil/userAtom'
 import { mypageData } from '@/src/tmp_data/dummy'
 import NextImg from '@/src/common/utils/NextImg'
 
 const data = mypageData
 
 export default function MyProfile() {
-  const [recoilData, setRecoilData] = useRecoilState(uerDataState)
+  const [recoilData, setRecoilData] = useRecoilState(uerDataStateAtom)
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
   const [isFollowing, setIsFollowing] = useState(false)
 
