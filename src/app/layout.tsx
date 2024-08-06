@@ -1,11 +1,9 @@
-import Head from 'next/head'
-
 import { Archivo } from 'next/font/google'
 import { DM_Sans } from 'next/font/google'
+import DataContextProvider from './_components/DataContextProvider'
 
 import '@/src/app/global.css'
 import '@/src/app/styles.css'
-import DataContextProvider from './_components/DataContextProvider'
 
 const archivo = Archivo({
   subsets: ['latin'],
@@ -25,7 +23,7 @@ interface layoutProps {
 export default function DefaultLayout({ children }: layoutProps) {
   return (
     <html className="w-full h-full">
-      <Head>
+      <head>
         <title>PEEPS</title>
         <meta
           name="viewport"
@@ -34,7 +32,7 @@ export default function DefaultLayout({ children }: layoutProps) {
         {/* google font */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-      </Head>
+      </head>
       <body className="w-full h-full">
         <div
           className={`w-full h-full ${
