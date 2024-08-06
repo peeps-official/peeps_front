@@ -37,7 +37,7 @@ export default function GlobalHeader() {
           <NextImg
             //
             alt="PEEPS logo"
-            src="/images/NEW_LOGO.png"
+            src="/images/logos/peeps.png"
             styles="object-cover cursor-pointer"
           />
         </Link>
