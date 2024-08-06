@@ -15,6 +15,7 @@ export default function SideBar() {
         </Link>
       </div>
       <ul className="mt-5">
+        <SidebarItem title="메인 페이지" url="/admin" />
         <SidebarItem title="뱃지 관리" url="/admin/badge" />
         <SidebarItem title="뱃지 발급 관리" url="/admin/badge/issue" />
       </ul>
