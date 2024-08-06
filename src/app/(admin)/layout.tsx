@@ -3,8 +3,7 @@ import { DM_Sans } from 'next/font/google'
 
 import '@/src/app/global.css'
 import '@/src/app/styles.css'
-import DataContextProvider from '@/src/app/_components/DataContextProvider'
-import SideBar from './_components/Sidebar/Sidebar'
+import SideBar from './admin/_components/Sidebar/Sidebar'
 
 const archivo = Archivo({
   subsets: ['latin'],
@@ -23,7 +22,7 @@ interface layoutProps {
 
 export default function AdminLayout({ children }: layoutProps) {
   return (
-    <div className="w-full h-full ml-64">
+    <div className="box-border w-full h-full pl-64">
       <SideBar />
       {children}
     </div>
