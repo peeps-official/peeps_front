@@ -4,7 +4,7 @@ import { UserData, UserProfile } from '../types/user'
 // admin
 export const adminDatakey: string = 'adminDataKey'
 
-export const uerData = atom<Array<UserData>>({
+export const uerDataAtom = atom<Array<UserData>>({
   key: adminDatakey,
   default: [
     {
