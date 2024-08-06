@@ -2,12 +2,12 @@
 import { useCallback, useState, ChangeEvent } from 'react'
 
 import { useRecoilState } from 'recoil'
-import { uerDataState } from '@/src/common/recoil/userAtom'
+import { uerDataStateAtom } from '@/src/common/recoil/userAtom'
 import NextImg from '@/src/common/utils/NextImg'
 import Link from 'next/link'
 
 export default function GlobalHeader() {
-  const [recoilData, setRecoilData] = useRecoilState(uerDataState)
+  const [recoilData, setRecoilData] = useRecoilState(uerDataStateAtom)
   const [search, setSearch] = useState('')
 
   const handleSearchValue = useCallback(

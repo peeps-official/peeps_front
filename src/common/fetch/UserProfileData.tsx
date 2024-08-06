@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
-import { uerDataState } from '../recoil/userAtom'
+import { uerDataStateAtom } from '../recoil/userAtom'
 import { fetchUserProfileData } from '../api/mypage'
 
 interface FetchUserProfileComProps {
@@ -14,7 +14,7 @@ export default function FetchUserProfileCom({
   children,
 }: FetchUserProfileComProps) {
   const router = useRouter()
-  const [recoilData, setRecoilData] = useRecoilState(uerDataState)
+  const [recoilData, setRecoilData] = useRecoilState(uerDataStateAtom)
 
   const { isSuccess, error, data } = useQuery({
     queryKey: ['login'],

@@ -1,4 +1,4 @@
-export interface UserData {
+export interface UserData_T {
   id: string
   nickname: string
   profileImage: string | null
@@ -11,7 +11,7 @@ export interface UserData {
   boards: any[]
 }
 
-export interface UserProfile {
+export interface UserProfile_T {
   nickname: string
   profileImage: string | null
   backgroundImage: string | null

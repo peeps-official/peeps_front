@@ -1,20 +1,13 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
 import { fetchUserProfileData } from '../common/api/mypage'
+import { UserProfile_T } from '../common/types/user'
 import DataWrapperForMainPage from './_components/DataWrapperForMainPage'
-import { userProfileState } from '../common/recoil/userAtom'
 import Link from 'next/link'
-import { UserProfile } from '../common/types/user'
 
 export default function Main() {
-  const [recoilData, setRecoilData] =
-    useRecoilState<UserProfile>(userProfileState)
-
-  const { data, isSuccess, isError, error } = useQuery<UserProfile>({
+  const { data, isSuccess, isError, error } = useQuery<UserProfile_T>({
     queryKey: ['login'],
     queryFn: () => fetchUserProfileData(),
   })
