@@ -21,7 +21,9 @@ function TableTitle({ title, description }: AdminTableTitleProps) {
   return (
     <div>
       <h3 className="text-[1.2rem] font-bold py-[0.3rem]">{title}</h3>
-      <p className="text-[1rem] font-medium py-[0.5rem]">{description}</p>
+      <p className="text-[1rem] font-medium py-[0.5rem] pb-[1rem]">
+        {description}
+      </p>
     </div>
   )
 }
