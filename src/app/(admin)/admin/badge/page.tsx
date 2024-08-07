@@ -7,33 +7,38 @@
  * -> 뱃지 내부에 다양한 인증방법에 따른 내용 추가하는 방식으로 구현.
  */
 
-import { useMutation, useQueries, useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import BadgeCard from '../_components/Badge/BadgeCard'
 import { axiosWithAuth } from '@/src/common/api/instance'
-import { Badge_T } from '@/src/common/types/admin'
-
-const tmp_data = [
-  {
-    name: 'test',
-    image: 'https://via.placeholder.com/150',
-    content: 'test content',
-  },
-]
+import { Badge_T, CreateBadge_T } from '@/src/common/types/admin'
+import { getBadgeList } from '@/src/common/api/adminBadge'
+import { useContext, useEffect, useState } from 'react'
 
 export default function AdminBadgePage() {
-  const { data: badgeData, isSuccess } = useQuery({
+  const [badgeData, setBadgeData] = useState<Badge_T[]>([])
+  const queryClient = useQueryClient()
+
+  const { data: badgeDataQuery, isSuccess } = useQuery({
     queryKey: ['admin', 'badge'],
-    queryFn: async () => await axiosWithAuth.get<Badge_T[]>('/badge'),
+    queryFn: async () => await getBadgeList(),
   })
-  const { mutate } = useMutation({
-    mutationFn: async (data: Badge_T) =>
+
+  const { mutate: addBadge } = useMutation({
+    mutationFn: async (data: CreateBadge_T) =>
       await axiosWithAuth.post('/admin/badge', data),
     onSuccess: (variables) => {
-      console.log('success', variables)
+      window.alert(
+        JSON.stringify(variables.data.name) + '뱃지가 추가되었습니다.'
+      )
+      queryClient.invalidateQueries({ queryKey: ['admin', 'badge'] })
     },
   })
-  console.log('badgeData', badgeData)
-  // const { data } = await axiosWithAuth.get<Badge_T[]>('/badge')
+
+  useEffect(() => {
+    if (isSuccess) {
+      setBadgeData(badgeDataQuery)
+    }
+  }, [badgeDataQuery])
 
   return (
     <div className="p-5">
@@ -41,7 +46,7 @@ export default function AdminBadgePage() {
       <button
         className="p-3 my-4 rounded bg-blue-soft hover:bg-blue-secondary"
         onClick={() => {
-          mutate({
+          addBadge({
             name: '한경대학교',
             image:
               'https://i.namu.wiki/i/rlymHGzGkXgtwPzlj9jmLbyqGFcykXgKxesKDZ6bBtdVi9dsunCmoQzcSo7Yib6T7Y4rCbzxcZOZmsw-c89Fng.svg',
@@ -51,9 +56,9 @@ export default function AdminBadgePage() {
       >
         뱃지추가 버튼
       </button>
-      <div className="flex gap-10">
-        {badgeData?.data?.map((badge) => {
-          return <BadgeCard key={badge.name} badge={badge} />
+      <div className="flex flex-wrap gap-10">
+        {badgeData?.map((badge) => {
+          return <BadgeCard key={badge.id} badge={badge} />
         })}
       </div>
     </div>
