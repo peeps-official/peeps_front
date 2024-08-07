@@ -3,8 +3,7 @@ import AdminTable from './_components/Table/AdminTable'
 import { UserData_T } from '@/src/common/types/user'
 
 export default async function AdminPage() {
-  // -> '/admin/user'로 변경예정
-  const { data } = await axiosWithAuth.get<UserData_T[]>('/user/admin')
+  const { data } = await axiosWithAuth.get<UserData_T[]>('/admin/user')
 
   return (
     <div className="flex w-full">
