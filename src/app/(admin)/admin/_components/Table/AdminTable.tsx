@@ -11,7 +11,27 @@ interface AdminTableProps {
 
 export default function AdminTable({ title, des, data }: AdminTableProps) {
   if (data.length === 0) {
-    return <p>No data available</p>
+    return (
+      <>
+        <Table.Title title={title} description={des} />
+        <table className="min-w-full divide-y table-fixed divide-gray-medium rounded-[5px] overflow-hidden">
+          <thead className="bg-pupple-deep">
+            <tr className="flex w-full">
+              <th className="flex-1 px-[1rem] py-4 text-xs font-medium tracking-wider text-left text-white truncate ">
+                No data available
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-medium">
+            <tr className="flex w-full hover:bg-blue-soft">
+              <td className="flex-1 px-[1rem] py-4 overflow-hidden whitespace-nowrap text-ellipsis">
+                -
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </>
+    )
   }
 
   const keys = Object.keys(data[0])
@@ -19,13 +39,13 @@ export default function AdminTable({ title, des, data }: AdminTableProps) {
   return (
     <>
       <Table.Title title={title} description={des} />
-      <table className="min-w-full divide-y divide-gray-medium table-fixed">
-        <thead className="bg-gray-50">
+      <table className="min-w-full divide-y table-fixed divide-gray-medium rounded-[5px] overflow-hidden">
+        <thead className="bg-pupple-deep">
           <tr className="flex w-full">
             {keys.map((key) => (
               <th
                 key={key}
-                className="flex-1 px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 truncate "
+                className="flex-1 px-[1rem] py-4 text-xs font-medium tracking-wider text-left text-white truncate "
               >
                 {key}
               </th>
@@ -38,7 +58,7 @@ export default function AdminTable({ title, des, data }: AdminTableProps) {
               {keys.map((key) => (
                 <td
                   key={key}
-                  className="flex-1 px-2 py-4 overflow-hidden whitespace-nowrap text-ellipsis"
+                  className="flex-1 px-[1rem] py-4 overflow-hidden whitespace-nowrap text-ellipsis"
                 >
                   <div className="truncate">{item[key]}</div>
                 </td>
