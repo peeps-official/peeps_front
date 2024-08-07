@@ -114,7 +114,7 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
                             고려대학교
                           </h1>
                         </div>
-                        <div className="flex items-center overflow-hidden text-small text-dimgray-100 font-roboto">
+                        <div className="flex items-center overflow-hidden text-small text-dimgray-lighter0 font-roboto">
                           <div className="relative tracking-[-0.01em] leading-[14px] font-medium inline-block min-w-[78px]">
                             인증 300만명
                           </div>
@@ -129,7 +129,7 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
                     </div>
                     <button
                       // onClick={() => }
-                      className="text-detail text-dimgray-100 bg-gray-100/10 rounded-8xs py-[5px] px-[9px] hover:bg-darkslategray"
+                      className="text-detail text-dimgray-lighter0 bg-gray-lighter0/10 rounded-8xs py-[5px] px-[9px] hover:bg-darkslategray"
                     >
                       구경가기
                     </button>
@@ -139,7 +139,7 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
                     <b className="w-32 relative tracking-[-0.01em] leading-[100%] flex items-center font-bold">
                       상세정보
                     </b>
-                    <div className="self-stretch flex flex-col gap-[12px] text-micro text-dimgray-100">
+                    <div className="self-stretch flex flex-col gap-[12px] text-micro text-dimgray-lighter0">
                       <div className="self-stretch overflow-hidden flex justify-between gap-[20px] mq450:flex-wrap">
                         <div className="relative tracking-[-0.01em] leading-[100%] inline-block min-w-[47px]">
                           인증 날짜

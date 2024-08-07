@@ -3,7 +3,6 @@ import type { NextPage } from 'next'
 import { useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button } from 'react-bootstrap'
 
 const MyInfo: NextPage = () => {
   const router = useRouter()
@@ -33,7 +32,7 @@ const MyInfo: NextPage = () => {
                   />
                 </div>
               </div>
-              <div className="flex items-center gap-[0px_4px] text-3xs text-gray-30">
+              <div className="flex items-center gap-[0px_4px] text-3xs text-gray-light">
                 <div className="flex gap-[3px]">
                   <div className="relative leading-[16px]">팔로워</div>
                   <div className="relative leading-[16px]">0</div>
@@ -49,14 +48,12 @@ const MyInfo: NextPage = () => {
               <p className="m-0">{`CEO & Founder, CLASSUM | Forbes 30 under 30 Asia - We're hiring! careers.classum.com`}</p>
             </div>
           </div>
-          <Button
+          <button
             className="h-[26px] min-h-[30px] whitespace-nowrap cursor-pointer"
-            variant="primary"
-            size="sm"
             onClick={onGroupFrameClick}
           >
             프로필 변경
-          </Button>
+          </button>
         </div>
       </div>
       <div className="self-stretch rounded-lg bg-white shadow-box flex flex-col items-center p-[17px] box-border gap-[10px] max-w-full">

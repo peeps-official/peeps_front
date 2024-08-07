@@ -6,7 +6,7 @@ import { useMemo, type CSSProperties } from 'react'
 const ClickContainer = tw.div`flex self-stretch    px-4 py-3 bg-whitesmoke-300 rounded-8xs gap-[10px]`
 const UnclickContainer = tw.div`flex self-stretch    px-4 py-3 bg-white rounded-8xs gap-[10px]`
 const IconContainer = tw.div`flex flex-col pt-[5px] px-0 pb-0`
-const Icon = tw.div`relative w-6 h-6 bg-gray-400`
+const Icon = tw.div`relative w-6 h-6 bg-gray-lightest`
 const TextStyle = tw.div`flex relative tracking-[-0.01em] leading-[34px]`
 
 // 프로필 미리보기
