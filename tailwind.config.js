@@ -21,18 +21,25 @@ module.exports = {
       },
       colors: {
         background: '#f7f7f8',
-        'primary-blue': '#0066ff',
-        'secondary-blue': '#5D9EFF',
+
         white: '#fff',
         gray: {
-          10: '#e0e2e7',
-          100: '#1d1c1d',
-          200: 'rgba(0, 0, 0, 0.37)',
-          300: 'rgba(0, 0, 0, 0.04)',
-          400: '#D9D9D9',
+          lightest: '#e0e2e7', // 가장 밝은 회색
+          lighter: '#D9D9D9', // 밝은 회색
+          light: '#8c8d9d', // 중간 밝기의 회색
+          medium: 'rgba(0, 0, 0, 0.37)', // 중간 회색
+          dark: 'rgba(0, 0, 0, 0.04)', // 어두운 회색
+          darkest: '#1d1c1d', // 가장 어두운 회색
         },
         underline: 'rgba(0, 0, 0, 0.1)',
         black: '#000',
+        blue: {
+          100: '#0066ff',
+          200: '#5D9EFF',
+          soft: '#cad6eb',
+          primary: '#0066ff',
+          secondary: '#5D9EFF',
+        },
         whitesmoke: {
           100: '#f5f5f7',
           200: '#f0f2f5',
@@ -45,7 +52,7 @@ module.exports = {
         lightgray: '#ced0d4',
         silver: '#b7b7bf',
         dark: '#191a20',
-        'gray-30': '#8c8d9d9d96',
+
         kakao: '#fee500',
         naver: '#03c75a',
       },
@@ -105,6 +112,7 @@ module.exports = {
       modal: '2001',
     },
     boxShadow: {
+      xl: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
       box: '0px 1px 1px rgba(0, 0, 0, 0.1), 0px 0px 1px rgba(0, 0, 0, 0.25)',
       loginBox: '0 8px 16px rgba(182,190,204,.5)',
       popupBox:

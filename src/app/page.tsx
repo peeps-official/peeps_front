@@ -14,7 +14,7 @@ export default function Main() {
 
   return (
     <DataWrapperForMainPage>
-      <div className="flex items-center justify-center w-full h-full bg-gray-10">
+      <div className="flex items-center justify-center w-full h-full bg-gray-lighter">
         <div className="">
           <div className="p-[1rem] text-center text-black text-bold text-large">
             🛠️ 공사중 🛠️

@@ -9,7 +9,7 @@ export type BadgeType = {
 
 export const Badge: NextPage<BadgeType> = ({ name, image, property }) => {
   return (
-    <div className="self-stretch flex pb-4 pr-[26px] text-xs text-gray-200">
+    <div className="self-stretch flex pb-4 pr-[26px] text-xs text-gray-medium">
       <div className="flex flex-col gap-[5px]">
         <div className="flex gap-[8px] text-left text-sm text-black">
           <img className="h-5 w-5 object-cover min-h-[20px]" src={image} />

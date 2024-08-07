@@ -19,7 +19,7 @@ export default function AdminTable({ title, des, data }: AdminTableProps) {
   return (
     <>
       <Table.Title title={title} description={des} />
-      <table className="min-w-full divide-y divide-gray-200 table-fixed">
+      <table className="min-w-full divide-y divide-gray-medium table-fixed">
         <thead className="bg-gray-50">
           <tr className="flex w-full">
             {keys.map((key) => (
@@ -32,9 +32,9 @@ export default function AdminTable({ title, des, data }: AdminTableProps) {
             ))}
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="bg-white divide-y divide-gray-medium">
           {data.map((item, i) => (
-            <tr key={i} className="flex w-full hover:bg-[#cad6eb]">
+            <tr key={i} className="flex w-full hover:bg-blue-soft">
               {keys.map((key) => (
                 <td
                   key={key}

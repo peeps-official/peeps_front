@@ -10,7 +10,7 @@ export default function GlobalSidebarLeft() {
   const [recoilData, setRecoilData] = useRecoilState(uerDataStateAtom)
 
   return (
-    <div className="fixed flex flex-col items-center h-screen text-left bg-white text-mini text-dimgray-100 font-kr">
+    <div className="fixed flex flex-col items-center h-screen text-left bg-white text-mini text-dimgray-lighter0 font-kr">
       {/* 본인 프로필 및 닉네임 */}
       <Link
         href={`/${recoilData?.nickname}`}
@@ -33,7 +33,7 @@ export default function GlobalSidebarLeft() {
 
       {/* 구분선 */}
       <div className="flex items-center py-0 px-[15px]">
-        <div className="h-[2px] w-12 relative bg-gray-10" />
+        <div className="h-[2px] w-12 relative bg-gray-lighter" />
       </div>
       {/* ALL BOX */}
       <div className="flex items-center py-0 px-[25px]">
@@ -48,7 +48,7 @@ export default function GlobalSidebarLeft() {
       </div>
       {/* 구분선 */}
       <div className="flex items-center py-0 px-[15px]">
-        <div className="h-[2px] w-12 relative bg-gray-10" />
+        <div className="h-[2px] w-12 relative bg-gray-lighter" />
       </div>
       {/* 팔로우한 사람 */}
       <div className="flex items-center py-0 px-[15px]">

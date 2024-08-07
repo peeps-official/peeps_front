@@ -58,7 +58,7 @@ export default function MyProfile() {
               {recoilData?.nickname ?? '...'}
             </h1>
             {/* 닉네임 및 팔로워 수 */}
-            <div className="flex text-dimgray-100 font-roboto">
+            <div className="flex text-dimgray-lighter0 font-roboto">
               <div className="flex">
                 <div className="relative tracking-[-0.01em] leading-[14px] font-medium inline-block min-w-[52px]">
                   {data.profile.nickname}
@@ -72,7 +72,7 @@ export default function MyProfile() {
               </div>
             </div>
             {/* 소개글 */}
-            <div className="relative tracking-[-0.01em] leading-[14px] font-medium font-roboto text-dimgray-100">
+            <div className="relative tracking-[-0.01em] leading-[14px] font-medium font-roboto text-dimgray-lighter0">
               {data.profile.info}
             </div>
             {/* 대표 뱃지 */}
@@ -111,7 +111,7 @@ export default function MyProfile() {
                   className={`rounded-[15px] overflow-hidden flex items-center justify-center py-0 px-3 whitespace-nowrap
                               ${
                                 isFollowing
-                                  ? 'bg-gray-100/10 text-black'
+                                  ? 'bg-gray-lighter0/10 text-black'
                                   : 'bg-black text-white'
                               }`}
                 >

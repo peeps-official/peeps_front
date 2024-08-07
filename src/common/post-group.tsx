@@ -157,7 +157,7 @@ const OnePostFeed: NextPage<PostGroupType> = ({
   }, [propLeft2, propWidth1])
   return (
     <div className="rounded-lg bg-white shadow-box overflow-hidden flex flex-col items-center  py-[15px] pr-[13px] pl-3.5 box-border relative gap-[10px_0px]">
-      <div className="w-full flex justify-between pt-0  pr-0.5 pl-0 text-xs text-gray-100">
+      <div className="w-full flex justify-between pt-0  pr-0.5 pl-0 text-xs text-gray-lighter0">
         <div className="w-[500px] flex flex-col pt-0 px-0 box-border">
           <div className="flex items-center mb-[8px]" style={frameDivStyle}>
             <img
@@ -168,7 +168,7 @@ const OnePostFeed: NextPage<PostGroupType> = ({
               <b className="text-base tracking-[-0.01em] leading-[24px]">
                 엄현준
               </b>
-              <div className="leading-[16px] text-dimgray-100 whitespace-nowrap">
+              <div className="leading-[16px] text-dimgray-lighter0 whitespace-nowrap">
                 02.02 8:30 PM
               </div>
             </div>
@@ -226,7 +226,7 @@ const OnePostFeed: NextPage<PostGroupType> = ({
         className="w-[30px] h-[30px] absolute !m-[0] bottom-[16px] left-[17px] rounded-[50%] object-cover"
         src={prop}
       />
-      <div className="self-stretch h-8 flex items-center py-0 pr-0 pl-[42px] box-border max-w-full  text-dimgray-200">
+      <div className="self-stretch h-8 flex items-center py-0 pr-0 pl-[42px] box-border max-w-full  text-dimgray-medium">
         <div className="self-stretch w-[511.9px] relative rounded-11xl bg-whitesmoke-200 max-w-full" />
         <div className="relative tracking-[-0.01em] leading-[24px]  ml-[-491px]">
           댓글을 입력하세요...
