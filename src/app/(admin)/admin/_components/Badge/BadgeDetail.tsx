@@ -59,7 +59,7 @@ export default function BadgeDetail() {
             </div>
             <div>
               <div>인증 가능한 것</div>
-              <div>서류에 나와있는 정보</div>
+              <div>자격종목 / 합격 월일 / 자격번호??</div>
             </div>
           </div>
         </div>
