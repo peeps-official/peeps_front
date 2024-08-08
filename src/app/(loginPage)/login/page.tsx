@@ -20,28 +20,18 @@ export default function LoginPage() {
   return (
     <div className="flex items-center justify-center min-h-screen text-center text-white font-kr">
       <div className="w-[440px] max-w-md rounded-3xs bg-white shadow-loginBox flex flex-col pb-[34px] gap-[34px]">
-        <div className="self-stretch rounded-t-3xs rounded-b-none bg-primary-blue flex flex-col items-center py-10 px-5 gap-[10px] ">
+        <div className="self-stretch rounded-t-3xs rounded-b-none bg-blue-primary flex flex-col items-center py-10 px-5 gap-[10px] ">
           <div className="flex py-0 px-7">
             <h1 className="relative text-inherit tracking-[-0.01em] leading-9 text-large font-bold font-inherit inline-block ">
               PEEPS
             </h1>
           </div>
-          <div className="relative font-normal text-micro ">
-            우리들만의 커뮤니티, 핍스
-          </div>
+          <div className="relative font-normal text-micro ">우리들만의 커뮤니티, 핍스</div>
         </div>
         {/* 로그인 버튼 섹션 */}
         <div className="self-stretch w-full flex flex-col items-end gap-[10px]">
-          <LoginButton
-            url={naverUrl}
-            imgSrc="/images/login/naver.svg"
-            alt="네이버 로그인"
-          />
-          <LoginButton
-            url={kakaoUrl}
-            imgSrc="/images/login/kakao.svg"
-            alt="카카오 로그인"
-          />
+          <LoginButton url={naverUrl} imgSrc="/images/login/naver.svg" alt="네이버 로그인" />
+          <LoginButton url={kakaoUrl} imgSrc="/images/login/kakao.svg" alt="카카오 로그인" />
         </div>
       </div>
     </div>
