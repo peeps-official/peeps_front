@@ -1,4 +1,5 @@
 export interface Badge_T {
+  id: string
   name: string
   image: string
   content: string

@@ -30,16 +30,14 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
           <div className="kr-normal-24">프로필</div>
           <button
             onClick={() => setIsProfileEditModalOpen(true)}
-            className="text-micro font-bold text-white bg-secondary-blue rounded-8xs py-[5px] px-[9px] hover:bg-primary-blue"
+            className="text-micro font-bold text-white bg-secondary-blue rounded-8xs py-[5px] px-[9px] hover:bg-blue-primary"
           >
             프로필 수정
           </button>
         </div>
 
         {isProfileEditModalOpen ? (
-          <ProfileChangeModal
-            setIsProfileEditModalOpen={setIsProfileEditModalOpen}
-          />
+          <ProfileChangeModal setIsProfileEditModalOpen={setIsProfileEditModalOpen} />
         ) : (
           // 팝업 컨텐츠
           <div className="flex gap-[14px]">
@@ -182,8 +180,7 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
                       <div className="h-[14px] w-[93px] flex items-center flex-start kr-normal-13 text-[#666]">
                         <Dot />
                         <div className="w-[83px] text-left">
-                          {data.dateStart} -
-                          {data.dateEnd ? data.dateEnd : '진행 중'}
+                          {data.dateStart} -{data.dateEnd ? data.dateEnd : '진행 중'}
                         </div>
                       </div>
                       <div className="text-left kr-normal-14">
@@ -206,8 +203,7 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
                       <div className="h-[14px] w-[93px] flex items-center flex-start kr-normal-13 text-[#666]">
                         <Dot />
                         <div className="w-[83px] text-left">
-                          {data.dateStart} -
-                          {data.dateEnd ? data.dateEnd : '진행 중'}
+                          {data.dateStart} -{data.dateEnd ? data.dateEnd : '진행 중'}
                         </div>
                       </div>
                       <div className="text-left kr-normal-14">
@@ -231,8 +227,7 @@ export default function ProfileModal({ setIsProfileModalOpen }: any) {
                       <div className="h-[14px] w-[93px] flex items-center flex-start kr-normal-13 text-[#666]">
                         <Dot />
                         <div className="w-[83px] text-left">
-                          {data.dateStart} -
-                          {data.dateEnd ? data.dateEnd : '진행 중'}
+                          {data.dateStart} -{data.dateEnd ? data.dateEnd : '진행 중'}
                         </div>
                       </div>
                       <div className="text-left kr-normal-14">

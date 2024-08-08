@@ -64,8 +64,13 @@ export const uerDataStateAtom = atom<UserData_T>({
 export const UserProfileStateAtom = atom<UserProfile_T>({
   key: 'UserProfileStateAtom',
   default: {
-    nickname: '',
-    profileImage: null,
-    backgroundImage: null,
+    user_seq: '',
+    user_id: '',
+    user_nickname: '',
+    user_bg_img: null,
+    user_profile_image: null,
+    profileMessage: '',
+    follower: [],
+    badge: [],
   },
 })
