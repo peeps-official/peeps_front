@@ -40,6 +40,9 @@ module.exports = {
           primary: '#0066ff',
           secondary: '#5D9EFF',
         },
+        pupple: {
+          deep: '#292339',
+        },
         whitesmoke: {
           100: '#f5f5f7',
           200: '#f0f2f5',

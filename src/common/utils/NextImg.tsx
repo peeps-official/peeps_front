@@ -6,8 +6,8 @@ interface NextImgProps {
   styles?: string
 }
 
-export default function NextImg({ src, alt, styles }: NextImgProps) {
-  let classStyle = `relative ${styles} w-full h-full`
+export default function NextImg({ src, alt, styles = '' }: NextImgProps) {
+  let classStyle = `relative w-full h-full object-cover ${styles}`
 
   return (
     <div className={classStyle}>

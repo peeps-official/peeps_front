@@ -34,7 +34,7 @@ export default function ProfileChangeModal({ setIsProfileEditModalOpen }: any) {
           <div className="kr-normal-24">프로필 편집</div>
           <button
             onClick={() => setIsProfileEditModalOpen(true)}
-            className="text-micro font-bold text-white bg-secondary-blue rounded-8xs py-[5px] px-[9px] hover:bg-primary-blue"
+            className="text-micro font-bold text-white bg-secondary-blue rounded-8xs py-[5px] px-[9px] hover:bg-blue-primary"
           >
             저장
           </button>
@@ -110,35 +110,20 @@ export default function ProfileChangeModal({ setIsProfileEditModalOpen }: any) {
                   <div className="flex flex-col text-detail">
                     {/* phone number */}
                     <InfoContainer>
-                      <InfoIcon
-                        alt="phone number"
-                        src="images\icons\phone.svg"
-                      />
+                      <InfoIcon alt="phone number" src="images\icons\phone.svg" />
                       <InfoNumberStyle>+82-10-1234-5679</InfoNumberStyle>
                     </InfoContainer>
                     {/* email address */}
                     <InfoContainer>
-                      <InfoIcon
-                        alt="email address"
-                        src="images\icons\mail.svg"
-                      />
-                      <InfoAddressStyle
-                        href="mailto:ks8553v@gmail.com"
-                        target="_blank"
-                      >
+                      <InfoIcon alt="email address" src="images\icons\mail.svg" />
+                      <InfoAddressStyle href="mailto:ks8553v@gmail.com" target="_blank">
                         ks8553v@gmail.com
                       </InfoAddressStyle>
                     </InfoContainer>
                     {/* website address */}
                     <InfoContainer>
-                      <InfoIcon
-                        alt="website address"
-                        src="images\icons\globe.svg"
-                      />
-                      <InfoAddressStyle
-                        href="mailto:ks8553v@gmail.com"
-                        target="_blank"
-                      >
+                      <InfoIcon alt="website address" src="images\icons\globe.svg" />
+                      <InfoAddressStyle href="mailto:ks8553v@gmail.com" target="_blank">
                         ks8553v@gmail.com
                       </InfoAddressStyle>
                     </InfoContainer>

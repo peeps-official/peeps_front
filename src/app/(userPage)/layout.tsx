@@ -1,5 +1,5 @@
 'use client'
-import Head from 'next/head'
+
 import GlobalHeader from '../_global/GlobalHeader'
 import GlobalSidebarLeft from '../_global/GlobalSidebarLeft'
 
@@ -8,8 +8,6 @@ import { DM_Sans } from 'next/font/google'
 
 import '@/src/app/global.css'
 import '@/src/app/styles.css'
-import DataContextProvider from '../_components/DataContextProvider'
-import { Metadata } from 'next'
 
 const archivo = Archivo({
   subsets: ['latin'],
