@@ -19,7 +19,35 @@ export interface UserProfile_T {
   user_nickname: string
   profileMessage: string | ''
   user_bg_img: string | null
-  user_profile_image: string | null
+  user_profile_img: string | null
   follower: { nickname: string; user_id: string }[]
   badge: Badge_T[]
+}
+
+export interface PopupProfilePage_T {
+  profile: PopupProfile_T
+  badges: Badge_T[]
+  educate: {
+    dateStart: string
+    dateEnd?: string
+    title: string
+    subEx: string[]
+  }[]
+  career: {
+    dateStart: string
+    dateEnd?: string
+    title: string
+    subEx: string[]
+  }[]
+}
+
+export interface PopupProfile_T {
+  user_name: string
+  profileMessage: string | ''
+  profile_img: string | null
+  phone: string
+  email: string
+  url: string
+  addr: string
+  mainBadge: Badge_T
 }
