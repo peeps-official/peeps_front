@@ -1,22 +1,32 @@
-import { UserProfile_T } from '../common/types/user'
+import { PopupProfilePage_T, UserProfile_T } from '../common/types/user'
 
-export const popUpData = {
+export const badgeData = {}
+
+export const popUpData: PopupProfilePage_T = {
   profile: {
-    img: '/images/dummy/minu_profile.png',
-    badge: 'https://cdn3.iconfinder.com/data/icons/social-network-30/512/social-06-512.png',
-    name: '김민우',
-    subEx: '입시 & 교육 컨텐츠 크리에이터',
+    user_name: '김민우',
+    profileMessage: '입시 & 교육 컨텐츠 크리에이터',
+    profile_img: '/images/dummy/minu_profile.png',
+    mainBadge: {
+      id: 1,
+      name: '유튜브',
+      image: '/images/dummy/badge_Youtube.png',
+      content: '유튜브 크리에이터',
+    },
     phone: '010-1234-5678',
     email: 'ks8553v@gmail.com',
     url: 'www.instagram.com/p/CpCs-VZy1Li/',
     addr: '경기도 안성시 야앙동 한경대학교',
   },
 
-  badge: {
-    img: '/images/mypage/badge.jpg',
-    title: '입시 & 교육 컨텐츠 크리에이터',
-    subEx: '입시 & 교육 컨텐츠 크리에이터',
-  },
+  badges: [
+    {
+      id: 1,
+      image: '/images/mypage/badge_Youtube.png',
+      name: '입시 & 교육 컨텐츠 크리에이터',
+      content: '입시 & 교육 컨텐츠 크리에이터',
+    },
+  ],
   educate: [
     {
       dateStart: '2021',
@@ -45,8 +55,8 @@ export const mypageData: UserProfile_T = {
   user_seq: '1',
   user_id: 'mi3nu',
   user_nickname: '미미미누',
-  user_bg_img: '/images/profilebg.png',
-  user_profile_image: '/images/mimi.jpg',
+  user_bg_img: '/images/dummy/profilebg.png',
+  user_profile_img: '/images/dummy/mimi.jpg',
   profileMessage: '안녕하세요, 미미미누입니다!',
   follower: [{ nickname: '미미미누', user_id: 'mi3nu' }],
   badge: [
