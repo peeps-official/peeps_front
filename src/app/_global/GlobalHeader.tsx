@@ -6,7 +6,11 @@ import { uerDataStateAtom } from '@/src/common/recoil/userAtom'
 import NextImg from '@/src/common/utils/NextImg'
 import Link from 'next/link'
 
-export default function GlobalHeader() {
+type GlobalHeaderProps = {
+  onToggleSidebar: () => void
+}
+
+export default function GlobalHeader({ onToggleSidebar }: GlobalHeaderProps) {
   const [recoilData, setRecoilData] = useRecoilState(uerDataStateAtom)
   const [search, setSearch] = useState('')
 
@@ -20,14 +24,12 @@ export default function GlobalHeader() {
   return (
     <div className="fixed flex items-center justify-center w-full bg-white h-header z-header min-w-[800px]">
       {/* 헤더 영역 I */}
-      <div className="w-[64px] h-full py-[10px] pl-[19px] pr-[4px]">
-        <Link href={'/'} className="w-full h-full">
-          <NextImg
+      <div className="w-[64px] h-full py-[10px] pl-[19px] pr-[4px]" onClick={onToggleSidebar}>
+        <NextImg
             alt="collapsed menu icon"
             src="/images/menu.svg"
             styles="object-cover h-full cursor-pointer"
           />
-        </Link>
       </div>
 
       {/* 헤더 영역 II */}
