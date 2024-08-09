@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 type MyPageProps = {
   params: {
-    user_id: string
+    user_seq: string
   }
 }
 
