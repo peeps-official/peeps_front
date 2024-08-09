@@ -1,10 +1,11 @@
 import { atom } from 'recoil'
-import { UserData_T, UserProfile_T } from '../types/user'
+import { UserLogin_T, UserProfile_T } from '../types/user'
+import { AdminUserData_T } from '../types/admin'
 
 // admin
 export const adminDatakey: string = 'adminDataKey'
 
-export const uerDataAtom = atom<Array<UserData_T>>({
+export const uerDataAtom = atom<Array<AdminUserData_T>>({
   key: adminDatakey,
   default: [
     {
@@ -24,7 +25,7 @@ export const uerDataAtom = atom<Array<UserData_T>>({
 
 export const adminBadgeListKey: string = 'adminBadgeListKey'
 
-export const badgeAtom = atom<Array<UserData_T>>({
+export const badgeAtom = atom<Array<AdminUserData_T>>({
   key: adminBadgeListKey,
   default: [
     {
@@ -45,7 +46,7 @@ export const badgeAtom = atom<Array<UserData_T>>({
 // user
 export const userDataKey: string = 'userDataKey'
 
-export const uerDataStateAtom = atom<UserData_T>({
+export const uerDataStateAtom = atom({
   key: userDataKey,
   default: {
     id: '',
@@ -61,6 +62,20 @@ export const uerDataStateAtom = atom<UserData_T>({
   },
 })
 
+export const UserLoginDataStateAtom = atom<UserLogin_T>({
+  key: 'UserLoginDataStateAtom',
+  default: {
+    user_seq: '',
+    user_id: '',
+    user_nickname: '',
+    user_profile_img: '',
+    user_bg_img: '',
+  },
+})
+
+/**
+ * @description 유저 프로필 데이터
+ */
 export const UserProfileStateAtom = atom<UserProfile_T>({
   key: 'UserProfileStateAtom',
   default: {

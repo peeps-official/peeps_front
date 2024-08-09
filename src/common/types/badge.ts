@@ -3,6 +3,8 @@ export interface Badge_T {
   name: string
   image: string
   content: string
+  verifiedUserCount?: number
+  followingCount?: number
 }
 
 export interface BadgeIssue_T {
@@ -11,4 +13,10 @@ export interface BadgeIssue_T {
   description?: string
   authDay: string
   authWay: string
+}
+
+export interface BadgeAuthData {
+  date: Date
+  method: 'email' | 'paper' | 'block' | 'login'
+  addData: [{ title: string; content: string }]
 }
