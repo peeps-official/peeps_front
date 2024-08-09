@@ -10,9 +10,10 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import BadgeCard from '../_components/Badge/BadgeCard'
 import { axiosWithAuth } from '@/src/common/api/instance'
-import { Badge_T, CreateBadge_T } from '@/src/common/types/admin'
+import { AdminCreateBadge_T } from '@/src/common/types/admin'
 import { getBadgeList } from '@/src/common/api/adminBadge'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Badge_T } from '@/src/common/types/badge'
 
 export default function AdminBadgePage() {
   const [badgeData, setBadgeData] = useState<Badge_T[]>([])
@@ -24,12 +25,10 @@ export default function AdminBadgePage() {
   })
 
   const { mutate: addBadge } = useMutation({
-    mutationFn: async (data: CreateBadge_T) =>
+    mutationFn: async (data: AdminCreateBadge_T) =>
       await axiosWithAuth.post('/admin/badge', data),
     onSuccess: (variables) => {
-      window.alert(
-        JSON.stringify(variables.data.name) + '뱃지가 추가되었습니다.'
-      )
+      window.alert(JSON.stringify(variables.data.name) + '뱃지가 추가되었습니다.')
       queryClient.invalidateQueries({ queryKey: ['admin', 'badge'] })
     },
   })
@@ -41,7 +40,7 @@ export default function AdminBadgePage() {
   }, [badgeDataQuery])
 
   return (
-    <div className="p-5">
+    <>
       <h1 className="my-2">뱃지 관리</h1>
       <button
         className="p-3 my-4 rounded bg-blue-soft hover:bg-blue-secondary"
@@ -61,6 +60,6 @@ export default function AdminBadgePage() {
           return <BadgeCard key={badge.id} badge={badge} />
         })}
       </div>
-    </div>
+    </>
   )
 }
