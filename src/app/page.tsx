@@ -1,16 +1,12 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
-import { fetchUserProfileData } from '../common/api/mypage'
-import { UserProfile_T } from '../common/types/user'
 import DataWrapperForMainPage from './_components/DataWrapperForMainPage'
 import Link from 'next/link'
+import { UserLoginDataStateAtom } from '../common/recoil/userAtom'
+import { useRecoilState } from 'recoil'
 
 export default function Main() {
-  const { data, isSuccess, isError, error } = useQuery<UserProfile_T>({
-    queryKey: ['login'],
-    queryFn: () => fetchUserProfileData(),
-  })
+  const [recoilData, setRecoilData] = useRecoilState(UserLoginDataStateAtom)
 
   return (
     <DataWrapperForMainPage>
@@ -22,10 +18,10 @@ export default function Main() {
 
           <div className="flex gap-[10px]">
             <Link
-              href={`/${data?.nickname}`}
+              href={`/${recoilData?.user_id}`}
               className="block px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             >
-              {data?.nickname}님의 페이지
+              {recoilData?.user_nickname}님의 페이지
             </Link>
             <Link
               href="/login"

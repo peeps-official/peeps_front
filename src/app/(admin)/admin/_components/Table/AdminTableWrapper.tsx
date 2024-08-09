@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
 import { RecoilState, useRecoilState } from 'recoil'
 import { useEffect } from 'react'
-import { UserData_T } from '@/src/common/types/user'
 import { axiosWithAuth } from '@/src/common/api/instance'
+import { AdminUserData_T } from '@/src/common/types/admin'
 
 interface AdminTableWrapperProps {
   dataKey: string
   url: string
-  recoilState: RecoilState<UserData_T[]>
+  recoilState: RecoilState<AdminUserData_T[]>
   children: React.ReactNode
 }
 
