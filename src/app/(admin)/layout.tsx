@@ -24,7 +24,7 @@ export default function AdminLayout({ children }: layoutProps) {
   return (
     <div className="box-border w-full h-full pl-64">
       <SideBar />
-      {children}
+      <div className="p-5">{children}</div>
     </div>
   )
 }
