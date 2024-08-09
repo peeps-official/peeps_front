@@ -1,7 +1,9 @@
 'use client'
 
+import { useState } from 'react'
 import GlobalHeader from '../_global/GlobalHeader'
-import GlobalSidebarLeft from '../_global/GlobalSidebarLeft'
+import GlobalSidebarNarrow from '../_global/GlobalSidebarNarrow'
+import GlobalSidebarWide from '../_global/GlobalSidebarWide'
 
 import { Archivo } from 'next/font/google'
 import { DM_Sans } from 'next/font/google'
@@ -26,12 +28,18 @@ interface layoutProps {
 }
 
 export default function DefaultLayout({ children }: layoutProps) {
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true)
+
+  const toggleSidebar = () => {
+    setIsSidebarCollapsed(prevState => !prevState)
+  }
+
   return (
     <>
-      <GlobalHeader />
+      <GlobalHeader onToggleSidebar={toggleSidebar} />
       <main className={`pt-header w-full`}>
         <div className={`${archivo.variable + ' ' + dm_sans.variable}`}>
-          <GlobalSidebarLeft />
+          {isSidebarCollapsed ? <GlobalSidebarNarrow /> : <GlobalSidebarWide />}
           <section className="flex-grow bg-white pl-[80px] overflow-auto">
             {children}
           </section>
