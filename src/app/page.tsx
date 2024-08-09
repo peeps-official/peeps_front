@@ -8,6 +8,8 @@ import { useRecoilState } from 'recoil'
 export default function Main() {
   const [recoilData, setRecoilData] = useRecoilState(UserLoginDataStateAtom)
 
+  console.log(recoilData)
+  console.log(recoilData.user_seq)
   return (
     <DataWrapperForMainPage>
       <div className="flex items-center justify-center w-full h-full bg-gray-lighter">
@@ -18,7 +20,7 @@ export default function Main() {
 
           <div className="flex gap-[10px]">
             <Link
-              href={`/${recoilData?.user_id}`}
+              href={`/${recoilData?.user_seq}`}
               className="block px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             >
               {recoilData?.user_nickname}님의 페이지
