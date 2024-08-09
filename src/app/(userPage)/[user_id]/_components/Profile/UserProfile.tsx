@@ -3,11 +3,12 @@
 import ProfileCircleBadge from '@/src/common/components/Badge/ProfileCircleBadge'
 import { UserProfileStateAtom } from '@/src/common/recoil/userAtom'
 import NextImg from '@/src/common/utils/NextImg'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { UserProfile_T } from '@/src/common/types/user'
-import { Badge_T } from '@/src/common/types/admin'
+
 import ProfileModal from '../ProfileModal'
+import { Badge_T } from '@/src/common/types/badge'
 
 export default function UserProfile() {
   const recoilData = useRecoilValue<UserProfile_T>(UserProfileStateAtom)
@@ -162,13 +163,14 @@ export function ProfileMessage({ message }: ProfileMessageProps) {
 
 type BadgeListProps = {
   badges: Badge_T[]
+  selectedBadgeId?: string
 }
 
-export function BadgeList({ badges }: BadgeListProps) {
+export function BadgeList({ badges, selectedBadgeId = '-1' }: BadgeListProps) {
   return (
     <div className="w-full pt-[2px] h-[40px] flex gap-[10px]">
       {badges.map((badge) => (
-        <ProfileCircleBadge key={badge.id} src={badge.image} />
+        <ProfileCircleBadge key={badge.id} badge={badge} selectedBadgeId={selectedBadgeId} />
       ))}
     </div>
   )
