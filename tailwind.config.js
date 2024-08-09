@@ -21,14 +21,15 @@ module.exports = {
       },
       colors: {
         background: '#f7f7f8',
-
+        detail: '#666',
         white: '#fff',
         gray: {
           lightest: '#e0e2e7', // 가장 밝은 회색
           lighter: '#D9D9D9', // 밝은 회색
           light: '#8c8d9d', // 중간 밝기의 회색
-          medium: 'rgba(0, 0, 0, 0.37)', // 중간 회색
-          dark: 'rgba(0, 0, 0, 0.04)', // 어두운 회색
+          medium: 'rgba(0, 0, 0, 0.37)',
+          dark: 'rgba(0, 0, 0, 0.05)',
+          afterDark: 'rgba(0, 0, 0, 0.1)',
           darkest: '#1d1c1d', // 가장 어두운 회색
         },
         underline: 'rgba(0, 0, 0, 0.1)',
@@ -118,8 +119,8 @@ module.exports = {
       xl: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
       box: '0px 1px 1px rgba(0, 0, 0, 0.1), 0px 0px 1px rgba(0, 0, 0, 0.25)',
       loginBox: '0 8px 16px rgba(182,190,204,.5)',
-      popupBox:
-        '0px 0px 1px 0px rgba(0, 0, 0, 0.25), 0px 1px 1px 0px rgba(0, 0, 0, 0.10);',
+      popupBox: '0px 0px 1px 0px rgba(0, 0, 0, 0.25), 0px 1px 1px 0px rgba(0, 0, 0, 0.10);',
+      circleBadge: '0 0 0 1px #1f232826',
     },
   },
   corePlugins: {

@@ -18,5 +18,5 @@ export interface BadgeIssue_T {
 export interface BadgeAuthData {
   date: Date
   method: 'email' | 'paper' | 'block' | 'login'
-  addData: [{ title: string; content: string }]
+  addDatas: { title: string; content: string }[]
 }

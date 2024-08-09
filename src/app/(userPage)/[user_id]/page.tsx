@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import DataWrapperForMyPage from './_components/DataWrapperForMyPage'
 import MyProfileHome from './_components/MyProfileHome'
 import MyProfileFeed from './_components/MyProfileFeed'
-import UserProfile from './_components/UserProfile/UserProfile'
+import UserProfile from './_components/Profile/UserProfile'
 
 export const metadata: Metadata = {
   title: 'PEEPS',

@@ -13,12 +13,9 @@ interface DataWrapperForMyPageProps {
   children: React.ReactNode
 }
 
-export default function DataWrapperForMyPage({
-  children,
-}: DataWrapperForMyPageProps) {
+export default function DataWrapperForMyPage({ children }: DataWrapperForMyPageProps) {
   const router = useRouter()
-  const [recoilData, setRecoilData] =
-    useRecoilState<UserProfile_T>(UserProfileStateAtom)
+  const [recoilData, setRecoilData] = useRecoilState<UserProfile_T>(UserProfileStateAtom)
 
   const { isSuccess, error, data } = useQuery({
     queryKey: ['login', 'userPage'],
