@@ -40,7 +40,7 @@ export default function DefaultLayout({ children }: layoutProps) {
       <main className={`pt-header w-full`}>
         <div className={`${archivo.variable + ' ' + dm_sans.variable}`}>
           {isSidebarCollapsed ? <GlobalSidebarNarrow /> : <GlobalSidebarWide />}
-          <section className="flex-grow bg-white pl-[80px] overflow-auto">
+          <section className={`flex-grow overflow-auto bg-white ${isSidebarCollapsed ? 'pl-24' : 'pl-64'}`}>
             {children}
           </section>
         </div>
