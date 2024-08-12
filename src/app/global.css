@@ -6,83 +6,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .kr-normal-24 {
-    color: #000;
-    font-family: 'Noto Sans KR';
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 34px;
-    /* 141.667% */
-    letter-spacing: -0.24px;
-  }
-
-  .kr-normal-18 {
-    color: #000;
-
-    /* Medium/B */
-    font-family: 'Noto Sans KR';
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 28px; /* 155.556% */
-    letter-spacing: -0.36px;
-  }
-
-  .kr-bold-14 {
-    color: #000;
-    font-family: 'Noto Sans KR';
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 24px; /* 171.429% */
-    letter-spacing: -0.14px;
-  }
-
-  .kr-normal-14 {
-    color: #000;
-    font-family: 'Noto Sans KR';
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 160%;
-    letter-spacing: -0.14px;
-  }
-
-  .kr-normal-13 {
-    font-family: 'Noto Sans KR';
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 13px; /* 100% */
-    letter-spacing: -0.13px;
-  }
-
-  .kr-normal-12 {
-    font-family: 'Noto Sans KR';
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16px; /* 133.333% */
-    letter-spacing: -0.06px;
-  }
-
-  .blueBtn {
-    font-size: 12px;
-    font-weight: bold;
-    color: white;
-    background-color: #5d9eff;
-    border-radius: 5px;
-    padding-top: 0.6em;
-    padding-bottom: 0.6em;
-    padding-left: 0.9em;
-    padding-right: 0.9em;
-  }
-  .blueBtn:hover {
-    background-color: #0066ff;
-  }
-}
+@import url('./_styles/tailwind/components/btn.css');
+@import url('./_styles/tailwind/components/font.css');
 
 body {
   @apply leading-[normal] m-0;

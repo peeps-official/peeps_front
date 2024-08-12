@@ -1,0 +1,18 @@
+@tailwind components;
+
+@layer components {
+  .blueBtn {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    background-color: #5d9eff;
+    border-radius: 5px;
+    padding-top: 0.6em;
+    padding-bottom: 0.6em;
+    padding-left: 0.9em;
+    padding-right: 0.9em;
+  }
+  .blueBtn:hover {
+    background-color: #0066ff;
+  }
+}
