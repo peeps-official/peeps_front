@@ -1,6 +1,6 @@
 'use client'
 
-import { fetchUserProfileData } from '@/src/common/api/mypage'
+import { getLoginUserData } from '@/src/common/api/mypage'
 import { UserLoginDataStateAtom, UserProfileStateAtom } from '@/src/common/recoil/userAtom'
 import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
@@ -17,7 +17,7 @@ export default function DataWrapperForMainPage({ children }: DataWrapperForMainP
 
   const { isSuccess, error, data } = useQuery({
     queryKey: ['login', 'mainPage'],
-    queryFn: () => fetchUserProfileData(),
+    queryFn: () => getLoginUserData(),
   })
 
   useEffect(() => {

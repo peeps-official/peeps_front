@@ -19,8 +19,8 @@ export default function UserProfile() {
     profileMessage,
     user_bg_img,
     user_profile_img,
-    follower,
-    badge,
+    follwer_list,
+    badge_list,
   } = recoilData
 
   return (
@@ -30,9 +30,9 @@ export default function UserProfile() {
         {user_profile_img && <ProfileImage src={user_profile_img} alt="profile image" />}
         <div className="flex flex-col gap-[11px]">
           <Name name={user_nickname} />
-          <IdAndFollowers id={user_id} followers={follower} />
-          <ProfileMessage message={profileMessage} />
-          <BadgeList badges={badge} />
+          <IdAndFollowers id={user_id} followers={follwer_list} />
+          {<ProfileMessage message={profileMessage ?? '--'} />}
+          {badge_list.length > 0 && <BadgeList badges={badge_list} />}
           <FollowAndProfileButton />
         </div>
       </ProfileCardWrapper>
@@ -124,18 +124,12 @@ type IdAndFollowersProps = {
 
 export function IdAndFollowers({ id, followers }: IdAndFollowersProps) {
   return (
-    <div className="flex text-dimgray-lighter0 font-roboto">
+    <div className="flex robo-bold-14">
       <div className="flex">
-        <div className="relative tracking-[-0.01em] leading-[14px] font-medium inline-block min-w-[52px]">
-          @{id}
-        </div>
-        <div className="w-3 relative tracking-[-0.01em] leading-[14px] font-medium text-center flex items-center justify-center shrink-0">
-          ‧
-        </div>
+        <div className="min-w-[52px]">@{id}</div>
+        <div className="flex items-center justify-center w-3 text-center shrink-0">‧</div>
       </div>
-      <div className="relative tracking-[-0.01em] leading-[14px] font-medium inline-block min-w-[91px]">
-        팔로워 {followers.length}명
-      </div>
+      <div className="min-w-[91px]">팔로워 {followers.length}명</div>
     </div>
   )
 }
@@ -188,7 +182,7 @@ export function FollowAndProfileButton() {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
 
   return (
-    <div className="flex items-center gap-[10px] text-center ">
+    <div className="flex items-center gap-[10px] text-center mt-[1rem]">
       <div className="flex">
         <button
           onClick={handleFollowClick}

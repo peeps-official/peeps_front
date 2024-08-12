@@ -17,7 +17,7 @@ type MyPageProps = {
 
 export default function MyPage({ params }: MyPageProps) {
   return (
-    <DataWrapperForMyPage>
+    <DataWrapperForMyPage pageOwnerSeq={params.user_seq}>
       <div className="box-border flex flex-col self-stretch w-full px-0 pt-3 pb-0 overflow-auto text-sm text-left text-black font-detail-b">
         <div className="self-stretch flex flex-col gap-[17px]">
           {/* 프로필 */}
