@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { UserLogin_T, UserProfile_T } from '../types/user'
+import { LoginUserDataReq_T, UserLogin_T, UserProfile_T } from '../types/user'
 import { AdminUserData_T } from '../types/admin'
 
 // admin
@@ -70,6 +70,24 @@ export const UserLoginDataStateAtom = atom<UserLogin_T>({
     user_nickname: '',
     user_profile_img: '',
     user_bg_img: '',
+  },
+})
+
+/**
+ * @description 로그인 유저에 대한 서버 응답 데이터
+ */
+export const LoginedUserReqDataAtom = atom<LoginUserDataReq_T>({
+  key: 'LoginUserDataStateAtom',
+  default: {
+    loginState: 200,
+    needData: [],
+    user_data: {
+      user_seq: '',
+      user_id: '',
+      user_nickname: '',
+      user_bg_img: '',
+      user_profile_img: '',
+    },
   },
 })
 

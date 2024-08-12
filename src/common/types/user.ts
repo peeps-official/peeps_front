@@ -14,9 +14,12 @@ export interface UserLogin_T {
 /**
  * @description '/login/check' API 응답 타입
  */
-export interface UserProfileReq_T {
+
+type UserLogin_Key_T = keyof UserLogin_T
+
+export interface LoginUserDataReq_T {
   loginState: number
-  needData: string[]
+  needData: UserLogin_Key_T[]
   user_data: UserLogin_T
 }
 
