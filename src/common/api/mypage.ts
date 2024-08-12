@@ -1,6 +1,9 @@
 import { axiosWithAuth } from './instance'
 import { UserProfileReq_T } from '../types/user'
 
+/**
+ * @description 로그인한 유저의 프로필 데이터를 가져옵니다.
+ */
 export async function fetchUserProfileData() {
   const { data } = await axiosWithAuth.get<UserProfileReq_T>('/login/check')
 
