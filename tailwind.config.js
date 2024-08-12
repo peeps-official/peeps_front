@@ -24,13 +24,13 @@ module.exports = {
         detail: '#666',
         white: '#fff',
         gray: {
-          lightest: '#e0e2e7', // 가장 밝은 회색
-          lighter: '#D9D9D9', // 밝은 회색
-          light: '#8c8d9d', // 중간 밝기의 회색
+          lightest: '#e0e2e7',
+          lighter: '#D9D9D9',
+          light: '#8c8d9d',
           medium: 'rgba(0, 0, 0, 0.37)',
           dark: 'rgba(0, 0, 0, 0.05)',
           afterDark: 'rgba(0, 0, 0, 0.1)',
-          darkest: '#1d1c1d', // 가장 어두운 회색
+          darkest: '#1d1c1d',
         },
         underline: 'rgba(0, 0, 0, 0.1)',
         black: '#000',
@@ -39,7 +39,9 @@ module.exports = {
           200: '#5D9EFF',
           soft: '#cad6eb',
           primary: '#0066ff',
+          primaryHover: '#0055cc',
           secondary: '#5D9EFF',
+          secondaryHover: '#4d88cc',
         },
         pupple: {
           deep: '#292339',

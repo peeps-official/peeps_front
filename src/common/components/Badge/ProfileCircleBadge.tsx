@@ -2,7 +2,6 @@ import { Badge_T } from '../../types/badge'
 import NextImg from '../../utils/NextImg'
 
 type ProfileCircleBadgeProps = {
-  key: string
   badge: Badge_T
   selectedBadgeId: string
 }

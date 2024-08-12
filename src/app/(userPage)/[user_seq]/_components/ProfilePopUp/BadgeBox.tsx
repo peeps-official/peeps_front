@@ -48,12 +48,8 @@ export function CanSelectBadgeList({
       <div className="text-left kr-bold-14">뱃지</div>
       <div className="w-full flex overflow-x-auto border-b-[1px] border-solid border-underline pb-[0.4em] pt-[0.2rem] px-0.5 gap-[10px] ">
         {badges.map((badge) => (
-          <button onClick={() => setSelectedBadge(badge)}>
-            <ProfileCircleBadge
-              key={badge.id}
-              badge={badge}
-              selectedBadgeId={selectedBadgeId}
-            />
+          <button key={badge.id} onClick={() => setSelectedBadge(badge)}>
+            <ProfileCircleBadge badge={badge} selectedBadgeId={selectedBadgeId} />
           </button>
         ))}
       </div>

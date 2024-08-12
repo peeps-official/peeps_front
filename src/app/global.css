@@ -67,6 +67,21 @@
     line-height: 16px; /* 133.333% */
     letter-spacing: -0.06px;
   }
+
+  .blueBtn {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    background-color: #5d9eff;
+    border-radius: 5px;
+    padding-top: 0.6em;
+    padding-bottom: 0.6em;
+    padding-left: 0.9em;
+    padding-right: 0.9em;
+  }
+  .blueBtn:hover {
+    background-color: #0066ff;
+  }
 }
 
 body {
@@ -83,8 +98,8 @@ body {
 }
 
 * {
-  font-family: -apple-system, BlinkMacSystemFont, Apple SD Gothic Neo, Helvetica,
-    Arial, NanumGothic, 'Noto Sans KR', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Apple SD Gothic Neo, Helvetica, Arial,
+    NanumGothic, 'Noto Sans KR', sans-serif;
   margin: 0;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;

@@ -7,7 +7,7 @@ import { useContext, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { UserProfile_T } from '@/src/common/types/user'
 
-import ProfileModal from '../ProfileModal'
+import ProfileModal from '../ProfilePopUp/ProfileModal'
 import { Badge_T } from '@/src/common/types/badge'
 
 export default function UserProfile() {
@@ -189,23 +189,27 @@ export function FollowAndProfileButton() {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
 
   return (
-    <div className="flex items-center gap-[10px] text-center">
+    <div className="flex items-center gap-[10px] text-center ">
       <div className="flex">
         <button
           onClick={handleFollowClick}
-          className={`rounded-[15px] overflow-hidden flex items-center justify-center py-0 px-3 whitespace-nowrap
-              ${isFollowing ? 'bg-gray-lighter text-black' : 'bg-black text-white'}`}
+          className={`rounded-[15px] overflow-hidden flex items-center justify-center py-0 px-3 whitespace-nowrap font-bold
+              ${
+                isFollowing
+                  ? 'bg-blue-primary hover:bg-blue-primaryHover text-white'
+                  : 'bg-blue-secondary hover:bg-blue-secondaryHover text-white'
+              }`}
         >
-          <b className="w-[55px] relative tracking-[-0.01em] leading-[34px] font-medium text-small flex items-center justify-center min-w-[55px]">
+          <b className="w-[55px]  relative tracking-[-0.01em]  leading-[34px] text-small flex items-center justify-center min-w-[55px]">
             {isFollowing ? '팔로우 중' : '팔로우'}
           </b>
         </button>
       </div>
       <button
         onClick={() => setIsProfileModalOpen(true)}
-        className="rounded-[15px] bg-blue-primary overflow-hidden flex items-center justify-center py-0 px-[11px] whitespace-nowrap text-white"
+        className="rounded-[15px] bg-black overflow-hidden flex items-center justify-center py-0 px-[11px] whitespace-nowrap text-white"
       >
-        <b className="w-[68px] relative tracking-[-0.01em] leading-[34px] text-small flex items-center justify-center min-w-[68px]">
+        <b className="w-[68px] relative tracking-[-0.01em] leading-[34px] font-bold text-small flex items-center  justify-center min-w-[68px]">
           프로필 보기
         </b>
       </button>

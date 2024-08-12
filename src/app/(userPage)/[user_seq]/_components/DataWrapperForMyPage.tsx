@@ -2,7 +2,7 @@
 
 import { fetchUserProfileData } from '@/src/common/api/mypage'
 import { UserProfileStateAtom } from '@/src/common/recoil/userAtom'
-import { UserProfile_T } from '@/src/common/types/user'
+import { UserProfile_T, UserProfileReq_T } from '@/src/common/types/user'
 import { mypageData } from '@/src/tmp_data/dummy'
 import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'

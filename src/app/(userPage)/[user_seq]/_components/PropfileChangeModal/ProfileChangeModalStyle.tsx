@@ -3,17 +3,27 @@ import { useMemo, type CSSProperties } from 'react'
 
 // style components : tw
 // 선택창
-const ClickContainer = tw.div`flex self-stretch    px-4 py-3 bg-whitesmoke-300 rounded-8xs gap-[10px]`
-const UnclickContainer = tw.div`flex self-stretch    px-4 py-3 bg-white rounded-8xs gap-[10px]`
-const IconContainer = tw.div`flex flex-col pt-[5px] px-0 pb-0`
-const Icon = tw.div`relative w-6 h-6 bg-gray-lightest`
-const TextStyle = tw.div`flex relative tracking-[-0.01em] leading-[34px]`
+interface ClickContainerType {
+  $isSelected?: boolean
+}
+
+export const ClickContainer = tw.div<ClickContainerType>`
+  ${(p) => (p.$isSelected ? 'bg-whitesmoke-300' : 'bg-white')}
+  flex self-stretch
+  px-4 py-3 
+  rounded-8xs
+  gap-[10px]
+  `
+
+export const IconContainer = tw.div`flex flex-col pt-[5px] px-0 pb-0`
+export const Icon = tw.div`relative w-6 h-6 bg-gray-lightest`
+export const TextStyle = tw.div`flex relative tracking-[-0.01em] leading-[34px]`
 
 // 프로필 미리보기
-const InfoContainer = tw.div`flex items-center justify-center gap-[1px]`
-const InfoIcon = tw.img`h-2.5 w-2.5 relative overflow-hidden shrink-0`
-const InfoNumberStyle = tw.div`relative leading-[16px] inline-block min-w-[83px] whitespace-nowrap`
-const InfoAddressStyle = tw.a`relative leading-[16px] text-[inherit] inline-block [text-decoration:none] min-w-[97px] whitespace-nowrap`
+export const InfoContainer = tw.div`flex items-center justify-center gap-[1px]`
+export const InfoIcon = tw.img`h-2.5 w-2.5 relative overflow-hidden shrink-0`
+export const InfoNumberStyle = tw.div`relative leading-[16px] inline-block min-w-[83px] whitespace-nowrap`
+export const InfoAddressStyle = tw.a`relative leading-[16px] text-[inherit] inline-block [text-decoration:none] min-w-[97px] whitespace-nowrap`
 
 // 프로필 편집 내용
 export type ComponentType = {
@@ -26,7 +36,7 @@ export type ComponentType = {
   propMinWidth?: CSSProperties['minWidth']
 }
 
-export default function EditComponent({
+export function EditComponent({
   className = '',
   prop,
   placeholder,
@@ -40,9 +50,7 @@ export default function EditComponent({
   }, [propMinWidth])
 
   return (
-    <div
-      className={`self-stretch flex flex-col text-left text-base ${className}`}
-    >
+    <div className={`self-stretch flex flex-col text-left text-base ${className}`}>
       <div className="flex flex-col px-0 py-4">
         <b
           className="relative tracking-[-0.01em] leading-[34px] inline-block min-w-[30px] font-bold"
@@ -60,17 +68,4 @@ export default function EditComponent({
       </div>
     </div>
   )
-}
-
-export {
-  ClickContainer,
-  UnclickContainer,
-  IconContainer,
-  Icon,
-  TextStyle,
-  InfoContainer,
-  InfoIcon,
-  InfoNumberStyle,
-  InfoAddressStyle,
-  EditComponent,
 }
