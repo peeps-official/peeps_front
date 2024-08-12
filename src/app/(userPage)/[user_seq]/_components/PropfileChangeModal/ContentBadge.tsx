@@ -18,9 +18,9 @@ interface AuthData {
 export default function ContentBadge() {
   const loginedUserData = useRecoilValue<UserProfile_T>(UserProfileStateAtom)
   const [step, setStep] = useState(0)
-  const emailInput = useRef(null)
-  const confirmNumberInput = useRef(null)
-  const [badgeData, setBadgeData] = useState(null)
+  const emailInput = useRef<HTMLInputElement>(null)
+  const confirmNumberInput = useRef<HTMLInputElement>(null)
+  const [badgeData, setBadgeData] = useState<AuthData | null>(null)
 
   async function hello() {
     const { data: data2 } = await axiosWithAuth.get<AuthData>(`/verify/mailer/badge`)
@@ -52,7 +52,7 @@ export default function ContentBadge() {
             className="blueBtn"
             onClick={async (e) => {
               e.preventDefault()
-              if (emailInput.current && emailInput.current.value) {
+              if (emailInput && emailInput.current) {
                 const email: string = emailInput.current.value
                 console.log(email, typeof email)
                 const { data } = await axiosWithAuth.post(`/verify/mailer/confirm`, {
@@ -81,15 +81,17 @@ export default function ContentBadge() {
               className="blueBtn"
               onClick={async (e) => {
                 e.preventDefault()
-                console.log(confirmNumberInput.current.value)
-                const { data } = await axiosWithAuth.get(
-                  `/verify/mailer/check/?token=${confirmNumberInput.current.value}`
-                )
-                if (data) {
-                  console.log(data)
-                  alert('인증이 완료되었습니다.')
-                  hello()
-                  setStep(2)
+                if (confirmNumberInput && confirmNumberInput.current) {
+                  console.log(confirmNumberInput.current.value)
+                  const { data } = await axiosWithAuth.get(
+                    `/verify/mailer/check/?token=${confirmNumberInput.current.value}`
+                  )
+                  if (data) {
+                    console.log(data)
+                    alert('인증이 완료되었습니다.')
+                    hello()
+                    setStep(2)
+                  }
                 }
               }}
             >

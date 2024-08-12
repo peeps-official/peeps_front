@@ -14,7 +14,6 @@ export default function UserProfile() {
   const recoilData = useRecoilValue<UserProfile_T>(UserProfileStateAtom)
 
   const {
-    user_seq,
     user_id,
     user_nickname,
     profileMessage,
