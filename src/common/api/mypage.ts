@@ -4,7 +4,7 @@ import { LoginUserDataReq_T } from '../types/user'
 /**
  * @description 로그인한 유저의 프로필 데이터를 가져옵니다.
  */
-export async function fetchUserProfileData() {
+export async function getLoginUserData() {
   const { data } = await axiosWithAuth.get<LoginUserDataReq_T>('/login/check')
 
   // 서버 키값 -> 클라이언트용으로 변경
@@ -20,4 +20,14 @@ function changeKey(obj: any, oldKey: string, newKey: string) {
     obj[newKey] = obj[oldKey]
     delete obj[oldKey]
   }
+}
+
+/**
+ * @description owner 유저 프로필 데이터를 가져옵니다.
+ */
+export async function getOwnerUserData(user_seq: string) {
+  const { data } = await axiosWithAuth.get(`/${user_seq}/profile`)
+  console.log('owner: ', data)
+
+  return data
 }

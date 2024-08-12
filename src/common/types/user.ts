@@ -29,8 +29,8 @@ export interface LoginUserDataReq_T {
 
 export interface UserProfile_T extends UserLogin_T {
   profileMessage: string | ''
-  follower: { nickname: string; user_id: string }[]
-  badge: Badge_T[]
+  follwer_list: { nickname: string; user_id: string }[]
+  badge_list: Badge_T[]
 }
 
 /**
@@ -46,7 +46,6 @@ export interface PopupProfile_T {
   addr: string
   mainBadge: Badge_T
 }
-
 /**
  * @description 유저 프로필 팝업 페이지 전체 데이터 타입
  */
