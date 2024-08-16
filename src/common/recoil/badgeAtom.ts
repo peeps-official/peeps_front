@@ -5,7 +5,7 @@ export const badgeDataAtom = atom<Array<Badge_T>>({
   key: 'badgeDataAtom',
   default: [
     {
-      id: '',
+      bdg_id: -1,
       name: '',
       image: '',
       content: '',

@@ -52,7 +52,7 @@ export default function AdminBadgePage() {
         뱃지추가 버튼
       </button>
       <div className="flex flex-wrap gap-10">
-        {!!badgeData[0]?.bdg_id &&
+        {badgeData[0]?.bdg_id !== -1 &&
           badgeData.map((badge) => {
             return <BadgeCard key={badge.bdg_id} badge={badge} />
           })}
