@@ -15,4 +15,8 @@
   .blueBtn:hover {
     background-color: #0066ff;
   }
+
+  .blueBtn:disabled {
+    background-color: #b3b3b3;
+  }
 }
