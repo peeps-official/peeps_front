@@ -7,12 +7,10 @@
  * -> 뱃지 내부에 다양한 인증방법에 따른 내용 추가하는 방식으로 구현.
  */
 
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import BadgeCard from '../_components/Badge/BadgeCard'
 import { axiosWithAuth } from '@/src/common/api/instance'
 import { AdminCreateBadge_T } from '@/src/common/types/admin'
-import { getBadgeList } from '@/src/common/api/adminBadge'
-import { useEffect, useState } from 'react'
 import { Badge_T } from '@/src/common/types/badge'
 import { badgeDataAtom } from '@/src/common/recoil/badgeAtom'
 import { useRecoilValue } from 'recoil'

@@ -10,8 +10,8 @@ import { DM_Sans } from 'next/font/google'
 
 import '@/src/app/global.css'
 import '@/src/app/styles.css'
-import { LoginedUserReqDataAtom, UserProfileStateAtom } from '@/src/common/recoil/userAtom'
-import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
+import { LoginedUserReqDataAtom } from '@/src/common/recoil/userAtom'
+import { LoginUserDataReq_T } from '@/src/common/types/user'
 import { useRecoilValue } from 'recoil'
 import { axiosWithAuth } from '@/src/common/api/instance'
 

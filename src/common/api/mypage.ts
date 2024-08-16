@@ -21,7 +21,6 @@ export async function getLoginUserData() {
  */
 export async function getOwnerUserData(user_seq: string) {
   const { data } = await axiosWithAuth.get(`/${user_seq}/profile`)
-  console.log('owner: ', data)
 
   return data
 }
