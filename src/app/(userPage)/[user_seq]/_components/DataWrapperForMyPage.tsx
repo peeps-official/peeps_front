@@ -10,7 +10,7 @@ import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
 import { mypageData } from '@/src/tmp_data/dummy'
 import { useQueries } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 interface DataWrapperForMyPageProps {
@@ -25,8 +25,9 @@ export default function DataWrapperForMyPage({
   const router = useRouter()
   const [, setUserLoginedData] = useRecoilState<LoginUserDataReq_T>(LoginedUserReqDataAtom)
   const [, setOwnerUserData] = useRecoilState<UserProfile_T>(UserProfileStateAtom)
+  const [isError, setIsError] = useState(false)
 
-  const [loginUserRes, OwnerUSerRes] = useQueries({
+  const res = useQueries({
     queries: [
       {
         queryKey: ['login', 'userPage'],
@@ -40,19 +41,37 @@ export default function DataWrapperForMyPage({
   })
 
   useEffect(() => {
-    if (loginUserRes.error || OwnerUSerRes.error) {
+    const [loginUserRes, OwnerUSerRes] = res
+
+    // 로딩 중
+    if (!res || loginUserRes.isPending || OwnerUSerRes.isPending) return
+
+    // 에러 중복처리 방지
+    if (isError) {
+      console.log('error!!')
+      return
+    }
+
+    // 에러
+    if (loginUserRes.isError || OwnerUSerRes.isError) {
       console.log('error: ', loginUserRes.error, OwnerUSerRes.error)
-      // router.push('/login')
+      window.alert('존재하지 않는 회원입니다.')
+      setIsError(true)
+      router.push('/')
     }
     // 로그인 유저 정보
     if (loginUserRes.isSuccess) {
+      console.log('loginUserRes.data: ', loginUserRes.data)
       setUserLoginedData(loginUserRes.data)
     }
     // 페이지 주인 유저 정보
     if (OwnerUSerRes.isSuccess) {
       // setOwnerUserData(mypageData)
+      console.log('OwnerUSerRes.data: ', OwnerUSerRes.data)
       setOwnerUserData(OwnerUSerRes.data)
     }
-  }, [loginUserRes, OwnerUSerRes])
+
+    ;() => {}
+  }, [res])
   return <>{children}</>
 }
