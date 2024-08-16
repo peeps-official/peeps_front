@@ -20,9 +20,7 @@ export default function MyPage({ params }: MyPageProps) {
     <DataWrapperForMyPage pageOwnerSeq={params.user_seq}>
       <div className="box-border flex flex-col self-stretch w-full px-0 pt-3 pb-0 overflow-auto text-sm text-left text-black font-detail-b">
         <div className="self-stretch flex flex-col gap-[17px]">
-          {/* 프로필 */}
           <UserProfile />
-          {/* 홈 & 피드 메뉴바 */}
           <div className="self-stretch overflow-hidden flex pt-0 px-[17px] pb-px gap-[24px] shrink-0 text-center text-tiny font-inter font-bold border-solid border-gray-medium mq450:flex-wrap">
             <div className="flex flex-col relative min-w-[48px]">
               <div className="overflow-hidden flex py-4 px-[18px]">
@@ -40,9 +38,7 @@ export default function MyPage({ params }: MyPageProps) {
               </div>
             </div>
           </div>
-          {/* 홈 */}
           <MyProfileHome />
-          {/* 피드 */}
           <MyProfileFeed />
         </div>
       </div>

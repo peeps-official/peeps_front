@@ -7,7 +7,7 @@ import {
   UserProfileStateAtom,
 } from '@/src/common/recoil/userAtom'
 import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
-import { mypageData } from '@/src/tmp_data/dummy'
+
 import { useQueries } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -61,13 +61,10 @@ export default function DataWrapperForMyPage({
     }
     // 로그인 유저 정보
     if (loginUserRes.isSuccess) {
-      console.log('loginUserRes.data: ', loginUserRes.data)
       setUserLoginedData(loginUserRes.data)
     }
     // 페이지 주인 유저 정보
     if (OwnerUSerRes.isSuccess) {
-      // setOwnerUserData(mypageData)
-      console.log('OwnerUSerRes.data: ', OwnerUSerRes.data)
       setOwnerUserData(OwnerUSerRes.data)
     }
 
