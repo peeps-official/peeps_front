@@ -3,7 +3,7 @@
 import ProfileCircleBadge from '@/src/common/components/Badge/ProfileCircleBadge'
 import { UserProfileStateAtom } from '@/src/common/recoil/userAtom'
 import NextImg from '@/src/common/utils/NextImg'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { UserProfile_T } from '@/src/common/types/user'
 
@@ -163,7 +163,11 @@ export function BadgeList({ badges, selectedBadgeId = '-1' }: BadgeListProps) {
   return (
     <div className="w-full pt-[2px] h-[40px] flex gap-[10px]">
       {badges.map((badge) => (
-        <ProfileCircleBadge key={badge.id} badge={badge} selectedBadgeId={selectedBadgeId} />
+        <ProfileCircleBadge
+          key={badge.bdg_id}
+          badge={badge}
+          selectedBadgeId={selectedBadgeId}
+        />
       ))}
     </div>
   )
