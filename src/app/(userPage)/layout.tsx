@@ -31,14 +31,6 @@ interface layoutProps {
   router: any
 }
 
-// {
-//   "user_id": "userName0",
-//   "nickname": "닉네임",
-//   "profileImage": "string",
-//   "backgroundImage": "string",
-//   "info": "안녕하세요"
-// }
-
 export default function DefaultLayout({ children }: layoutProps) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true)
   const useLoginData = useRecoilValue<LoginUserDataReq_T>(LoginedUserReqDataAtom)
@@ -63,7 +55,6 @@ export default function DefaultLayout({ children }: layoutProps) {
       })
 
       const data = (async function () {
-        console.log('post!!')
         return await axiosWithAuth.patch(
           `/${useLoginData.user_data.user_seq}/profile`,
           newUserData

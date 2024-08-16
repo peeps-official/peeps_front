@@ -1,5 +1,6 @@
 import { axiosWithAuth } from './instance'
 import { LoginUserDataReq_T } from '../types/user'
+import { changeKey } from '../utils/changKey'
 
 /**
  * @description 로그인한 유저의 프로필 데이터를 가져옵니다.
@@ -13,13 +14,6 @@ export async function getLoginUserData() {
   changeKey(data.user_data, 'profileImage', 'user_profile_img')
 
   return data
-}
-
-function changeKey(obj: any, oldKey: string, newKey: string) {
-  if (oldKey !== newKey) {
-    obj[newKey] = obj[oldKey]
-    delete obj[oldKey]
-  }
 }
 
 /**
