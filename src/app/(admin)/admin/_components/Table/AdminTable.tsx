@@ -1,15 +1,16 @@
-import React, { Fragment } from 'react'
+'use client'
+
+import React from 'react'
 import { Table } from './Table'
-import NextImg from '@/src/common/utils/NextImg'
-import Image from 'next/image'
 
 interface AdminTableProps {
   title: string
   des: string
   data: Array<{ [key: string]: any }>
+  addtionalColumn?: Array<{ head: string; data: string; action?: (id: string) => void }>
 }
 
-export default function AdminTable({ title, des, data }: AdminTableProps) {
+export default function AdminTable({ title, des, data, addtionalColumn }: AdminTableProps) {
   if (data.length === 0) {
     return (
       <>
@@ -50,6 +51,14 @@ export default function AdminTable({ title, des, data }: AdminTableProps) {
                 {key}
               </th>
             ))}
+            {addtionalColumn?.map((column, i) => (
+              <th
+                key={i}
+                className="flex-1 px-[1rem] py-4 text-xs font-medium tracking-wider text-left text-white truncate "
+              >
+                {column.head}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-medium">
@@ -61,6 +70,21 @@ export default function AdminTable({ title, des, data }: AdminTableProps) {
                   className="flex-1 px-[1rem] py-4 overflow-hidden whitespace-nowrap text-ellipsis"
                 >
                   <div className="truncate">{item[key]}</div>
+                </td>
+              ))}
+              {addtionalColumn?.map((column, i) => (
+                <td
+                  key={i}
+                  className="flex-1 px-[1rem] py-4 overflow-hidden whitespace-nowrap text-ellipsis"
+                >
+                  <button
+                    className="blueBtn"
+                    onClick={() => {
+                      if (column.action) column.action(item.id)
+                    }}
+                  >
+                    {item.id + column.data}
+                  </button>
                 </td>
               ))}
             </tr>
