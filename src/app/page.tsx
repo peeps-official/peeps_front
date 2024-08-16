@@ -8,8 +8,6 @@ import { useRecoilState } from 'recoil'
 export default function Main() {
   const [recoilData, setRecoilData] = useRecoilState(UserLoginDataStateAtom)
 
-  console.log(recoilData)
-  console.log(recoilData.user_seq)
   return (
     <DataWrapperForMainPage>
       <div className="flex items-center justify-center w-full h-full bg-gray-lighter">

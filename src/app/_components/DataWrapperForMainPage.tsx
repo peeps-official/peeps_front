@@ -1,7 +1,7 @@
 'use client'
 
 import { getLoginUserData } from '@/src/common/api/mypage'
-import { UserLoginDataStateAtom, UserProfileStateAtom } from '@/src/common/recoil/userAtom'
+import { UserLoginDataStateAtom } from '@/src/common/recoil/userAtom'
 import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
