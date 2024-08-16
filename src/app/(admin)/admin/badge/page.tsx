@@ -14,15 +14,13 @@ import { AdminCreateBadge_T } from '@/src/common/types/admin'
 import { getBadgeList } from '@/src/common/api/adminBadge'
 import { useEffect, useState } from 'react'
 import { Badge_T } from '@/src/common/types/badge'
+import { badgeDataAtom } from '@/src/common/recoil/badgeAtom'
+import { useRecoilValue } from 'recoil'
+import DataWrapperForAdminBadgePage from '../_components/DataWrapperForAdminBadgePage'
 
 export default function AdminBadgePage() {
-  const [badgeData, setBadgeData] = useState<Badge_T[]>([])
   const queryClient = useQueryClient()
-
-  const { data: badgeDataQuery, isSuccess } = useQuery({
-    queryKey: ['admin', 'badge'],
-    queryFn: async () => await getBadgeList(),
-  })
+  const badgeData = useRecoilValue<Badge_T[]>(badgeDataAtom)
 
   const { mutate: addBadge } = useMutation({
     mutationFn: async (data: AdminCreateBadge_T) =>
@@ -31,16 +29,14 @@ export default function AdminBadgePage() {
       window.alert(JSON.stringify(variables.data.name) + '뱃지가 추가되었습니다.')
       queryClient.invalidateQueries({ queryKey: ['admin', 'badge'] })
     },
+    onError: (error) => {
+      window.alert('뱃지 추가에 실패했습니다.')
+      console.error(error)
+    },
   })
 
-  useEffect(() => {
-    if (isSuccess) {
-      setBadgeData(badgeDataQuery)
-    }
-  }, [badgeDataQuery])
-
   return (
-    <>
+    <DataWrapperForAdminBadgePage>
       <h1 className="my-2">뱃지 관리</h1>
       <button
         className="p-3 my-4 rounded bg-blue-soft hover:bg-blue-secondary"
@@ -56,10 +52,11 @@ export default function AdminBadgePage() {
         뱃지추가 버튼
       </button>
       <div className="flex flex-wrap gap-10">
-        {badgeData?.map((badge) => {
-          return <BadgeCard key={badge.id} badge={badge} />
-        })}
+        {!!badgeData[0]?.bdg_id &&
+          badgeData.map((badge) => {
+            return <BadgeCard key={badge.bdg_id} badge={badge} />
+          })}
       </div>
-    </>
+    </DataWrapperForAdminBadgePage>
   )
 }

@@ -1,9 +1,9 @@
 export interface Badge_T {
-  id: string
+  bdg_id: string
   name: string
   image: string
   content: string
-  verifiedUserCount?: number
+  member_count?: number
   followingCount?: number
 }
 
