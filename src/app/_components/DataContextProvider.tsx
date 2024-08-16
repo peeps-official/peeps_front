@@ -27,9 +27,7 @@ export default function DataContextProvider({ children }: Props) {
 
   return (
     <QueryClientProvider client={client}>
-      <ReactQueryDevtools
-        initialIsOpen={process.env.NEXT_PUBLIC_MODE === 'local'}
-      />
+      <ReactQueryDevtools initialIsOpen={process.env.NEXT_PUBLIC_MODE === 'local'} />
       <RecoilRoot>{children}</RecoilRoot>
     </QueryClientProvider>
   )
