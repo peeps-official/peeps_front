@@ -14,6 +14,7 @@ import { LoginedUserReqDataAtom } from '@/src/common/recoil/userAtom'
 import { LoginUserDataReq_T } from '@/src/common/types/user'
 import { useRecoilValue } from 'recoil'
 import { axiosWithAuth } from '@/src/common/api/instance'
+import { useQueryClient } from '@tanstack/react-query'
 
 const archivo = Archivo({
   subsets: ['latin'],
@@ -34,6 +35,7 @@ interface layoutProps {
 export default function DefaultLayout({ children }: layoutProps) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true)
   const useLoginData = useRecoilValue<LoginUserDataReq_T>(LoginedUserReqDataAtom)
+  const queryClient = useQueryClient()
 
   const toggleSidebar = () => {
     setIsSidebarCollapsed((prevState) => !prevState)
@@ -50,18 +52,20 @@ export default function DefaultLayout({ children }: layoutProps) {
         if (!data) return
         if (data_name === 'user_id') {
           newUserData.user_id = data
-          console.log('new!!!! :', newUserData)
         }
       })
 
-      const data = (async function () {
-        return await axiosWithAuth.patch(
-          `/${useLoginData.user_data.user_seq}/profile`,
-          newUserData
-        )
+      // user_id를 채워넣은 후 다시 로그인 데이터 요청
+      ;(async function () {
+        const { data, status } = await axiosWithAuth.patch(`/login/id`, {
+          user_id: newUserData.user_id,
+        })
+        // 에러 날라올 수 있음 -> id 중복~~ 임시처리이므로 나중에 페이지 분리하는 것도 좋을 듯
+        if (status === 200) {
+          queryClient.invalidateQueries({ queryKey: ['login', 'userPage'] })
+        }
+        return data
       })()
-
-      console.log('res: ', data)
     }
   }, [useLoginData])
 
