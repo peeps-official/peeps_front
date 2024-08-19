@@ -8,28 +8,44 @@ export async function getBadgeList() {
   return data
 }
 
-// @인증 요청 목록 - 리스트 조회
+/**
+ * @description 인증 요청 목록 테이블
+ */
+
+// 리스트 조회
 export async function getBadgeIssueList() {
   const { data } = await axiosWithAuth.get<BadgeIssue_T[]>('/admin/verify/req')
 
   return data
 }
 
-// @인증 요청 목록 - 뱃지 승인
+// 뱃지 승인
 export async function ApproveBadge(id: string) {
   const { data } = await axiosWithAuth.post(`/admin/verify/req/${id}`)
 
   return data
 }
 
-// @인증 요청 목록 - 뱃지 거절
+// 뱃지 거절
 export async function RejectBadge(id: string) {
   console.log('bye')
 }
 
-// 인증 완료 목록
+/**
+ * @description 인증 완료 목록 테이블
+ */
+
+// 리스트 조회
 export async function getBadgeApproveList() {
   const { data } = await axiosWithAuth.get<BadgeIssue_T[]>('/admin/verify/inspect')
+
+  return data
+}
+
+// 뱃지 승인 취소
+export async function CancelBadge(id: string) {
+  const { data } = await axiosWithAuth.delete(`/admin/verify/inspect/${id}`)
+  console.log(data)
 
   return data
 }

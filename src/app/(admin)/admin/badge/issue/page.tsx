@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { useQueries, useQueryClient } from '@tanstack/react-query'
 import {
   ApproveBadge,
+  CancelBadge,
   getBadgeApproveList,
   getBadgeIssueList,
   RejectBadge,
@@ -52,6 +53,11 @@ export default function BadgeIssuePage() {
     }
   }, [res])
 
+  function reFreshTable() {
+    queryClient.invalidateQueries({ queryKey: ['badgeData', 'issue'] })
+    queryClient.invalidateQueries({ queryKey: ['badgeData', 'approve'] })
+  }
+
   console.log(badgeData, approveData)
 
   return (
@@ -66,15 +72,13 @@ export default function BadgeIssuePage() {
               head: '뱃지 승인',
               btnTitle: '승인',
               btnAction: ApproveBadge,
-              refresh: () =>
-                queryClient.invalidateQueries({ queryKey: ['badgeData', 'issue'] }),
+              refresh: reFreshTable,
             },
             {
               head: '뱃지 거절',
               btnTitle: '거절',
               btnAction: RejectBadge,
-              refresh: () =>
-                queryClient.invalidateQueries({ queryKey: ['badgeData', 'approve'] }),
+              refresh: reFreshTable,
             },
           ]}
         />
@@ -88,9 +92,8 @@ export default function BadgeIssuePage() {
             {
               head: '뱃지 승인 취소',
               btnTitle: '승인 취소',
-              btnAction: async (id) => {
-                console.log(`${id} 승인 취소`)
-              },
+              btnAction: CancelBadge,
+              refresh: reFreshTable,
             },
           ]}
         />
