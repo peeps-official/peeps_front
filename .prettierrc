@@ -4,5 +4,7 @@
   "endOfLine": "auto",
   "tabWidth": 2,
   "useTabs": false,
-  "printWidth": 95
+  "printWidth": 95,
+
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
