@@ -64,15 +64,15 @@ export default function BadgeIssuePage() {
           addtionalColumn={[
             {
               head: '뱃지 승인',
-              data: '승인',
-              action: ApproveBadge,
+              btnTitle: '승인',
+              btnAction: ApproveBadge,
               refresh: () =>
                 queryClient.invalidateQueries({ queryKey: ['badgeData', 'issue'] }),
             },
             {
               head: '뱃지 거절',
-              data: '거절',
-              action: RejectBadge,
+              btnTitle: '거절',
+              btnAction: RejectBadge,
               refresh: () =>
                 queryClient.invalidateQueries({ queryKey: ['badgeData', 'approve'] }),
             },
@@ -87,9 +87,9 @@ export default function BadgeIssuePage() {
           addtionalColumn={[
             {
               head: '뱃지 승인 취소',
-              data: '승인 취소',
-              action: () => {
-                console.log('승인 취소')
+              btnTitle: '승인 취소',
+              btnAction: async (id) => {
+                console.log(`${id} 승인 취소`)
               },
             },
           ]}
