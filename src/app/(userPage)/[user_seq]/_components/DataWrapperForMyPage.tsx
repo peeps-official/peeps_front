@@ -52,20 +52,22 @@ export default function DataWrapperForMyPage({
       return
     }
 
-    // 에러
-    if (loginUserRes.isError || OwnerUSerRes.isError) {
-      console.log('error: ', loginUserRes.error, OwnerUSerRes.error)
-      window.alert('존재하지 않는 회원입니다.')
-      setIsError(true)
-      router.push('/')
-    }
     // 로그인 유저 정보
     if (loginUserRes.isSuccess) {
       setUserLoginedData(loginUserRes.data)
+    } else if (loginUserRes.isError) {
+      console.log('error: ', loginUserRes.error)
+      setIsError(true)
     }
+
     // 페이지 주인 유저 정보
     if (OwnerUSerRes.isSuccess) {
       setOwnerUserData(OwnerUSerRes.data)
+    } else if (OwnerUSerRes.isError) {
+      console.log('error: ', OwnerUSerRes.error)
+      window.alert('존재하지 않는 회원입니다.')
+      setIsError(true)
+      router.push('/')
     }
 
     ;() => {}
