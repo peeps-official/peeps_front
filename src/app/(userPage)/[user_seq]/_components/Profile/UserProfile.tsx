@@ -1,7 +1,7 @@
 'use client'
 
 import ProfileCircleBadge from '@/src/common/components/Badge/ProfileCircleBadge'
-import { LoginedUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
+import { LogedInUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
 import NextImg from '@/src/common/utils/NextImg'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
@@ -17,7 +17,7 @@ import { editOwnerProfile } from '@/src/common/api/mypage'
 export default function UserProfile() {
   const queryClient = useQueryClient()
   const ownerData = useRecoilValue<UserProfile_T>(OwnerProfileStateAtom)
-  const { user_data: LoginUserData } = useRecoilValue<LoginUserDataReq_T>(LoginedUserReqDataAtom)
+  const { user_data: logedInUserData } = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
 
   // 프로필 수정 mutation
   const { mutate } = useMutation({
@@ -33,7 +33,7 @@ export default function UserProfile() {
   const { user_id, user_nickname, profileMessage, user_bg_img, user_profile_img, follwer_list, badge_list } = ownerData
 
   // 로그인 유저와 프로필 주인이 같은지 확인
-  const isOwner = LoginUserData.user_seq === ownerData.user_seq
+  const isOwner = logedInUserData.user_seq === ownerData.user_seq
 
   // background image 변경 함수
   function handleChangeBgImg() {
