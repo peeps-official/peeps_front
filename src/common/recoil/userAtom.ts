@@ -94,8 +94,8 @@ export const LoginedUserReqDataAtom = atom<LoginUserDataReq_T>({
 /**
  * @description 유저 프로필 데이터
  */
-export const UserProfileStateAtom = atom<UserProfile_T>({
-  key: 'UserProfileStateAtom',
+export const OwnerProfileStateAtom = atom<UserProfile_T>({
+  key: 'OwnerProfileStateAtom',
   default: {
     user_seq: '',
     user_id: '',

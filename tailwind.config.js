@@ -73,56 +73,59 @@ module.exports = {
         '41xl': '60px',
         '3xs': '10px',
       },
-    },
-    fontWeight: {
-      //font
-      thin: '100',
-      extralight: '200',
-      light: '300',
-      normal: '400',
-      medium: '500',
-      semibold: '600',
-      bold: '700',
-      extrabold: '800',
-      black: '900',
-    },
-    fontSize: {
-      //text
-      detail: '10px',
-      micro: '12px',
-      tiny: '13px',
-      mini: '15px',
-      small: '14px',
-      base: '16px',
-      medium: '18px',
-      semilarge: '20px',
-      large: '24px',
-      inherit: 'inherit',
-      huge: '28px',
-    },
-    screens: {
-      mq825: {
-        raw: 'screen and (max-width: 825px)',
+      fontWeight: {
+        //font
+        thin: '100',
+        extralight: '200',
+        light: '300',
+        normal: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
+        extrabold: '800',
+        black: '900',
       },
-      mq675: {
-        raw: 'screen and (max-width: 675px)',
+      fontSize: {
+        //text
+        detail: '10px',
+        micro: '12px',
+        tiny: '13px',
+        mini: '15px',
+        small: '14px',
+        base: '16px',
+        medium: '18px',
+        semilarge: '20px',
+        large: '24px',
+        inherit: 'inherit',
+        huge: '28px',
       },
-      mq450: {
-        raw: 'screen and (max-width: 450px)',
+      screens: {
+        mq825: {
+          raw: 'screen and (max-width: 825px)',
+        },
+        mq675: {
+          raw: 'screen and (max-width: 675px)',
+        },
+        mq450: {
+          raw: 'screen and (max-width: 450px)',
+        },
       },
-    },
-    zIndex: {
-      default: '1',
-      header: '1000',
-      modalBackground: '2000',
-      modal: '2001',
-    },
-    boxShadow: {
-      xl: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-      box: '0px 1px 1px rgba(0, 0, 0, 0.1), 0px 0px 1px rgba(0, 0, 0, 0.25)',
-      loginBox: '0 8px 16px rgba(182,190,204,.5)',
-      popupBox: '0px 0px 1px 0px rgba(0, 0, 0, 0.25), 0px 1px 1px 0px rgba(0, 0, 0, 0.10);',
-      circleBadge: '0 0 0 1px #1f232826',
+      zIndex: {
+        default: '1',
+        header: '1000',
+        modalBackground: '2000',
+        modal: '2001',
+      },
+      boxShadow: {
+        xl: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+        box: '0px 1px 1px rgba(0, 0, 0, 0.1), 0px 0px 1px rgba(0, 0, 0, 0.25)',
+        loginBox: '0 8px 16px rgba(182,190,204,.5)',
+        popupBox: '0px 0px 1px 0px rgba(0, 0, 0, 0.25), 0px 1px 1px 0px rgba(0, 0, 0, 0.10);',
+        circleBadge: '0 0 0 1px #1f232826',
+      },
+      aspectRatio: {
+        bg: '220/49',
+      },
     },
   },
   corePlugins: {
