@@ -1,5 +1,5 @@
 'use client'
-import { axiosWithAuth } from '@/src/common/api/instance'
+
 import { BadgeIssue_T } from '@/src/common/types/badge'
 import AdminTable from '../../_components/Table/AdminTable'
 import { useEffect, useState } from 'react'

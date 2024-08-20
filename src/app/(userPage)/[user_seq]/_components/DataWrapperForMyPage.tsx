@@ -4,7 +4,7 @@ import { getLoginUserData, getOwnerUserData } from '@/src/common/api/mypage'
 import {
   LoginedUserReqDataAtom,
   UserLoginDataStateAtom,
-  UserProfileStateAtom,
+  OwnerProfileStateAtom,
 } from '@/src/common/recoil/userAtom'
 import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
 
@@ -24,7 +24,7 @@ export default function DataWrapperForMyPage({
 }: DataWrapperForMyPageProps) {
   const router = useRouter()
   const [, setUserLoginedData] = useRecoilState<LoginUserDataReq_T>(LoginedUserReqDataAtom)
-  const [, setOwnerUserData] = useRecoilState<UserProfile_T>(UserProfileStateAtom)
+  const [, setOwnerUserData] = useRecoilState<UserProfile_T>(OwnerProfileStateAtom)
   const [isError, setIsError] = useState(false)
 
   const res = useQueries({

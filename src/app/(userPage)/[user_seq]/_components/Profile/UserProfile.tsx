@@ -1,39 +1,71 @@
 'use client'
 
 import ProfileCircleBadge from '@/src/common/components/Badge/ProfileCircleBadge'
-import { UserProfileStateAtom } from '@/src/common/recoil/userAtom'
+import { LoginedUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
 import NextImg from '@/src/common/utils/NextImg'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { UserProfile_T } from '@/src/common/types/user'
+import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
+import { FaCamera } from 'react-icons/fa'
 
 import ProfileModal from '../ProfilePopUp/ProfileModal'
 import { Badge_T } from '@/src/common/types/badge'
+import Button from '@/src/common/components/Btn/Button'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { editOwnerProfile } from '@/src/common/api/mypage'
 
 export default function UserProfile() {
-  const recoilData = useRecoilValue<UserProfile_T>(UserProfileStateAtom)
+  const queryClient = useQueryClient()
+  const ownerData = useRecoilValue<UserProfile_T>(OwnerProfileStateAtom)
+  const { user_data: LoginUserData } = useRecoilValue<LoginUserDataReq_T>(LoginedUserReqDataAtom)
 
-  const {
-    user_id,
-    user_nickname,
-    profileMessage,
-    user_bg_img,
-    user_profile_img,
-    follwer_list,
-    badge_list,
-  } = recoilData
+  // 프로필 수정 mutation
+  const { mutate } = useMutation({
+    mutationFn: async (data: UserProfile_T) => {
+      return editOwnerProfile(data)
+    },
+    onSuccess: (data) => {
+      console.log(data)
+      queryClient.invalidateQueries({ queryKey: ['owner', 'userPage'] })
+    },
+  })
+
+  const { user_id, user_nickname, profileMessage, user_bg_img, user_profile_img, follwer_list, badge_list } = ownerData
+
+  // 로그인 유저와 프로필 주인이 같은지 확인
+  const isOwner = LoginUserData.user_seq === ownerData.user_seq
+
+  // background image 변경 함수
+  function handleChangeBgImg() {
+    const url = window.prompt('배경 이미지 URL을 입력해주세요. (제거 시 빈칸 입력)')
+
+    mutate({ ...ownerData, user_bg_img: url })
+  }
 
   return (
     <ProfileWrapper>
-      {user_bg_img && <ProfileBackground src={user_bg_img} alt="user profile background" />}
+      <ProfileBackground src={user_bg_img} alt="user profile background" />
       <ProfileCardWrapper>
-        {user_profile_img && <ProfileImage src={user_profile_img} alt="profile image" />}
-        <div className="flex flex-col gap-[11px]">
-          <Name name={user_nickname} />
-          <IdAndFollowers id={user_id} followers={follwer_list} />
+        <ProfileImage src={user_profile_img} alt="profile image" />
+        <div className="flex flex-1 flex-col gap-[11px]">
+          <div className="flex justify-between">
+            <div>
+              <Name name={user_nickname} />
+              <IdAndFollowers id={user_id} followers={follwer_list} />
+            </div>
+
+            {isOwner && (
+              <Button
+                icons={<FaCamera />}
+                title="커버 사진 수정"
+                onClickFn={handleChangeBgImg}
+                styles={`bg-gray-dark text-black hover:bg-[#ddd]`}
+              />
+            )}
+          </div>
           {<ProfileMessage message={profileMessage ?? '--'} />}
           {badge_list.length > 0 && <BadgeList badges={badge_list} />}
-          <FollowAndProfileButton />
+          <FollowAndProfileButton isOwner={isOwner} />
         </div>
       </ProfileCardWrapper>
     </ProfileWrapper>
@@ -50,7 +82,7 @@ type ProfileWrapperProps = {
 
 export function ProfileWrapper({ children }: ProfileWrapperProps) {
   return (
-    <div className="box-border flex flex-1 flex-col gap-[20px] max-w-full self-stretch max-w-full py-0 pl-4 pr-5 shrink-0">
+    <div className="box-border flex max-w-full flex-1 shrink-0 flex-col gap-[20px] self-stretch py-0 pl-4 pr-5">
       {children}
     </div>
   )
@@ -61,13 +93,15 @@ export function ProfileWrapper({ children }: ProfileWrapperProps) {
  */
 
 type ProfileBackgroundProps = {
+  src: string | null
   alt: string
-  src: string
 }
 
-export function ProfileBackground({ alt, src }: ProfileBackgroundProps) {
+export function ProfileBackground({ src, alt }: ProfileBackgroundProps) {
+  if (!src) return
+
   return (
-    <div className="w-full h-[204px] flex relative rounded-[15px] overflow-hidden object-cover box-border">
+    <div className="aspect-bg relative box-border flex w-full overflow-hidden rounded-[15px] object-cover">
       <NextImg alt={alt} src={src} />
     </div>
   )
@@ -82,7 +116,7 @@ type ProfileCardWrapperProps = {
 }
 
 export function ProfileCardWrapper({ children }: ProfileCardWrapperProps) {
-  return <div className="flex flex gap-[10px]">{children}</div>
+  return <div className="flex gap-[10px]">{children}</div>
 }
 
 /**
@@ -91,13 +125,13 @@ export function ProfileCardWrapper({ children }: ProfileCardWrapperProps) {
 
 type ProfileImageProps = {
   alt: string
-  src: string
+  src: string | null
 }
 
 export function ProfileImage({ alt, src }: ProfileImageProps) {
   return (
-    <div className="object-cover w-24 h-24 overflow-hidden rounded-full cursor-pointer">
-      <NextImg alt={alt} src={src} />
+    <div className="h-24 w-24 cursor-pointer overflow-hidden rounded-full object-cover">
+      {src && <NextImg alt={alt} src={src} />}
     </div>
   )
 }
@@ -107,7 +141,7 @@ export function ProfileImage({ alt, src }: ProfileImageProps) {
  */
 export function Name({ name }: { name: string }) {
   return (
-    <div className="m-0 relative text-[28px] tracking-[-0.01em] leading-[34px] font-bold font-inherit inline-block min-w-[103px]">
+    <div className="font-inherit relative m-0 inline-block min-w-[103px] text-[28px] font-bold leading-[34px] tracking-[-0.01em]">
       {name}
     </div>
   )
@@ -124,10 +158,10 @@ type IdAndFollowersProps = {
 
 export function IdAndFollowers({ id, followers }: IdAndFollowersProps) {
   return (
-    <div className="flex robo-bold-14">
+    <div className="robo-bold-14 flex">
       <div className="flex">
         <div className="min-w-[52px]">@{id}</div>
-        <div className="flex items-center justify-center w-3 text-center shrink-0">‧</div>
+        <div className="flex w-3 shrink-0 items-center justify-center text-center">‧</div>
       </div>
       <div className="min-w-[91px]">팔로워 {followers.length}명</div>
     </div>
@@ -144,7 +178,7 @@ type ProfileMessageProps = {
 
 export function ProfileMessage({ message }: ProfileMessageProps) {
   return (
-    <div className="relative tracking-[-0.01em] leading-[14px] font-medium font-roboto text-dimgray-lighter0">
+    <div className="font-roboto text-dimgray-lighter0 relative font-medium leading-[14px] tracking-[-0.01em]">
       {message}
     </div>
   )
@@ -161,13 +195,9 @@ type BadgeListProps = {
 
 export function BadgeList({ badges, selectedBadgeId = '-1' }: BadgeListProps) {
   return (
-    <div className="w-full pt-[2px] h-[40px] flex gap-[10px]">
+    <div className="flex h-[40px] w-full gap-[10px] pt-[2px]">
       {badges.map((badge) => (
-        <ProfileCircleBadge
-          key={badge.bdg_id}
-          badge={badge}
-          selectedBadgeId={selectedBadgeId}
-        />
+        <ProfileCircleBadge key={badge.bdg_id} badge={badge} selectedBadgeId={selectedBadgeId} />
       ))}
     </div>
   )
@@ -177,39 +207,43 @@ export function BadgeList({ badges, selectedBadgeId = '-1' }: BadgeListProps) {
  * 팔로우 & 프로필 보기 버튼
  */
 
-export function FollowAndProfileButton() {
+type FollowAndProfileButtonProps = {
+  isOwner: boolean
+}
+
+export function FollowAndProfileButton({ isOwner }: FollowAndProfileButtonProps) {
   const [isFollowing, setIsFollowing] = useState(false)
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
 
   const handleFollowClick = () => {
     setIsFollowing((prevState) => !prevState)
   }
-  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
 
   return (
-    <div className="flex items-center gap-[10px] text-center mt-[1rem]">
-      <div className="flex">
-        <button
-          onClick={handleFollowClick}
-          className={`rounded-[15px] overflow-hidden flex items-center justify-center py-0 px-3 whitespace-nowrap font-bold
-              ${
-                isFollowing
-                  ? 'bg-blue-primary hover:bg-blue-primaryHover text-white'
-                  : 'bg-blue-secondary hover:bg-blue-secondaryHover text-white'
-              }`}
-        >
-          <b className="w-[55px]  relative tracking-[-0.01em]  leading-[34px] text-small flex items-center justify-center min-w-[55px]">
-            {isFollowing ? '팔로우 중' : '팔로우'}
-          </b>
-        </button>
-      </div>
-      <button
-        onClick={() => setIsProfileModalOpen(true)}
-        className="rounded-[15px] bg-black overflow-hidden flex items-center justify-center py-0 px-[11px] whitespace-nowrap text-white"
-      >
-        <b className="w-[68px] relative tracking-[-0.01em] leading-[34px] font-bold text-small flex items-center  justify-center min-w-[68px]">
-          프로필 보기
-        </b>
-      </button>
+    <div className="mt-[1rem] flex items-center gap-[10px] text-center">
+      {isOwner ? (
+        <Button
+          title="프로필 수정"
+          onClickFn={() => setIsProfileModalOpen(true)}
+          styles={
+            isFollowing
+              ? 'bg-blue-primary text-white hover:bg-blue-primaryHover'
+              : 'bg-blue-secondary text-white hover:bg-blue-secondaryHover'
+          }
+        />
+      ) : (
+        <Button
+          title={isFollowing ? '팔로우 중' : '팔로우'}
+          onClickFn={handleFollowClick}
+          styles={
+            isFollowing
+              ? 'bg-blue-primary text-white hover:bg-blue-primaryHover'
+              : 'bg-blue-secondary text-white hover:bg-blue-secondaryHover'
+          }
+        />
+      )}
+      <Button title="프로필 보기" onClickFn={() => setIsProfileModalOpen(true)} styles={'bg-black text-white'} />
+
       {isProfileModalOpen && <ProfileModal setIsProfileModalOpen={setIsProfileModalOpen} />}
     </div>
   )

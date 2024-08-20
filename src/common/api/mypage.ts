@@ -1,5 +1,5 @@
 import { axiosWithAuth } from './instance'
-import { LoginUserDataReq_T } from '../types/user'
+import { LoginUserDataReq_T, UserProfile_T } from '../types/user'
 import { changeKey } from '../utils/changKey'
 
 /**
@@ -23,4 +23,18 @@ export async function getOwnerUserData(user_seq: string) {
   const { data } = await axiosWithAuth.get(`/${user_seq}/profile`)
 
   return data
+}
+
+/**
+ * @description owner 유저의 프로필을 수정합니다.
+ */
+export async function editOwnerProfile(data: UserProfile_T) {
+  const { user_seq, user_nickname, user_profile_img, user_bg_img, profileMessage } = data
+
+  return axiosWithAuth.patch(`/${user_seq}/profile`, {
+    nickname: user_nickname,
+    profileImage: user_profile_img,
+    backgroundImage: user_bg_img,
+    info: profileMessage,
+  })
 }
