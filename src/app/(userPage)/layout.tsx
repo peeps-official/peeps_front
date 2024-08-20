@@ -10,7 +10,7 @@ import { DM_Sans } from 'next/font/google'
 
 import '@/src/app/global.css'
 import '@/src/app/styles.css'
-import { LoginedUserReqDataAtom } from '@/src/common/recoil/userAtom'
+import { LogedInUserReqDataAtom } from '@/src/common/recoil/userAtom'
 import { LoginUserDataReq_T } from '@/src/common/types/user'
 import { useRecoilValue } from 'recoil'
 import { axiosWithAuth } from '@/src/common/api/instance'
@@ -34,7 +34,7 @@ interface layoutProps {
 
 export default function DefaultLayout({ children }: layoutProps) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true)
-  const useLoginData = useRecoilValue<LoginUserDataReq_T>(LoginedUserReqDataAtom)
+  const useLoginData = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
   const queryClient = useQueryClient()
 
   const toggleSidebar = () => {
@@ -72,14 +72,10 @@ export default function DefaultLayout({ children }: layoutProps) {
   return (
     <>
       <GlobalHeader onToggleSidebar={toggleSidebar} />
-      <main className={`pt-header w-full`}>
+      <main className={`w-full pt-header`}>
         <div className={`${archivo.variable + ' ' + dm_sans.variable}`}>
           {isSidebarCollapsed ? <GlobalSidebarNarrow /> : <GlobalSidebarWide />}
-          <section
-            className={`flex-grow overflow-auto bg-white ${
-              isSidebarCollapsed ? 'pl-24' : 'pl-64'
-            }`}
-          >
+          <section className={`flex-grow overflow-auto bg-white ${isSidebarCollapsed ? 'pl-24' : 'pl-64'}`}>
             {children}
           </section>
         </div>

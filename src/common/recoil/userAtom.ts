@@ -43,25 +43,6 @@ export const badgeAtom = atom<Array<AdminUserData_T>>({
   ],
 })
 
-// user
-export const userDataKey: string = 'userDataKey'
-
-export const uerDataStateAtom = atom({
-  key: userDataKey,
-  default: {
-    id: '',
-    nickname: '',
-    profileImage: null,
-    backgroundImage: null,
-    info: null,
-    mobile: '',
-    name: '',
-    birthday: '',
-    birthyear: '',
-    boards: [],
-  },
-})
-
 export const UserLoginDataStateAtom = atom<UserLogin_T>({
   key: 'UserLoginDataStateAtom',
   default: {
@@ -76,7 +57,7 @@ export const UserLoginDataStateAtom = atom<UserLogin_T>({
 /**
  * @description 로그인 유저에 대한 서버 응답 데이터
  */
-export const LoginedUserReqDataAtom = atom<LoginUserDataReq_T>({
+export const LogedInUserReqDataAtom = atom<LoginUserDataReq_T>({
   key: 'LoginUserDataStateAtom',
   default: {
     loginState: 200,

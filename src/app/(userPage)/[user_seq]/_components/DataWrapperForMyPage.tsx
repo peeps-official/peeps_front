@@ -1,30 +1,23 @@
 'use client'
 
 import { getLoginUserData, getOwnerUserData } from '@/src/common/api/mypage'
-import {
-  LoginedUserReqDataAtom,
-  UserLoginDataStateAtom,
-  OwnerProfileStateAtom,
-} from '@/src/common/recoil/userAtom'
+import { LogedInUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
 import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
 
 import { useQueries } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 
 interface DataWrapperForMyPageProps {
   children: React.ReactNode
   pageOwnerSeq: string
 }
 
-export default function DataWrapperForMyPage({
-  children,
-  pageOwnerSeq,
-}: DataWrapperForMyPageProps) {
+export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWrapperForMyPageProps) {
   const router = useRouter()
-  const [, setUserLoginedData] = useRecoilState<LoginUserDataReq_T>(LoginedUserReqDataAtom)
-  const [, setOwnerUserData] = useRecoilState<UserProfile_T>(OwnerProfileStateAtom)
+  const setUserLoginedData = useSetRecoilState<LoginUserDataReq_T>(LogedInUserReqDataAtom)
+  const setOwnerUserData = useSetRecoilState<UserProfile_T>(OwnerProfileStateAtom)
   const [isError, setIsError] = useState(false)
 
   const res = useQueries({
