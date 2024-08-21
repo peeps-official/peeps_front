@@ -18,18 +18,18 @@ const kakaoUrl =
 
 export default function LoginPage() {
   return (
-    <div className="flex items-center justify-center min-h-screen text-center text-white font-kr">
-      <div className="w-[440px] max-w-md rounded-3xs bg-white shadow-loginBox flex flex-col pb-[34px] gap-[34px]">
-        <div className="self-stretch rounded-t-3xs rounded-b-none bg-blue-primary flex flex-col items-center py-10 px-5 gap-[10px] ">
-          <div className="flex py-0 px-7">
-            <h1 className="relative text-inherit tracking-[-0.01em] leading-9 text-large font-bold font-inherit inline-block ">
+    <div className="flex min-h-screen items-center justify-center text-center font-kr text-white">
+      <div className="flex w-[440px] max-w-md flex-col gap-[34px] rounded-3xs bg-white pb-[34px] shadow-loginBox">
+        <div className="flex flex-col items-center gap-[10px] self-stretch rounded-b-none rounded-t-3xs bg-blue-primary px-5 py-10">
+          <div className="flex px-7 py-0">
+            <h1 className="font-inherit relative inline-block text-inherit text-large font-bold leading-9 tracking-[-0.01em]">
               PEEPS
             </h1>
           </div>
-          <div className="relative font-normal text-micro ">우리들만의 커뮤니티, 핍스</div>
+          <div className="relative text-micro font-normal">우리들만의 커뮤니티, 핍스</div>
         </div>
         {/* 로그인 버튼 섹션 */}
-        <div className="self-stretch w-full flex flex-col items-end gap-[10px]">
+        <div className="flex w-full flex-col items-end gap-[10px] self-stretch">
           <LoginButton url={naverUrl} imgSrc="/images/login/naver.svg" alt="네이버 로그인" />
           <LoginButton url={kakaoUrl} imgSrc="/images/login/kakao.svg" alt="카카오 로그인" />
         </div>
@@ -40,7 +40,7 @@ export default function LoginPage() {
 
 function LoginButton({ url = '', imgSrc = '', alt = '' }) {
   return (
-    <Link href={url} className="w-full h-[40px]">
+    <Link href={url} className="m-auto h-[48px] w-[322px]">
       <NextImg src={imgSrc} alt={alt} />
     </Link>
   )
