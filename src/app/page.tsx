@@ -36,6 +36,13 @@ export default function Main() {
             >
               관리자 페이지
             </Link>
+
+            <Link
+              href="/main"
+              className="block px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+            >
+              메인 페이지
+            </Link>
           </div>
         </div>
       </div>

@@ -6,9 +6,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('./_styles/tailwind/components/btn.css');
-@import url('./_styles/tailwind/components/font.css');
-
 body {
   @apply leading-[normal] m-0;
   min-width: 1140px;
