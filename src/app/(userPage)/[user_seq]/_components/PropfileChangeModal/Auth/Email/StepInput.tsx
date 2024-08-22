@@ -32,7 +32,7 @@ export function EmailInput({ step, setStep }: StepProps) {
         ref={emailInput}
         disabled={isSendEmailPending || step >= 1}
         type="email"
-        className="border-[1px] border-solid border-[#DBDFE4] rounded-[5px]"
+        className="rounded-[5px] border-[1px] border-solid border-[#DBDFE4]"
       />
       <button
         className={`blueBtn`}
@@ -72,7 +72,7 @@ export function ConfirmNumberInput({ step, setStep }: StepProps) {
       <input
         ref={confirmNumberInput}
         type="text"
-        className="border-[1px] border-solid border-[#DBDFE4] rounded-[5px]"
+        className="rounded-[5px] border-[1px] border-solid border-[#DBDFE4]"
         disabled={isConfirmNumberPending || step >= 2}
       />
       <button
@@ -112,10 +112,10 @@ export function MakableBadgeInfo({ step, setStep }: StepProps) {
           ))}
       </div>
       <button
-        className="text-center blueBtn"
+        className="blueBtn text-center"
         onClick={async () => {
           const data = await makeBadge()
-          console.log(data)
+
           if (data) {
             alert('뱃지가 생성되었습니다!')
             setStep(0)

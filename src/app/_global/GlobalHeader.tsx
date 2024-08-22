@@ -52,6 +52,7 @@ export default function GlobalHeader({ onToggleSidebar }: GlobalHeaderProps) {
             <NextImg alt="search icon" src="/images/search.svg" styles="object-cover cursor-pointer" />
           </Link>
           <input
+            id="search"
             type="text"
             placeholder="커뮤니티 검색해보기"
             className="h-full w-full flex-1 text-[15px] font-[400] leading-[1.2]"
