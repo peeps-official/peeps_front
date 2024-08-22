@@ -1,19 +1,10 @@
 'use client'
 
-import ProfileCircleBadge from '@/src/common/components/Badge/ProfileCircleBadge'
 import { LogedInUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
-import NextImg from '@/src/common/utils/NextImg'
-import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
-import { FaCamera } from 'react-icons/fa'
+import NextImg from '@/src/common/utils/NextImg'
+import { useRecoilValue } from 'recoil'
 
-import ProfileModal from '../ProfilePopUp/ProfileModal'
-import { Badge_T } from '@/src/common/types/badge'
-import Button from '@/src/common/components/Btn/Button'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { editOwnerProfile } from '@/src/common/api/mypage'
-import ModalForm from '../Modal/ModalForm'
 import ProfileImage from './Items/ProfileImage'
 import ProfileInfo from './Items/ProfileInfo'
 
@@ -27,7 +18,7 @@ export default function UserProfile() {
   return (
     <div className="box-border flex max-w-full flex-1 shrink-0 flex-col gap-[20px] self-stretch py-0 pl-4 pr-5">
       <ProfileBackground src={ownerData.user_bg_img} alt="user profile background" />
-      <div className="relative flex gap-[10px]">
+      <div className="relative flex items-center gap-[10px]">
         <ProfileImage src={ownerData.user_profile_img} alt="profile image" isOwner={isOwner} ownerData={ownerData} />
         <ProfileInfo isOwner={isOwner} ownerData={ownerData} />
       </div>
