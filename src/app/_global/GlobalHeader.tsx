@@ -75,7 +75,7 @@ export default function GlobalHeader({ onToggleSidebar }: GlobalHeaderProps) {
               href={`/${logedInUserData.user_seq}`}
               className="h-[38px] w-[38px] cursor-pointer overflow-hidden rounded-[50%] object-cover"
             >
-              <NextImg alt="profile icon" src={logedInUserData.user_profile_img ?? '/images/profile.svg'} />
+              <NextImg alt="profile icon" src={logedInUserData.user_profile_img ?? '/images/profile/profile.svg'} />
             </Link>
           ) : (
             <Button
