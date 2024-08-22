@@ -13,11 +13,12 @@ import { Badge_T } from '@/src/common/types/badge'
 import Button from '@/src/common/components/Btn/Button'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { editOwnerProfile } from '@/src/common/api/mypage'
+import ModalForm from '../Modal/ModalForm'
 
 export default function UserProfile() {
   const queryClient = useQueryClient()
   const ownerData = useRecoilValue<UserProfile_T>(OwnerProfileStateAtom)
-  const { user_data: logedInUserData } = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
+  const { user_data: LoginUserData } = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
 
   // 프로필 수정 mutation
   const { mutate } = useMutation({
@@ -33,7 +34,7 @@ export default function UserProfile() {
   const { user_id, user_nickname, profileMessage, user_bg_img, user_profile_img, follwer_list, badge_list } = ownerData
 
   // 로그인 유저와 프로필 주인이 같은지 확인
-  const isOwner = logedInUserData.user_seq === ownerData.user_seq
+  const isOwner = LoginUserData.user_seq === ownerData.user_seq
 
   // background image 변경 함수
   function handleChangeBgImg() {
@@ -101,7 +102,7 @@ export function ProfileBackground({ src, alt }: ProfileBackgroundProps) {
   if (!src) return
 
   return (
-    <div className="aspect-bg relative box-border flex w-full overflow-hidden rounded-[15px] object-cover">
+    <div className="relative box-border flex aspect-bg w-full overflow-hidden rounded-[15px] object-cover">
       <NextImg alt={alt} src={src} />
     </div>
   )
@@ -131,7 +132,7 @@ type ProfileImageProps = {
 export function ProfileImage({ alt, src }: ProfileImageProps) {
   return (
     <div className="h-24 w-24 cursor-pointer overflow-hidden rounded-full object-cover">
-      {src && <NextImg alt={alt} src={src} />}
+      <NextImg alt={alt} src={src ?? '/images/profile/profile_default.png'} />
     </div>
   )
 }
@@ -214,6 +215,7 @@ type FollowAndProfileButtonProps = {
 export function FollowAndProfileButton({ isOwner }: FollowAndProfileButtonProps) {
   const [isFollowing, setIsFollowing] = useState(false)
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
+  const [isEditOpen, setIsEditOpen] = useState(false)
 
   const handleFollowClick = () => {
     setIsFollowing((prevState) => !prevState)
@@ -224,7 +226,7 @@ export function FollowAndProfileButton({ isOwner }: FollowAndProfileButtonProps)
       {isOwner ? (
         <Button
           title="프로필 수정"
-          onClickFn={() => setIsProfileModalOpen(true)}
+          onClickFn={() => setIsEditOpen(true)}
           styles={
             isFollowing
               ? 'bg-blue-primary text-white hover:bg-blue-primaryHover'
@@ -243,7 +245,7 @@ export function FollowAndProfileButton({ isOwner }: FollowAndProfileButtonProps)
         />
       )}
       <Button title="프로필 보기" onClickFn={() => setIsProfileModalOpen(true)} styles={'bg-black text-white'} />
-
+      {isEditOpen && <ModalForm setIsOpen={setIsEditOpen} title="프로필 수정" />}
       {isProfileModalOpen && <ProfileModal setIsProfileModalOpen={setIsProfileModalOpen} />}
     </div>
   )

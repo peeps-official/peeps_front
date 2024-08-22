@@ -6,8 +6,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('./_styles/tailwind/components/btn.css');
+@import url('./_styles/tailwind/components/font.css');
+
 body {
-  @apply leading-[normal] m-0;
+  @apply m-0 leading-[normal];
   min-width: 1140px;
   width: 100%;
   background-color: #f7f7f8;
@@ -20,8 +23,15 @@ body {
 }
 
 * {
-  font-family: -apple-system, BlinkMacSystemFont, Apple SD Gothic Neo, Helvetica, Arial,
-    NanumGothic, 'Noto Sans KR', sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Apple SD Gothic Neo,
+    Helvetica,
+    Arial,
+    NanumGothic,
+    'Noto Sans KR',
+    sans-serif;
   margin: 0;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
