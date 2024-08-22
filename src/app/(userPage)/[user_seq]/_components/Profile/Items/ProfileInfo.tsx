@@ -1,6 +1,6 @@
 'use client'
 
-import { editOwnerProfile } from '@/src/common/api/mypage'
+import { editOwnerProfile } from '@/src/common/api/user'
 import ProfileCircleBadge from '@/src/common/components/Badge/ProfileCircleBadge'
 import Button from '@/src/common/components/Btn/Button'
 import { Badge_T } from '@/src/common/types/badge'
@@ -8,8 +8,8 @@ import { UserProfile_T } from '@/src/common/types/user'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { FaCamera } from 'react-icons/fa'
-import ModalForm from '../../Modal/ModalForm'
 import ProfileModal from '../../ProfilePopUp/ProfileModal'
+import PopEditProfile from '../PopEditProfile'
 
 type Props = {
   isOwner: boolean
@@ -27,7 +27,6 @@ export default function ProfileInfo({ isOwner, ownerData }: Props) {
       return editOwnerProfile(data)
     },
     onSuccess: (data) => {
-      console.log(data)
       queryClient.invalidateQueries({ queryKey: ['owner', 'userPage'] })
     },
   })
@@ -35,6 +34,7 @@ export default function ProfileInfo({ isOwner, ownerData }: Props) {
   // background image 변경 함수
   function handleChangeBgImg() {
     const url = window.prompt('배경 이미지 URL을 입력해주세요. (제거 시 빈칸 입력)')
+    if (url === null) return
 
     mutate({ ...ownerData, user_bg_img: url })
   }
@@ -171,7 +171,7 @@ export function FollowAndProfileButton({ isOwner }: FollowAndProfileButtonProps)
         />
       )}
       <Button title="프로필 보기" onClickFn={() => setIsProfileModalOpen(true)} styles={'bg-black text-white'} />
-      {isEditOpen && <ModalForm setIsOpen={setIsEditOpen} title="프로필 수정" />}
+      {isEditOpen && <PopEditProfile setIsOpen={setIsEditOpen} />}
       {isProfileModalOpen && <ProfileModal setIsProfileModalOpen={setIsProfileModalOpen} />}
     </div>
   )

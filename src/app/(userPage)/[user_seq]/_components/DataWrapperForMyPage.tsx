@@ -1,6 +1,6 @@
 'use client'
 
-import { getLoginUserData, getOwnerUserData } from '@/src/common/api/mypage'
+import { getLoginUserData, getOwnerUserData } from '@/src/common/api/user'
 import { LogedInUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
 import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
 

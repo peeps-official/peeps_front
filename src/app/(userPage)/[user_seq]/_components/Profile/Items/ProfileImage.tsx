@@ -1,5 +1,5 @@
 'use client'
-import { editOwnerProfile } from '@/src/common/api/mypage'
+import { editOwnerProfile } from '@/src/common/api/user'
 import { UserProfile_T } from '@/src/common/types/user'
 import NextImg from '@/src/common/utils/NextImg'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -14,6 +14,7 @@ type ProfileImageProps = {
 
 export default function ProfileImage({ alt, src, isOwner, ownerData }: ProfileImageProps) {
   const queryClient = useQueryClient()
+  const { user_bg_img: isBackground } = ownerData
 
   const { mutate } = useMutation({
     mutationFn: async (data: UserProfile_T) => {
@@ -27,12 +28,15 @@ export default function ProfileImage({ alt, src, isOwner, ownerData }: ProfileIm
 
   function handleChangeProfileImg() {
     const url = window.prompt('프로필 이미지 URL을 입력해주세요.')
+
+    if (!url) return
+
     mutate({ ...ownerData, user_profile_img: url })
   }
 
   return (
     <>
-      <div className="absolute top-[-50px] h-[168px] w-[168px] rounded-full bg-[white] p-[4px]">
+      <div className={`${isBackground && 'absolute top-[-50px]'} h-[168px] w-[168px] rounded-full bg-[white] p-[4px]`}>
         <div className="h-full w-full cursor-pointer overflow-hidden rounded-full object-cover">
           <NextImg alt={alt} src={src ?? '/images/profile/profile_default.png'} />
         </div>
@@ -45,7 +49,7 @@ export default function ProfileImage({ alt, src, isOwner, ownerData }: ProfileIm
           </button>
         )}
       </div>
-      <div className="w-[174px]" />
+      {isBackground && <div className="w-[174px]" />}
     </>
   )
 }
