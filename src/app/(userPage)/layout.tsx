@@ -1,4 +1,6 @@
 'use client'
+import '@/src/app/global.css'
+import '@/src/app/styles.css'
 
 import { useEffect, useState } from 'react'
 import GlobalHeader from '../_global/GlobalHeader'
@@ -8,8 +10,6 @@ import GlobalSidebarWide from '../_global/GlobalSidebarWide'
 import { Archivo } from 'next/font/google'
 import { DM_Sans } from 'next/font/google'
 
-import '@/src/app/global.css'
-import '@/src/app/styles.css'
 import { LogedInUserReqDataAtom } from '@/src/common/recoil/userAtom'
 import { LoginUserDataReq_T } from '@/src/common/types/user'
 import { useRecoilValue } from 'recoil'
