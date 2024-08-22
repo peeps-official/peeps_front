@@ -48,7 +48,7 @@ export default function DefaultLayout({ children }: layoutProps) {
       window.alert(`${useLoginData.needData.toString()}가 필요합니다.`)
       useLoginData.needData.forEach((data_name) => {
         const data: string | null = window.prompt(`${data_name}를 입력해주세요.`)
-        console.log(data)
+
         if (!data) return
         if (data_name === 'user_id') {
           newUserData.user_id = data
