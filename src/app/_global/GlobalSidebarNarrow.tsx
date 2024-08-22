@@ -22,7 +22,7 @@ export default function GlobalSidebarLeft() {
           <Link href={`/${logedInUserData?.user_nickname}`} className="flex items-center px-[15px] pb-2.5 pt-1">
             <div className="flex flex-col items-center gap-[4px]">
               <div className="h-12 w-12 overflow-hidden rounded-full">
-                <NextImg alt="profile" src={logedInUserData?.user_profile_img ?? '/images/profile.svg'} />
+                <NextImg alt="profile" src={logedInUserData?.user_profile_img ?? '/images/profile/profile.svg'} />
               </div>
               <div className="flex items-center px-1 py-0">
                 <b className="relative inline-block min-w-[28px] font-bold leading-[16px]">
@@ -64,7 +64,11 @@ export default function GlobalSidebarLeft() {
           </div>
           <div className="flex flex-col items-center gap-[10px]">
             <div className="rounded-31xl box-border flex h-12 w-12 shrink-0 items-center overflow-hidden p-0.5">
-              <img className="rounded-31xl relative h-11 w-11 object-cover" alt="profile" src="/images/profile.svg" />
+              <img
+                className="rounded-31xl relative h-11 w-11 object-cover"
+                alt="profile"
+                src="/images/profile/profile.svg"
+              />
             </div>
           </div>
         </div>
@@ -83,7 +87,11 @@ export default function GlobalSidebarLeft() {
           </div>
           <div className="flex flex-col items-center gap-[10px]">
             <div className="rounded-31xl box-border flex h-12 w-12 shrink-0 items-center overflow-hidden p-0.5">
-              <img className="rounded-31xl relative h-11 w-11 object-cover" alt="profile" src="/images/profile.svg" />
+              <img
+                className="rounded-31xl relative h-11 w-11 object-cover"
+                alt="profile"
+                src="/images/profile/profile.svg"
+              />
             </div>
           </div>
         </div>
