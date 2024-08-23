@@ -84,6 +84,7 @@ export const OwnerProfileStateAtom = atom<UserProfile_T>({
     user_bg_img: null,
     user_profile_img: null,
     profileMessage: '',
+    isFollow: -1,
     follwer_list: [],
     badge_list: [],
   },

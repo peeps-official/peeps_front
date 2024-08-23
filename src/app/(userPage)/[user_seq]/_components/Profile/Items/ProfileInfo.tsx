@@ -1,13 +1,16 @@
 'use client'
 
+import { axiosWithAuth } from '@/src/common/api/instance'
 import { editOwnerProfile } from '@/src/common/api/user'
 import ProfileCircleBadge from '@/src/common/components/Badge/ProfileCircleBadge'
 import Button from '@/src/common/components/Btn/Button'
+import { LogedInUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
 import { Badge_T } from '@/src/common/types/badge'
-import { UserProfile_T } from '@/src/common/types/user'
+import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { FaCamera } from 'react-icons/fa'
+import { useRecoilValue } from 'recoil'
 import ProfileModal from '../../ProfilePopUp/ProfileModal'
 import PopEditProfile from '../PopEditProfile'
 
@@ -138,13 +141,39 @@ type FollowAndProfileButtonProps = {
   isOwner: boolean
 }
 
+type isFollow = -1 | 0 | 1
+
 export function FollowAndProfileButton({ isOwner }: FollowAndProfileButtonProps) {
-  const [isFollowing, setIsFollowing] = useState(false)
+  const loginedUserData = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
+  const ownerData = useRecoilValue<UserProfile_T>(OwnerProfileStateAtom)
+
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
   const [isEditOpen, setIsEditOpen] = useState(false)
+  const queryClient = useQueryClient()
 
   const handleFollowClick = () => {
-    setIsFollowing((prevState) => !prevState)
+    handleEditProfile()
+  }
+
+  const isFollow = ownerData.isFollow
+
+  async function handleEditProfile() {
+    // 로그인 검증
+    if (!loginedUserData.user_data.user_seq) alert('로그인이 필요합니다.')
+
+    // isFollow
+    if (isFollow === 0) {
+      const { data } = await axiosWithAuth.post(`${ownerData.user_seq}/follow`)
+      if (data) {
+        queryClient.invalidateQueries({ queryKey: ['owner', 'userPage'] })
+      }
+    } else if (isFollow === 1) {
+      const { data, status } = await axiosWithAuth.delete(`${ownerData.user_seq}/unfollow`)
+      console.log(status)
+      if (status === 200) {
+        queryClient.invalidateQueries({ queryKey: ['owner', 'userPage'] })
+      }
+    }
   }
 
   return (
@@ -154,17 +183,17 @@ export function FollowAndProfileButton({ isOwner }: FollowAndProfileButtonProps)
           title="프로필 수정"
           onClickFn={() => setIsEditOpen(true)}
           styles={
-            isFollowing
+            isFollow
               ? 'bg-blue-primary text-white hover:bg-blue-primaryHover'
               : 'bg-blue-secondary text-white hover:bg-blue-secondaryHover'
           }
         />
       ) : (
         <Button
-          title={isFollowing ? '팔로우 중' : '팔로우'}
+          title={isFollow === 1 ? '팔로우 중' : '팔로우'}
           onClickFn={handleFollowClick}
           styles={
-            isFollowing
+            isFollow
               ? 'bg-blue-primary text-white hover:bg-blue-primaryHover'
               : 'bg-blue-secondary text-white hover:bg-blue-secondaryHover'
           }
