@@ -16,7 +16,7 @@ export default function UserProfile() {
   const isOwner = LoginUserData.user_seq === ownerData.user_seq
 
   return (
-    <div className="box-border flex max-w-full flex-1 shrink-0 flex-col gap-[20px] self-stretch py-0 pl-4 pr-5">
+    <div className="box-border flex max-w-full flex-1 flex-col gap-[20px]">
       <ProfileBackground src={ownerData.user_bg_img} alt="user profile background" />
       <div className="relative flex items-center gap-[10px]">
         <ProfileImage src={ownerData.user_profile_img} alt="profile image" isOwner={isOwner} ownerData={ownerData} />

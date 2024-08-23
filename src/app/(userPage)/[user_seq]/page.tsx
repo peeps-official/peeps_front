@@ -1,9 +1,10 @@
 import { Metadata } from 'next'
 import DataWrapperForMyPage from './_components/DataWrapperForMyPage'
 import MyProfileHome from './_components/MyProfileHome'
-import MyProfileFeed from './_components/MyProfileFeed'
+
 import UserProfile from './_components/Profile/UserProfile'
 import Taps from './_components/Taps/Taps'
+import TabContents from './_components/TabContents/TabContents'
 
 export const metadata: Metadata = {
   title: 'PEEPS',
@@ -19,12 +20,11 @@ type MyPageProps = {
 export default function MyPage({ params }: MyPageProps) {
   return (
     <DataWrapperForMyPage pageOwnerSeq={params.user_seq}>
-      <div className="flex w-full flex-1 flex-col items-center justify-center overflow-auto pt-3">
-        <div className="mx-[auto] flex w-full max-w-[1316px] flex-col gap-[17px] px-[18px] py-[20px]">
+      <div className="flex h-full min-h-[100vh] flex-1 flex-col items-center justify-start overflow-auto pt-3">
+        <div className="mx-[auto] flex w-full max-w-[1316px] flex-col gap-[17px] px-[23px] py-[20px]">
           <UserProfile />
           <Taps />
-          <MyProfileHome />
-          <MyProfileFeed />
+          <TabContents />
         </div>
       </div>
     </DataWrapperForMyPage>

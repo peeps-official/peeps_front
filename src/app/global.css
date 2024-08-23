@@ -13,7 +13,6 @@ body {
   @apply m-0 leading-[normal];
   min-width: 1140px;
   width: 100%;
-  background-color: #f7f7f8;
 }
 
 *,
