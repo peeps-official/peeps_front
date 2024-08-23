@@ -13,21 +13,29 @@ export interface UserLogin_T {
 
 /**
  * @description '/login/check' API 응답 타입
+ * [loginState]
+ * 200: 모든 정보 있음
+ * 300: 추가로 필요한 정보 있음
  */
 
 type UserLogin_Key_T = keyof UserLogin_T
 
 export interface LoginUserDataReq_T {
   loginState: number
-  needData: UserLogin_Key_T[]
+  needData?: UserLogin_Key_T[]
   user_data: UserLogin_T
 }
 
 /**
  * @description 유저 프로필 데이터 / 유저 로그인 정보 + a
+ * [isFollow]
+ *  -1: 비로그인 상태
+ *   0: 로그인 상태 - 팔로우 아님
+ *   1: 로그인 상태 - 팔로우중
  */
 
 export interface UserProfile_T extends UserLogin_T {
+  isFollow: -1 | 0 | 1
   profileMessage: string | ''
   follwer_list: { nickname: string; user_id: string }[]
   badge_list: Badge_T[]

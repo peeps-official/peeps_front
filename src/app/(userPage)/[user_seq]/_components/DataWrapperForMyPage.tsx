@@ -2,7 +2,7 @@
 
 import { getLoginUserData, getOwnerUserData } from '@/src/common/api/user'
 import { LogedInUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
-import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
+import { LoginUserDataReq_T, UserLogin_T, UserProfile_T } from '@/src/common/types/user'
 
 import { useQueries } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
@@ -49,7 +49,7 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
     if (loginUserRes.isSuccess) {
       setUserLoginedData(loginUserRes.data)
     } else if (loginUserRes.isError) {
-      console.log('error: ', loginUserRes.error)
+      console.log('로그인 정보 없음')
       setIsError(true)
     }
 
