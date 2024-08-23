@@ -12,6 +12,18 @@
     letter-spacing: -0.24px;
   }
 
+  .kr-bold-18 {
+    color: #000;
+
+    /* Medium/B */
+    font-family: 'Noto Sans KR';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 28px; /* 155.556% */
+    letter-spacing: -0.36px;
+  }
+
   .kr-normal-18 {
     color: #000;
 
@@ -22,6 +34,16 @@
     font-weight: 700;
     line-height: 28px; /* 155.556% */
     letter-spacing: -0.36px;
+  }
+
+  .kr-bold-16 {
+    color: #000;
+    font-family: 'Noto Sans KR';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 171.429% */
+    letter-spacing: -0.14px;
   }
 
   .kr-bold-14 {
