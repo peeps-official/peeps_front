@@ -2,9 +2,18 @@
 import { axiosWithAuth } from '@/src/common/api/instance'
 import AdminTable from './_components/Table/AdminTable'
 import { AdminUserData_T } from '@/src/common/types/admin'
+import { useQuery } from '@tanstack/react-query'
 
-export default async function AdminPage() {
-  const { data } = await axiosWithAuth.get<AdminUserData_T[]>('/admin/user')
+export default function AdminPage() {
+  const { data } = useQuery({
+    queryKey: ['admin', 'userList'],
+    queryFn: async () => {
+      const { data } = await axiosWithAuth.get<AdminUserData_T[]>('/admin/user')
+      return data
+    },
+  })
+
+  if (!data) return <div>로딩중...</div>
 
   return (
     <div className="flex w-full">
