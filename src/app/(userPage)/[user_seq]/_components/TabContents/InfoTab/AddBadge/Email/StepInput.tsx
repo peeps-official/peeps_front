@@ -1,5 +1,6 @@
 import { axiosWithAuth } from '@/src/common/api/instance'
 import { getPossibleBadge, makeBadge } from '@/src/common/api/userBadge'
+import { Input, InputBtn } from '@/src/common/components/Input/Input'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useRef } from 'react'
 
@@ -12,7 +13,7 @@ type StepProps = {
  * @description 이메일 입력 컴포넌트
  */
 export function EmailInput({ step, setStep }: StepProps) {
-  const emailInput = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const { isPending: isSendEmailPending, mutate } = useMutation({
     mutationFn: async (email: string) =>
@@ -25,28 +26,24 @@ export function EmailInput({ step, setStep }: StepProps) {
     },
   })
 
+  const disabled = isSendEmailPending || step >= 1
+  const btnTitle = (!disabled && '인증하기') || (isSendEmailPending && '전송 중') || '전송 완료'
+
   return (
     <div className="mt-[20px]">
-      <p>이메일</p>
-      <input
-        ref={emailInput}
-        disabled={isSendEmailPending || step >= 1}
-        type="email"
-        className="rounded-[5px] border-[1px] border-solid border-[#DBDFE4]"
-      />
-      <button
-        className={`blueBtn`}
-        disabled={isSendEmailPending || step >= 1}
-        onClick={async (e) => {
-          e.preventDefault()
-          if (emailInput && emailInput.current) {
-            const email: string = emailInput.current.value
-            mutate(email)
-          }
-        }}
-      >
-        인증하기
-      </button>
+      <Input title="이메일" ref={inputRef} disabled={disabled} type="email">
+        <InputBtn
+          disabled={disabled}
+          title={btnTitle}
+          onClick={async (e) => {
+            e.preventDefault()
+            if (inputRef && inputRef.current) {
+              const email: string = inputRef.current.value
+              mutate(email)
+            }
+          }}
+        />
+      </Input>
     </div>
   )
 }
@@ -66,27 +63,23 @@ export function ConfirmNumberInput({ step, setStep }: StepProps) {
     },
   })
 
+  const disabled = isConfirmNumberPending || step >= 2
+
   return (
-    <div className="mt-[20px]">
-      <p>인증번호</p>
-      <input
-        ref={confirmNumberInput}
-        type="text"
-        className="rounded-[5px] border-[1px] border-solid border-[#DBDFE4]"
-        disabled={isConfirmNumberPending || step >= 2}
-      />
-      <button
-        className="blueBtn"
-        onClick={async (e) => {
-          e.preventDefault()
-          if (confirmNumberInput && confirmNumberInput.current) {
-            const confirmNumber: string = confirmNumberInput.current.value
-            mutate(confirmNumber)
-          }
-        }}
-      >
-        확인
-      </button>
+    <div>
+      <Input title="인증번호" ref={confirmNumberInput} disabled={disabled}>
+        <InputBtn
+          title="확인"
+          disabled={disabled}
+          onClick={async (e) => {
+            e.preventDefault()
+            if (confirmNumberInput && confirmNumberInput.current) {
+              const confirmNumber: string = confirmNumberInput.current.value
+              mutate(confirmNumber)
+            }
+          }}
+        />
+      </Input>
     </div>
   )
 }

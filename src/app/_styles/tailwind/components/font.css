@@ -75,6 +75,15 @@
     letter-spacing: -0.13px;
   }
 
+  .kr-bold-12 {
+    font-family: 'Noto Sans KR';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: -0.06px;
+  }
+
   .kr-normal-12 {
     font-family: 'Noto Sans KR';
     font-size: 12px;

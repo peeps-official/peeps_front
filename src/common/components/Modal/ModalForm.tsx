@@ -1,6 +1,6 @@
 'use client'
 import NextImg from '@/src/common/utils/NextImg'
-import { forwardRef, useState } from 'react'
+import { forwardRef } from 'react'
 import { FaCamera } from 'react-icons/fa'
 
 /**

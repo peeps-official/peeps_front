@@ -15,7 +15,7 @@ export async function getPossibleBadge() {
   return data
 }
 
-// [이메일] - 뱃지 만들기
+// [이메일] - 뱃지 만들기 버튼 누르면 최종 요청
 export async function makeBadge(description: string = '') {
   const { data } = await axiosWithAuth.post(`/verify/mailer/req`, {
     description,

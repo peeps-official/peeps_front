@@ -1,19 +1,17 @@
 'use client'
 
-import { LogedInUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
-import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
+import { OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
+import { UserProfile_T } from '@/src/common/types/user'
 import NextImg from '@/src/common/utils/NextImg'
 import { useRecoilValue } from 'recoil'
 
+import { IsOwnerAtom } from '@/src/common/recoil/userHome'
 import ProfileImage from './Items/ProfileImage'
 import ProfileInfo from './Items/ProfileInfo'
 
 export default function UserProfile() {
   const ownerData = useRecoilValue<UserProfile_T>(OwnerProfileStateAtom)
-  const { user_data: LoginUserData } = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
-
-  // 로그인 유저와 프로필 주인이 같은지 확인
-  const isOwner = LoginUserData.user_seq === ownerData.user_seq
+  const isOwner = useRecoilValue<boolean>(IsOwnerAtom)
 
   return (
     <div className="box-border flex max-w-full flex-1 flex-col gap-[20px]">

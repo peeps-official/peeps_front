@@ -9,10 +9,12 @@ import { useRecoilState } from 'recoil'
 export default function Taps() {
   const [activeTab, setActiveTab] = useRecoilState<UserHomeTab_T>(selectedUserHomeTabAtom)
 
+  const isActive = (tab: UserHomeTab_T) => activeTab === tab
+
   return (
     <div className="flex border-solid border-gray-medium text-center font-bold">
-      <TapItem title="게시물" onClick={() => setActiveTab('home')} isClicked={activeTab === 'home'} />
-      <TapItem title="정보" onClick={() => setActiveTab('feed')} isClicked={activeTab === 'feed'} />
+      <TapItem title="피드" onClick={() => setActiveTab('feed')} isClicked={isActive('feed')} />
+      <TapItem title="정보" onClick={() => setActiveTab('InfoTab')} isClicked={isActive('InfoTab')} />
     </div>
   )
 }
