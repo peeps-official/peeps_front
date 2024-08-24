@@ -32,11 +32,11 @@ export default function AdminTable({ title, des, data, addtionalColumn }: AdminT
       <Table.Title title={title} description={des} />
       <table className="min-w-full table-fixed divide-y divide-gray-medium overflow-hidden rounded-[5px]">
         <thead className="bg-pupple-deep">
-          <tr className="flex w-full">
+          <tr className="flex">
             {keys.map((key) => (
               <th
                 key={key}
-                className="text-xs flex-1 truncate px-[1rem] py-4 text-left font-medium tracking-wider text-white"
+                className="max-w-[50em] flex-1 truncate px-[1rem] py-4 text-left text-xs font-medium tracking-wider text-white"
               >
                 {key}
               </th>
@@ -45,20 +45,20 @@ export default function AdminTable({ title, des, data, addtionalColumn }: AdminT
               addtionalColumn?.map((column, i) => (
                 <th
                   key={i}
-                  className="text-xs flex-1 truncate px-[1rem] py-4 text-left font-medium tracking-wider text-white"
+                  className="max-w-[50em] flex-1 truncate px-[1rem] py-4 text-left text-xs font-medium tracking-wider text-white"
                 >
                   {column.head}
                 </th>
               ))}
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-medium">
+        <tbody className="divide-y divide-gray-medium bg-white">
           {data.map((item, i) => (
-            <tr key={i} className="flex w-full hover:bg-blue-soft">
+            <tr key={i} className="flex hover:bg-blue-soft">
               {keys.map((key) => (
                 <td
                   key={key}
-                  className="flex-1 overflow-hidden text-ellipsis whitespace-nowrap px-[1rem] py-4"
+                  className="max-w-[50em] flex-1 overflow-hidden text-ellipsis whitespace-nowrap px-[1rem] py-4"
                 >
                   <div className="truncate">{item[key]}</div>
                 </td>
@@ -67,7 +67,7 @@ export default function AdminTable({ title, des, data, addtionalColumn }: AdminT
                 addtionalColumn?.map((column, i) => (
                   <td
                     key={i}
-                    className="flex-1 overflow-hidden text-ellipsis whitespace-nowrap px-[1rem] py-4"
+                    className="max-w-[50em] flex-1 overflow-hidden text-ellipsis whitespace-nowrap px-[1rem] py-4"
                   >
                     <button
                       className="blueBtn"
