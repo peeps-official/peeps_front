@@ -2,7 +2,8 @@
 
 import { getLoginUserData, getOwnerUserData } from '@/src/common/api/user'
 import { LogedInUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
-import { LoginUserDataReq_T, UserLogin_T, UserProfile_T } from '@/src/common/types/user'
+import { IsOwnerAtom } from '@/src/common/recoil/userHome'
+import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
 
 import { useQueries } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
@@ -18,6 +19,7 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
   const router = useRouter()
   const setUserLoginedData = useSetRecoilState<LoginUserDataReq_T>(LogedInUserReqDataAtom)
   const setOwnerUserData = useSetRecoilState<UserProfile_T>(OwnerProfileStateAtom)
+  const setIsOwner = useSetRecoilState<boolean>(IsOwnerAtom)
   const [isError, setIsError] = useState(false)
 
   const res = useQueries({
@@ -61,6 +63,10 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
       window.alert('존재하지 않는 회원입니다.')
       setIsError(true)
       router.push('/')
+    }
+
+    if (loginUserRes.isSuccess && OwnerUSerRes.isSuccess) {
+      setIsOwner(loginUserRes.data.user_data.user_seq === OwnerUSerRes.data.user_seq)
     }
 
     ;() => {}

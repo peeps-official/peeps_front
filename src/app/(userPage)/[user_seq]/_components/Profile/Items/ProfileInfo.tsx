@@ -1,18 +1,13 @@
 'use client'
 
-import { axiosWithAuth } from '@/src/common/api/instance'
 import { editOwnerProfile } from '@/src/common/api/user'
 import ProfileCircleBadge from '@/src/common/components/Badge/ProfileCircleBadge'
 import Button from '@/src/common/components/Btn/Button'
-import { LogedInUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
 import { Badge_T } from '@/src/common/types/badge'
-import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
+import { UserProfile_T } from '@/src/common/types/user'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useState } from 'react'
 import { FaCamera } from 'react-icons/fa'
-import { useRecoilValue } from 'recoil'
-import ProfileModal from '../../ProfilePopUp/ProfileModal'
-import PopEditProfile from '../PopEditProfile'
+import { FollowAndProfileButton } from './FollowAndProfileButton'
 
 type Props = {
   isOwner: boolean
@@ -71,7 +66,7 @@ export default function ProfileInfo({ isOwner, ownerData }: Props) {
  */
 export function Name({ name }: { name: string }) {
   return (
-    <div className="font-inherit relative m-0 inline-block min-w-[103px] text-[28px] font-bold leading-[34px] tracking-[-0.01em]">
+    <div className="font-inherit relative m-0 inline-block min-w-[103px] pb-[] text-[28px] font-bold leading-[34px] tracking-[-0.01em]">
       {name}
     </div>
   )
@@ -88,7 +83,7 @@ type IdAndFollowersProps = {
 
 export function IdAndFollowers({ id, followers }: IdAndFollowersProps) {
   return (
-    <div className="robo-bold-14 flex">
+    <div className="robo-bold-14 flex pt-[.5em]">
       <div className="flex">
         <div className="min-w-[52px]">@{id}</div>
         <div className="flex w-3 shrink-0 items-center justify-center text-center">‧</div>
@@ -120,88 +115,15 @@ export function ProfileMessage({ message }: ProfileMessageProps) {
 
 type BadgeListProps = {
   badges: Badge_T[]
-  selectedBadgeId?: string
+  selectedBadgeId?: number
 }
 
-export function BadgeList({ badges, selectedBadgeId = '-1' }: BadgeListProps) {
+export function BadgeList({ badges, selectedBadgeId = -1 }: BadgeListProps) {
   return (
     <div className="flex h-[40px] w-full gap-[10px] pt-[2px]">
       {badges.map((badge) => (
         <ProfileCircleBadge key={badge.bdg_id} badge={badge} selectedBadgeId={selectedBadgeId} />
       ))}
-    </div>
-  )
-}
-
-/**
- * 팔로우 & 프로필 보기 버튼
- */
-
-type FollowAndProfileButtonProps = {
-  isOwner: boolean
-}
-
-type isFollow = -1 | 0 | 1
-
-export function FollowAndProfileButton({ isOwner }: FollowAndProfileButtonProps) {
-  const loginedUserData = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
-  const ownerData = useRecoilValue<UserProfile_T>(OwnerProfileStateAtom)
-
-  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
-  const [isEditOpen, setIsEditOpen] = useState(false)
-  const queryClient = useQueryClient()
-
-  const handleFollowClick = () => {
-    handleEditProfile()
-  }
-
-  const isFollow = ownerData.isFollow
-
-  async function handleEditProfile() {
-    // 로그인 검증
-    if (!loginedUserData.user_data.user_seq) alert('로그인이 필요합니다.')
-
-    // isFollow
-    if (isFollow === 0) {
-      const { data } = await axiosWithAuth.post(`${ownerData.user_seq}/follow`)
-      if (data) {
-        queryClient.invalidateQueries({ queryKey: ['owner', 'userPage'] })
-      }
-    } else if (isFollow === 1) {
-      const { data, status } = await axiosWithAuth.delete(`${ownerData.user_seq}/unfollow`)
-      console.log(status)
-      if (status === 200) {
-        queryClient.invalidateQueries({ queryKey: ['owner', 'userPage'] })
-      }
-    }
-  }
-
-  return (
-    <div className="mt-[1rem] flex items-center gap-[10px] text-center">
-      {isOwner ? (
-        <Button
-          title="프로필 수정"
-          onClickFn={() => setIsEditOpen(true)}
-          styles={
-            isFollow
-              ? 'bg-blue-primary text-white hover:bg-blue-primaryHover'
-              : 'bg-blue-secondary text-white hover:bg-blue-secondaryHover'
-          }
-        />
-      ) : (
-        <Button
-          title={isFollow === 1 ? '팔로우 중' : '팔로우'}
-          onClickFn={handleFollowClick}
-          styles={
-            isFollow
-              ? 'bg-blue-primary text-white hover:bg-blue-primaryHover'
-              : 'bg-blue-secondary text-white hover:bg-blue-secondaryHover'
-          }
-        />
-      )}
-      <Button title="프로필 보기" onClickFn={() => setIsProfileModalOpen(true)} styles={'bg-black text-white'} />
-      {isEditOpen && <PopEditProfile setIsOpen={setIsEditOpen} />}
-      {isProfileModalOpen && <ProfileModal setIsProfileModalOpen={setIsProfileModalOpen} />}
     </div>
   )
 }

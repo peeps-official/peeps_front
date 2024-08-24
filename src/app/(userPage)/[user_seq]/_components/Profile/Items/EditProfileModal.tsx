@@ -1,15 +1,15 @@
 'use client'
 
+import { editOwnerProfile } from '@/src/common/api/user'
+import ModalForm from '@/src/common/components/Modal/ModalForm'
 import { OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
 import { UserProfile_T } from '@/src/common/types/user'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
-import ModalForm from '../Modal/ModalForm'
-import { useState } from 'react'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { editOwnerProfile } from '@/src/common/api/user'
 
-export default function PopEditProfile({ setIsOpen }: { setIsOpen: (isOpen: boolean) => void }) {
+export default function EditProfileModal({ setIsOpen }: { setIsOpen: (isOpen: boolean) => void }) {
   const setOwnerUserData = useRecoilValue<UserProfile_T>(OwnerProfileStateAtom)
   const { user_nickname, user_profile_img, profileMessage } = setOwnerUserData
   const [imgSrc, setImgSrc] = useState<string | null>(user_profile_img)

@@ -35,7 +35,7 @@ export interface LoginUserDataReq_T {
  */
 
 export interface UserProfile_T extends UserLogin_T {
-  isFollow: -1 | 0 | 1
+  isFollow?: -1 | 0 | 1
   profileMessage: string | ''
   follwer_list: { nickname: string; user_id: string }[]
   badge_list: Badge_T[]

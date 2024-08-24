@@ -1,10 +1,9 @@
 import { Metadata } from 'next'
 import DataWrapperForMyPage from './_components/DataWrapperForMyPage'
-import MyProfileHome from './_components/MyProfileHome'
 
 import UserProfile from './_components/Profile/UserProfile'
-import Taps from './_components/Taps/Taps'
 import TabContents from './_components/TabContents/TabContents'
+import Taps from './_components/Taps/Taps'
 
 export const metadata: Metadata = {
   title: 'PEEPS',
