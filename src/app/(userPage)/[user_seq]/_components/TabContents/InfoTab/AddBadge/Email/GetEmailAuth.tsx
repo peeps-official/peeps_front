@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { MdAlternateEmail } from 'react-icons/md'
-import { ConfirmNumberInput, EmailInput, MakableBadgeInfo } from './StepInput'
 import AddAuthContainer from '../AddAuthContainer'
+import { ConfirmNumberInput, EmailInput, MakableBadgeInfo } from './StepInput'
 
 export default function GetEmailAuth() {
   const [step, setStep] = useState(0)
