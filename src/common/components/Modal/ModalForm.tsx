@@ -56,7 +56,7 @@ function ProfileImg({ alt, src, setImgSrc }: PictureProps) {
   return (
     <div className="relative h-[120px] w-[120px] rounded-full bg-[white] p-[4px]">
       <div className="h-full w-full cursor-pointer overflow-hidden rounded-full object-cover">
-        <NextImg alt={alt} src={src ?? '/images/profile/profile_default.png'} />
+        <NextImg alt={alt} src={src ?? '/images/profile/profile.svg'} />
       </div>
 
       <button
