@@ -37,17 +37,20 @@ export default function ProfileImage({ alt, src, isOwner, ownerData }: ProfileIm
   return (
     <>
       <div className={`${isBackground && 'absolute top-[-50px]'} h-[168px] w-[168px] rounded-full bg-[white] p-[4px]`}>
-        <div className="h-full w-full cursor-pointer overflow-hidden rounded-full object-cover">
-          <NextImg alt={alt} src={src ?? '/images/profile/profile_default.png'} />
+        <div className="relative h-full w-full">
+          <div className="h-full w-full cursor-pointer overflow-hidden rounded-full object-cover">
+            <NextImg alt={alt} src={src ?? '/images/profile/profile.svg'} />
+          </div>
+
+          {isOwner && (
+            <button
+              className="absolute bottom-[15px] right-[4px] z-[100] flex h-[36px] w-[36px] items-center justify-center overflow-hidden rounded-full bg-[#E4E6EB] p-[9px] hover:bg-slate-300"
+              onClick={handleChangeProfileImg}
+            >
+              <FaCamera className="h-full w-full" />
+            </button>
+          )}
         </div>
-        {isOwner && (
-          <button
-            className="absolute bottom-[15px] right-[10px] z-[100] flex h-[36px] w-[36px] items-center justify-center overflow-hidden rounded-full bg-[#E4E6EB] p-[9px] hover:bg-slate-300"
-            onClick={handleChangeProfileImg}
-          >
-            <FaCamera className="h-full w-full" />
-          </button>
-        )}
       </div>
       {isBackground && <div className="w-[174px]" />}
     </>
