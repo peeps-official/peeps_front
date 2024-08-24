@@ -2,7 +2,8 @@ import { axiosWithAuth } from '@/src/common/api/instance'
 import { getPossibleBadge, makeBadge } from '@/src/common/api/userBadge'
 import { Input, InputBtn } from '@/src/common/components/Input/Input'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { useRef } from 'react'
+import { useContext, useRef } from 'react'
+import { useAddAuth } from '../AddAuthContainer'
 
 type StepProps = {
   step: number
@@ -20,7 +21,7 @@ export function EmailInput({ step, setStep }: StepProps) {
       await axiosWithAuth.post(`/verify/mailer/confirm`, {
         email: email,
       }),
-    onSuccess() {
+    onSuccess(data, variables, context) {
       alert('인증번호가 발송되었습니다.')
       setStep(1)
     },
@@ -57,7 +58,7 @@ export function ConfirmNumberInput({ step, setStep }: StepProps) {
   const { isPending: isConfirmNumberPending, mutate } = useMutation({
     mutationFn: async (confirmNumber: string) =>
       await axiosWithAuth.get(`/verify/mailer/check/?token=${confirmNumber}`),
-    onSuccess() {
+    onSuccess(data, variables, context) {
       alert('인증이 완료되었습니다.')
       setStep(2)
     },
@@ -88,6 +89,7 @@ export function ConfirmNumberInput({ step, setStep }: StepProps) {
  * @description 뱃지 생성 컴포넌트
  */
 export function MakableBadgeInfo({ step, setStep }: StepProps) {
+  const { isSpread, setIsSpread } = useAddAuth()
   const { isSuccess: ispossibleBadgeSuccess, data: possibleBadge } = useQuery({
     queryKey: ['admin', 'badge'],
     queryFn: async () => await getPossibleBadge(),
@@ -95,23 +97,28 @@ export function MakableBadgeInfo({ step, setStep }: StepProps) {
 
   return (
     <div className="mt-[20px]">
-      <p>인증 가능 뱃지</p>
-      <div>
-        {possibleBadge &&
-          Object.entries(possibleBadge).map(([key, value]) => (
-            <div key={key}>
-              <strong>{key}</strong>: {value}
-            </div>
-          ))}
-      </div>
+      {possibleBadge && possibleBadge.id !== -1 && (
+        <>
+          <p className="mb-[.5rem]">인증 가능 뱃지</p>
+          <div>
+            {Object.entries(possibleBadge).map(([key, value]) => (
+              <div key={key}>
+                <strong>{key}</strong>: {value}
+              </div>
+            ))}
+          </div>
+        </>
+      )}
       <button
-        className="blueBtn text-center"
+        className="blueBtn w-full text-center"
         onClick={async () => {
           const data = await makeBadge()
 
           if (data) {
+            console.log('data: ', data)
             alert('뱃지가 생성되었습니다!')
             setStep(0)
+            setIsSpread(false)
           }
         }}
       >
