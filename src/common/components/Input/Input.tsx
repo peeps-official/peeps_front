@@ -18,10 +18,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           className={`flex justify-between rounded-8xs border-[1px] border-solid border-whitesmoke-300 px-4 py-2 ${disabled && 'bg-[#E0E2E7]'}`}
         >
           <input
-            className="relative flex h-[34px] w-[232px] items-center bg-[transparent] p-0 text-left text-base font-medium leading-[34px] tracking-[-0.01em] [border:none] [outline:none]"
+            className="relative flex h-[34px] flex-1 items-center bg-[transparent] p-0 text-left text-base font-medium leading-[34px] tracking-[-0.01em] [border:none] [outline:none]"
             ref={ref}
             disabled={disabled}
             type={type}
+            {...props}
           />
           {children}
         </div>
@@ -33,7 +34,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 type InputBtnProps = {
   title: string
   disabled: boolean
-  onClick: (e: MouseEvent<HTMLButtonElement>) => Promise<void>
+  onClick: (e: MouseEvent<HTMLButtonElement>) => Promise<void> | void
 }
 
 export function InputBtn({ disabled, onClick, title }: InputBtnProps) {

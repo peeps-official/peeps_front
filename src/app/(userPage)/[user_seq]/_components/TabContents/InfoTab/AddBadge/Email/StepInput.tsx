@@ -5,7 +5,7 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import { useContext, useRef } from 'react'
 import { useAddAuth } from '../AddAuthContainer'
 
-type StepProps = {
+export type StepProps = {
   step: number
   setStep: (step: number) => void
 }
@@ -31,7 +31,7 @@ export function EmailInput({ step, setStep }: StepProps) {
   const btnTitle = (!disabled && '인증하기') || (isSendEmailPending && '전송 중') || '전송 완료'
 
   return (
-    <div className="mt-[20px]">
+    <div>
       <Input title="이메일" ref={inputRef} disabled={disabled} type="email">
         <InputBtn
           disabled={disabled}
