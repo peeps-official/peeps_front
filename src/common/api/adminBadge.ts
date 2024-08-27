@@ -28,7 +28,10 @@ export async function ApproveBadge(id: string) {
 
 // 뱃지 거절
 export async function RejectBadge(id: string) {
-  console.log('bye')
+  const { data } = await axiosWithAuth.delete(`/admin/verify/req/${id}`)
+  console.log(data)
+
+  return data
 }
 
 /**
