@@ -50,7 +50,7 @@ function NextArrow(props: any) {
     );
 }
 
-export default function HeroSlider() {
+export default function SlickSlider() {
     const settings = {
         centerMode: true,
         centerPadding: '60px',
