@@ -4,6 +4,7 @@ import DataWrapperForMainPage from './_components/DataWrapperForMainPage'
 import Link from 'next/link'
 import { UserLoginDataStateAtom } from '../common/recoil/userAtom'
 import { useRecoilState } from 'recoil'
+import { axiosWithAuth } from '../common/api/instance'
 
 export default function Main() {
   const [recoilData, setRecoilData] = useRecoilState(UserLoginDataStateAtom)
@@ -29,6 +30,16 @@ export default function Main() {
             >
               로그인 페이지
             </Link>
+
+            <button
+              onClick={() => {
+                axiosWithAuth.post(`/logout`)
+                window.alert('로그아웃 했습니다')
+              }}
+              className="block px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+            >
+              로그아웃
+            </button>
 
             <Link
               href="/admin"
