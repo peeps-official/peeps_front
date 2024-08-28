@@ -5,6 +5,7 @@ import { useCallback, useState, ChangeEvent } from 'react'
 import NextImg from '@/src/common/utils/NextImg'
 import Link from 'next/link'
 import SlickSlider from './_components/Slider'
+import Category from './_components/Category'
 
 export default function Main() {
   const [search, setSearch] = useState('')
@@ -63,7 +64,7 @@ export default function Main() {
         
         {/* Category Section */}
         <section className=''>
-
+          <Category />
         </section>
     </div>
   )
