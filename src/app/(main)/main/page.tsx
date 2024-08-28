@@ -50,7 +50,7 @@ export default function Main() {
 
             {/* 로그인 */}
             <Link
-              href="/main"
+              href="/login"
               className="flex items-center gap-[10px] px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
             >
             로그인
