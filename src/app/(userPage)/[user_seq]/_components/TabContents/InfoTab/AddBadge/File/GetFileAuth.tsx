@@ -1,14 +1,12 @@
 'use client'
 
-import { Input, InputBtn } from '@/src/common/components/Input/Input'
-import AddAuthContainer, { useAddAuth } from '../AddAuthContainer'
-import { HiOutlineDownload } from 'react-icons/hi'
-import { ChangeEvent, useRef, useState } from 'react'
-import { StepProps } from '../Email/StepInput'
-import { useMutation } from '@tanstack/react-query'
-import { axiosWithAuth } from '@/src/common/api/instance'
 import { upLoadFileAuth } from '@/src/common/api/userBadge'
-import { atom, useRecoilState, useRecoilValue } from 'recoil'
+import { Input, InputBtn } from '@/src/common/components/Input/Input'
+import { ChangeEvent, useRef, useState } from 'react'
+import { HiOutlineDownload } from 'react-icons/hi'
+import { atom, useRecoilState } from 'recoil'
+import AddAuthContainer, { useAddAuth } from '../AddAuthContainer'
+import { StepProps } from '../Email/StepInput'
 
 export default function GetFileAuth() {
   const [step, setStep] = useState(0)

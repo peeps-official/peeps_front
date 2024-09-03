@@ -1,8 +1,8 @@
 import { axiosWithAuth } from '@/src/common/api/instance'
-import { getPossibleBadge, makeBadge } from '@/src/common/api/userBadge'
+import { AuthData, getPossibleBadge, makeBadge } from '@/src/common/api/userBadge'
 import { Input, InputBtn } from '@/src/common/components/Input/Input'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { useContext, useRef } from 'react'
+import { useRef } from 'react'
 import { useAddAuth } from '../AddAuthContainer'
 
 export type StepProps = {
@@ -95,17 +95,19 @@ export function MakableBadgeInfo({ step, setStep }: StepProps) {
     queryFn: async () => await getPossibleBadge(),
   })
 
+  console.log(possibleBadge)
+
   return (
     <div className="mt-[20px]">
       {possibleBadge && possibleBadge.id !== -1 && (
         <>
           <p className="mb-[.5rem]">인증 가능 뱃지</p>
           <div>
-            {Object.entries(possibleBadge).map(([key, value]) => (
+            {/* {Object.entries(possibleBadge).map(([key, value]) => (
               <div key={key}>
                 <strong>{key}</strong>: {value}
               </div>
-            ))}
+            ))} */}
           </div>
         </>
       )}
