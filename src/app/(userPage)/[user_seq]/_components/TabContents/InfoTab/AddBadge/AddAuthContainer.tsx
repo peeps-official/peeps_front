@@ -26,10 +26,7 @@ export default function AddAuthContainer({ icon, title, subTitle, children }: Ad
             <p className="relative top-[0.1rem] flex items-center justify-center">{icon}</p>
             <p className="kr-bold-14">{title}</p>
           </div>
-          <button
-            onClick={() => setIsSpread((prev) => !prev)}
-            className={`transition-1000 ${isSpread && 'rotate-180'}`}
-          >
+          <button onClick={() => setIsSpread((prev) => !prev)} className={`duration-300 ${isSpread && 'rotate-180'}`}>
             <IoIosArrowUp />
           </button>
         </div>

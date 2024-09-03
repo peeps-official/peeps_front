@@ -1,6 +1,6 @@
 import { axiosWithAuth } from './instance'
 
-interface AuthData {
+export interface AuthData {
   id: number
   authDay: string
   authWay: string
