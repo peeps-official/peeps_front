@@ -120,7 +120,7 @@ type BadgeListProps = {
 
 export function BadgeList({ badges, selectedBadgeId = -1 }: BadgeListProps) {
   return (
-    <div className="flex h-[40px] w-full gap-[10px] pt-[2px]">
+    <div className="mb-[-1rem] flex h-[40px] w-full gap-[10px] pt-[2px]">
       {badges.map((badge) => (
         <ProfileCircleBadge key={badge.bdg_id} badge={badge} selectedBadgeId={selectedBadgeId} />
       ))}

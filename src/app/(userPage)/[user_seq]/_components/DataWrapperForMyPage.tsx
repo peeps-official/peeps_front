@@ -1,6 +1,6 @@
 'use client'
 
-import { getLoginBadgeList, getLoginUserData, getOwnerUserData } from '@/src/common/api/user'
+import { getOwnerBadgeList, getLoginUserData, getOwnerUserData } from '@/src/common/api/user'
 import { LogedInUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
 import { IsOwnerAtom } from '@/src/common/recoil/userHome'
 import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
@@ -33,8 +33,8 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
         queryFn: () => getOwnerUserData(pageOwnerSeq),
       },
       {
-        queryKey: ['login', 'user', 'badge'],
-        queryFn: () => getLoginBadgeList(),
+        queryKey: ['owner', 'user', 'badge'],
+        queryFn: () => getOwnerBadgeList(pageOwnerSeq),
       },
     ],
   })
