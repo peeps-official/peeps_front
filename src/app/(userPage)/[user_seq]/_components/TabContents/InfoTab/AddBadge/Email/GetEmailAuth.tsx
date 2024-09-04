@@ -6,7 +6,12 @@ import AddAuthContainer from '../AddAuthContainer'
 import { ConfirmNumberInput, EmailInput, MakableBadgeInfo } from './StepInput'
 
 export default function GetEmailAuth() {
-  const [step, setStep] = useState(0)
+  const [stepData, setStepData] = useState({
+    step: 0,
+    data: { email: '' },
+  })
+
+  console.log(stepData)
 
   return (
     <AddAuthContainer
@@ -14,9 +19,9 @@ export default function GetEmailAuth() {
       title="이메일 인증"
       subTitle="다양한 이메일을 통해서 인증을 받을 수 있어요."
     >
-      <EmailInput step={step} setStep={setStep} />
-      {step >= 1 && <ConfirmNumberInput step={step} setStep={setStep} />}
-      {step === 2 && <MakableBadgeInfo step={step} setStep={setStep} />}
+      <EmailInput stepData={stepData} setStepData={setStepData} />
+      {stepData.step >= 1 && <ConfirmNumberInput stepData={stepData} setStepData={setStepData} />}
+      {stepData.step === 2 && <MakableBadgeInfo stepData={stepData} setStepData={setStepData} />}
     </AddAuthContainer>
   )
 }

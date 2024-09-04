@@ -1,32 +1,47 @@
 import { axiosWithAuth } from './instance'
 
-export interface AuthData {
-  id: number
-  authDay: string
-  authWay: string
-  content: string
-  description: string
-}
-
 // [ TODO ]
 // 인증 시간동안 카운트 다운 해주기
 
 // [이메일] - 받을 수 있는 뱃지
-export async function getPossibleBadge() {
-  const { data, status } = await axiosWithAuth.get<AuthData>(`/verify/mailer/badge`)
+type getPossibleBadgeRes = {
+  name: string // 뱃지 이름
+  image: string // 뱃지 이미지
+  member_count: number // 멤버 수
+  authway: string // 인증 방법 - email
+  detail: Array<any> // 자세한 정보
+}
+
+export async function getPossibleBadge(email: string) {
+  const { data, status } = await axiosWithAuth.get<getPossibleBadgeRes>(`/verify/mailer/badge?email=${email}`)
+
+  console.log('비상상황!!!!')
 
   if (status === 204) {
-    return { id: -1, authDay: '', authWay: '', content: '', description: '' }
+    return { name: '', image: '', member_count: 0, authway: '', email: '', detail: [] }
   }
   return data
 }
 
 // [이메일] - 뱃지 만들기 버튼 누르면 최종 요청
-export async function makeBadge(description: string = '') {
-  const reqData = { description: description }
 
-  const { data, status } = await axiosWithAuth.post(`/verify/mailer/req`, reqData)
+export interface AuthData {
+  name: string
+  authway: string
+  email: string
+  description: string
+}
 
+export async function makeBadge(resData: AuthData) {
+  const { data, status } = await axiosWithAuth.post(`/verify/mailer/req`, {
+    name: resData.name,
+    authway: resData.authway,
+    email: resData.email,
+    description: resData.description,
+  })
+
+  console.log(data)
+  console.log(status)
   return data
 }
 

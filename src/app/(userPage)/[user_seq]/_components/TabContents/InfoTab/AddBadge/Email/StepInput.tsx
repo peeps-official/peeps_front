@@ -1,19 +1,21 @@
 import { axiosWithAuth } from '@/src/common/api/instance'
-import { AuthData, getPossibleBadge, makeBadge } from '@/src/common/api/userBadge'
+import { getPossibleBadge, makeBadge } from '@/src/common/api/userBadge'
 import { Input, InputBtn } from '@/src/common/components/Input/Input'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useRef } from 'react'
 import { useAddAuth } from '../AddAuthContainer'
+import NextImg from '@/src/common/utils/NextImg'
+import { formatDate } from '@/src/common/utils/Date/formatDate'
 
 export type StepProps = {
-  step: number
-  setStep: (step: number) => void
+  stepData: { step: number; data: any }
+  setStepData: (data: { step: number; data: any }) => void
 }
 
 /**
  * @description 이메일 입력 컴포넌트
  */
-export function EmailInput({ step, setStep }: StepProps) {
+export function EmailInput({ stepData, setStepData }: StepProps) {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const { isPending: isSendEmailPending, mutate } = useMutation({
@@ -23,11 +25,12 @@ export function EmailInput({ step, setStep }: StepProps) {
       }),
     onSuccess(data, variables, context) {
       alert('인증번호가 발송되었습니다.')
-      setStep(1)
+      const newData = { step: 1, data: { ...stepData.data, email: variables } }
+      setStepData(newData)
     },
   })
 
-  const disabled = isSendEmailPending || step >= 1
+  const disabled = isSendEmailPending || stepData.step >= 1
   const btnTitle = (!disabled && '인증하기') || (isSendEmailPending && '전송 중') || '전송 완료'
 
   return (
@@ -52,7 +55,7 @@ export function EmailInput({ step, setStep }: StepProps) {
 /**
  * @description 인증번호 입력 컴포넌트
  */
-export function ConfirmNumberInput({ step, setStep }: StepProps) {
+export function ConfirmNumberInput({ stepData, setStepData }: StepProps) {
   const confirmNumberInput = useRef<HTMLInputElement>(null)
 
   const { isPending: isConfirmNumberPending, mutate } = useMutation({
@@ -60,11 +63,11 @@ export function ConfirmNumberInput({ step, setStep }: StepProps) {
       await axiosWithAuth.get(`/verify/mailer/check/?token=${confirmNumber}`),
     onSuccess(data, variables, context) {
       alert('인증이 완료되었습니다.')
-      setStep(2)
+      setStepData({ ...stepData, step: 2 })
     },
   })
 
-  const disabled = isConfirmNumberPending || step >= 2
+  const disabled = isConfirmNumberPending || stepData.step >= 2
 
   return (
     <div>
@@ -88,38 +91,81 @@ export function ConfirmNumberInput({ step, setStep }: StepProps) {
 /**
  * @description 뱃지 생성 컴포넌트
  */
-export function MakableBadgeInfo({ step, setStep }: StepProps) {
+
+export function MakableBadgeInfo({ stepData, setStepData }: StepProps) {
   const { isSpread, setIsSpread } = useAddAuth()
   const { isSuccess: ispossibleBadgeSuccess, data: possibleBadge } = useQuery({
     queryKey: ['admin', 'badge'],
-    queryFn: async () => await getPossibleBadge(),
+    queryFn: async () => await getPossibleBadge(stepData.data.email),
   })
 
-  console.log(possibleBadge)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  function DetailInfo({ title, content }: { title: string; content: string }) {
+    return (
+      <div className="mt-[0.4rem] flex justify-between">
+        <span className="kr-normal-12 text-[#666]">{title}</span>
+        <span className="kr-bold-12">{content}</span>
+      </div>
+    )
+  }
 
   return (
     <div className="mt-[20px]">
-      {possibleBadge && possibleBadge.id !== -1 && (
+      {possibleBadge && possibleBadge.name && (
         <>
-          <p className="mb-[.5rem]">인증 가능 뱃지</p>
-          <div>
-            {/* {Object.entries(possibleBadge).map(([key, value]) => (
-              <div key={key}>
-                <strong>{key}</strong>: {value}
+          <p className="mb-[.5rem]">뱃지</p>
+          <p className="kr-medium-12 text-[#666]">다음 뱃지를 받을 수 있어요.</p>
+          <div className="mt-[1rem]">
+            <div className="flex gap-[1rem]">
+              <div className="h-[30px] w-[30px]">
+                <NextImg src={possibleBadge.image} alt="badge" />
               </div>
-            ))} */}
+              <div>
+                <p className="kr-bold-15">{possibleBadge.name}</p>
+                <p className="kr-medium-14 text-[#666]">인증: {possibleBadge.member_count}명</p>
+              </div>
+            </div>
+            <div className="my-[1rem]">
+              <div className="flex justify-between">
+                <span className="kr-normal-12 text-[#666]">인증 날짜</span>
+                <span className="kr-bold-12">{formatDate(new Date())}</span>
+              </div>
+              <DetailInfo title="인증 방식" content={possibleBadge.authway} />
+              {possibleBadge.detail.map((detail: any) => (
+                <DetailInfo key={detail.title} title={detail.title} content={detail.content} />
+              ))}
+            </div>
+            <div className="my-[1rem]">
+              <span className="kr-normal-12 mb-[0.5em] block text-[#666]">추가 설명</span>
+              <input
+                ref={inputRef}
+                className="w-full rounded-[5px] border-[1px] border-solid border-[#e2e5ec] px-[1em] py-[0.5em]"
+                type="text"
+                placeholder="인증에 관한 간단한 설명을 작성할 수 있어요."
+              />
+            </div>
           </div>
         </>
       )}
       <button
         className="blueBtn w-full text-center"
         onClick={async () => {
-          const data = await makeBadge()
+          if (!possibleBadge) return
+          if (!inputRef.current) return
+
+          const newData = {
+            name: possibleBadge.name,
+            authway: possibleBadge.authway,
+            email: stepData.data.email,
+            description: inputRef.current?.value,
+          }
+          const data = await makeBadge(newData)
 
           if (data) {
             console.log('data: ', data)
             alert('뱃지가 생성되었습니다!')
-            setStep(0)
+            setStepData({ step: 0, data: { ...stepData, ...data } })
             setIsSpread(false)
           }
         }}
