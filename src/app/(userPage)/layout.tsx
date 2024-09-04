@@ -42,17 +42,17 @@ export default function DefaultLayout({ children }: layoutProps) {
   }
 
   useEffect(() => {
-    if (useLoginData.loginState === 300) {
+    if (useLoginData.loginState === 300 && useLoginData.needData) {
       const newUserData = { ...useLoginData.user_data }
 
-      window.alert(`${useLoginData.needData.toString()}가 필요합니다.`)
-      useLoginData.needData.forEach((data_name) => {
+      window.alert(`${useLoginData?.needData.toString()}가 필요합니다.`)
+      useLoginData?.needData.forEach((data_name) => {
         const data: string | null = window.prompt(`${data_name}를 입력해주세요.`)
 
-        if (!data) return
-        if (data_name === 'user_id') {
-          newUserData.user_id = data
-        }
+        if (!data) return alert('입력값이 없습니다.')
+        if (!(2 < data_name.length && data_name.length < 20)) return alert('2자 이상 20자 이하로 입력해주세요.')
+        if (!onlyEnglishAndNumber(data)) return alert('영어와 숫자만 입력 가능합니다.')
+        if (data_name === 'user_id') newUserData.user_id = data
       })
 
       // user_id를 채워넣은 후 다시 로그인 데이터 요청
@@ -60,6 +60,7 @@ export default function DefaultLayout({ children }: layoutProps) {
         const { data, status } = await axiosWithAuth.patch(`/login/id`, {
           user_id: newUserData.user_id,
         })
+
         // 에러 날라올 수 있음 -> id 중복~~ 임시처리이므로 나중에 페이지 분리하는 것도 좋을 듯
         if (status === 200) {
           queryClient.invalidateQueries({ queryKey: ['login', 'userPage'] })
