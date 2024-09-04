@@ -1,5 +1,5 @@
 export interface Badge_T {
-  bdg_id: number
+  id: number
   name: string
   image: string
   content: string
