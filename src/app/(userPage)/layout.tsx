@@ -15,6 +15,7 @@ import { LoginUserDataReq_T } from '@/src/common/types/user'
 import { useRecoilValue } from 'recoil'
 import { axiosWithAuth } from '@/src/common/api/instance'
 import { useQueryClient } from '@tanstack/react-query'
+import { onlyEnglishAndNumber } from '@/src/common/utils/valid/onlyEnglishAndNumber'
 
 const archivo = Archivo({
   subsets: ['latin'],
