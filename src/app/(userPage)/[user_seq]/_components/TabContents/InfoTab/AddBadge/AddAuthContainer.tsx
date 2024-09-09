@@ -30,7 +30,7 @@ export default function AddAuthContainer({ icon, title, subTitle, children }: Ad
             <IoIosArrowUp />
           </button>
         </div>
-        <div className="kr-normal-12">{subTitle}</div>
+        <div className="kr-regular-12">{subTitle}</div>
         {isSpread && children}
       </div>
     </AddAuthContext.Provider>

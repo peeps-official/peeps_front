@@ -8,7 +8,7 @@ import SidebarItem from './SidebarItem'
 
 export default function SideBar() {
   return (
-    <div className="fixed absolute left-0 w-64 h-full text-white bg-white">
+    <div className="fixed left-0 h-full w-64 bg-white text-white">
       <div className="px-5 py-5">
         <Link href="/" className="flex items-center space-x-2">
           <div className="text-[20px] font-bold text-black">Peeps</div>

@@ -9,7 +9,10 @@ import AddAuthContainer, { useAddAuth } from '../AddAuthContainer'
 import { StepProps } from '../Email/StepInput'
 
 export default function GetFileAuth() {
-  const [step, setStep] = useState(0)
+  const [stepData, setStepData] = useState({
+    step: 0,
+    data: { email: '' },
+  })
 
   return (
     <AddAuthContainer
@@ -17,8 +20,8 @@ export default function GetFileAuth() {
       subTitle="서류를 통해서, 각종 자격을 인증할 수 있어요."
       icon={<HiOutlineDownload />}
     >
-      <File step={step} setStep={setStep} />
-      {step === 1 && <AddExplane step={step} setStep={setStep} />}
+      <File stepData={stepData} setStepData={setStepData} />
+      {stepData.step === 1 && <AddExplane stepData={stepData} setStepData={setStepData} />}
     </AddAuthContainer>
   )
 }
@@ -28,7 +31,7 @@ const fileAtom = atom<File | null>({
   default: null,
 })
 
-export function File({ step, setStep }: StepProps) {
+export function File({ stepData, setStepData }: StepProps) {
   const [file, setFile] = useRecoilState<File | null>(fileAtom)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -38,10 +41,10 @@ export function File({ step, setStep }: StepProps) {
     if (!file) return
 
     setFile(file)
-    setStep(1)
+    setStepData({ step: 1, data: { ...stepData.data } })
   }
 
-  const disabled = step >= 1
+  const disabled = stepData.step >= 1
 
   return (
     <div>
@@ -72,7 +75,7 @@ export function File({ step, setStep }: StepProps) {
   )
 }
 
-export function AddExplane({ step, setStep }: StepProps) {
+export function AddExplane({ stepData, setStepData }: StepProps) {
   const { setIsSpread } = useAddAuth()
   const [file, setFile] = useRecoilState<File | null>(fileAtom)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -103,7 +106,7 @@ export function AddExplane({ step, setStep }: StepProps) {
             // 초기화
             inputRef.current.value = ''
             setFile(null)
-            setStep(0)
+            setStepData({ step: 0, data: {} })
             setIsSpread(false)
           }
         }}

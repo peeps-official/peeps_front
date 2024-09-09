@@ -104,7 +104,7 @@ export function MakableBadgeInfo({ stepData, setStepData }: StepProps) {
   function DetailInfo({ title, content }: { title: string; content: string }) {
     return (
       <div className="mt-[0.4rem] flex justify-between">
-        <span className="kr-normal-12 text-[#666]">{title}</span>
+        <span className="kr-regular-12 text-[#666]">{title}</span>
         <span className="kr-bold-12">{content}</span>
       </div>
     )
@@ -128,7 +128,7 @@ export function MakableBadgeInfo({ stepData, setStepData }: StepProps) {
             </div>
             <div className="my-[1rem]">
               <div className="flex justify-between">
-                <span className="kr-normal-12 text-[#666]">인증 날짜</span>
+                <span className="kr-regular-12 text-[#666]">인증 날짜</span>
                 <span className="kr-bold-12">{formatDate(new Date())}</span>
               </div>
               <DetailInfo title="인증 방식" content={possibleBadge.authway} />
@@ -137,7 +137,7 @@ export function MakableBadgeInfo({ stepData, setStepData }: StepProps) {
               ))}
             </div>
             <div className="my-[1rem]">
-              <span className="kr-normal-12 mb-[0.5em] block text-[#666]">추가 설명</span>
+              <span className="kr-regular-12 mb-[0.5em] block text-[#666]">추가 설명</span>
               <input
                 ref={inputRef}
                 className="w-full rounded-[5px] border-[1px] border-solid border-[#e2e5ec] px-[1em] py-[0.5em]"

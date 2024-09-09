@@ -1,7 +1,9 @@
 @tailwind components;
 
+/* 이름: font-wieght에 따라 - bold(700) | medium(500) | regular(400) */
+
 @layer components {
-  .kr-normal-24 {
+  .kr-bold-24 {
     font-family: 'Noto Sans KR';
     font-size: 24px;
     font-style: normal;
@@ -40,6 +42,24 @@
     letter-spacing: -0.14px;
   }
 
+  .kr-medium-16 {
+    font-family: 'Noto Sans KR';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 171.429% */
+    letter-spacing: -0.14px;
+  }
+
+  .kr-regular-16 {
+    font-family: 'Noto Sans KR';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 171.429% */
+    letter-spacing: -0.14px;
+  }
+
   .kr-bold-15 {
     font-family: 'Noto Sans KR';
     font-size: 15px;
@@ -67,7 +87,7 @@
     letter-spacing: -0.14px;
   }
 
-  .kr-normal-14 {
+  .kr-regular-14 {
     font-family: 'Noto Sans KR';
     font-size: 14px;
     font-style: normal;
@@ -76,7 +96,7 @@
     letter-spacing: -0.14px;
   }
 
-  .kr-normal-13 {
+  .kr-medium-13 {
     font-family: 'Noto Sans KR';
     font-size: 13px;
     font-style: normal;
@@ -103,7 +123,7 @@
     letter-spacing: -0.06px;
   }
 
-  .kr-normal-12 {
+  .kr-regular-12 {
     font-family: 'Noto Sans KR';
     font-size: 12px;
     font-style: normal;

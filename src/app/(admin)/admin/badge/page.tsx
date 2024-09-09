@@ -21,8 +21,7 @@ export default function AdminBadgePage() {
   const badgeData = useRecoilValue<Badge_T[]>(badgeDataAtom)
 
   const { mutate: addBadge } = useMutation({
-    mutationFn: async (data: AdminCreateBadge_T) =>
-      await axiosWithAuth.post('/admin/badge', data),
+    mutationFn: async (data: AdminCreateBadge_T) => await axiosWithAuth.post('/admin/badge', data),
     onSuccess: (variables) => {
       window.alert(JSON.stringify(variables.data.name) + '뱃지가 추가되었습니다.')
       queryClient.invalidateQueries({ queryKey: ['admin', 'badge'] })
@@ -37,7 +36,7 @@ export default function AdminBadgePage() {
     <DataWrapperForAdminBadgePage>
       <h1 className="my-2">뱃지 관리</h1>
       <button
-        className="p-3 my-4 rounded bg-blue-soft hover:bg-blue-secondary"
+        className="my-4 rounded bg-blue-soft p-3 hover:bg-blue-secondary"
         onClick={() => {
           addBadge({
             name: '한경대학교',
@@ -50,9 +49,9 @@ export default function AdminBadgePage() {
         뱃지추가 버튼
       </button>
       <div className="flex flex-wrap gap-10">
-        {badgeData[0]?.bdg_id !== -1 &&
+        {badgeData[0]?.id !== -1 &&
           badgeData.map((badge) => {
-            return <BadgeCard key={badge.bdg_id} badge={badge} />
+            return <BadgeCard key={badge.id} badge={badge} />
           })}
       </div>
     </DataWrapperForAdminBadgePage>

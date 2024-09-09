@@ -117,7 +117,7 @@ export function IsBadgeSpreadInfo({ auth, title, icon, editMode }: IsBadgeSpread
         </div>
       </div>
 
-      <div className="kr-normal-14">
+      <div className="kr-regular-14">
         <div className="rounded-[5px] bg-[#eee] p-[10px]">
           <TitleAndContent title="인증 날짜" content={formatDate(new Date(auth.authDay))} />
           {auth.description.length > 0 && <TitleAndContent title="설명" content={auth.description} />}
