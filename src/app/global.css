@@ -8,6 +8,7 @@
 
 @import url('./_styles/tailwind/components/btn.css');
 @import url('./_styles/tailwind/components/font.css');
+@import url('./_styles/tailwind/components/calc.css');
 
 body {
   @apply m-0 leading-[normal];

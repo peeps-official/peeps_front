@@ -5,8 +5,9 @@ import CommentInput from './CommentInput'
 import MediaLinks from './MyBoard'
 import PhotoGallery from './Picture'
 import Post from './Post'
-import BadgeBox from '../InfoTab/AddBadge/BadgeBox'
+
 import Introduce from './Introduce'
+import BadgeBox from '../InfoEdit/AddBadge/BadgeBox'
 
 export default function Feed() {
   const { profile, badges, educate, career } = popUpData

@@ -1,0 +1,5 @@
+@tailwind components;
+
+.maxHeightWithoutHeader {
+  max-height: calc(100vh - 60px);
+}

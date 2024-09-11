@@ -14,7 +14,8 @@ export default function Taps() {
   return (
     <div className="flex border-solid border-gray-medium text-center font-bold">
       <TapItem title="피드" onClick={() => setActiveTab('feed')} isClicked={isActive('feed')} />
-      <TapItem title="정보" onClick={() => setActiveTab('InfoTab')} isClicked={isActive('InfoTab')} />
+      <TapItem title="정보" onClick={() => setActiveTab('info')} isClicked={isActive('info')} />
+      <TapItem title="정보 수정" onClick={() => setActiveTab('infoEdit')} isClicked={isActive('infoEdit')} />
     </div>
   )
 }

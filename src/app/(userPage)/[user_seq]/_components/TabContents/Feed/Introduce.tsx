@@ -1,8 +1,3 @@
-'use client'
-
-import NextImg from '@/src/common/utils/NextImg'
-import Link from 'next/link'
-
 export default function Introduce() {
   return (
     <div className="mx-auto w-full rounded-lg p-4 shadow-popupBox">

@@ -22,7 +22,7 @@ interface layoutProps {
 
 export default function DefaultLayout({ children }: layoutProps) {
   return (
-    <html className="h-full w-full">
+    <html className="w-full">
       <head>
         <title>PEEPS</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
@@ -30,8 +30,8 @@ export default function DefaultLayout({ children }: layoutProps) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
       </head>
-      <body className="h-full w-full">
-        <div className={`h-full w-full ${archivo.variable + ' ' + dm_sans.variable}`}>
+      <body className="w-full">
+        <div className={`w-full ${archivo.variable + ' ' + dm_sans.variable}`}>
           <DataContextProvider>{children}</DataContextProvider>
         </div>
       </body>

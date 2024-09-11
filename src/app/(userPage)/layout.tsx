@@ -16,6 +16,7 @@ import { useRecoilValue } from 'recoil'
 import { axiosWithAuth } from '@/src/common/api/instance'
 import { useQueryClient } from '@tanstack/react-query'
 import { onlyEnglishAndNumber } from '@/src/common/utils/valid/onlyEnglishAndNumber'
+import { headerSize } from '../_styles/const/const'
 
 const archivo = Archivo({
   subsets: ['latin'],
@@ -77,7 +78,9 @@ export default function DefaultLayout({ children }: layoutProps) {
       <main className={`w-full pt-header`}>
         <div className={`${archivo.variable + ' ' + dm_sans.variable}`}>
           {isSidebarCollapsed ? <GlobalSidebarNarrow /> : <GlobalSidebarWide />}
-          <section className={`flex-grow overflow-auto bg-white ${isSidebarCollapsed ? 'pl-24' : 'pl-64'}`}>
+          <section
+            className={`maxHeightWithoutHeader flex-grow overflow-auto bg-white ${isSidebarCollapsed ? 'pl-24' : 'pl-64'}`}
+          >
             {children}
           </section>
         </div>
