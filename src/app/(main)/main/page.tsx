@@ -14,58 +14,54 @@ export default function Main() {
     (e: ChangeEvent<HTMLInputElement>) => {
       setSearch(e.target.value)
     },
-    [search]
+    [search],
   )
-  
+
   return (
-    <div className='w-full min-w-[800px] bg-white'>
-        {/* Main Header */}
-        <header className='fixed top-0 left-0 w-full h-16 bg-white z-header flex items-center justify-between px-[30px]'>
-            {/* 로고 */}
-            <Link href={'/'} className="w-24 h-full flex items-center py-5">
-            <NextImg
-                //
-                alt="PEEPS logo"
-                src="/images/logos/peeps.png"
-                styles="object-cover cursor-pointer"
-            />
-            </Link>
+    <div className="w-full min-w-[800px] bg-white">
+      {/* Main Header */}
+      <header className="fixed left-0 top-0 z-header flex h-16 w-full items-center justify-between bg-white px-[30px]">
+        {/* 로고 */}
+        <Link href={'/'} className="flex h-full w-24 items-center py-5">
+          <NextImg
+            //
+            alt="PEEPS logo"
+            src="/images/logos/peeps.png"
+            styles="object-cover cursor-pointer"
+          />
+        </Link>
 
-            {/* 검색 */}
-            <div className="w-[321px] h-[36px] pl-[8px] pr-[20px]  flex items-center justify-center gap-[6px] rounded-3xs bg-whitesmoke-300">
-            <Link href={'/'} className="w-[20px] h-[20px] pt-[1px]">
-                <NextImg
-                alt="search icon"
-                src="/images/search.svg"
-                styles="object-cover cursor-pointer"
-                />
-            </Link>
-            <input
-                type="text"
-                placeholder="커뮤니티 검색해보기"
-                className="w-full h-full flex-1 font-[400] text-[15px] leading-[1.2]"
-                onChange={handleSearchValue}
-            />
-            </div>
+        {/* 검색 */}
+        <div className="flex h-[36px] w-[321px] items-center justify-center gap-[6px] rounded-3xs bg-whitesmoke-300 pl-[8px] pr-[20px]">
+          <Link href={'/'} className="h-[20px] w-[20px] pt-[1px]">
+            <NextImg alt="search icon" src="/images/header/search.svg" styles="object-cover cursor-pointer" />
+          </Link>
+          <input
+            type="text"
+            placeholder="커뮤니티 검색해보기"
+            className="h-full w-full flex-1 text-[15px] font-[400] leading-[1.2]"
+            onChange={handleSearchValue}
+          />
+        </div>
 
-            {/* 로그인 */}
-            <Link
-              href="/login"
-              className="flex items-center gap-[10px] px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-            >
-            로그인
-            </Link>
-        </header>
+        {/* 로그인 */}
+        <Link
+          href="/login"
+          className="flex items-center gap-[10px] rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+        >
+          로그인
+        </Link>
+      </header>
 
-        {/* Hero Slider Section */}
-        <section className='pt-16'>
-            <SlickSlider />
-        </section>
-        
-        {/* Category Section */}
-        <section className=''>
-          <Category />
-        </section>
+      {/* Hero Slider Section */}
+      <section className="pt-16">
+        <SlickSlider />
+      </section>
+
+      {/* Category Section */}
+      <section className="">
+        <Category />
+      </section>
     </div>
   )
 }

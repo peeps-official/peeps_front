@@ -44,7 +44,7 @@ export default function GlobalSidebarLeft() {
       <Link href="/" className="flex items-center py-2.5 pl-[22px]">
         <div className="flex items-center gap-[26px]">
           <div className="h-8 w-8 shrink-0 overflow-hidden">
-            <NextImg alt="All" src="/images/box.svg" />
+            <NextImg alt="All" src="/images/sidebar/box.svg" />
           </div>
           <div className="flex flex-col justify-center">
             <b className="relative inline-block font-bold leading-[16px]">ALL</b>

@@ -31,7 +31,7 @@ export default function GlobalHeader({ onToggleSidebar }: GlobalHeaderProps) {
     <div className="fixed z-header flex h-header w-full min-w-[800px] items-center justify-center bg-white">
       {/* 헤더 영역 I */}
       <div className="h-full w-[64px] py-[10px] pl-[19px] pr-[4px]" onClick={onToggleSidebar}>
-        <NextImg alt="collapsed menu icon" src="/images/menu.svg" styles="object-cover h-full cursor-pointer" />
+        <NextImg alt="collapsed menu icon" src="/images/header/menu.svg" styles="object-cover h-full cursor-pointer" />
       </div>
 
       {/* 헤더 영역 II */}
@@ -49,7 +49,7 @@ export default function GlobalHeader({ onToggleSidebar }: GlobalHeaderProps) {
         {/* 검색 */}
         <div className="flex h-[36px] w-[321px] items-center justify-center gap-[6px] rounded-3xs bg-whitesmoke-300 pl-[8px] pr-[20px]">
           <Link href={'/'} className="h-[20px] w-[20px] pt-[1px]">
-            <NextImg alt="search icon" src="/images/search.svg" styles="object-cover cursor-pointer" />
+            <NextImg alt="search icon" src="/images/header/search.svg" styles="object-cover cursor-pointer" />
           </Link>
           <input
             id="search"
@@ -63,13 +63,13 @@ export default function GlobalHeader({ onToggleSidebar }: GlobalHeaderProps) {
         {/* 프로필 & 버튼 */}
         <div className="flex items-center gap-[10px]">
           <div className="h-[50px] w-[50px]">
-            <NextImg alt="club icon" src="/images/club.svg" />
+            <NextImg alt="club icon" src="/images/header/club.svg" />
           </div>
           <div className="h-[50px] w-[50px]">
-            <NextImg alt="message icon" src="/images/Message.svg" />
+            <NextImg alt="message icon" src="/images/header/message.svg" />
           </div>
           <div className="h-[50px] w-[50px]">
-            <NextImg alt="" src="/images/alarm.svg" />
+            <NextImg alt="" src="/images/header/alarm.svg" />
           </div>
           {isUserLogedIn ? (
             <Link
