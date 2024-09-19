@@ -17,6 +17,7 @@ import { axiosWithAuth } from '@/src/common/api/instance'
 import { useQueryClient } from '@tanstack/react-query'
 import { onlyEnglishAndNumber } from '@/src/common/utils/valid/onlyEnglishAndNumber'
 import { headerSize } from '../_styles/const/const'
+import { usePathname } from 'next/navigation'
 
 const archivo = Archivo({
   subsets: ['latin'],
@@ -38,6 +39,7 @@ export default function DefaultLayout({ children }: layoutProps) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true)
   const useLoginData = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
   const queryClient = useQueryClient()
+  const owner_seq = usePathname().slice(1)
 
   const toggleSidebar = () => {
     setIsSidebarCollapsed((prevState) => !prevState)
@@ -66,6 +68,7 @@ export default function DefaultLayout({ children }: layoutProps) {
         // 에러 날라올 수 있음 -> id 중복~~ 임시처리이므로 나중에 페이지 분리하는 것도 좋을 듯
         if (status === 200) {
           queryClient.invalidateQueries({ queryKey: ['login', 'userPage'] })
+          queryClient.invalidateQueries({ queryKey: ['ownerUserData', owner_seq] })
         }
         return data
       })()
