@@ -1,7 +1,20 @@
 'use client'
-import { FaThumbsUp, FaCommentAlt, FaShare } from 'react-icons/fa'
+import { POST_T } from '@/src/common/types/post'
+import { formatTimeAgo } from '@/src/common/utils/Date/formatTimeAgo'
+import { FaComment } from 'react-icons/fa6'
+import { GoHeartFill } from 'react-icons/go'
 
-export default function Post() {
+type Props = {
+  post: POST_T
+}
+
+export default function Post({ post }: Props) {
+  console.log(post)
+  const { description, image, create_date, comments, boardLike } = post
+  const srcs: string[] = JSON.parse(image)
+
+  console.log(srcs)
+
   return (
     <div className="w-full rounded-lg bg-white p-4 shadow-popupBox">
       <div className="flex items-start space-x-4">
@@ -10,20 +23,21 @@ export default function Post() {
           alt="Profile"
           className="h-12 w-12 rounded-full"
         />
-        <div>
+        <div className="flex-1">
           <div className="flex items-center justify-start gap-2">
-            <h2 className="text-lg font-semibold">Viva Republica (Toss)</h2>
-            <p className="text-sm text-gray-600"> 1:08 PM • 수정됨</p>
+            <h2 className="text-lg font-semibold">{post.user}</h2>
+            <p className="text-sm text-gray-600"> {formatTimeAgo(create_date)}</p>
           </div>
-          <p className="mt-4 text-gray-700">
-            🚀 토스의 입체적 성장에 누구보다 진심인 사람들이 모인 Corp-Dev Chapter에 변화가 찾아오다
-          </p>
-          <img
-            src="https://media.licdn.com/dms/image/v2/D5622AQECx_U3Tl2sWg/feedshare-shrink_800/feedshare-shrink_800/0/1725458263180?e=1728518400&v=beta&t=MuhJoX0ZwEq73PCDZAnwprHldjdJBIYZA_TyZf8pv9A" // Replace with your uploaded image
-            alt="Uploaded Content"
-            className="mt-4 h-auto max-h-[1000px] max-w-[500px] rounded-lg"
-          />
-          <InteractionButtons />
+          <p className="mt-4 text-gray-700">{description}</p>
+          <div className="mb-8 flex w-full">
+            {/* {srcs &&
+              srcs.map((src) => (
+                <div key={src} id="image" className="mt-4 h-[300px] max-h-[1000px] w-full max-w-[500px] rounded-lg">
+                  <NextImg src={src} alt="feed img" />
+                </div>
+              ))} */}
+          </div>
+          <InteractionButtons comments={comments} boardLike={boardLike} />
         </div>
       </div>
     </div>
@@ -33,19 +47,23 @@ export default function Post() {
 const IconButton = ({ icon, label }: any) => {
   return (
     <button className="flex items-center space-x-1 text-gray-600 hover:text-blue-500">
-      {icon}
+      <span className="h-[15px] w-[15px]">{icon}</span>
       <span>{label}</span>
     </button>
   )
 }
 
-const InteractionButtons = () => {
+type InteractionButtonsProps = {
+  comments: number
+  boardLike: number
+}
+
+const InteractionButtons = ({ comments, boardLike }: InteractionButtonsProps) => {
   return (
     <div className="mt-4 flex items-center justify-between">
       <div className="flex space-x-4">
-        <IconButton icon={<FaThumbsUp />} label="추천" />
-        <IconButton icon={<FaCommentAlt />} label="댓글" />
-        <IconButton icon={<FaShare />} label="퍼가기" />
+        <IconButton icon={<GoHeartFill style={{ width: '100%', height: '100%' }} />} label={boardLike.toString()} />
+        <IconButton icon={<FaComment style={{ width: '100%', height: '100%' }} />} label={comments.toString()} />
       </div>
     </div>
   )

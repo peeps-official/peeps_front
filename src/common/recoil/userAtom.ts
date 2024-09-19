@@ -55,21 +55,28 @@ export const UserLoginDataStateAtom = atom<UserLogin_T>({
 })
 
 /**
+ * @description 로그인 유저 기본 값
+ */
+
+export const LogedInUserDefaultData = {
+  loginState: 200,
+  needData: [],
+  user_data: {
+    user_seq: '',
+    user_id: '',
+    user_nickname: '',
+    user_bg_img: '',
+    user_profile_img: '',
+  },
+}
+
+/**
  * @description 로그인 유저에 대한 서버 응답 데이터
  */
+
 export const LogedInUserReqDataAtom = atom<LoginUserDataReq_T>({
   key: 'LoginUserDataStateAtom',
-  default: {
-    loginState: 200,
-    needData: [],
-    user_data: {
-      user_seq: '',
-      user_id: '',
-      user_nickname: '',
-      user_bg_img: '',
-      user_profile_img: '',
-    },
-  },
+  default: LogedInUserDefaultData,
 })
 
 /**
