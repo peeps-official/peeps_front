@@ -74,3 +74,26 @@ export interface PopupProfilePage_T {
     subEx: string[]
   }[]
 }
+
+/**
+ * @description 유저 정보 중 교육 type
+ */
+
+export type Education_T = {
+  id?: number
+  school: string // 필수
+  major: string // 필수
+  degree: string // 필수
+  startDate: string // 필수
+  endDate: string
+  grade: number
+  enrollmentStatus: EducationStatus // 필수
+  description: string
+}
+
+export enum EducationStatus {
+  재학 = '재학',
+  휴학 = '휴학',
+  자퇴 = '자퇴',
+  졸업 = '졸업',
+}

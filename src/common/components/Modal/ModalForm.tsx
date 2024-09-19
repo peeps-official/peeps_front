@@ -29,7 +29,7 @@ export default function ModalForm({ title, setIsOpen, onSubmit, children }: Moda
       <form
         onSubmit={onSubmit}
         onClick={(e) => e.stopPropagation()}
-        className="flex h-fit w-[350px] flex-col items-center justify-center gap-[10px] overflow-y-auto rounded-[10px] bg-white px-[42px] py-[24px]"
+        className="flex h-fit w-fit flex-col items-center justify-center gap-[10px] overflow-y-auto rounded-[10px] bg-white px-[42px] py-[24px]"
       >
         <div className="flex flex-1 items-center justify-between">
           <div className="kr-bold-24 text-center">{title}</div>

@@ -24,7 +24,7 @@ export default function BadgeCard({ badge }: Props) {
       queryClient.invalidateQueries({ queryKey: ['admin', 'badge'] })
     },
   })
-  const { name, image, content, bdg_id: id } = badge
+  const { name, image, content, id: id } = badge
 
   function deleteBadge(id: number) {
     if (window.confirm('정말 삭제하시겠습니까?')) {
