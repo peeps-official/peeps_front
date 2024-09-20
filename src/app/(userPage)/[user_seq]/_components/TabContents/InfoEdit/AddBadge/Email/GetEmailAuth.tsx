@@ -11,8 +11,6 @@ export default function GetEmailAuth() {
     data: { email: '' },
   })
 
-  console.log(stepData)
-
   return (
     <AddAuthContainer
       icon={<MdAlternateEmail />}

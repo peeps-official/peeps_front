@@ -16,7 +16,6 @@ type Props = {
 export default function AddEducationModal({ defaultData, type, setIsOpen }: Props) {
   const { register, handleSubmit, control, setValue } = useForm<Education_T>({ defaultValues: defaultData })
   const user_seq = usePathname().slice(1)
-  console.table(defaultData)
 
   const onSubmit: SubmitHandler<Education_T> = async (inputVal) => {
     const reqData = {
@@ -37,8 +36,6 @@ export default function AddEducationModal({ defaultData, type, setIsOpen }: Prop
       type === 'new'
         ? await axiosWithAuth.post(`/${user_seq}/degree`, reqData)
         : await axiosWithAuth.patch(`/${user_seq}/degree/${defaultData?.id}`, reqData)
-
-    console.log(data, status)
 
     if (status === 200) {
       alert('학력이 수정되었습니다.')

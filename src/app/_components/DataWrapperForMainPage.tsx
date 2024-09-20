@@ -27,7 +27,7 @@ export default function DataWrapperForMainPage({ children }: DataWrapperForMainP
 
     if (error) {
       window.alert('로그인이 필요합니다.')
-      console.log(error)
+
       router.push('/login')
     }
   }, [isSuccess, error])

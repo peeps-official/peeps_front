@@ -45,7 +45,7 @@ export function FollowAndProfileButton({ isOwner }: FollowAndProfileButtonProps)
       }
     } else if (isFollow === 1) {
       const { data, status } = await axiosWithAuth.delete(`${ownerData.user_seq}/unfollow`)
-      console.log(status)
+
       if (status === 200) {
         queryClient.invalidateQueries({ queryKey: ['owner', 'userPage'] })
       }

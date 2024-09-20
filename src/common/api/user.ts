@@ -68,8 +68,7 @@ export async function getOwnerBadgeList(user_seq: string) {
  * @description owner 유저의 이력을 가져옵니다.
  */
 export async function getOwnerHistory(user_seq: string) {
-  console.log('user:', user_seq)
   const { data } = await axiosWithAuth.get(`/${user_seq}/degree`)
-  console.log('history:', data)
+
   return data
 }

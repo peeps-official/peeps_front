@@ -21,7 +21,6 @@ export default function ProfileImage({ alt, src, isOwner, ownerData }: ProfileIm
       return editOwnerProfile(data)
     },
     onSuccess: (data) => {
-      console.log(data)
       queryClient.invalidateQueries({ queryKey: ['owner', 'userPage'] })
     },
   })

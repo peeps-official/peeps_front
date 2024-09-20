@@ -62,7 +62,6 @@ export function File({ stepData, setStepData }: StepProps) {
           title="업로드"
           disabled={disabled}
           onClick={() => {
-            console.log('클릭')
             inputRef.current?.click()
           }}
         />

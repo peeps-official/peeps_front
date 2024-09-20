@@ -163,7 +163,6 @@ export function MakableBadgeInfo({ stepData, setStepData }: StepProps) {
           const data = await makeBadge(newData)
 
           if (data) {
-            console.log('data: ', data)
             alert('뱃지가 생성되었습니다!')
             setStepData({ step: 0, data: { ...stepData, ...data } })
             setIsSpread(false)
