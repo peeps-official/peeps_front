@@ -109,8 +109,9 @@ type ImageViewerProps = {
 function ImageViewer({ imageUrls, removeImage }: ImageViewerProps) {
   return (
     <div className="border-1 mt-4 flex flex-wrap rounded-[5px] border border-solid border-[#CED0D4] bg-white">
-      {imageUrls.map((imageUrl) => (
-        <div className="relative m-2 mr-0" key={imageUrl}>
+      {imageUrls.map((imageUrl, i) => (
+        // key에 index를 조합하지만, viewer 용도 외로 쓰이지 않으므로 괜찮다고 생각함
+        <div className="relative m-2 mr-0" key={imageUrl + i}>
           <div key={imageUrl} className="h-[70px] w-[70px] overflow-hidden rounded-[15px]">
             <NextImg src={imageUrl} alt="content image" />
           </div>
