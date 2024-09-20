@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation'
 import { Education_T } from '@/src/common/types/user'
 import { useRecoilValue } from 'recoil'
 import { IsOwnerAtom } from '@/src/common/recoil/userHome'
+import { useState } from 'react'
+import AddEducationModal from '../../InfoEdit/Education/AddEducationModal'
 
 export default function Education() {
   const user_seq_with_slash = usePathname()
@@ -22,15 +24,17 @@ type HistoryBoxProps = {
 }
 
 function HistoryBox({ items }: HistoryBoxProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   const isOwner = useRecoilValue(IsOwnerAtom)
 
   return (
     <>
-      <table className="w-[368px] table-auto">
+      <table className="w-full table-auto">
         <tbody>
-          {items.map((item) => (
+          {items.map((item: Education_T) => (
             <tr key={item.id} className="relative">
-              <td className="p-2">
+              <td className="w-[168px] p-2">
                 <div className="kr-bold-18 mb-1">{item.school}</div>
                 <div className="kr-medium-12 text-gray-400">
                   {item.startDate.split('-')[0]} ~ {item.endDate.split('-')[0]}
@@ -49,9 +53,14 @@ function HistoryBox({ items }: HistoryBoxProps) {
                 </div>
                 <div className="kr-regular-14 mb-8 mt-3">{item.description}</div>
               </td>
-              <td>
-                <button className="absolute right-0 top-0 w-fit">편집하기</button>
-              </td>
+              {isOwner && (
+                <td>
+                  <button className="absolute right-0 top-0 w-fit" onClick={() => setIsModalOpen(true)}>
+                    수정
+                  </button>
+                </td>
+              )}
+              {isModalOpen && <AddEducationModal defaultData={item} type="edit" setIsOpen={setIsModalOpen} />}
             </tr>
           ))}
         </tbody>

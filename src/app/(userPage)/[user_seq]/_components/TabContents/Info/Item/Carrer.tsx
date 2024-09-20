@@ -37,11 +37,11 @@ function CarrerBox() {
   ]
   return (
     <div className="flex flex-col gap-[23px]">
-      <table className="table-auto">
+      <table className="w-full table-auto">
         <tbody>
           {items.map((item) => (
             <tr key={item.id}>
-              <td className="p-2">
+              <td className="w-[168px] p-2">
                 <div className="kr-bold-18 mb-1">{item.company}</div>
                 <div className="kr-medium-12 text-gray-400">
                   {item.startDate.split('-')[0]} ~ {item.isCurrently ? '현재' : item.endDate.split('-')[0]}
