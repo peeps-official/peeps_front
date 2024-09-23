@@ -113,6 +113,8 @@ module.exports = {
       zIndex: {
         default: '1',
         header: '1000',
+        sideBarBack: '1990',
+        sideBar: '1999',
         modalBackground: '2000',
         modal: '2001',
       },

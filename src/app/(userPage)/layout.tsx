@@ -18,6 +18,8 @@ import { useQueryClient } from '@tanstack/react-query'
 import { onlyEnglishAndNumber } from '@/src/common/utils/valid/onlyEnglishAndNumber'
 import { headerSize } from '../_styles/const/const'
 import { usePathname } from 'next/navigation'
+import NextImg from '@/src/common/utils/NextImg'
+import Link from 'next/link'
 
 const archivo = Archivo({
   subsets: ['latin'],
@@ -34,6 +36,8 @@ interface layoutProps {
   children: React.ReactNode
   router: any
 }
+
+const sideBarBackground = `!w-[240px] before:bg-black before:bg-opacity-80 before:fixed before:inset-0 before:z-sideBarBack before:content-['']`
 
 export default function DefaultLayout({ children }: layoutProps) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true)
@@ -76,18 +80,32 @@ export default function DefaultLayout({ children }: layoutProps) {
   }, [useLoginData])
 
   return (
-    <>
+    <main className={`relative w-full pt-header`}>
       <GlobalHeader onToggleSidebar={toggleSidebar} />
-      <main className={`w-full pt-header`}>
-        <div className={`${archivo.variable + ' ' + dm_sans.variable}`}>
-          {isSidebarCollapsed ? <GlobalSidebarNarrow /> : <GlobalSidebarWide />}
-          <section
-            className={`maxHeightWithoutHeader flex-grow overflow-auto bg-white ${isSidebarCollapsed ? 'pl-24' : 'pl-64'}`}
-          >
-            {children}
-          </section>
+
+      <Link href="/" className="z-sideBar fixed left-[66px] top-0 mt-[2px] h-[60px] w-[80px] py-[20px]">
+        <NextImg alt="PEEPS logo" src="/images/logos/peeps.png" styles="object-cover cursor-pointer" />
+      </Link>
+      <div
+        className={`z-sideBarBack fixed left-0 top-0 w-[78px] ${archivo.variable} ${dm_sans.variable} ${!isSidebarCollapsed ? sideBarBackground : ''}`}
+      >
+        <div className={'z-sideBar relative flex h-screen w-full flex-col overflow-y-hidden bg-white'}>
+          <div className="z-sideBar w-full">
+            <div
+              className="h-[64px] w-[64px] py-[10px] pl-[19px] pr-[4px] [&_img]:rounded-[5px] [&_img]:hover:bg-[rgba(0,0,0,.05)]"
+              onClick={toggleSidebar}
+            >
+              <NextImg
+                alt="collapsed menu icon"
+                src="/images/header/menu.svg"
+                styles="object-cover h-full cursor-pointer"
+              />
+            </div>
+          </div>
+          {isSidebarCollapsed ? <GlobalSidebarNarrow /> : <GlobalSidebarWide onToggleSidebar={toggleSidebar} />}
         </div>
-      </main>
-    </>
+      </div>
+      <section className={`maxHeightWithoutHeader flex-grow overflow-auto bg-white pl-24`}>{children}</section>
+    </main>
   )
 }

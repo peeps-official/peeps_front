@@ -17,6 +17,11 @@ export default function Education() {
     queryKey: ['education', user_seq],
     queryFn: () => getOwnerEducation(user_seq),
   })
+
+  if (data?.length === 0) {
+    return null
+  }
+
   return <BoxItemWrapper title="교육">{isSuccess && <HistoryBox items={data} />}</BoxItemWrapper>
 }
 

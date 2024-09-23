@@ -6,18 +6,13 @@ import { LogedInUserReqDataAtom } from '@/src/common/recoil/userAtom'
 import NextImg from '@/src/common/utils/NextImg'
 import { LoginUserDataReq_T } from '@/src/common/types/user'
 
-export default function GlobalSidebarLeft() {
+export default function GlobalSidebarLeft({ onToggleSidebar }: { onToggleSidebar: () => void }) {
   const { user_data: logedInUserData } = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
 
   const isUserLogedIn = logedInUserData.user_seq === '' ? false : true
 
   return (
-    <div
-      className={
-        'fixed flex h-screen w-64 flex-col items-start overflow-y-hidden bg-white text-left font-kr text-mini text-dimgray-100 hover:overflow-y-auto'
-      }
-    >
-      {/* 본인 프로필 및 닉네임 */}
+    <div className="z-sideBar h-screen w-[240px] overflow-y-auto bg-white text-mini text-dimgray-100">
       {isUserLogedIn && (
         <>
           <Link href={`/${logedInUserData.user_nickname}`} className="flex items-center px-[15px] pb-2.5 pt-1">

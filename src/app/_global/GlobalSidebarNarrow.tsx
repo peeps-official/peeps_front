@@ -13,9 +13,7 @@ export default function GlobalSidebarLeft() {
   const isUserLogedIn = logedInUserData.user_seq === '' ? false : true
 
   return (
-    <div
-      className={'fixed flex h-screen w-24 flex-col items-start bg-white text-left font-kr text-mini text-dimgray-100'}
-    >
+    <div className={'flex h-screen flex-col items-start bg-white text-left font-kr text-mini text-dimgray-100'}>
       {isUserLogedIn && (
         <>
           {/* 본인 프로필 및 닉네임 */}

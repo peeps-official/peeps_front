@@ -11,7 +11,7 @@ export default function CareerTab() {
   return (
     <section>
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold">학력</h2>
+        <h2 className="text-xl font-bold">경력</h2>
         <button className="blueBtn" onClick={() => setIsModalOpen(true)}>
           추가하기
         </button>
