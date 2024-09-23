@@ -59,7 +59,7 @@ export const UserLoginDataStateAtom = atom<UserLogin_T>({
  */
 
 export const LogedInUserDefaultData = {
-  loginState: 200,
+  loginState: -1,
   needData: [],
   user_data: {
     user_seq: '',

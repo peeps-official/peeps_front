@@ -1,6 +1,7 @@
 import { axiosWithAuth } from './instance'
 import { LoginUserDataReq_T, UserProfile_T } from '../types/user'
 import { changeKey } from '../utils/changKey'
+import { LogedInUserDefaultData } from '../recoil/userAtom'
 
 /**
  * @description 로그인한 유저의 프로필 데이터를 가져옵니다.
@@ -15,6 +16,7 @@ export async function getLoginUserData() {
     return data
   } catch (error) {
     console.log('로그인 없음')
+    return LogedInUserDefaultData
   }
 
   // 서버 키값 -> 클라이언트용으로 변경
@@ -65,10 +67,19 @@ export async function getOwnerBadgeList(user_seq: string) {
 }
 
 /**
- * @description owner 유저의 이력을 가져옵니다.
+ * @description owner 유저의 학력을 가져옵니다.
  */
-export async function getOwnerHistory(user_seq: string) {
+export async function getOwnerEducation(user_seq: string) {
   const { data } = await axiosWithAuth.get(`/${user_seq}/degree`)
+
+  return data
+}
+
+/**
+ * @description owner 유저의 학력을 가져옵니다.
+ */
+export async function getOwnerCareer(user_seq: string) {
+  const { data } = await axiosWithAuth.get(`/${user_seq}/career`)
 
   return data
 }

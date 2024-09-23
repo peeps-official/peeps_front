@@ -56,7 +56,11 @@ export default function AddEducationModal({ defaultData, type, setIsOpen }: Prop
   if (is졸업날짜비활성화) setValue('endDate', '')
 
   return (
-    <ModalForm title="학력 추가" onSubmit={handleSubmit(onSubmit)} setIsOpen={setIsOpen}>
+    <ModalForm
+      title={type === 'new' ? '학력 추가' : '학력 수정'}
+      onSubmit={handleSubmit(onSubmit)}
+      setIsOpen={setIsOpen}
+    >
       <div>
         <fieldset className="flex gap-5">
           <Input title="학교명" {...register('school', { required: true })} placeholder="ex) 한경국립대학교" />

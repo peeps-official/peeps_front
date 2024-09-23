@@ -1,10 +1,11 @@
 'use client'
 
+import { Input } from '@/src/common/components/Input/Input'
 import { useState } from 'react'
-import Education from '../../Info/Item/Education'
-import AddEducationModal from './AddEducationModal'
+import Carrer from '../../Info/Item/Carrer'
+import AddCareerModal from './AddCareerModal'
 
-export default function EducationPage() {
+export default function CareerTab() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
@@ -16,9 +17,9 @@ export default function EducationPage() {
         </button>
       </div>
       <div className="mt-5">
-        <Education />
+        <Carrer />
       </div>
-      {isModalOpen && <AddEducationModal type="new" setIsOpen={setIsModalOpen} />}
+      {isModalOpen && <AddCareerModal type="new" setIsOpen={setIsModalOpen} />}
     </section>
   )
 }

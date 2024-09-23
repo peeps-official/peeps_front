@@ -14,6 +14,7 @@ export interface UserLogin_T {
 /**
  * @description '/login/check' API 응답 타입
  * [loginState]
+ * -1: 비로그인 상태
  * 200: 모든 정보 있음
  * 300: 추가로 필요한 정보 있음
  */
@@ -96,4 +97,21 @@ export enum EducationStatus {
   휴학 = '휴학',
   자퇴 = '자퇴',
   졸업 = '졸업',
+}
+
+/**
+ * @description 유저 정보 중 경력 type
+ */
+
+export type Career_T = {
+  id?: number
+  company: string // 필수
+  teamName: string
+  jobRole: string
+  jobTitle: string
+  jobType: string
+  startDate: string // 필수
+  endDate: string
+  isCurrently: boolean | string // 필수
+  description: string
 }

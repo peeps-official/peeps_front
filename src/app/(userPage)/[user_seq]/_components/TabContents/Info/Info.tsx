@@ -31,7 +31,6 @@ export default function Info() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) {
-          // 요소가 뷰포트를 벗어났을 때 맨 위로 스크롤
           window.scrollTo({
             top: -200,
             behavior: 'smooth',
