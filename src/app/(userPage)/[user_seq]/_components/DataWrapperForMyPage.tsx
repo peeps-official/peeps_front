@@ -25,12 +25,15 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq, isLoginCo
   const setIsOwner = useSetRecoilState<boolean>(IsOwnerAtom)
   const setOwnerPostList = useSetRecoilState<POST_ARR_T>(OwnerPostListAtom)
 
+  console.log('dd', isLoginCookie)
+
   const res = useQueries({
     queries: [
       {
         queryKey: ['login', 'userPage'],
         queryFn: () => {
           if (isLoginCookie) {
+            console.log('로그인 유저 요청')
             return getLoginUserData()
           }
           return Promise.resolve(LogedInUserDefaultData)
@@ -62,6 +65,9 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq, isLoginCo
       setUserLoginedData(loginUserRes.data)
     } else {
       console.log('비로그인 상태')
+      console.log(isLoginCookie)
+      console.log(loginUserRes.isSuccess)
+      console.log(loginUserRes.data)
     }
 
     // 페이지 주인 유저 정보

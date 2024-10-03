@@ -1,10 +1,10 @@
 import { Metadata } from 'next'
 import DataWrapperForMyPage from './_components/DataWrapperForMyPage'
 
+import { cookies } from 'next/headers'
 import UserProfile from './_components/Profile/UserProfile'
 import TabContents from './_components/TabContents/TabContents'
 import Taps from './_components/Taps/Taps'
-import { cookies } from 'next/headers'
 
 export const metadata: Metadata = {
   title: 'PEEPS',
@@ -20,6 +20,8 @@ type MyPageProps = {
 export default function MyPage({ params }: MyPageProps) {
   const cookieStore = cookies()
   const loginCookie = cookieStore.get('loginToken')
+
+  console.log('loginCookie', loginCookie)
 
   return (
     <DataWrapperForMyPage pageOwnerSeq={params.user_seq} isLoginCookie={!!loginCookie}>
