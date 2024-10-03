@@ -1,19 +1,18 @@
 'use client'
 
 import { getBadgeList } from '@/src/common/api/adminBadge'
-import { badgeDataAtom } from '@/src/common/recoil/badgeAtom'
-import { Badge_T } from '@/src/common/types/badge'
-import { changeKey } from '@/src/common/utils/changKey'
+import { AdminBadgeListAtom } from '@/src/common/recoil/badgeAtom'
+import { AdminBadgeList_T } from '@/src/common/types/admin'
 import { useQuery } from '@tanstack/react-query'
-import { useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { useEffect } from 'react'
+import { useSetRecoilState } from 'recoil'
 
 type Props = {
   children: React.ReactNode
 }
 
 export default function DataWrapperForAdminBadgePage({ children }: Props) {
-  const [badgeData, setBadgeData] = useRecoilState<Badge_T[]>(badgeDataAtom)
+  const setBadgeData = useSetRecoilState<AdminBadgeList_T[]>(AdminBadgeListAtom)
 
   const { data: badgeDataQuery, isSuccess } = useQuery({
     queryKey: ['admin', 'badge'],

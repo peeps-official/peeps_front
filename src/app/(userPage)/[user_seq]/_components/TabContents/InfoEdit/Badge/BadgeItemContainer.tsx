@@ -12,7 +12,7 @@ type AddAuthContainer_Props = {
   item: any
 }
 
-const BadgeTypes = [
+export const BadgeTypes = [
   { id: 'login', title: '로그인 인증', icon: <GoLock style={{ height: 'fit-content' }} /> },
   { id: 'email', title: '이메일 인증', icon: <MdAlternateEmail style={{ height: 'fit-content' }} /> },
   { id: 'file', title: '서류 인증', icon: <HiOutlineDownload style={{ height: 'fit-content' }} /> },

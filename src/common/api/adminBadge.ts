@@ -1,9 +1,10 @@
+import { AdminBadgeList_T } from '../types/admin'
 import { Badge_T, BadgeIssue_T } from '../types/badge'
 import { axiosWithAuth } from './instance'
 
 // 뱃지 리스트 조회
 export async function getBadgeList() {
-  const { data } = await axiosWithAuth.get<Badge_T[]>('/badge')
+  const { data } = await axiosWithAuth.get<AdminBadgeList_T[]>('/admin/badge')
 
   return data
 }

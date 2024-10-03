@@ -1,15 +1,15 @@
 'use client'
 
 type Props = {
-  activeTab: InfoTabTab_T
-  setActiveTab: (tab: InfoTabTab_T) => void
+  activeTab: InfoEditTab_T
+  setActiveTab: (tab: InfoEditTab_T) => void
 }
 
-export type InfoTabTab_T = 'badge' | 'add_badge' | 'edu' | 'career'
+export type InfoEditTab_T = 'badge' | 'add_badge' | 'edu' | 'career'
 
-export default function InfoTabMenu({ activeTab, setActiveTab }: Props) {
+export default function InfoEditMenu({ activeTab, setActiveTab }: Props) {
   // 활성화 상태 확인
-  const isActive = (tab: InfoTabTab_T) => activeTab === tab
+  const isActive = (tab: InfoEditTab_T) => activeTab === tab
 
   return (
     <div className="flex h-fit w-[228px] flex-col gap-[0.5rem] rounded-8xs px-[0.5rem] py-[1rem] text-tiny font-semibold shadow-popupBox">

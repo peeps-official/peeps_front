@@ -4,7 +4,27 @@
 export type AdminCreateBadge_T = {
   name: string
   image: string
-  content: string
+  email: string
+  login: boolean
+  file: boolean
+}
+
+/**
+ * @description admin페이지용 / 뱃지 관리 리스트 데이터 타입
+ */
+export type AdminBadgeList_T = {
+  bdg_id: number
+  name: string
+  image: string
+  member_count: number
+  auth: AuthType_T
+}
+
+export interface AuthType_T {
+  id: number
+  email: string
+  login: boolean
+  file: boolean
 }
 
 /**

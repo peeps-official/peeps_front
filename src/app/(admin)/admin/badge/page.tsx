@@ -7,18 +7,17 @@
  * -> 뱃지 내부에 다양한 인증방법에 따른 내용 추가하는 방식으로 구현.
  */
 
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import BadgeCard from '../_components/Badge/BadgeCard'
 import { axiosWithAuth } from '@/src/common/api/instance'
-import { AdminCreateBadge_T } from '@/src/common/types/admin'
-import { Badge_T } from '@/src/common/types/badge'
-import { badgeDataAtom } from '@/src/common/recoil/badgeAtom'
+import { AdminBadgeListAtom } from '@/src/common/recoil/badgeAtom'
+import { AdminBadgeList_T, AdminCreateBadge_T } from '@/src/common/types/admin'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRecoilValue } from 'recoil'
+import BadgeCard from '../_components/Badge/BadgeCard'
 import DataWrapperForAdminBadgePage from '../_components/DataWrapperForAdminBadgePage'
 
 export default function AdminBadgePage() {
   const queryClient = useQueryClient()
-  const badgeData = useRecoilValue<Badge_T[]>(badgeDataAtom)
+  const badgeData = useRecoilValue<AdminBadgeList_T[]>(AdminBadgeListAtom)
 
   const { mutate: addBadge } = useMutation({
     mutationFn: async (data: AdminCreateBadge_T) => await axiosWithAuth.post('/admin/badge', data),
@@ -42,16 +41,18 @@ export default function AdminBadgePage() {
             name: '한경대학교',
             image:
               'https://i.namu.wiki/i/rlymHGzGkXgtwPzlj9jmLbyqGFcykXgKxesKDZ6bBtdVi9dsunCmoQzcSo7Yib6T7Y4rCbzxcZOZmsw-c89Fng.svg',
-            content: 'test content',
+            email: '@hknu.ac.kr',
+            login: false,
+            file: false,
           })
         }}
       >
         뱃지추가 버튼
       </button>
       <div className="flex flex-wrap gap-10">
-        {badgeData[0]?.id !== -1 &&
+        {badgeData[0]?.bdg_id !== -1 &&
           badgeData.map((badge) => {
-            return <BadgeCard key={badge.id} badge={badge} />
+            return <BadgeCard key={badge.bdg_id} badge={badge} />
           })}
       </div>
     </DataWrapperForAdminBadgePage>

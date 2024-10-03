@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil'
 
 import Feed from './Feed/Feed'
 import Info from './Info/Info'
-import InfoTab from './InfoEdit/InfoTab'
+import InfoEdit from './InfoEdit/InfoEdit'
 
 export default function TabContents() {
   const selectedTab = useRecoilValue<UserHomeTab_T>(selectedUserHomeTabAtom)
@@ -15,7 +15,7 @@ export default function TabContents() {
     <div className="mb-[10rem] mt-[0.5rem]">
       {selectedTab === 'feed' && <Feed />}
       {selectedTab === 'info' && <Info />}
-      {selectedTab === 'infoEdit' && <InfoTab />}
+      {selectedTab === 'infoEdit' && <InfoEdit />}
     </div>
   )
 }

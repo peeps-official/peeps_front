@@ -3,7 +3,7 @@
  *
  */
 
-import BadgeDetail from '../../_components/Badge/BadgeDetail'
+import BadgeDetail from './_components/BadgeDetail'
 
 interface Props {
   params: {
@@ -12,10 +12,9 @@ interface Props {
 }
 
 export default function BadgeDetailsPage({ params }: Props) {
-  console.log(params.badgeId)
   return (
     <div>
-      <BadgeDetail />
+      <BadgeDetail badgeId={params.badgeId} />
     </div>
   )
 }

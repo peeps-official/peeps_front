@@ -1,9 +1,13 @@
 'use client'
 
+import {
+  BadgeTypes,
+  IsBadgeAuth,
+} from '@/src/app/(userPage)/[user_seq]/_components/TabContents/InfoEdit/Badge/BadgeItemContainer'
 import { axiosWithAuth } from '@/src/common/api/instance'
-import { Badge_T } from '@/src/common/types/badge'
+import { AdminBadgeList_T, AuthType_T } from '@/src/common/types/admin'
 import NextImg from '@/src/common/utils/NextImg'
-import { QueryClient, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import Link from 'next/link'
 
 /**
@@ -11,7 +15,7 @@ import Link from 'next/link'
  */
 
 interface Props {
-  badge: Badge_T
+  badge: AdminBadgeList_T
 }
 
 export default function BadgeCard({ badge }: Props) {
@@ -24,7 +28,7 @@ export default function BadgeCard({ badge }: Props) {
       queryClient.invalidateQueries({ queryKey: ['admin', 'badge'] })
     },
   })
-  const { name, image, content, id: id } = badge
+  const { name, image, bdg_id: id } = badge
 
   function deleteBadge(id: number) {
     if (window.confirm('정말 삭제하시겠습니까?')) {
@@ -33,23 +37,23 @@ export default function BadgeCard({ badge }: Props) {
   }
 
   return (
-    <div className="flex max-w-sm flex-col flex-wrap items-center justify-center overflow-hidden rounded bg-white p-5 shadow-lg">
+    <div className="flex flex-col gap-[10px] rounded-[8px] px-[14px] py-[16px] shadow-popupBox duration-200 ease-in hover:translate-y-[-0.2rem]">
       <Link href={`badge/${id}`}>
-        <div className="mb-[20px] h-[100px] w-[100px] rounded-[50%] shadow-xl">
-          <NextImg src={image} alt={name} />
+        <div onClick={(e) => e.stopPropagation()} className="flex items-center justify-between gap-[2em]">
+          <div className="flex items-center gap-[0.3em]">
+            <div className="relative top-[0.1rem] flex h-[30px] w-[30px] items-center justify-center">
+              <NextImg src={image} alt="badge" />
+            </div>
+            <p className="kr-bold-14">{name}</p>
+          </div>
         </div>
-        <div className="mb-2 text-center text-lg font-bold">{name}</div>
-        <div className="mb-2 text-center text-lg font-normal text-gray-medium">{content}</div>
+        <div className="mt-3 flex gap-1">
+          {BadgeTypes.map((type) => {
+            const isAuth: boolean = !!badge.auth[type.id as keyof AuthType_T]
+            return <IsBadgeAuth key={type.id} auth={isAuth} icon={type.icon} />
+          })}
+        </div>
       </Link>
-      <div className="grid grid-cols-2 gap-4">
-        <button className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">수정</button>
-        <button
-          onClick={() => deleteBadge(id)}
-          className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-        >
-          삭제
-        </button>
-      </div>
     </div>
   )
 }
