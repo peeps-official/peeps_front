@@ -2,12 +2,13 @@
 
 import { getPostList } from '@/src/common/api/post'
 import { getLoginUserData, getOwnerBadgeList, getOwnerUserData } from '@/src/common/api/user'
-import { LogedInUserDefaultData, LogedInUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
+import { LogedInUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
 import { IsOwnerAtom, OwnerPostListAtom } from '@/src/common/recoil/userHome'
 import { POST_ARR_T } from '@/src/common/types/post'
 import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
 
 import { useQueries } from '@tanstack/react-query'
+
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { useSetRecoilState } from 'recoil'
@@ -15,29 +16,20 @@ import { useSetRecoilState } from 'recoil'
 interface DataWrapperForMyPageProps {
   children: React.ReactNode
   pageOwnerSeq: string
-  isLoginCookie: boolean
 }
 
-export default function DataWrapperForMyPage({ children, pageOwnerSeq, isLoginCookie }: DataWrapperForMyPageProps) {
+export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWrapperForMyPageProps) {
   const router = useRouter()
   const setUserLoginedData = useSetRecoilState<LoginUserDataReq_T>(LogedInUserReqDataAtom)
   const setOwnerUserData = useSetRecoilState<UserProfile_T>(OwnerProfileStateAtom)
   const setIsOwner = useSetRecoilState<boolean>(IsOwnerAtom)
   const setOwnerPostList = useSetRecoilState<POST_ARR_T>(OwnerPostListAtom)
 
-  console.log('dd', isLoginCookie)
-
   const res = useQueries({
     queries: [
       {
-        queryKey: ['login', 'userPage'],
-        queryFn: () => {
-          if (isLoginCookie) {
-            console.log('로그인 유저 요청')
-            return getLoginUserData()
-          }
-          return Promise.resolve(LogedInUserDefaultData)
-        },
+        queryKey: ['login', 'userPage', pageOwnerSeq],
+        queryFn: getLoginUserData,
       },
       {
         queryKey: ['ownerUserData', pageOwnerSeq],
@@ -61,11 +53,11 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq, isLoginCo
     if (res.some((query) => query.isLoading)) return
 
     // 로그인 유저 정보
-    if (isLoginCookie && loginUserRes.isSuccess && loginUserRes.data) {
+    if (loginUserRes.isSuccess && loginUserRes.data) {
       setUserLoginedData(loginUserRes.data)
     } else {
       console.log('비로그인 상태')
-      console.log(isLoginCookie)
+
       console.log(loginUserRes.isSuccess)
       console.log(loginUserRes.data)
     }
