@@ -3,21 +3,21 @@ import { POST_T } from '@/src/common/types/post'
 import { formatTimeAgo } from '@/src/common/utils/Date/formatTimeAgo'
 import NextImg from '@/src/common/utils/NextImg'
 import dynamic from 'next/dynamic'
-import { FaComment } from 'react-icons/fa6'
-import { GoHeartFill } from 'react-icons/go'
 import { BsThreeDots } from 'react-icons/bs'
+import { FaComment } from 'react-icons/fa6'
 import { FiTrash } from 'react-icons/fi'
+import { GoHeartFill } from 'react-icons/go'
+import { IoLockClosedOutline } from 'react-icons/io5'
 
+import { axiosWithAuth } from '@/src/common/api/instance'
+import { LogedInUserReqDataAtom } from '@/src/common/recoil/userAtom'
+import { LoginUserDataReq_T } from '@/src/common/types/user'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useState } from 'react'
+import { useRecoilValue } from 'recoil'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 import './post.css'
-import { useState } from 'react'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import axios from 'axios'
-import { axiosWithAuth } from '@/src/common/api/instance'
-import { useRecoilValue } from 'recoil'
-import { LoginUserDataReq_T } from '@/src/common/types/user'
-import { LogedInUserReqDataAtom } from '@/src/common/recoil/userAtom'
 
 const Slider = dynamic(() => import('react-slick'), {
   ssr: false,
@@ -76,6 +76,11 @@ export default function Post({ post }: Props) {
             <div className="flex items-center justify-start gap-2">
               <h2 className="text-lg font-semibold">{post.user.nickname}</h2>
               <p className="text-sm text-gray-600"> {formatTimeAgo(create_date)}</p>
+              {post.isPublic === false && (
+                <p className="relative top-[-1px] h-[0.875rem] w-[0.875rem]">
+                  <IoLockClosedOutline className="h-full w-full" />
+                </p>
+              )}
             </div>
             <div className="relative h-6 w-6">
               <BsThreeDots
