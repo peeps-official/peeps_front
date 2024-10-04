@@ -6,6 +6,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
 @import url('./_styles/tailwind/components/btn.css');
 @import url('./_styles/tailwind/components/font.css');
 @import url('./_styles/tailwind/components/calc.css');
