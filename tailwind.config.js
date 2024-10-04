@@ -117,6 +117,8 @@ module.exports = {
         sideBar: '1999',
         modalBackground: '2000',
         modal: '2001',
+        popBack: '2001',
+        pop: '2002',
       },
       boxShadow: {
         xl: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
