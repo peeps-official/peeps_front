@@ -23,7 +23,6 @@ export function FollowAndProfileButton({ isOwner }: FollowAndProfileButtonProps)
   const loginedUserData = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
   const ownerData = useRecoilValue<UserProfile_T>(OwnerProfileStateAtom)
 
-  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
   const [isEditOpen, setIsEditOpen] = useState(false)
   const queryClient = useQueryClient()
 
@@ -41,13 +40,13 @@ export function FollowAndProfileButton({ isOwner }: FollowAndProfileButtonProps)
     if (isFollow === 0) {
       const { data } = await axiosWithAuth.post(`${ownerData.user_seq}/follow`)
       if (data) {
-        queryClient.invalidateQueries({ queryKey: ['owner', 'userPage'] })
+        queryClient.invalidateQueries({ queryKey: ['ownerUserData', ownerData.user_seq] })
       }
     } else if (isFollow === 1) {
       const { data, status } = await axiosWithAuth.delete(`${ownerData.user_seq}/unfollow`)
 
       if (status === 200) {
-        queryClient.invalidateQueries({ queryKey: ['owner', 'userPage'] })
+        queryClient.invalidateQueries({ queryKey: ['ownerUserData', ownerData.user_seq] })
       }
     }
   }

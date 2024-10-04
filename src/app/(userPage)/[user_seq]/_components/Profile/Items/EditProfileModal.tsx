@@ -10,8 +10,8 @@ import { useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
 
 export default function EditProfileModal({ setIsOpen }: { setIsOpen: (isOpen: boolean) => void }) {
-  const setOwnerUserData = useRecoilValue<UserProfile_T>(OwnerProfileStateAtom)
-  const { user_nickname, user_profile_img, profileMessage } = setOwnerUserData
+  const ownerUserData = useRecoilValue<UserProfile_T>(OwnerProfileStateAtom)
+  const { user_nickname, user_profile_img, profileMessage } = ownerUserData
   const [imgSrc, setImgSrc] = useState<string | null>(user_profile_img)
   const { register, handleSubmit } = useForm()
   const queryClient = useQueryClient()
@@ -19,13 +19,13 @@ export default function EditProfileModal({ setIsOpen }: { setIsOpen: (isOpen: bo
   const { mutate } = useMutation({
     mutationFn: async (data: UserProfile_T) => await editOwnerProfile(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['owner', 'userPage'] })
+      queryClient.invalidateQueries({ queryKey: ['ownerUserData', ownerUserData.user_seq] })
       setIsOpen(false)
     },
   })
 
   const onSubmit = handleSubmit((data) => {
-    mutate({ ...setOwnerUserData, ...data, user_profile_img: imgSrc })
+    mutate({ ...ownerUserData, ...data, user_profile_img: imgSrc })
   })
 
   return (
