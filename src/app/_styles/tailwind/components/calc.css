@@ -3,3 +3,7 @@
 .maxHeightWithoutHeader {
   max-height: calc(100vh - 60px);
 }
+
+.maxWidthWithoutPadding {
+  width: calc(100% + 16px);
+}
