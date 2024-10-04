@@ -71,7 +71,7 @@ export default function DefaultLayout({ children }: layoutProps) {
 
         // 에러 날라올 수 있음 -> id 중복~~ 임시처리이므로 나중에 페이지 분리하는 것도 좋을 듯
         if (status === 200) {
-          queryClient.invalidateQueries({ queryKey: ['login', 'userPage'] })
+          queryClient.invalidateQueries({ queryKey: ['login', 'userPage', owner_seq] })
           queryClient.invalidateQueries({ queryKey: ['ownerUserData', owner_seq] })
         }
         return data
@@ -83,13 +83,13 @@ export default function DefaultLayout({ children }: layoutProps) {
     <main className={`relative w-full pt-header`}>
       <GlobalHeader onToggleSidebar={toggleSidebar} />
 
-      <Link href="/" className="z-sideBar fixed left-[66px] top-0 mt-[2px] h-[60px] w-[80px] py-[20px]">
+      <Link href="/" className="fixed left-[66px] top-0 z-sideBar mt-[2px] h-[60px] w-[80px] py-[20px]">
         <NextImg alt="PEEPS logo" src="/images/logos/peeps.png" styles="object-cover cursor-pointer" />
       </Link>
       <div
-        className={`z-sideBarBack fixed left-0 top-0 w-[78px] ${archivo.variable} ${dm_sans.variable} ${!isSidebarCollapsed ? sideBarBackground : ''}`}
+        className={`fixed left-0 top-0 z-sideBarBack w-[78px] ${archivo.variable} ${dm_sans.variable} ${!isSidebarCollapsed ? sideBarBackground : ''}`}
       >
-        <div className={'z-sideBar relative flex h-screen w-full flex-col overflow-y-hidden bg-white'}>
+        <div className={'relative z-sideBar flex h-screen w-full flex-col overflow-y-hidden bg-white'}>
           <div className="z-sideBar w-full">
             <div
               className="h-[64px] w-[64px] py-[10px] pl-[19px] pr-[4px] [&_img]:rounded-[5px] [&_img]:hover:bg-[rgba(0,0,0,.05)]"

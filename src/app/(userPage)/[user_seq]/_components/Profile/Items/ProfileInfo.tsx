@@ -17,15 +17,15 @@ type Props = {
 export default function ProfileInfo({ isOwner, ownerData }: Props) {
   const queryClient = useQueryClient()
 
-  const { user_id, user_nickname, profileMessage, follwer_list, badge_list } = ownerData
+  const { user_id, user_nickname, profileMessage, follwer_list, badge_list, user_seq } = ownerData
 
   // 프로필 수정 mutation
   const { mutate } = useMutation({
     mutationFn: async (data: UserProfile_T) => {
       return editOwnerProfile(data)
     },
-    onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ['owner', 'userPage'] })
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['ownerUserData', user_seq] })
     },
   })
 
@@ -122,7 +122,7 @@ export function BadgeList({ badges, selectedBadgeId = -1 }: BadgeListProps) {
   return (
     <div className="mb-[-1rem] flex h-[40px] w-full gap-[10px] pt-[2px]">
       {badges.map((badge) => (
-        <ProfileCircleBadge key={badge.id} badge={badge} selectedBadgeId={selectedBadgeId} />
+        <ProfileCircleBadge key={badge.bdg_id} badge={badge} selectedBadgeId={selectedBadgeId} />
       ))}
     </div>
   )
