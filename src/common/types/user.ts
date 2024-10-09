@@ -37,3 +37,14 @@ export type LoginUserFollow_T = {
   user_sep: string
   image: string
 }
+
+/**
+ * @description 유저 사이드바 친구 데이터 타입
+ * [isFollow]
+ */
+
+export type Login_User_Follow_T = {
+  user_id: string
+  user_sep: string
+  image: string
+}
