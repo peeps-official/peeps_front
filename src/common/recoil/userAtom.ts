@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { LoginUserDataReq_T, UserLogin_T, UserProfile_T } from '../types/user'
+import { Login_User_Follow_T, LoginUserDataReq_T, UserLogin_T, UserProfile_T } from '../types/user'
 import { AdminUserData_T } from '../types/admin'
 
 // admin
@@ -95,4 +95,9 @@ export const OwnerProfileStateAtom = atom<UserProfile_T>({
     follwer_list: [],
     badge_list: [],
   },
+})
+
+export const Login_User_Follow_Atom = atom<Array<Login_User_Follow_T>>({
+  key: 'Login_User_Follow_Atom',
+  default: [],
 })

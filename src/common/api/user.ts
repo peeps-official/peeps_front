@@ -83,3 +83,13 @@ export async function getOwnerCareer(user_seq: string) {
 
   return data
 }
+
+/**
+ * @description owner 유저의 팔로우 리스트를 가져옵니다.
+ */
+
+export async function getOwnerFollowList(user_seq: string) {
+  const { data } = await axiosWithAuth.get(`/${user_seq}/followlist`)
+
+  return data
+}

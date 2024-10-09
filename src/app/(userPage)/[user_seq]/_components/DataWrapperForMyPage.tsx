@@ -1,16 +1,16 @@
 'use client'
 
 import { getPostList } from '@/src/common/api/post'
-import { getLoginUserData, getOwnerBadgeList, getOwnerUserData } from '@/src/common/api/user'
-import { LogedInUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
+import { getLoginUserData, getOwnerBadgeList, getOwnerFollowList, getOwnerUserData } from '@/src/common/api/user'
+import { LogedInUserReqDataAtom, Login_User_Follow_Atom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
 import { IsOwnerAtom, OwnerPostListAtom } from '@/src/common/recoil/userHome'
 import { POST_ARR_T } from '@/src/common/types/post'
-import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
+import { Login_User_Follow_T, LoginUserDataReq_T, UserLogin_T, UserProfile_T } from '@/src/common/types/user'
 
-import { useQueries } from '@tanstack/react-query'
+import { useQueries, useQuery } from '@tanstack/react-query'
 
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 
 interface DataWrapperForMyPageProps {
@@ -24,11 +24,13 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
   const setOwnerUserData = useSetRecoilState<UserProfile_T>(OwnerProfileStateAtom)
   const setIsOwner = useSetRecoilState<boolean>(IsOwnerAtom)
   const setOwnerPostList = useSetRecoilState<POST_ARR_T>(OwnerPostListAtom)
+  const setLoginFollowList = useSetRecoilState<Login_User_Follow_T[]>(Login_User_Follow_Atom)
+  const [loginUserData, SetLoginUserData] = useState<UserLogin_T | null>(null)
 
   const res = useQueries({
     queries: [
       {
-        queryKey: ['login', 'userPage', pageOwnerSeq],
+        queryKey: ['login', 'userPage'],
         queryFn: getLoginUserData,
       },
       {
@@ -43,18 +45,35 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
         queryKey: ['ownerPostList', pageOwnerSeq],
         queryFn: () => getPostList(pageOwnerSeq),
       },
+      {
+        queryKey: ['LoginUserFollowList'],
+        queryFn: () => getOwnerFollowList(pageOwnerSeq),
+      },
     ],
   })
+
+  const { status, data: LoginUserFollowListData } = useQuery({
+    queryKey: ['LoginUserFollowList'],
+    queryFn: () => getOwnerFollowList(loginUserData?.user_seq ?? ''),
+    enabled: !!loginUserData,
+  })
+
+  useEffect(() => {
+    if (LoginUserFollowListData) setLoginFollowList(LoginUserFollowListData)
+  }, [LoginUserFollowListData])
 
   useEffect(() => {
     const [loginUserRes, ownerUserRes, loginUserBadge, postListRes] = res
 
-    // 로딩 중
-    if (res.some((query) => query.isLoading)) return
+    if (loginUserRes.isSuccess)
+      if (res.some((query) => query.isLoading))
+        // 로딩 중
+        return
 
     // 로그인 유저 정보
     if (loginUserRes.isSuccess && loginUserRes.data) {
       setUserLoginedData(loginUserRes.data)
+      SetLoginUserData(loginUserRes.data.user_data)
     } else {
       console.log('비로그인 상태')
 
