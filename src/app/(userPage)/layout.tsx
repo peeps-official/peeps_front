@@ -3,23 +3,21 @@ import '@/src/app/global.css'
 import '@/src/app/styles.css'
 
 import { useEffect, useState } from 'react'
-import GlobalHeader from '../_global/GlobalHeader'
-import GlobalSidebarNarrow from '../_global/GlobalSidebarNarrow'
-import GlobalSidebarWide from '../_global/GlobalSidebarWide'
 
-import { Archivo } from 'next/font/google'
-import { DM_Sans } from 'next/font/google'
+import { Archivo, DM_Sans } from 'next/font/google'
 
+import { axiosWithAuth } from '@/src/common/api/instance'
 import { LogedInUserReqDataAtom } from '@/src/common/recoil/userAtom'
 import { LoginUserDataReq_T } from '@/src/common/types/user'
-import { useRecoilValue } from 'recoil'
-import { axiosWithAuth } from '@/src/common/api/instance'
-import { useQueryClient } from '@tanstack/react-query'
-import { onlyEnglishAndNumber } from '@/src/common/utils/valid/onlyEnglishAndNumber'
-import { headerSize } from '../_styles/const/const'
-import { usePathname } from 'next/navigation'
 import NextImg from '@/src/common/utils/NextImg'
+import { onlyEnglishAndNumber } from '@/src/common/utils/valid/onlyEnglishAndNumber'
+import { useQueryClient } from '@tanstack/react-query'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useRecoilValue } from 'recoil'
+import GlobalHeader from './[user_seq]/_components/Header/GlobalHeader'
+import GlobalSidebarNarrow from './[user_seq]/_components/SideBar/GlobalSidebarNarrow'
+import GlobalSidebarWide from './[user_seq]/_components/SideBar/GlobalSidebarWide'
 
 const archivo = Archivo({
   subsets: ['latin'],
@@ -44,6 +42,8 @@ export default function DefaultLayout({ children }: layoutProps) {
   const useLoginData = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
   const queryClient = useQueryClient()
   const owner_seq = usePathname().slice(1)
+
+  const isUserLogedIn = useLoginData?.user_data?.user_seq === '' ? false : true
 
   const toggleSidebar = () => {
     setIsSidebarCollapsed((prevState) => !prevState)
@@ -71,12 +71,14 @@ export default function DefaultLayout({ children }: layoutProps) {
 
         // 에러 날라올 수 있음 -> id 중복~~ 임시처리이므로 나중에 페이지 분리하는 것도 좋을 듯
         if (status === 200) {
-          queryClient.invalidateQueries({ queryKey: ['login', 'userPage', owner_seq] })
+          queryClient.invalidateQueries({ queryKey: ['login', 'userPage'] })
           queryClient.invalidateQueries({ queryKey: ['ownerUserData', owner_seq] })
         }
         return data
       })()
     }
+
+    return () => {}
   }, [useLoginData])
 
   return (
@@ -86,25 +88,27 @@ export default function DefaultLayout({ children }: layoutProps) {
       <Link href="/" className="fixed left-[66px] top-0 z-sideBar mt-[2px] h-[60px] w-[80px] py-[20px]">
         <NextImg alt="PEEPS logo" src="/images/logos/peeps.png" styles="object-cover cursor-pointer" />
       </Link>
-      <div
-        className={`fixed left-0 top-0 z-sideBarBack w-[78px] ${archivo.variable} ${dm_sans.variable} ${!isSidebarCollapsed ? sideBarBackground : ''}`}
-      >
-        <div className={'relative z-sideBar flex h-screen w-full flex-col overflow-y-hidden bg-white'}>
-          <div className="z-sideBar w-full">
-            <div
-              className="h-[64px] w-[64px] py-[10px] pl-[19px] pr-[4px] [&_img]:rounded-[5px] [&_img]:hover:bg-[rgba(0,0,0,.05)]"
-              onClick={toggleSidebar}
-            >
-              <NextImg
-                alt="collapsed menu icon"
-                src="/images/header/menu.svg"
-                styles="object-cover h-full cursor-pointer"
-              />
+      {isUserLogedIn && (
+        <div
+          className={`fixed left-0 top-0 z-sideBarBack w-[78px] ${archivo.variable} ${dm_sans.variable} ${!isSidebarCollapsed ? sideBarBackground : ''}`}
+        >
+          <div className={'relative z-sideBar flex h-screen w-full flex-col overflow-y-hidden bg-white'}>
+            <div className="z-sideBar w-full">
+              <div
+                className="h-[64px] w-[64px] py-[10px] pl-[19px] pr-[4px] [&_img]:rounded-[5px] [&_img]:hover:bg-[rgba(0,0,0,.05)]"
+                onClick={toggleSidebar}
+              >
+                <NextImg
+                  alt="collapsed menu icon"
+                  src="/images/header/menu.svg"
+                  styles="object-cover h-full cursor-pointer"
+                />
+              </div>
             </div>
+            {isSidebarCollapsed ? <GlobalSidebarNarrow /> : <GlobalSidebarWide onToggleSidebar={toggleSidebar} />}
           </div>
-          {isSidebarCollapsed ? <GlobalSidebarNarrow /> : <GlobalSidebarWide onToggleSidebar={toggleSidebar} />}
         </div>
-      </div>
+      )}
       <section className={`maxHeightWithoutHeader flex-grow overflow-auto bg-white pl-24`}>{children}</section>
     </main>
   )
