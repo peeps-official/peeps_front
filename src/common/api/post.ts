@@ -8,21 +8,24 @@ export async function getPostList(pageOwnerSeq: string) {
 }
 
 export async function uploadPost(user_seq: string, data: PostUpload_T) {
-  const { imgs: files, contents: description, isPublic } = data
-  const formData = new FormData()
+  const { image, description, isPublic } = data
+  const res = await axiosWithAuth.post(`/${user_seq}/post`, {
+    description,
+    isPublic,
+    image,
+  })
+  console.log(res.data)
+}
 
-  console.log(data)
+export async function editPost(user_seq: string, art_id: number, data: PostUpload_T) {
+  const { image, description, isPublic } = data
 
-  if (files) {
-    for (let i = 0; i < files.length; i++) {
-      formData.append('files', files[i])
-      console.log(i)
-      console.log(files[i])
-    }
-  }
-  formData.append('description', description)
-  formData.append('isPublic', isPublic.toString())
+  console.log('editPost', user_seq, art_id, data)
 
-  const res = await axiosWithAuth.post(`/${user_seq}/post`, formData)
+  const res = await axiosWithAuth.patch(`/${user_seq}/post/${art_id.toString()}`, {
+    description,
+    isPublic,
+    image,
+  })
   console.log(res.data)
 }

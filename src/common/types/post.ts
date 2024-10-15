@@ -1,13 +1,13 @@
 export type PostUpload_T = {
-  contents: string
-  imgs: FileList | null
+  description: string
+  image: string[]
   isPublic: boolean
 }
 
 export interface POST_T {
   id: number
   description: string
-  image: string
+  image: string[]
   create_date: string // ISO 8601 형식의 날짜 문자열
   end_date: string // ISO 8601 형식의 날짜 문자열
   isPublic: boolean
