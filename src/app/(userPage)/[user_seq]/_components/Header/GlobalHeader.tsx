@@ -5,7 +5,7 @@ import { useRecoilValue } from 'recoil'
 import { LogedInUserReqDataAtom } from '@/src/common/recoil/userAtom'
 import NextImg from '@/src/common/utils/NextImg'
 import Link from 'next/link'
-import { LoginUserDataReq_T } from '@/src/common/types/user'
+import { LoginUserData_T } from '@/src/common/types/user'
 import Button from '@/src/common/components/Btn/Button'
 import { useRouter } from 'next/navigation'
 
@@ -14,7 +14,7 @@ type GlobalHeaderProps = {
 }
 
 export default function GlobalHeader({ onToggleSidebar }: GlobalHeaderProps) {
-  const { user_data: logedInUserData } = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
+  const { user_data: logedInUserData } = useRecoilValue<LoginUserData_T>(LogedInUserReqDataAtom)
   const router = useRouter()
   const [search, setSearch] = useState('')
 

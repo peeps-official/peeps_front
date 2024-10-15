@@ -2,12 +2,12 @@ import { useQuery } from '@tanstack/react-query'
 import BoxItemWrapper from '../../Feed/BoxItemWrapper'
 import { getOwnerEducation } from '@/src/common/api/user'
 import { usePathname } from 'next/navigation'
-import { Education_T } from '@/src/common/types/user'
 import { useRecoilValue } from 'recoil'
 import { IsOwnerAtom } from '@/src/common/recoil/userHome'
 import { useState } from 'react'
 import AddEducationModal from '../../InfoEdit/Education/AddEducationModal'
 import { axiosWithAuth } from '@/src/common/api/instance'
+import { OwnerEducation_T } from '@/src/common/types/owner'
 
 export default function Education() {
   const user_seq_with_slash = usePathname()
@@ -26,7 +26,7 @@ export default function Education() {
 }
 
 type HistoryBoxProps = {
-  items: Education_T[]
+  items: OwnerEducation_T[]
 }
 
 function HistoryBox({ items }: HistoryBoxProps) {
@@ -40,7 +40,7 @@ function HistoryBox({ items }: HistoryBoxProps) {
     <>
       <table className="w-full table-auto">
         <tbody>
-          {items.map((item: Education_T) => {
+          {items.map((item: OwnerEducation_T) => {
             const startDate = item.startDate.split('-')[0]
             const endDate = item.endDate.split('-')[0]
 

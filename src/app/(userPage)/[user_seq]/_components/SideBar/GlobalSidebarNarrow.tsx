@@ -4,13 +4,13 @@ import { useRecoilValue } from 'recoil'
 
 import { axiosWithAuth } from '@/src/common/api/instance'
 import { LogedInUserReqDataAtom, Login_User_Follow_Atom } from '@/src/common/recoil/userAtom'
-import { Login_User_Follow_T, LoginUserDataReq_T } from '@/src/common/types/user'
+import { LoginUserFollow_T, LoginUserData_T } from '@/src/common/types/user'
 import NextImg from '@/src/common/utils/NextImg'
 import { useEffect, useState } from 'react'
 
 export default function GlobalSidebarNarrow() {
-  const { user_data: logedInUserData } = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
-  const followList = useRecoilValue<Login_User_Follow_T[]>(Login_User_Follow_Atom)
+  const { user_data: logedInUserData } = useRecoilValue<LoginUserData_T>(LogedInUserReqDataAtom)
+  const followList = useRecoilValue<LoginUserFollow_T[]>(Login_User_Follow_Atom)
 
   const isUserLogedIn = logedInUserData.user_seq === '' ? false : true
 
@@ -75,7 +75,7 @@ export default function GlobalSidebarNarrow() {
                 <div className="relative inline-block min-w-[28px] font-black leading-[16px]">팔로우</div>
               </div>
               {followList &&
-                followList.map((follow: Login_User_Follow_T) => (
+                followList.map((follow: LoginUserFollow_T) => (
                   <Link
                     key={follow.user_sep}
                     href={follow.user_sep}

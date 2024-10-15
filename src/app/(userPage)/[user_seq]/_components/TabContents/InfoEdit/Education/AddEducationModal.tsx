@@ -3,21 +3,21 @@
 import { axiosWithAuth } from '@/src/common/api/instance'
 import { Input } from '@/src/common/components/Input/Input'
 import ModalForm from '@/src/common/components/Modal/ModalForm'
-import { Education_T } from '@/src/common/types/user'
+import { OwnerEducation_T } from '@/src/common/types/user'
 import { usePathname } from 'next/navigation'
 import { SubmitHandler, useForm, useWatch } from 'react-hook-form'
 
 type Props = {
-  defaultData?: Education_T
+  defaultData?: OwnerEducation_T
   type: 'new' | 'edit'
   setIsOpen: (isOpen: boolean) => void
 }
 
 export default function AddEducationModal({ defaultData, type, setIsOpen }: Props) {
-  const { register, handleSubmit, control, setValue } = useForm<Education_T>({ defaultValues: defaultData })
+  const { register, handleSubmit, control, setValue } = useForm<OwnerEducation_T>({ defaultValues: defaultData })
   const user_seq = usePathname().slice(1)
 
-  const onSubmit: SubmitHandler<Education_T> = async (inputVal) => {
+  const onSubmit: SubmitHandler<OwnerEducation_T> = async (inputVal) => {
     const reqData = {
       school: inputVal.school,
       degree: inputVal.degree,

@@ -4,14 +4,14 @@ import { editOwnerProfile } from '@/src/common/api/user'
 import ProfileCircleBadge from '@/src/common/components/Badge/ProfileCircleBadge'
 import Button from '@/src/common/components/Btn/Button'
 import { Badge_T } from '@/src/common/types/badge'
-import { UserProfile_T } from '@/src/common/types/user'
+import { OwnerProfile_T } from '@/src/common/types/user'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FaCamera } from 'react-icons/fa'
 import { FollowAndProfileButton } from './FollowAndProfileButton'
 
 type Props = {
   isOwner: boolean
-  ownerData: UserProfile_T
+  ownerData: OwnerProfile_T
 }
 
 export default function ProfileInfo({ isOwner, ownerData }: Props) {
@@ -21,7 +21,7 @@ export default function ProfileInfo({ isOwner, ownerData }: Props) {
 
   // 프로필 수정 mutation
   const { mutate } = useMutation({
-    mutationFn: async (data: UserProfile_T) => {
+    mutationFn: async (data: OwnerProfile_T) => {
       return editOwnerProfile(data)
     },
     onSuccess: () => {

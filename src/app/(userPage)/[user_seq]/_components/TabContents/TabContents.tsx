@@ -8,6 +8,7 @@ import Feed from './Feed/Feed'
 import Info from './Info/Info'
 import InfoEdit from './InfoEdit/InfoEdit'
 import Badge from './Badge/Badge'
+import ImageTab from './Image/ImageTab'
 
 export default function TabContents() {
   const selectedTab = useRecoilValue<UserHomeTab_T>(selectedUserHomeTabAtom)
@@ -16,8 +17,9 @@ export default function TabContents() {
     <div className="mb-[10rem] mt-[0.5rem]">
       {selectedTab === 'feed' && <Feed />}
       {selectedTab === 'info' && <Info />}
-      {selectedTab === 'infoEdit' && <InfoEdit />}
+      {selectedTab === 'image' && <ImageTab />}
       {selectedTab === 'badge' && <Badge />}
+      {selectedTab === 'infoEdit' && <InfoEdit />}
     </div>
   )
 }

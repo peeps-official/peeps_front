@@ -3,21 +3,21 @@
 import { editOwnerProfile } from '@/src/common/api/user'
 import ModalForm from '@/src/common/components/Modal/ModalForm'
 import { OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
-import { UserProfile_T } from '@/src/common/types/user'
+import { OwnerProfile_T } from '@/src/common/types/user'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRecoilValue } from 'recoil'
 
 export default function EditProfileModal({ setIsOpen }: { setIsOpen: (isOpen: boolean) => void }) {
-  const ownerUserData = useRecoilValue<UserProfile_T>(OwnerProfileStateAtom)
+  const ownerUserData = useRecoilValue<OwnerProfile_T>(OwnerProfileStateAtom)
   const { user_nickname, user_profile_img, profileMessage } = ownerUserData
   const [imgSrc, setImgSrc] = useState<string | null>(user_profile_img)
   const { register, handleSubmit } = useForm()
   const queryClient = useQueryClient()
 
   const { mutate } = useMutation({
-    mutationFn: async (data: UserProfile_T) => await editOwnerProfile(data),
+    mutationFn: async (data: OwnerProfile_T) => await editOwnerProfile(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['ownerUserData', ownerUserData.user_seq] })
       setIsOpen(false)

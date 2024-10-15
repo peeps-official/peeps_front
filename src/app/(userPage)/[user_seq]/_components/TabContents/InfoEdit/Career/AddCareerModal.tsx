@@ -3,21 +3,21 @@
 import { axiosWithAuth } from '@/src/common/api/instance'
 import { Input } from '@/src/common/components/Input/Input'
 import ModalForm from '@/src/common/components/Modal/ModalForm'
-import { Career_T } from '@/src/common/types/user'
+import { OwnerCareer_T } from '@/src/common/types/owner'
 import { usePathname } from 'next/navigation'
 import { SubmitHandler, useForm, useWatch } from 'react-hook-form'
 
 type Props = {
-  defaultData?: Career_T
+  defaultData?: OwnerCareer_T
   type: 'new' | 'edit'
   setIsOpen: (isOpen: boolean) => void
 }
 
 export default function AddCareerModal({ defaultData, type, setIsOpen }: Props) {
-  const { register, handleSubmit, control, setValue } = useForm<Career_T>({ defaultValues: defaultData })
+  const { register, handleSubmit, control, setValue } = useForm<OwnerCareer_T>({ defaultValues: defaultData })
   const user_seq = usePathname().slice(1)
 
-  const onSubmit: SubmitHandler<Career_T> = async (inputVal) => {
+  const onSubmit: SubmitHandler<OwnerCareer_T> = async (inputVal) => {
     const reqData = {
       company: inputVal.company,
       teamName: inputVal.teamName,

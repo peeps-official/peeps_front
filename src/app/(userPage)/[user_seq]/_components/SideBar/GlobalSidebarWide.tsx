@@ -3,13 +3,13 @@ import Link from 'next/link'
 import { useRecoilValue } from 'recoil'
 
 import { LogedInUserReqDataAtom, Login_User_Follow_Atom } from '@/src/common/recoil/userAtom'
-import { Login_User_Follow_T, LoginUserDataReq_T } from '@/src/common/types/user'
+import { LoginUserFollow_T, LoginUserData_T } from '@/src/common/types/user'
 import NextImg from '@/src/common/utils/NextImg'
 import { useEffect } from 'react'
 
 export default function GlobalSidebarWide({ onToggleSidebar }: { onToggleSidebar: () => void }) {
-  const { user_data: logedInUserData } = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
-  const followList = useRecoilValue<Login_User_Follow_T[]>(Login_User_Follow_Atom)
+  const { user_data: logedInUserData } = useRecoilValue<LoginUserData_T>(LogedInUserReqDataAtom)
+  const followList = useRecoilValue<LoginUserFollow_T[]>(Login_User_Follow_Atom)
 
   const isUserLogedIn = logedInUserData.user_seq === '' ? false : true
 

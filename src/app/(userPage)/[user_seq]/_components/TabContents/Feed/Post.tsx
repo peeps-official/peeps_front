@@ -7,7 +7,7 @@ import { IoLockClosedOutline } from 'react-icons/io5'
 
 import { axiosWithAuth } from '@/src/common/api/instance'
 import { LogedInUserReqDataAtom } from '@/src/common/recoil/userAtom'
-import { LoginUserDataReq_T } from '@/src/common/types/user'
+import { LoginUserData_T } from '@/src/common/types/user'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
@@ -20,7 +20,7 @@ type Props = {
 export default function Post({ post }: Props) {
   const [isEditPost, setIsEditPost] = useState<Boolean>(false)
   const [isOption, setIsOption] = useState<Boolean>(false)
-  const userLoginedData = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
+  const userLoginedData = useRecoilValue<LoginUserData_T>(LogedInUserReqDataAtom)
 
   const queryClient = useQueryClient()
 

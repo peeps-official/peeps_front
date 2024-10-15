@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { Login_User_Follow_T, LoginUserDataReq_T, UserLogin_T, UserProfile_T } from '../types/user'
+import { LoginUserFollow_T, LoginUserData_T, UserLogin_T } from '../types/user'
 import { AdminUserData_T } from '../types/admin'
 
 // admin
@@ -74,30 +74,12 @@ export const LogedInUserDefaultData = {
  * @description 로그인 유저에 대한 서버 응답 데이터
  */
 
-export const LogedInUserReqDataAtom = atom<LoginUserDataReq_T>({
+export const LogedInUserReqDataAtom = atom<LoginUserData_T>({
   key: 'LoginUserDataStateAtom',
   default: LogedInUserDefaultData,
 })
 
-/**
- * @description 유저 프로필 데이터
- */
-export const OwnerProfileStateAtom = atom<UserProfile_T>({
-  key: 'OwnerProfileStateAtom',
-  default: {
-    user_seq: '',
-    user_id: '',
-    user_nickname: '',
-    user_bg_img: null,
-    user_profile_img: null,
-    profileMessage: '',
-    isFollow: -1,
-    follwer_list: [],
-    badge_list: [],
-  },
-})
-
-export const Login_User_Follow_Atom = atom<Array<Login_User_Follow_T>>({
+export const Login_User_Follow_Atom = atom<Array<LoginUserFollow_T>>({
   key: 'Login_User_Follow_Atom',
   default: [],
 })

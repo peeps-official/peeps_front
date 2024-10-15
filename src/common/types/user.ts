@@ -21,99 +21,10 @@ export interface UserLogin_T {
 
 type UserLogin_Key_T = keyof UserLogin_T
 
-export interface LoginUserDataReq_T {
+export interface LoginUserData_T {
   loginState: number
   needData?: UserLogin_Key_T[]
   user_data: UserLogin_T
-}
-
-/**
- * @description 유저 프로필 데이터 / 유저 로그인 정보 + a
- * [isFollow]
- *  -1: 비로그인 상태
- *   0: 로그인 상태 - 팔로우 아님
- *   1: 로그인 상태 - 팔로우중
- */
-
-export interface UserProfile_T extends UserLogin_T {
-  isFollow?: -1 | 0 | 1
-  profileMessage: string | ''
-  follwer_list: { nickname: string; user_id: string }[]
-  badge_list: Badge_T[]
-}
-
-/**
- * @description 유저 프로필 팝업 데이터 타입
- */
-export interface PopupProfile_T {
-  user_name: string
-  profileMessage: string | ''
-  profile_img: string | null
-  phone: string
-  email: string
-  url: string
-  addr: string
-  mainBadge: Badge_T
-}
-/**
- * @description 유저 프로필 팝업 페이지 전체 데이터 타입
- */
-
-export interface PopupProfilePage_T {
-  profile: PopupProfile_T
-  badges: Badge_T[]
-  educate: {
-    dateStart: string
-    dateEnd?: string
-    title: string
-    subEx: string[]
-  }[]
-  career: {
-    dateStart: string
-    dateEnd?: string
-    title: string
-    subEx: string[]
-  }[]
-}
-
-/**
- * @description 유저 정보 중 교육 type
- */
-
-export type Education_T = {
-  id?: number
-  school: string // 필수
-  major: string // 필수
-  degree: string // 필수
-  startDate: string // 필수
-  endDate: string
-  grade: number
-  enrollmentStatus: EducationStatus // 필수
-  description: string
-}
-
-export enum EducationStatus {
-  재학 = '재학',
-  휴학 = '휴학',
-  자퇴 = '자퇴',
-  졸업 = '졸업',
-}
-
-/**
- * @description 유저 정보 중 경력 type
- */
-
-export type Career_T = {
-  id?: number
-  company: string // 필수
-  teamName: string
-  jobRole: string
-  jobTitle: string
-  jobType: string
-  startDate: string // 필수
-  endDate: string
-  isCurrently: boolean | string // 필수
-  description: string
 }
 
 /**
@@ -121,7 +32,7 @@ export type Career_T = {
  * [isFollow]
  */
 
-export type Login_User_Follow_T = {
+export type LoginUserFollow_T = {
   user_id: string
   user_sep: string
   image: string

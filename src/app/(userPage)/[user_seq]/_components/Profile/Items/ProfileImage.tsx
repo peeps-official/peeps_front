@@ -1,7 +1,7 @@
 'use client'
 import { editOwnerProfile } from '@/src/common/api/user'
 import { OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
-import { UserProfile_T } from '@/src/common/types/user'
+import { OwnerProfile_T } from '@/src/common/types/user'
 import NextImg from '@/src/common/utils/NextImg'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FaCamera } from 'react-icons/fa'
@@ -11,17 +11,17 @@ type ProfileImageProps = {
   alt: string
   src: string | null
   isOwner: boolean
-  ownerData: UserProfile_T
+  ownerData: OwnerProfile_T
 }
 
 export default function ProfileImage({ alt, src, isOwner, ownerData }: ProfileImageProps) {
-  const ownerUserData = useRecoilValue<UserProfile_T>(OwnerProfileStateAtom)
+  const ownerUserData = useRecoilValue<OwnerProfile_T>(OwnerProfileStateAtom)
 
   const queryClient = useQueryClient()
   const { user_bg_img: isBackground } = ownerData
 
   const { mutate } = useMutation({
-    mutationFn: async (data: UserProfile_T) => {
+    mutationFn: async (data: OwnerProfile_T) => {
       return editOwnerProfile(data)
     },
     onSuccess: (data) => {

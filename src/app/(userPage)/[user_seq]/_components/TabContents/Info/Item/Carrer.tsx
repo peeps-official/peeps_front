@@ -1,4 +1,3 @@
-import { Career_T } from '@/src/common/types/user'
 import BoxItemWrapper from '../../Feed/BoxItemWrapper'
 import { usePathname } from 'next/navigation'
 import { useQuery } from '@tanstack/react-query'
@@ -8,6 +7,7 @@ import { IsOwnerAtom } from '@/src/common/recoil/userHome'
 import { useState } from 'react'
 import AddCareerModal from '../../InfoEdit/Career/AddCareerModal'
 import { axiosWithAuth } from '@/src/common/api/instance'
+import { OwnerCareer_T } from '@/src/common/types/owner'
 
 export default function Carrer() {
   const user_seq_with_slash = usePathname()
@@ -26,7 +26,7 @@ export default function Carrer() {
 }
 
 type CarrerBoxProps = {
-  items: Career_T[]
+  items: OwnerCareer_T[]
 }
 
 function CarrerBox({ items }: CarrerBoxProps) {
@@ -40,7 +40,7 @@ function CarrerBox({ items }: CarrerBoxProps) {
     <div className="flex flex-col gap-[23px]">
       <table className="w-full table-auto">
         <tbody>
-          {items.map((item: Career_T) => {
+          {items.map((item: OwnerCareer_T) => {
             const startDate = item.startDate.split('-')[0]
             const endDate = item.endDate.split('-')[0]
 

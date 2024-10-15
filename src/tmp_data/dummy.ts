@@ -1,8 +1,4 @@
-import { PopupProfilePage_T, UserProfile_T } from '../common/types/user'
-
-export const badgeData = {}
-
-export const popUpData: PopupProfilePage_T = {
+export const popUpData = {
   profile: {
     user_name: '김민우',
     profileMessage: '입시 & 교육 컨텐츠 크리에이터',
@@ -85,7 +81,7 @@ export const popUpData: PopupProfilePage_T = {
   ],
 }
 
-export const mypageData: UserProfile_T = {
+export const mypageData = {
   user_seq: '1',
   user_id: 'mi3nu',
   user_nickname: '미미미누',

@@ -3,7 +3,7 @@
 import { axiosWithAuth } from '@/src/common/api/instance'
 import Button from '@/src/common/components/Btn/Button'
 import { LogedInUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
-import { LoginUserDataReq_T, UserProfile_T } from '@/src/common/types/user'
+import { LoginUserData_T, OwnerProfile_T } from '@/src/common/types/user'
 import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
@@ -20,8 +20,8 @@ type FollowAndProfileButtonProps = {
 type isFollow = -1 | 0 | 1 // -1: 로그인 안됨, 0: 팔로우 안함, 1: 팔로우 중
 
 export function FollowAndProfileButton({ isOwner }: FollowAndProfileButtonProps) {
-  const loginedUserData = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
-  const ownerData = useRecoilValue<UserProfile_T>(OwnerProfileStateAtom)
+  const loginedUserData = useRecoilValue<LoginUserData_T>(LogedInUserReqDataAtom)
+  const ownerData = useRecoilValue<OwnerProfile_T>(OwnerProfileStateAtom)
 
   const [isEditOpen, setIsEditOpen] = useState(false)
   const queryClient = useQueryClient()

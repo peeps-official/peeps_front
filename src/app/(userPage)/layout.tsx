@@ -8,7 +8,7 @@ import { Archivo, DM_Sans } from 'next/font/google'
 
 import { axiosWithAuth } from '@/src/common/api/instance'
 import { LogedInUserReqDataAtom } from '@/src/common/recoil/userAtom'
-import { LoginUserDataReq_T } from '@/src/common/types/user'
+import { LoginUserData_T } from '@/src/common/types/user'
 import NextImg from '@/src/common/utils/NextImg'
 import { onlyEnglishAndNumber } from '@/src/common/utils/valid/onlyEnglishAndNumber'
 import { useQueryClient } from '@tanstack/react-query'
@@ -39,7 +39,7 @@ const sideBarBackground = `!w-[240px] before:bg-black before:bg-opacity-80 befor
 
 export default function DefaultLayout({ children }: layoutProps) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true)
-  const useLoginData = useRecoilValue<LoginUserDataReq_T>(LogedInUserReqDataAtom)
+  const useLoginData = useRecoilValue<LoginUserData_T>(LogedInUserReqDataAtom)
   const queryClient = useQueryClient()
   const owner_seq = usePathname().slice(1)
 
