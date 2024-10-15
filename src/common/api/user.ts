@@ -61,7 +61,7 @@ export async function editOwnerProfile(data: UserProfile_T) {
  * @description 로그인한 유저의 뱃지 리스트를 가져옵니다.
  */
 export async function getOwnerBadgeList(user_seq: string) {
-  const { data } = await axiosWithAuth.get(`/badge/${user_seq}/user`)
+  const { data } = await axiosWithAuth.get(`/badge/user/${user_seq}`)
 
   return data
 }
