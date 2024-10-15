@@ -8,7 +8,7 @@ export const popUpData: PopupProfilePage_T = {
     profileMessage: '입시 & 교육 컨텐츠 크리에이터',
     profile_img: '/images/dummy/minu_profile.png',
     mainBadge: {
-      id: 1,
+      bdg_id: 1,
       name: '유튜브',
       image: '/images/dummy/badge_Youtube.png',
       content: '유튜브 크리에이터',
@@ -21,7 +21,7 @@ export const popUpData: PopupProfilePage_T = {
 
   badges: [
     {
-      id: 1,
+      bdg_id: 1,
       image: '/images/dummy/badge_Youtube.png',
       name: '유튜브',
       content: '입시 & 교육 컨텐츠 크리에이터',
@@ -29,7 +29,7 @@ export const popUpData: PopupProfilePage_T = {
       followingCount: 1,
     },
     {
-      id: 2,
+      bdg_id: 2,
       image: '/images/dummy/badge_Youtube.png',
       name: '유튜브',
       content: '입시 & 교육 컨텐츠 크리에이터',
@@ -37,7 +37,7 @@ export const popUpData: PopupProfilePage_T = {
       followingCount: 2,
     },
     {
-      id: 3,
+      bdg_id: 3,
       image: '/images/dummy/badge_Youtube.png',
       name: '유튜브',
       content: '입시 & 교육 컨텐츠 크리에이터',
@@ -45,7 +45,7 @@ export const popUpData: PopupProfilePage_T = {
       followingCount: 3,
     },
     {
-      id: 4,
+      bdg_id: 4,
       image: '/images/dummy/badge_Youtube.png',
       name: '유튜브',
       content: '입시 & 교육 컨텐츠 크리에이터',
@@ -53,7 +53,7 @@ export const popUpData: PopupProfilePage_T = {
       followingCount: 4,
     },
     {
-      id: 5,
+      bdg_id: 5,
       image: '/images/dummy/badge_Youtube.png',
       name: '유튜브',
       content: '입시 & 교육 컨텐츠 크리에이터',

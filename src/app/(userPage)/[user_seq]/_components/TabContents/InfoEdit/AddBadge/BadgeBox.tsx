@@ -14,7 +14,7 @@ export default function BadgeBox({ badges }: BadgeBoxProps) {
 
   return (
     <div className="flex w-full flex-col gap-[10px] rounded-[8px] px-[14px] py-[16px] shadow-popupBox">
-      <CanSelectBadgeList badges={badges} selectedBadgeId={selectedBadge.id} setSelectedBadge={setSelectedBadge} />
+      <CanSelectBadgeList badges={badges} selectedBadgeId={selectedBadge.bdg_id} setSelectedBadge={setSelectedBadge} />
 
       <div className="mt-[9px] flex flex-col gap-[30px]">
         <GlobalBadgeInfo selectedBadge={selectedBadge} />
@@ -40,7 +40,7 @@ export function CanSelectBadgeList({ badges, selectedBadgeId = -1, setSelectedBa
       <div className="kr-bold-14 text-left">뱃지</div>
       <div className="flex w-full gap-[10px] overflow-x-auto border-b-[1px] border-solid border-underline px-0.5 pb-[0.4em] pt-[0.2rem]">
         {badges.map((badge) => (
-          <button key={badge.id} onClick={() => setSelectedBadge(badge)}>
+          <button key={badge.bdg_id} onClick={() => setSelectedBadge(badge)}>
             <ProfileCircleBadge badge={badge} selectedBadgeId={selectedBadgeId} />
           </button>
         ))}
@@ -98,7 +98,7 @@ function BadgeDetailBox({ selectedBadge }: BadgeDetailBoxProps) {
       <BadgeDetail title="인증 날짜" content={formatDate(selectedBadge.date)} />
       <BadgeDetail title="인증 방식" content={selectedBadge.method} />
       {selectedBadge.addDatas.map((addData) => (
-        <BadgeDetail title={addData.title} content={addData.content} />
+        <BadgeDetail key={addData.title} title={addData.title} content={addData.content} />
       ))}
     </div>
   )

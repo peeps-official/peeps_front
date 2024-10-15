@@ -18,7 +18,6 @@ export default function AddCareerModal({ defaultData, type, setIsOpen }: Props) 
   const user_seq = usePathname().slice(1)
 
   const onSubmit: SubmitHandler<Career_T> = async (inputVal) => {
-    console.log(inputVal)
     const reqData = {
       company: inputVal.company,
       teamName: inputVal.teamName,

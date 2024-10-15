@@ -23,7 +23,7 @@ const PhotoGallery: React.FC = () => {
       {/* Grid Layout for Photos */}
       <div className="grid grid-cols-3 gap-2">
         {images.map((src, index) => (
-          <div key={index} className="overflow-hidden rounded-lg">
+          <div key={src} className="overflow-hidden rounded-lg">
             <img src={src} alt={`Gallery ${index}`} className="h-full w-full object-cover" />
           </div>
         ))}

@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import DataWrapperForMyPage from './_components/DataWrapperForMyPage'
 
-import { cookies } from 'next/headers'
 import UserProfile from './_components/Profile/UserProfile'
 import TabContents from './_components/TabContents/TabContents'
 import Taps from './_components/Taps/Taps'

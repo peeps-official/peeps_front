@@ -76,7 +76,12 @@ export default function GlobalSidebarNarrow() {
               </div>
               {followList &&
                 followList.map((follow: Login_User_Follow_T) => (
-                  <Link href={follow.user_sep} className="flex flex-col items-center gap-[10px]" id={follow.user_id}>
+                  <Link
+                    key={follow.user_sep}
+                    href={follow.user_sep}
+                    className="flex flex-col items-center gap-[10px]"
+                    id={follow.user_id}
+                  >
                     <div className="box-border flex h-12 w-12 shrink-0 items-center overflow-hidden p-0.5">
                       <img
                         className="relative h-11 w-11 overflow-hidden rounded-full object-cover"
