@@ -33,8 +33,10 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
   const setOwnerUserData = useSetRecoilState<OwnerProfile_T>(OwnerProfileStateAtom)
   const setOwnerPostList = useSetRecoilState<POST_ARR_T>(OwnerPostListAtom)
   const setLoginFollowList = useSetRecoilState<LoginUserFollow_T[]>(Login_User_Follow_Atom)
-  const setIsOwner = useSetRecoilState<boolean>(IsOwnerAtom)
   const setOwnerImgList = useSetRecoilState<OwnerImgList_T>(OwnerImgListAtom)
+
+  // isOwner
+  const setIsOwner = useSetRecoilState<boolean>(IsOwnerAtom)
 
   const router = useRouter()
 

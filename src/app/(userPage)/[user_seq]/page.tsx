@@ -23,7 +23,6 @@ export default function MyPage({ params }: MyPageProps) {
         <div className="mx-[auto] flex w-full max-w-[1316px] flex-col gap-[17px] px-[23px] py-[20px]">
           <UserProfile />
           <Taps />
-          <TabContents />
         </div>
       </div>
     </DataWrapperForMyPage>

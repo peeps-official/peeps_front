@@ -2,8 +2,8 @@
 
 import { editOwnerProfile } from '@/src/common/api/user'
 import ModalForm from '@/src/common/components/Modal/ModalForm'
-import { OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
-import { OwnerProfile_T } from '@/src/common/types/user'
+import { OwnerProfileStateAtom } from '@/src/common/recoil/ownerAtom'
+import { OwnerProfile_T } from '@/src/common/types/owner'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'

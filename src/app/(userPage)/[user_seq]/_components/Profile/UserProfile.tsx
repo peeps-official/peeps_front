@@ -1,13 +1,13 @@
 'use client'
 
-import { OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
-import { OwnerProfile_T } from '@/src/common/types/user'
 import NextImg from '@/src/common/utils/NextImg'
 import { useRecoilValue } from 'recoil'
 
 import { IsOwnerAtom } from '@/src/common/recoil/userHome'
 import ProfileImage from './Items/ProfileImage'
 import ProfileInfo from './Items/ProfileInfo'
+import { OwnerProfile_T } from '@/src/common/types/owner'
+import { OwnerProfileStateAtom } from '@/src/common/recoil/ownerAtom'
 
 export default function UserProfile() {
   const ownerData = useRecoilValue<OwnerProfile_T>(OwnerProfileStateAtom)

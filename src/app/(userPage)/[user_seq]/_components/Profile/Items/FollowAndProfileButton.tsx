@@ -2,12 +2,14 @@
 
 import { axiosWithAuth } from '@/src/common/api/instance'
 import Button from '@/src/common/components/Btn/Button'
-import { LogedInUserReqDataAtom, OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
-import { LoginUserData_T, OwnerProfile_T } from '@/src/common/types/user'
+import { LogedInUserReqDataAtom } from '@/src/common/recoil/userAtom'
+import { LoginUserData_T } from '@/src/common/types/user'
 import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import EditProfileModal from './EditProfileModal'
+import { OwnerProfile_T } from '@/src/common/types/owner'
+import { OwnerProfileStateAtom } from '@/src/common/recoil/ownerAtom'
 
 /**
  * 팔로우 & 프로필 보기 버튼
