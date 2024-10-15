@@ -154,7 +154,7 @@ const ImageViewer = ({ imgBundles, removeImage }: ImageViewerProps) => {
         if (!tmpUrl) return null
 
         return (
-          <div className="relative m-2 mr-0" key={tmpUrl}>
+          <div className="relative m-2 mr-0" key={imgBundle.title}>
             <div key={tmpUrl} className="h-[70px] w-[70px] overflow-hidden rounded-[15px]">
               <NextImg src={tmpUrl} alt="content image" />
             </div>

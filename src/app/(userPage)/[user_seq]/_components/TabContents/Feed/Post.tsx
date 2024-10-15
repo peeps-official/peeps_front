@@ -31,7 +31,6 @@ export default function Post({ post }: Props) {
     onSuccess: (variables) => {
       alert('게시글이 삭제되었습니다.')
       setIsOption(false)
-      console.log(variables)
       queryClient.invalidateQueries({ queryKey: ['ownerPostList', userLoginedData.user_data.user_seq] })
     },
   })

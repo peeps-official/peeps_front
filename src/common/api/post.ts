@@ -14,18 +14,14 @@ export async function uploadPost(user_seq: string, data: PostUpload_T) {
     isPublic,
     image,
   })
-  console.log(res.data)
 }
 
 export async function editPost(user_seq: string, art_id: number, data: PostUpload_T) {
   const { image, description, isPublic } = data
-
-  console.log('editPost', user_seq, art_id, data)
 
   const res = await axiosWithAuth.patch(`/${user_seq}/post/${art_id.toString()}`, {
     description,
     isPublic,
     image,
   })
-  console.log(res.data)
 }

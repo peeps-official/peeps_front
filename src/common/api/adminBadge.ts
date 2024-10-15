@@ -30,7 +30,6 @@ export async function ApproveBadge(id: string) {
 // 뱃지 거절
 export async function RejectBadge(id: string) {
   const { data } = await axiosWithAuth.delete(`/admin/verify/req/${id}`)
-  console.log(data)
 
   return data
 }
@@ -49,7 +48,6 @@ export async function getBadgeApproveList() {
 // 뱃지 승인 취소
 export async function CancelBadge(id: string) {
   const { data } = await axiosWithAuth.delete(`/admin/verify/inspect/${id}`)
-  console.log(data)
 
   return data
 }
