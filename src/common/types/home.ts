@@ -1,1 +1,1 @@
-export type UserHomeTab_T = 'home' | 'feed' | 'infoEdit' | 'info'
+export type UserHomeTab_T = 'home' | 'feed' | 'infoEdit' | 'info' | 'badge'

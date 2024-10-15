@@ -1,15 +1,14 @@
 import { popUpData } from '@/src/tmp_data/dummy'
-import BadgeBox from '../InfoEdit/AddBadge/BadgeBox'
+import { useEffect, useRef } from 'react'
 import Carrer from './Item/Carrer'
 import Education from './Item/Education'
-import { useEffect, useRef } from 'react'
-import Introduce from '../Feed/Introduce'
-import { useRecoilValue } from 'recoil'
-import { UserProfile_T } from '@/src/common/types/user'
+
 import { OwnerProfileStateAtom } from '@/src/common/recoil/userAtom'
 import { IsOwnerAtom } from '@/src/common/recoil/userHome'
-import ProfileImage from '../../Profile/Items/ProfileImage'
+import { UserProfile_T } from '@/src/common/types/user'
 import NextImg from '@/src/common/utils/NextImg'
+import { useRecoilValue } from 'recoil'
+import Introduce from './Introduce'
 
 export default function Info() {
   const ownerData = useRecoilValue<UserProfile_T>(OwnerProfileStateAtom)

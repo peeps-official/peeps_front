@@ -8,7 +8,6 @@ import { OwnerPostListAtom } from '@/src/common/recoil/userHome'
 import { POST_ARR_T } from '@/src/common/types/post'
 import { useRecoilValue } from 'recoil'
 import BadgeBox from '../InfoEdit/AddBadge/BadgeBox'
-import Introduce from './Introduce'
 
 export default function Feed() {
   const { profile, badges, educate, career } = popUpData
@@ -25,11 +24,13 @@ export default function Feed() {
         </div>
       </div>
       <div className="flex max-w-[490px] flex-col gap-5">
-        <Introduce />
         <BadgeBox badges={badges} />
-        {/* <MediaLinks /> */}
         <PhotoGallery />
       </div>
     </div>
   )
+}
+
+{
+  /* <MediaLinks /> */
 }
