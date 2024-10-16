@@ -4,19 +4,25 @@ import { OwnerBadge_T } from '@/src/common/types/owner'
 import { formatDate } from '@/src/common/utils/Date/formatDate'
 import NextImg from '@/src/common/utils/NextImg'
 import Link from 'next/link'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 
 type BadgeBoxProps = {
   badges: OwnerBadge_T[]
 }
 
 export default function BadgeBox({ badges }: BadgeBoxProps) {
-  const [selectedBadge, setSelectedBadge] = useState<OwnerBadge_T>(badges[0])
+  const [selectedBadge, setSelectedBadge] = useState<OwnerBadge_T | null>(null)
+
+  useEffect(() => {
+    if (badges.length <= 0) return
+
+    setSelectedBadge(badges[0])
+  }, [badges])
 
   return (
     <div className="flex w-full flex-col gap-[10px] rounded-[8px] px-[14px] py-[16px] shadow-popupBox">
       <div className="kr-bold-14 text-left">뱃지</div>
-      {badges.length === 0 ? (
+      {!selectedBadge ? (
         <div>등록된 뱃지가 없습니다.</div>
       ) : (
         <>
@@ -42,7 +48,7 @@ export default function BadgeBox({ badges }: BadgeBoxProps) {
 type BadgeListProps = {
   badges: OwnerBadge_T[]
   selectedBadgeId?: number
-  setSelectedBadge: React.Dispatch<React.SetStateAction<OwnerBadge_T>>
+  setSelectedBadge: React.Dispatch<React.SetStateAction<OwnerBadge_T | null>>
 }
 
 export function CanSelectBadgeList({ badges, selectedBadgeId = -1, setSelectedBadge }: BadgeListProps) {
