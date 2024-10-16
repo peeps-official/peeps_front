@@ -1,4 +1,4 @@
-import { Badge_T } from './badge'
+import { Badge_T, BadgeAuthData_T, BadgeAuthType } from './badge'
 import { UserLogin_T } from './user'
 
 /**
@@ -59,4 +59,18 @@ export enum EducationStatus {
   휴학 = '휴학',
   자퇴 = '자퇴',
   졸업 = '졸업',
+}
+
+/**
+ * @description owner 뱃지 리스트
+ */
+
+export type OwnerBadge_T = {
+  bdg_id: number
+  name: string
+  image: string
+  member_count: number
+  followingCount?: number
+  isPublic: boolean
+  auth: { id: number } & { [key in BadgeAuthType]: BadgeAuthData_T | null }
 }

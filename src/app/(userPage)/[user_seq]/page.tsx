@@ -2,8 +2,7 @@ import { Metadata } from 'next'
 import DataWrapperForMyPage from './_components/DataWrapperForMyPage'
 
 import UserProfile from './_components/Profile/UserProfile'
-import TabContents from './_components/TabContents/TabContents'
-import Taps from './_components/Taps/Taps'
+import Tabs from './_components/Tabs/Tabs'
 
 export const metadata: Metadata = {
   title: 'PEEPS',
@@ -22,7 +21,7 @@ export default function MyPage({ params }: MyPageProps) {
       <div className="flex flex-1 flex-col items-center justify-start pt-3">
         <div className="mx-[auto] flex w-full max-w-[1316px] flex-col gap-[17px] px-[23px] py-[20px]">
           <UserProfile />
-          <Taps />
+          <Tabs />
         </div>
       </div>
     </DataWrapperForMyPage>

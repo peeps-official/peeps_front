@@ -9,7 +9,7 @@ import ImageTab from './Image/ImageTab'
 import Badge from './Badge/Badge'
 import InfoEdit from './InfoEdit/InfoEdit'
 
-export default function Taps() {
+export default function Tabs() {
   const [activeTab, setActiveTab] = useRecoilState<UserHomeTab_T>(selectedUserHomeTabAtom)
   const isOwner = useRecoilValue<boolean>(IsOwnerAtom)
 

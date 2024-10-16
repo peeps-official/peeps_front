@@ -8,10 +8,10 @@ import {
   getOwnerImageList,
   getOwnerUserData,
 } from '@/src/common/api/user'
-import { OwnerImgListAtom, OwnerProfileStateAtom } from '@/src/common/recoil/ownerAtom'
+import { OwnerBadgeListAtom, OwnerImgListAtom, OwnerProfileStateAtom } from '@/src/common/recoil/ownerAtom'
 import { LogedInUserReqDataAtom, Login_User_Follow_Atom } from '@/src/common/recoil/userAtom'
 import { IsOwnerAtom, OwnerPostListAtom } from '@/src/common/recoil/userHome'
-import { OwnerImgList_T, OwnerProfile_T } from '@/src/common/types/owner'
+import { OwnerBadge_T, OwnerImgList_T, OwnerProfile_T } from '@/src/common/types/owner'
 import { POST_ARR_T } from '@/src/common/types/post'
 import { LoginUserFollow_T, LoginUserData_T, UserLogin_T } from '@/src/common/types/user'
 
@@ -31,6 +31,7 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
 
   const setUserLoginedData = useSetRecoilState<LoginUserData_T>(LogedInUserReqDataAtom)
   const setOwnerUserData = useSetRecoilState<OwnerProfile_T>(OwnerProfileStateAtom)
+  const setOwnerBadgeList = useSetRecoilState<OwnerBadge_T[]>(OwnerBadgeListAtom)
   const setOwnerPostList = useSetRecoilState<POST_ARR_T>(OwnerPostListAtom)
   const setLoginFollowList = useSetRecoilState<LoginUserFollow_T[]>(Login_User_Follow_Atom)
   const setOwnerImgList = useSetRecoilState<OwnerImgList_T>(OwnerImgListAtom)
@@ -110,7 +111,7 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
 
     // 페이지 주인 유저 뱃지 정보
     if (ownerBadgeList.isSuccess) {
-      console.log(ownerBadgeList.data)
+      setOwnerBadgeList(ownerBadgeList.data)
     }
 
     // 페이지 주인 유저 포스트 리스트

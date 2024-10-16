@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { OwnerImgList_T, OwnerProfile_T } from '../types/owner'
+import { OwnerBadge_T, OwnerImgList_T, OwnerProfile_T } from '../types/owner'
 
 /**
  * @description Owner 프로필 데이터
@@ -29,4 +29,9 @@ export const OwnerImgListAtom = atom<OwnerImgList_T>({
     id: '',
     image: [],
   },
+})
+
+export const OwnerBadgeListAtom = atom<OwnerBadge_T[]>({
+  key: 'OwnerBadgeListAtom',
+  default: [],
 })

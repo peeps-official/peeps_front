@@ -8,9 +8,11 @@ import { OwnerPostListAtom } from '@/src/common/recoil/userHome'
 import { POST_ARR_T } from '@/src/common/types/post'
 import { useRecoilValue } from 'recoil'
 import BadgeBox from '../InfoEdit/AddBadge/BadgeBox'
+import { OwnerBadgeListAtom } from '@/src/common/recoil/ownerAtom'
+import { OwnerBadge_T } from '@/src/common/types/owner'
 
 export default function Feed() {
-  const { profile, badges, educate, career } = popUpData
+  const ownerBadgeList = useRecoilValue<OwnerBadge_T[]>(OwnerBadgeListAtom)
   const feedData = useRecoilValue<POST_ARR_T>(OwnerPostListAtom)
 
   return (
@@ -24,7 +26,7 @@ export default function Feed() {
         </div>
       </div>
       <div className="flex max-w-[490px] flex-col gap-5">
-        <BadgeBox badges={badges} />
+        {ownerBadgeList.length > 0 && <BadgeBox badges={ownerBadgeList} />}
         <PhotoGallery />
       </div>
     </div>

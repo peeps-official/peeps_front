@@ -1,8 +1,8 @@
-import { Badge_T } from '../../types/badge'
+import { OwnerBadge_T } from '../../types/owner'
 import NextImg from '../../utils/NextImg'
 
 type ProfileCircleBadgeProps = {
-  badge: Badge_T
+  badge: OwnerBadge_T
   selectedBadgeId: number
 }
 
