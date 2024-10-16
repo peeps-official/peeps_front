@@ -3,7 +3,7 @@
 import {
   BadgeTypes,
   IsBadgeAuth,
-} from '@/src/app/(userPage)/[user_seq]/_components/Taps/InfoEdit/Badge/BadgeItemContainer'
+} from '@/src/app/(userPage)/[user_seq]/_components/Tabs/InfoEdit/Badge/BadgeItemContainer'
 import { axiosWithAuth } from '@/src/common/api/instance'
 import { AdminBadgeList_T, AuthType_T } from '@/src/common/types/admin'
 import NextImg from '@/src/common/utils/NextImg'
