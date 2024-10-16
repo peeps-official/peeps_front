@@ -26,7 +26,7 @@ export default function Feed() {
         </div>
       </div>
       <div className="flex max-w-[490px] flex-col gap-5">
-        {ownerBadgeList.length > 0 && <BadgeBox badges={ownerBadgeList} />}
+        <BadgeBox badges={ownerBadgeList} />
         <PhotoGallery />
       </div>
     </div>
