@@ -1,5 +1,5 @@
 'use client'
-import { POST_T } from '@/src/common/types/post'
+import { Post_T } from '@/src/common/types/post'
 import { formatTimeAgo } from '@/src/common/utils/Date/formatTimeAgo'
 import { BsThreeDots } from 'react-icons/bs'
 import { FiTrash } from 'react-icons/fi'
@@ -14,7 +14,7 @@ import { useRecoilValue } from 'recoil'
 import EditModal from './EditModal'
 
 type Props = {
-  post: POST_T
+  post: Post_T
 }
 
 export default function Post({ post }: Props) {
@@ -31,7 +31,9 @@ export default function Post({ post }: Props) {
     onSuccess: (variables) => {
       alert('게시글이 삭제되었습니다.')
       setIsOption(false)
-      queryClient.invalidateQueries({ queryKey: ['ownerPostList', userLoginedData.user_data.user_seq] })
+      queryClient.invalidateQueries({
+        queryKey: ['refreshWithPost'],
+      })
     },
   })
 
@@ -96,7 +98,7 @@ export default function Post({ post }: Props) {
                   <img
                     src={src}
                     alt="feed img"
-                    className="max-h-[400px] max-w-full overflow-hidden rounded-lg border-[1px] border-solid border-black/40 object-cover"
+                    className="max-h-[300px] max-w-full overflow-hidden rounded-lg border-[1px] border-solid border-black/40 object-cover"
                   />
                 </div>
               ))}

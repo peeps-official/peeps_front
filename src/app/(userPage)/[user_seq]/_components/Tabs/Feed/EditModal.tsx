@@ -3,7 +3,7 @@
 import { editPost, uploadPost } from '@/src/common/api/post'
 import BasicCenterModal from '@/src/common/components/Modal/BasicCenterModal'
 import { BundleImage, useContentImage } from '@/src/common/hooks/useContentImage'
-import { POST_T, PostUpload_T } from '@/src/common/types/post'
+import { Post_T, PostUpload_T } from '@/src/common/types/post'
 import NextImg from '@/src/common/utils/NextImg'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { usePathname } from 'next/navigation'
@@ -14,7 +14,7 @@ import { PiImagesThin } from 'react-icons/pi'
 
 type Props = {
   isEdit?: boolean // 수정 글 작성인지
-  post?: POST_T // 수정할 글 정보
+  post?: Post_T // 수정할 글 정보
   setIsOpen: (state: boolean) => void
 }
 
@@ -48,7 +48,9 @@ export default function EditModal({ isEdit = false, post, setIsOpen }: Props) {
       setRowsNum(2)
       setIsOpen(false)
 
-      queryClient.invalidateQueries({ queryKey: ['ownerPostList', owner_user_seq] })
+      queryClient.invalidateQueries({
+        queryKey: ['refreshWithPost'],
+      })
     },
   })
 
@@ -89,7 +91,7 @@ export default function EditModal({ isEdit = false, post, setIsOpen }: Props) {
   return (
     <BasicCenterModal setIsOpen={setIsOpen}>
       <form className="w-[468px] rounded-lg bg-white p-4 shadow-popupBox" onSubmit={onSubmit}>
-        <h1 className="kr-bold-16 mb-3">새 글 작성</h1>
+        <h1 className="kr-bold-16 mb-3">게시글 등록</h1>
         <InputTextArea
           isEdit={isEdit}
           description={post?.description ?? ''}

@@ -7,11 +7,6 @@ export const IsOwnerAtom = atom<boolean>({
   default: false,
 })
 
-export const selectedUserHomeTabAtom = atom<UserHomeTab_T>({
-  key: 'selectUserHomeTab',
-  default: 'feed',
-})
-
 export const OwnerPostListAtom = atom<POST_ARR_T>({
   key: 'OwnerPostListAtom',
   default: [],

@@ -29,11 +29,14 @@ interface DataWrapperForMyPageProps {
 export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWrapperForMyPageProps) {
   const [loginUserData, SetLoginUserData] = useState<UserLogin_T | null>(null)
 
+  // 로그인 유저 정보
   const setUserLoginedData = useSetRecoilState<LoginUserData_T>(LogedInUserReqDataAtom)
+  const setLoginFollowList = useSetRecoilState<LoginUserFollow_T[]>(Login_User_Follow_Atom)
+
+  // 페이지 주인 유저 정보
   const setOwnerUserData = useSetRecoilState<OwnerProfile_T>(OwnerProfileStateAtom)
   const setOwnerBadgeList = useSetRecoilState<OwnerBadge_T[]>(OwnerBadgeListAtom)
   const setOwnerPostList = useSetRecoilState<POST_ARR_T>(OwnerPostListAtom)
-  const setLoginFollowList = useSetRecoilState<LoginUserFollow_T[]>(Login_User_Follow_Atom)
   const setOwnerImgList = useSetRecoilState<OwnerImgList_T>(OwnerImgListAtom)
 
   // isOwner
@@ -56,16 +59,12 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
         queryFn: () => getOwnerBadgeList(pageOwnerSeq),
       },
       {
-        queryKey: ['ownerPostList', pageOwnerSeq],
+        queryKey: ['refreshWithPost', 'ownerPostList', pageOwnerSeq],
         queryFn: () => getPostList(pageOwnerSeq),
       },
       {
-        queryKey: ['ownerImgList', pageOwnerSeq],
+        queryKey: ['refreshWithPost', 'ownerImgList', pageOwnerSeq],
         queryFn: () => getOwnerImageList(pageOwnerSeq),
-      },
-      {
-        queryKey: ['LoginUserFollowList'],
-        queryFn: () => getOwnerFollowList(pageOwnerSeq),
       },
     ],
   })

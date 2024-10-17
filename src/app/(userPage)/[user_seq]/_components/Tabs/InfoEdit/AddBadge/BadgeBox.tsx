@@ -91,7 +91,7 @@ function GlobalBadgeInfo({ selectedBadge }: { selectedBadge: OwnerBadge_T }) {
       </div>
       <Link
         href={'/badge/' + selectedBadge.bdg_id}
-        className="h-fit rounded-8xs bg-gray-dark px-[1.6em] py-[0.8em] text-detail hover:bg-gray-afterDark"
+        className="h-fit w-fit text-nowrap rounded-8xs bg-gray-dark px-[1.6em] py-[0.8em] text-detail hover:bg-gray-afterDark"
       >
         구경가기
       </Link>

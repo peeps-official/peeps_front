@@ -4,7 +4,7 @@ export type PostUpload_T = {
   isPublic: boolean
 }
 
-export interface POST_T {
+export interface Post_T {
   id: number
   description: string
   image: string[]
@@ -27,4 +27,4 @@ export interface POST_T {
   }
 }
 
-export type POST_ARR_T = POST_T[]
+export type POST_ARR_T = Post_T[]

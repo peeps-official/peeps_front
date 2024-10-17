@@ -25,10 +25,7 @@ export const OwnerProfileStateAtom = atom<OwnerProfile_T>({
 
 export const OwnerImgListAtom = atom<OwnerImgList_T>({
   key: 'OwnerImgListAtom',
-  default: {
-    id: '',
-    image: [],
-  },
+  default: [],
 })
 
 export const OwnerBadgeListAtom = atom<OwnerBadge_T[]>({

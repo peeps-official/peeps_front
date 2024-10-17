@@ -1,15 +1,14 @@
 'use client'
-import { popUpData } from '@/src/tmp_data/dummy'
 import CommentInput from './CommentInput'
-import PhotoGallery from './Picture'
+import PhotoGallery from './PhotoGallery'
 import Post from './Post'
 
+import { OwnerBadgeListAtom } from '@/src/common/recoil/ownerAtom'
 import { OwnerPostListAtom } from '@/src/common/recoil/userHome'
+import { OwnerBadge_T } from '@/src/common/types/owner'
 import { POST_ARR_T } from '@/src/common/types/post'
 import { useRecoilValue } from 'recoil'
 import BadgeBox from '../InfoEdit/AddBadge/BadgeBox'
-import { OwnerBadgeListAtom } from '@/src/common/recoil/ownerAtom'
-import { OwnerBadge_T } from '@/src/common/types/owner'
 
 export default function Feed() {
   const ownerBadgeList = useRecoilValue<OwnerBadge_T[]>(OwnerBadgeListAtom)
@@ -25,7 +24,7 @@ export default function Feed() {
           ))}
         </div>
       </div>
-      <div className="flex max-w-[490px] flex-col gap-5">
+      <div className="flex w-[480px] flex-shrink-0 flex-col gap-5">
         <BadgeBox badges={ownerBadgeList} />
         <PhotoGallery />
       </div>

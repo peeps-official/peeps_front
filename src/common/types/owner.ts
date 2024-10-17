@@ -16,10 +16,13 @@ export interface OwnerProfile_T extends UserLogin_T {
   badge_list: Badge_T[]
 }
 
+/**
+ * @description owner 사진 리스트
+ */
 export type OwnerImgList_T = {
-  id: string
-  image: string[]
-}
+  post_id: number
+  src: string
+}[]
 
 /**
  * @description owner 정보 중 경력 type
