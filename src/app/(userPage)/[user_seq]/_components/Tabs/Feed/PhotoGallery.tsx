@@ -20,18 +20,17 @@ export default function PhotoGallery() {
         </Link>
       </div>
 
-      {/* Grid Layout for Photos */}
-      <div className="grid grid-cols-3 gap-2">
-        {ownerImgList.map((img, index) => {
-          if (6 <= index) return null
+      {ownerImgList.map((img, index) => {
+        if (6 <= index) return null
 
-          return (
+        return (
+          <div className="grid grid-cols-3 gap-2">
             <div key={img.src} className="overflow-hidden rounded-lg">
               <img src={img.src} alt={`Gallery ${index}`} className="h-full w-full object-cover" />
             </div>
-          )
-        })}
-      </div>
+          </div>
+        )
+      })}
     </div>
   )
 }

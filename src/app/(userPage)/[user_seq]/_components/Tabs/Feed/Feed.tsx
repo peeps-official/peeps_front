@@ -19,9 +19,11 @@ export default function Feed() {
       <div className="flex w-full flex-col">
         <CommentInput />
         <div className="first:mt-0 [&>div]:my-5">
-          {feedData.map((post) => (
-            <Post key={post.id} post={post} />
-          ))}
+          {feedData.length > 0 ? (
+            feedData.map((post) => <Post key={post.id} post={post} />)
+          ) : (
+            <div className="w-full pt-10 text-center">게시물이 없습니다.</div>
+          )}
         </div>
       </div>
       <div className="flex w-[480px] flex-shrink-0 flex-col gap-5">
