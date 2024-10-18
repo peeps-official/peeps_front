@@ -1,4 +1,4 @@
-'use client';
+
 
 import Header from './_components/Header';
 import HeroSection from './_components/Slider';
@@ -8,7 +8,7 @@ import DataWrapperForMainPage from './_components/DataWrapperForMainPage';
 
 export default function Main() {
   return (
-    // <DataWrapperForMainPage>
+    <DataWrapperForMainPage>
       <div className="w-full bg-white">
         {/* 헤더 */}
         <Header />
@@ -22,6 +22,6 @@ export default function Main() {
         {/* 푸터 */}
         <Footer />
       </div>
-    // </DataWrapperForMainPage>
+    </DataWrapperForMainPage>
   );
 }
