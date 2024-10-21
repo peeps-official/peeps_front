@@ -24,6 +24,25 @@ export async function getLoginUserData() {
 }
 
 /**
+ * @description ${user_seq} 유저의 뱃지 리스트를 가져옵니다.
+ */
+export async function getUserBadgeList(user_seq: string) {
+  const { data } = await axiosWithAuth.get(`/badge/user/${user_seq}`)
+
+  return data
+}
+
+/**
+ * @description ${user_seq} 유저의 팔로우 리스트를 가져옵니다.
+ */
+
+export async function getUserFollowList(user_seq: string) {
+  const { data } = await axiosWithAuth.get(`/${user_seq}/followlist`)
+
+  return data
+}
+
+/**
  * @description owner 유저 프로필 데이터를 가져옵니다.
  * [ TODO ]
  * changeKey를 이용해서 하나하나 키값을 변경하는 부분이
@@ -59,15 +78,6 @@ export async function editOwnerProfile(data: OwnerProfile_T) {
 }
 
 /**
- * @description 유저의 뱃지 리스트를 가져옵니다.
- */
-export async function getUserBadgeList(user_seq: string) {
-  const { data } = await axiosWithAuth.get(`/badge/user/${user_seq}`)
-
-  return data
-}
-
-/**
  * @description owner 유저의 학력을 가져옵니다.
  */
 export async function getOwnerEducation(user_seq: string) {
@@ -81,16 +91,6 @@ export async function getOwnerEducation(user_seq: string) {
  */
 export async function getOwnerCareer(user_seq: string) {
   const { data } = await axiosWithAuth.get(`/${user_seq}/career`)
-
-  return data
-}
-
-/**
- * @description owner 유저의 팔로우 리스트를 가져옵니다.
- */
-
-export async function getOwnerFollowList(user_seq: string) {
-  const { data } = await axiosWithAuth.get(`/${user_seq}/followlist`)
 
   return data
 }

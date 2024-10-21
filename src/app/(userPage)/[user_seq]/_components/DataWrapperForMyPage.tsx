@@ -3,7 +3,7 @@
 import { getPostList } from '@/src/common/api/post'
 import {
   getLoginUserData,
-  getOwnerFollowList,
+  getUserFollowList,
   getOwnerImageList,
   getOwnerUserData,
   getUserBadgeList,
@@ -54,7 +54,7 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
       },
       {
         queryKey: ['LoginUserFollowList'],
-        queryFn: () => getOwnerFollowList(loginUserData?.user_seq ?? ''),
+        queryFn: () => getUserFollowList(loginUserData?.user_seq ?? ''),
         enabled: !!loginUserData,
       },
       {
