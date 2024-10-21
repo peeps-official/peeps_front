@@ -1,15 +1,17 @@
 'use client'
-import Link from 'next/link'
 import { useRecoilValue } from 'recoil'
 
-import { LogedInUserReqDataAtom, Login_User_Follow_Atom } from '@/src/common/recoil/userAtom'
-import { LoginUserFollow_T, LoginUserData_T } from '@/src/common/types/user'
+import { LogedInUserReqDataAtom, Login_User_Follow_Atom, LoginUserBadgeListAtom } from '@/src/common/recoil/userAtom'
+import { Badge_T } from '@/src/common/types/badge'
+import { LoginUserData_T, LoginUserFollow_T } from '@/src/common/types/user'
 import NextImg from '@/src/common/utils/NextImg'
 import { useEffect } from 'react'
+import { DivLine, SideBarLink, SideBarPartWrapper } from './SideBarUtils'
 
 export default function GlobalSidebarWide({ onToggleSidebar }: { onToggleSidebar: () => void }) {
   const { user_data: logedInUserData } = useRecoilValue<LoginUserData_T>(LogedInUserReqDataAtom)
   const followList = useRecoilValue<LoginUserFollow_T[]>(Login_User_Follow_Atom)
+  const badgeList = useRecoilValue<Badge_T[]>(LoginUserBadgeListAtom)
 
   const isUserLogedIn = logedInUserData.user_seq === '' ? false : true
 
@@ -19,86 +21,74 @@ export default function GlobalSidebarWide({ onToggleSidebar }: { onToggleSidebar
   }, [isUserLogedIn])
 
   return (
-    <div className="z-sideBar h-screen w-[240px] overflow-y-auto bg-white text-mini text-dimgray-100">
-      {isUserLogedIn && (
-        <>
-          <Link href={`/${logedInUserData.user_nickname}`} className="flex items-center px-[15px] pb-2.5 pt-1">
-            <div className="flex items-center gap-[16px]">
-              <div className="h-12 w-12 overflow-hidden rounded-full">
-                <NextImg alt="profile" src={logedInUserData?.user_profile_img ?? '/images/profile/profile.svg'} />
-              </div>
-              <div className="flex flex-col justify-center">
-                <b className="relative inline-block font-bold leading-[16px]">
-                  {logedInUserData.user_nickname ?? '어서오세요'}
-                </b>
-              </div>
+    <div className="z-sideBar h-screen w-[240px] overflow-y-auto bg-white pl-2 text-mini text-dimgray-100">
+      <SideBarPartWrapper>
+        <SideBarLink href="/">
+          <div className="flex items-center gap-3">
+            <div className="h-7 w-7">
+              <NextImg alt="All" src="/images/sidebar/box.svg" />
             </div>
-          </Link>
+            <b className="kr-bold-14 relative top-[-1px]">피드</b>
+          </div>
+        </SideBarLink>
+      </SideBarPartWrapper>
 
-          {/* 구분선 */}
-          <div className="flex items-center px-[15px] py-0">
-            <div className="bg-gray-10 relative h-[1px] w-48" />
-          </div>
-        </>
-      )}
+      <DivLine />
 
-      {/* ALL BOX */}
-      <Link href="/" className="flex items-center py-2.5 pl-[22px]">
-        <div className="flex items-center gap-[26px]">
-          <div className="h-8 w-8 shrink-0 overflow-hidden">
-            <NextImg alt="All" src="/images/sidebar/box.svg" />
-          </div>
-          <div className="flex flex-col justify-center">
-            <b className="relative inline-block font-bold leading-[16px]">ALL</b>
-          </div>
-        </div>
-      </Link>
+      <WideBarSubPartWrapper title="팔로잉 뱃지">
+        {badgeList &&
+          badgeList.map((badge) => (
+            <WideBarItem href={`/badge/${badge.bdg_id}`} key={badge.bdg_id} image={badge.image} name={badge.name} />
+          ))}
+      </WideBarSubPartWrapper>
 
-      {/* 구분선 */}
-      <div className="flex items-center px-[15px] py-0">
-        <div className="bg-gray-10 relative h-[1px] w-48" />
-      </div>
+      <DivLine />
 
-      {/* badge */}
-      <div className="flex items-center px-[15px] py-0">
-        <div className="flex flex-col items-center gap-[8px] overflow-hidden px-0 pb-4 pt-[11px]">
-          <div className="flex items-center">
-            <div className="relative inline-block min-w-[28px] font-black leading-[16px]">뱃지</div>
-          </div>
-          <div className="flex flex-col items-center gap-[10px]">
-            <div className="rounded-31xl box-border flex h-12 w-12 shrink-0 items-center overflow-hidden p-0.5">
-              <img
-                className="rounded-31xl relative h-11 w-11 object-cover"
-                alt="profile"
-                src="/images/profile/profile.svg"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 구분선 */}
-      <div className="flex items-center px-[15px] py-0">
-        <div className="bg-gray-10 relative h-[1px] w-48" />
-      </div>
-
-      {/* friend */}
-      <div className="flex items-center px-[15px] py-0">
-        <div className="flex flex-col items-center gap-[8px] overflow-hidden px-0 pb-4 pt-[11px]">
-          <div className="flex items-center">
-            <div className="relative inline-block min-w-[28px] font-black leading-[16px]">친구</div>
-          </div>
-          <div className="flex flex-col items-center gap-[10px]">
-            <div className="rounded-31xl box-border flex h-12 w-12 shrink-0 items-center overflow-hidden p-0.5">
-              <img
-                className="rounded-31xl relative h-11 w-11 object-cover"
-                alt="profile"
-                src="/images/profile/profile.svg"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <WideBarSubPartWrapper title="팔로잉 친구">
+        {followList &&
+          followList.map((follow: LoginUserFollow_T) => (
+            <WideBarItem
+              href={follow.user_sep}
+              key={follow.user_sep}
+              image={follow.image}
+              name={follow.user_id}
+              content={follow.user_id}
+            ></WideBarItem>
+          ))}
+      </WideBarSubPartWrapper>
     </div>
+  )
+}
+
+function WideBarSubPartWrapper({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <SideBarPartWrapper>
+      <div className="kr-bold-14 px-2">{title}</div>
+      <div className="py-2">{children}</div>
+    </SideBarPartWrapper>
+  )
+}
+
+function WideBarItem({
+  href,
+  image,
+  name,
+  content = '',
+}: {
+  href: string
+  image: string
+  name: string
+  content?: string
+}) {
+  return (
+    <SideBarLink href={href}>
+      <div className="h-7 w-7">
+        <NextImg src={image} alt={name} styles="relative overflow-hidden rounded-full object-cover" />
+      </div>
+      <div className="relative top-[-1px]">
+        <p className="kr-bold-14">{name}</p>
+        <p className="kr-medium-12">{content}</p>
+      </div>
+    </SideBarLink>
   )
 }
