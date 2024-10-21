@@ -5,13 +5,13 @@ import Post from './Post'
 
 import { OwnerBadgeListAtom } from '@/src/common/recoil/ownerAtom'
 import { OwnerPostListAtom } from '@/src/common/recoil/userHome'
-import { OwnerBadge_T } from '@/src/common/types/owner'
+import { Badge_T } from '@/src/common/types/badge'
 import { POST_ARR_T } from '@/src/common/types/post'
 import { useRecoilValue } from 'recoil'
 import BadgeBox from '../InfoEdit/AddBadge/BadgeBox'
 
 export default function Feed() {
-  const ownerBadgeList = useRecoilValue<OwnerBadge_T[]>(OwnerBadgeListAtom)
+  const ownerBadgeList = useRecoilValue<Badge_T[]>(OwnerBadgeListAtom)
   const feedData = useRecoilValue<POST_ARR_T>(OwnerPostListAtom)
 
   return (

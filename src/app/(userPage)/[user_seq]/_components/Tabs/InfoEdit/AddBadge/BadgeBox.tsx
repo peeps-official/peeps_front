@@ -1,17 +1,17 @@
 import ProfileCircleBadge from '@/src/common/components/Badge/ProfileCircleBadge'
 import { Badge_T, BadgeAuthData_T, BadgeAuthType, BadgeDetail_T } from '@/src/common/types/badge'
-import { OwnerBadge_T } from '@/src/common/types/owner'
+import { Badge_T } from '@/src/common/types/badge'
 import { formatDate } from '@/src/common/utils/Date/formatDate'
 import NextImg from '@/src/common/utils/NextImg'
 import Link from 'next/link'
 import { Fragment, useEffect, useState } from 'react'
 
 type BadgeBoxProps = {
-  badges: OwnerBadge_T[]
+  badges: Badge_T[]
 }
 
 export default function BadgeBox({ badges }: BadgeBoxProps) {
-  const [selectedBadge, setSelectedBadge] = useState<OwnerBadge_T | null>(null)
+  const [selectedBadge, setSelectedBadge] = useState<Badge_T | null>(null)
 
   useEffect(() => {
     if (badges.length <= 0) return
@@ -46,9 +46,9 @@ export default function BadgeBox({ badges }: BadgeBoxProps) {
  */
 
 type BadgeListProps = {
-  badges: OwnerBadge_T[]
+  badges: Badge_T[]
   selectedBadgeId?: number
-  setSelectedBadge: React.Dispatch<React.SetStateAction<OwnerBadge_T | null>>
+  setSelectedBadge: React.Dispatch<React.SetStateAction<Badge_T | null>>
 }
 
 export function CanSelectBadgeList({ badges, selectedBadgeId = -1, setSelectedBadge }: BadgeListProps) {
@@ -69,7 +69,7 @@ export function CanSelectBadgeList({ badges, selectedBadgeId = -1, setSelectedBa
  * @description 선택된 뱃지의 전체 정보
  */
 
-function GlobalBadgeInfo({ selectedBadge }: { selectedBadge: OwnerBadge_T }) {
+function GlobalBadgeInfo({ selectedBadge }: { selectedBadge: Badge_T }) {
   return (
     <div className="flex justify-between gap-[20px]">
       <div className="flex gap-[10px]">
@@ -111,7 +111,7 @@ const BADGE_AUTH_TYPE: { key: BadgeAuthType; ko: string }[] = [
 ]
 
 type BadgeDetailBoxProps = {
-  AuthDetail: OwnerBadge_T | null
+  AuthDetail: Badge_T | null
 }
 
 function BadgeDetailBox({ AuthDetail }: BadgeDetailBoxProps) {

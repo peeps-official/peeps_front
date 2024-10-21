@@ -42,13 +42,13 @@ export function FollowAndProfileButton({ isOwner }: FollowAndProfileButtonProps)
     if (isFollow === 0) {
       const { data, status } = await axiosWithAuth.post(`${ownerData.user_seq}/follow`)
       if (status === 201) {
-        queryClient.invalidateQueries({ queryKey: ['ownerUserData', ownerData.user_seq] })
+        queryClient.invalidateQueries({ queryKey: ['userData'] })
         queryClient.invalidateQueries({ queryKey: ['LoginUserFollowList'] })
       }
     } else if (isFollow === 1) {
       const { data, status } = await axiosWithAuth.delete(`${ownerData.user_seq}/unfollow`)
       if (status === 200) {
-        queryClient.invalidateQueries({ queryKey: ['ownerUserData', ownerData.user_seq] })
+        queryClient.invalidateQueries({ queryKey: ['userData'] })
         queryClient.invalidateQueries({ queryKey: ['LoginUserFollowList'] })
       }
     }

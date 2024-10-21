@@ -1,5 +1,3 @@
-import { Badge_T } from './badge'
-
 /**
  * @description 유저 로그인 정보 데이터 타입 / 서버랑 다름 주의
  */

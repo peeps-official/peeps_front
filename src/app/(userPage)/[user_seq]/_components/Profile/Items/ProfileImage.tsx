@@ -24,8 +24,8 @@ export default function ProfileImage({ alt, src, isOwner, ownerData }: ProfileIm
     mutationFn: async (data: OwnerProfile_T) => {
       return editOwnerProfile(data)
     },
-    onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ['ownerUserData', ownerUserData.user_seq] })
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['userData'] })
     },
   })
 

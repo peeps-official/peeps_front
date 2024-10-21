@@ -25,7 +25,7 @@ export default function ProfileInfo({ isOwner, ownerData }: Props) {
       return editOwnerProfile(data)
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['ownerUserData', user_seq] })
+      queryClient.invalidateQueries({ queryKey: ['userData'] })
     },
   })
 

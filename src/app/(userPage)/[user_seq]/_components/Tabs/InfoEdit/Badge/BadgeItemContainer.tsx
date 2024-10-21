@@ -1,7 +1,8 @@
 'use client'
 
 import ToggleButton from '@/src/common/components/Btn/Toggle'
-import { OwnerBadge_T } from '@/src/common/types/owner'
+import { BadgeAuthType } from '@/src/common/types/badge'
+import { Badge_T } from '@/src/common/types/badge'
 import { formatDate } from '@/src/common/utils/Date/formatDate'
 import NextImg from '@/src/common/utils/NextImg'
 import { Fragment, ReactElement, useState } from 'react'
@@ -10,7 +11,8 @@ import { HiOutlineDownload, HiOutlineLink } from 'react-icons/hi'
 import { MdAlternateEmail } from 'react-icons/md'
 
 type AddAuthContainer_Props = {
-  item: OwnerBadge_T
+  item: Badge_T
+  isOwner: boolean
 }
 
 export const BadgeTypes = [
@@ -18,11 +20,12 @@ export const BadgeTypes = [
   { id: 'email', title: '이메일 인증', icon: <MdAlternateEmail style={{ height: 'fit-content' }} /> },
   { id: 'file', title: '서류 인증', icon: <HiOutlineDownload style={{ height: 'fit-content' }} /> },
   { id: 'blockchain', title: '블록체인 인증', icon: <HiOutlineLink style={{ height: 'fit-content' }} /> },
-]
+] as { id: BadgeAuthType; title: string; icon: ReactElement }[]
 
-export default function BadgeItemContainer({ item }: AddAuthContainer_Props) {
+export default function BadgeItemContainer({ item, isOwner }: AddAuthContainer_Props) {
   const [editMode, setEditMode] = useState(false)
   const [isSpread, setIsSpread] = useState(false)
+
   const { name, image, auth } = item
 
   return (
@@ -40,31 +43,33 @@ export default function BadgeItemContainer({ item }: AddAuthContainer_Props) {
           </div>
           <p className="kr-bold-14">{name}</p>
         </div>
-        <div>
-          <button
-            className={`blueBtn mr-[0.5em] font-bold ${editMode && '!bg-[#0066ff]'}`}
-            onClick={(e) => {
-              e.stopPropagation()
-              setEditMode((prev) => {
-                if (!prev) setIsSpread(true)
-                return !prev
-              })
-            }}
-          >
-            수정
-          </button>
-          <button
-            onClick={(e) => {
-              e.stopPropagation()
-            }}
-            className="blueBtn font-bold"
-          >
-            삭제
-          </button>
-        </div>
+        {isOwner && (
+          <div>
+            <button
+              className={`blueBtn mr-[0.5em] font-bold ${editMode && '!bg-[#0066ff]'}`}
+              onClick={(e) => {
+                e.stopPropagation()
+                setEditMode((prev) => {
+                  if (!prev) setIsSpread(true)
+                  return !prev
+                })
+              }}
+            >
+              수정
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+              }}
+              className="blueBtn font-bold"
+            >
+              삭제
+            </button>
+          </div>
+        )}
       </div>
       <div className="flex gap-1">
-        {!isSpread && BadgeTypes.map((type) => <IsBadgeAuth key={type.id} auth={auth[type.id]} icon={type.icon} />)}
+        {!isSpread && BadgeTypes.map((type) => <IsBadgeAuth key={type.id} isAuth={!!auth[type.id]} icon={type.icon} />)}
       </div>
       <div className="flex flex-col gap-[2rem]">
         {isSpread &&
@@ -83,12 +88,12 @@ export default function BadgeItemContainer({ item }: AddAuthContainer_Props) {
 }
 
 type IsBadgeAuthProps = {
-  auth: boolean
+  isAuth: boolean
   icon: ReactElement
 }
 
-export function IsBadgeAuth({ auth, icon }: IsBadgeAuthProps) {
-  const borderStyle = `border-[1px] border-solid border-[#e2e5ec] rounded-[1em] ${auth ? 'bg-[#fafafb]' : 'bg-[#bbb]'} px-[0.1em]`
+export function IsBadgeAuth({ isAuth, icon }: IsBadgeAuthProps) {
+  const borderStyle = `border-[1px] border-solid border-[#e2e5ec] rounded-[1em] ${isAuth ? 'bg-[#fafafb]' : 'bg-[#bbb]'} px-[0.1em]`
 
   return (
     <div className="flex h-fit items-center justify-start gap-[0.5em] overflow-hidden">
@@ -98,7 +103,7 @@ export function IsBadgeAuth({ auth, icon }: IsBadgeAuthProps) {
 }
 
 type IsBadgeSpreadInfoProps = {
-  auth: any
+  auth: Badge_T['auth'][BadgeAuthType]
   title: string
   icon: ReactElement
   editMode: boolean
@@ -109,7 +114,7 @@ export function IsBadgeSpreadInfo({ auth, title, icon, editMode }: IsBadgeSpread
 
   function TitleAndContent({ title, content }: { title: string; content: string }) {
     return (
-      <tr className="flex items-center justify-between">
+      <tr className="flex items-center justify-between gap-[2em]">
         <td className="text-[#666]">{title}</td>
         <td className="font-bold">{content}</td>
       </tr>
@@ -120,7 +125,7 @@ export function IsBadgeSpreadInfo({ auth, title, icon, editMode }: IsBadgeSpread
     <div className="flex flex-col gap-[0.5em]">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-[0.5em]">
-          {<IsBadgeAuth auth={auth.isAuth} icon={icon} />}
+          {<IsBadgeAuth isAuth={!!auth} icon={icon} />}
           <span>{title}</span>
         </div>
       </div>
@@ -128,7 +133,9 @@ export function IsBadgeSpreadInfo({ auth, title, icon, editMode }: IsBadgeSpread
       <div className="kr-regular-14">
         <div className="rounded-[5px] bg-[#eee] p-[10px]">
           <TitleAndContent title="인증 날짜" content={formatDate(new Date(auth.authDay))} />
-          {auth.description?.length > 0 && <TitleAndContent title="설명" content={auth.description} />}
+          {auth.description && auth.description.length > 0 && (
+            <TitleAndContent title="설명" content={auth.description} />
+          )}
         </div>
         <div className="p-[10px]">
           {/* <div className="my-[0.5em] border-b-[1px] border-solid border-slate-400" /> */}

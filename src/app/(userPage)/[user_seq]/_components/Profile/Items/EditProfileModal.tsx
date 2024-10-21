@@ -19,7 +19,7 @@ export default function EditProfileModal({ setIsOpen }: { setIsOpen: (isOpen: bo
   const { mutate } = useMutation({
     mutationFn: async (data: OwnerProfile_T) => await editOwnerProfile(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['ownerUserData', ownerUserData.user_seq] })
+      queryClient.invalidateQueries({ queryKey: ['userData'] })
       setIsOpen(false)
     },
   })

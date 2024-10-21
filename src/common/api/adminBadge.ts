@@ -1,5 +1,5 @@
 import { AdminBadgeList_T } from '../types/admin'
-import { Badge_T, BadgeIssue_T } from '../types/badge'
+import { BadgeIssue_T } from '../types/badge'
 import { axiosWithAuth } from './instance'
 
 // 뱃지 리스트 조회

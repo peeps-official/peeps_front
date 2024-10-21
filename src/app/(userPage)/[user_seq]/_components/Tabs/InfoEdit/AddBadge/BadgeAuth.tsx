@@ -9,10 +9,10 @@ import GetEmailAuth from './Email/GetEmailAuth'
 import GetFileAuth from './File/GetFileAuth'
 import GetLoginAuth from './Login/GetLoginAuth'
 import { OwnerBadgeListAtom } from '@/src/common/recoil/ownerAtom'
-import { OwnerBadge_T } from '@/src/common/types/owner'
+import { Badge_T } from '@/src/common/types/badge'
 
 export default function BadgeAuth() {
-  const ownerBadgeList = useRecoilValue<OwnerBadge_T[]>(OwnerBadgeListAtom)
+  const ownerBadgeList = useRecoilValue<Badge_T[]>(OwnerBadgeListAtom)
   const isOwner = useRecoilValue<boolean>(IsOwnerAtom)
 
   return (

@@ -71,8 +71,7 @@ export default function DefaultLayout({ children }: layoutProps) {
 
         // 에러 날라올 수 있음 -> id 중복~~ 임시처리이므로 나중에 페이지 분리하는 것도 좋을 듯
         if (status === 200) {
-          queryClient.invalidateQueries({ queryKey: ['login', 'userPage'] })
-          queryClient.invalidateQueries({ queryKey: ['ownerUserData', owner_seq] })
+          queryClient.invalidateQueries({ queryKey: ['userData'] })
         }
         return data
       })()
@@ -90,7 +89,7 @@ export default function DefaultLayout({ children }: layoutProps) {
       </Link>
       {isUserLogedIn && (
         <div
-          className={`fixed left-0 top-0 z-sideBarBack w-[78px] ${archivo.variable} ${dm_sans.variable} ${!isSidebarCollapsed ? sideBarBackground : ''}`}
+          className={`fixed left-0 top-0 z-sideBarBack w-24 ${archivo.variable} ${dm_sans.variable} ${!isSidebarCollapsed ? sideBarBackground : ''}`}
         >
           <div className={'relative z-sideBar flex h-screen w-full flex-col overflow-y-hidden bg-white'}>
             <div className="z-sideBar w-full">

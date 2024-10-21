@@ -3,19 +3,20 @@
 import { getPostList } from '@/src/common/api/post'
 import {
   getLoginUserData,
-  getOwnerBadgeList,
   getOwnerFollowList,
   getOwnerImageList,
   getOwnerUserData,
+  getUserBadgeList,
 } from '@/src/common/api/user'
 import { OwnerBadgeListAtom, OwnerImgListAtom, OwnerProfileStateAtom } from '@/src/common/recoil/ownerAtom'
-import { LogedInUserReqDataAtom, Login_User_Follow_Atom } from '@/src/common/recoil/userAtom'
+import { LogedInUserReqDataAtom, Login_User_Follow_Atom, LoginUserBadgeListAtom } from '@/src/common/recoil/userAtom'
 import { IsOwnerAtom, OwnerPostListAtom } from '@/src/common/recoil/userHome'
-import { OwnerBadge_T, OwnerImgList_T, OwnerProfile_T } from '@/src/common/types/owner'
+import { Badge_T } from '@/src/common/types/badge'
+import { OwnerImgList_T, OwnerProfile_T } from '@/src/common/types/owner'
 import { POST_ARR_T } from '@/src/common/types/post'
-import { LoginUserFollow_T, LoginUserData_T, UserLogin_T } from '@/src/common/types/user'
+import { LoginUserData_T, LoginUserFollow_T, UserLogin_T } from '@/src/common/types/user'
 
-import { useQueries, useQuery } from '@tanstack/react-query'
+import { useQueries } from '@tanstack/react-query'
 
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -32,10 +33,11 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
   // 로그인 유저 정보
   const setUserLoginedData = useSetRecoilState<LoginUserData_T>(LogedInUserReqDataAtom)
   const setLoginFollowList = useSetRecoilState<LoginUserFollow_T[]>(Login_User_Follow_Atom)
+  const setLoginBadgeList = useSetRecoilState<Badge_T[]>(LoginUserBadgeListAtom)
 
   // 페이지 주인 유저 정보
   const setOwnerUserData = useSetRecoilState<OwnerProfile_T>(OwnerProfileStateAtom)
-  const setOwnerBadgeList = useSetRecoilState<OwnerBadge_T[]>(OwnerBadgeListAtom)
+  const setOwnerBadgeList = useSetRecoilState<Badge_T[]>(OwnerBadgeListAtom)
   const setOwnerPostList = useSetRecoilState<POST_ARR_T>(OwnerPostListAtom)
   const setOwnerImgList = useSetRecoilState<OwnerImgList_T>(OwnerImgListAtom)
 
@@ -47,16 +49,26 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
   const res = useQueries({
     queries: [
       {
-        queryKey: ['login', 'userPage'],
+        queryKey: ['userData', { type: 'login' }],
         queryFn: getLoginUserData,
       },
       {
-        queryKey: ['ownerUserData', pageOwnerSeq],
+        queryKey: ['LoginUserFollowList'],
+        queryFn: () => getOwnerFollowList(loginUserData?.user_seq ?? ''),
+        enabled: !!loginUserData,
+      },
+      {
+        queryKey: ['LoginUserBadgeList'],
+        queryFn: () => getUserBadgeList(loginUserData?.user_seq ?? ''),
+        enabled: !!loginUserData,
+      },
+      {
+        queryKey: ['userData', , { type: 'admin' }, pageOwnerSeq],
         queryFn: () => getOwnerUserData(pageOwnerSeq),
       },
       {
         queryKey: ['ownerBadgeList', pageOwnerSeq],
-        queryFn: () => getOwnerBadgeList(pageOwnerSeq),
+        queryFn: () => getUserBadgeList(pageOwnerSeq),
       },
       {
         queryKey: ['refreshWithPost', 'ownerPostList', pageOwnerSeq],
@@ -69,18 +81,16 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
     ],
   })
 
-  const { status, data: LoginUserFollowListData } = useQuery({
-    queryKey: ['LoginUserFollowList'],
-    queryFn: () => getOwnerFollowList(loginUserData?.user_seq ?? ''),
-    enabled: !!loginUserData,
-  })
-
   useEffect(() => {
-    if (LoginUserFollowListData) setLoginFollowList(LoginUserFollowListData)
-  }, [LoginUserFollowListData])
-
-  useEffect(() => {
-    const [loginUserRes, ownerUserData, ownerBadgeList, ownerPostList, ownerImgList] = res
+    const [
+      loginUserRes,
+      loginUserFollowList,
+      loginUserBadgeList,
+      ownerUserData,
+      ownerBadgeList,
+      ownerPostList,
+      ownerImgList,
+    ] = res
 
     if (loginUserRes.isSuccess)
       if (res.some((query) => query.isLoading))
@@ -96,6 +106,16 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
 
       console.log(loginUserRes.isSuccess)
       console.log(loginUserRes.data)
+    }
+
+    // 로그인 유저 팔로우 리스트
+    if (loginUserFollowList.isSuccess) {
+      setLoginFollowList(loginUserFollowList.data)
+    }
+
+    // 로그인 유저 뱃지 리스트
+    if (loginUserBadgeList.isSuccess) {
+      setLoginBadgeList(loginUserBadgeList.data)
     }
 
     // 페이지 주인 유저 정보

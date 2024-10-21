@@ -1,12 +1,16 @@
 export type BadgeAuthType = 'email' | 'file' | 'blockchain' | 'login'
+/**
+ * @description 뱃지 리스트
+ */
 
-export interface Badge_T {
+export type Badge_T = {
   bdg_id: number
   name: string
   image: string
-  content: string
-  member_count?: number
+  member_count: number
   followingCount?: number
+  isPublic: boolean
+  auth: { id: number } & { [key in BadgeAuthType]: BadgeAuthData_T | null }
 }
 
 export interface BadgeIssue_T {
