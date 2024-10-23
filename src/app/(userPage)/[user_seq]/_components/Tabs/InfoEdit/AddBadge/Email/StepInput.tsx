@@ -1,11 +1,11 @@
 import { axiosWithAuth } from '@/src/common/api/instance'
 import { getPossibleBadge, makeBadge } from '@/src/common/api/userBadge'
 import { Input, InputBtn } from '@/src/common/components/Input/Input'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { formatDate } from '@/src/common/utils/Date/formatDate'
+import NextImg from '@/src/common/utils/NextImg'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useRef } from 'react'
 import { useAddAuth } from '../AddAuthContainer'
-import NextImg from '@/src/common/utils/NextImg'
-import { formatDate } from '@/src/common/utils/Date/formatDate'
 
 export type StepProps = {
   stepData: { step: number; data: any }
@@ -100,6 +100,7 @@ export function MakableBadgeInfo({ stepData, setStepData }: StepProps) {
   })
 
   const inputRef = useRef<HTMLInputElement>(null)
+  const queryClient = useQueryClient()
 
   function DetailInfo({ title, content }: { title: string; content: string }) {
     return (
@@ -112,7 +113,7 @@ export function MakableBadgeInfo({ stepData, setStepData }: StepProps) {
 
   return (
     <div className="mt-[20px]">
-      {possibleBadge && possibleBadge.name && (
+      {possibleBadge && possibleBadge.name ? (
         <>
           <p className="mb-[.5rem]">뱃지</p>
           <p className="kr-medium-12 text-[#666]">다음 뱃지를 받을 수 있어요.</p>
@@ -147,12 +148,17 @@ export function MakableBadgeInfo({ stepData, setStepData }: StepProps) {
             </div>
           </div>
         </>
+      ) : (
+        <div className="mb-4">
+          <p>등록되어 있는 뱃지가 없습니다.</p>
+          <p>뱃지 만들기 버튼을 클릭하시면 뱃지 등록 후 안내해드릴게요!</p>
+        </div>
       )}
       <button
         className="blueBtn w-full text-center"
         onClick={async () => {
-          if (!possibleBadge) return
           if (!inputRef.current) return
+          if (!possibleBadge) return
 
           const newData = {
             name: possibleBadge.name,
@@ -166,6 +172,8 @@ export function MakableBadgeInfo({ stepData, setStepData }: StepProps) {
             alert('뱃지가 생성되었습니다!')
             setStepData({ step: 0, data: { ...stepData, ...data } })
             setIsSpread(false)
+            queryClient.invalidateQueries({ queryKey: ['userData'] })
+            queryClient.invalidateQueries({ queryKey: ['LoginUserBadgeList'] })
           }
         }}
       >

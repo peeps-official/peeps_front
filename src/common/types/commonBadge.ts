@@ -28,7 +28,7 @@ export type AuthData_T = {
 export type CreateCommonBadge_T = {
   name: string
   image: string
-  description: string
+  description: string // memo
   type: string
   email_method: string
   email_memo: string

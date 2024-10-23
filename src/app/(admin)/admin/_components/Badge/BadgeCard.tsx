@@ -9,6 +9,8 @@ import { CommonBadge_T } from '@/src/common/types/commonBadge'
 import NextImg from '@/src/common/utils/NextImg'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import Link from 'next/link'
+import { useState } from 'react'
+import EditBadgeModal from '../../badge/_components/EditBadgeModal'
 
 /**
  * 뱃지 카드 컴포넌트
@@ -19,27 +21,16 @@ interface Props {
 }
 
 export default function BadgeCard({ badge }: Props) {
-  const queryClient = useQueryClient()
+  const [isOpen, setIsOpen] = useState(false)
   const { name, image, bdg_id: id } = badge
 
-  const { mutate: deleteBadgeReq } = useMutation({
-    mutationFn: async (id: number) => await axiosWithAuth.delete(`/admin/badge/${id}`),
-    onSuccess: (variables) => {
-      window.alert(name + '뱃지가 삭제되었습니다.')
-      queryClient.invalidateQueries({ queryKey: ['admin', 'badge'] })
-    },
-  })
-
-  function deleteBadge(id: number) {
-    if (window.confirm('정말 삭제하시겠습니까?')) {
-      deleteBadgeReq(id)
-    }
-  }
-
   return (
-    <div className="flex flex-col gap-[10px] rounded-[8px] px-[14px] py-[16px] shadow-popupBox duration-200 ease-in hover:translate-y-[-0.2rem]">
-      <Link href={`badge/${id}`}>
-        <div onClick={(e) => e.stopPropagation()} className="flex items-center justify-between gap-[2em]">
+    <>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="flex flex-col gap-[10px] rounded-[8px] px-[14px] py-[16px] shadow-popupBox duration-200 ease-in hover:translate-y-[-0.2rem]"
+      >
+        <div className="flex items-center justify-between gap-[2em]">
           <div className="flex items-center gap-[0.3em]">
             <div className="relative top-[0.1rem] flex h-[30px] w-[30px] items-center justify-center">
               <NextImg src={image} alt="badge" />
@@ -53,7 +44,8 @@ export default function BadgeCard({ badge }: Props) {
             return <IsBadgeAuth key={type.id} isAuth={isAuth} icon={type.icon} />
           })}
         </div>
-      </Link>
-    </div>
+      </button>
+      {isOpen && <EditBadgeModal badge={badge} setIsOpen={setIsOpen} />}
+    </>
   )
 }

@@ -63,7 +63,7 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
         enabled: !!loginUserData,
       },
       {
-        queryKey: ['userData', , { type: 'admin' }, pageOwnerSeq],
+        queryKey: ['userData', { type: 'admin' }, pageOwnerSeq],
         queryFn: () => getOwnerUserData(pageOwnerSeq),
       },
       {

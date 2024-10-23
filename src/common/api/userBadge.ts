@@ -1,25 +1,18 @@
+import { BadgeCreate_T } from '../types/badge'
 import { axiosWithAuth } from './instance'
 
 // [ TODO ]
 // 인증 시간동안 카운트 다운 해주기
 
-// [이메일] - 받을 수 있는 뱃지
-type getPossibleBadgeRes = {
-  name: string // 뱃지 이름
-  image: string // 뱃지 이미지
-  member_count: number // 멤버 수
-  authway: string // 인증 방법 - email
-  detail: Array<any> // 자세한 정보
-}
-
 export async function getPossibleBadge(email: string) {
-  const { data, status } = await axiosWithAuth.get<getPossibleBadgeRes>(`/verify/mailer/badge?email=${email}`)
+  const { data, status } = await axiosWithAuth.get<BadgeCreate_T>(`/verify/mailer/badge?email=${email}`)
 
   console.log('비상상황!!!!')
 
   if (status === 204) {
     return { name: '', image: '', member_count: 0, authway: '', email: '', detail: [] }
   }
+
   return data
 }
 
@@ -33,11 +26,11 @@ export interface AuthData {
 }
 
 export async function makeBadge(resData: AuthData) {
-  const { data, status } = await axiosWithAuth.post(`/verify/mailer/req`, {
+  const { data, status } = await axiosWithAuth.post(`/verify`, {
     name: resData.name,
+    description: resData.description,
     authway: resData.authway,
     email: resData.email,
-    description: resData.description,
   })
 
   console.log(data)

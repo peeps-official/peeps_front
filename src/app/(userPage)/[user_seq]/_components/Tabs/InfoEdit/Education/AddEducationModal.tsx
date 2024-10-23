@@ -3,7 +3,7 @@
 import { axiosWithAuth } from '@/src/common/api/instance'
 import { Input } from '@/src/common/components/Input/Input'
 import ModalForm from '@/src/common/components/Modal/ModalForm'
-import { OwnerEducation_T } from '@/src/common/types/user'
+import { OwnerEducation_T } from '@/src/common/types/owner'
 import { usePathname } from 'next/navigation'
 import { SubmitHandler, useForm, useWatch } from 'react-hook-form'
 
