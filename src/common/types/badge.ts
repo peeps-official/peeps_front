@@ -22,6 +22,17 @@ export interface BadgeIssue_T {
 }
 
 /**
+ * @description 뱃지 생성 정보 (인증 후 어떤 뱃지 생길 지 보여주는 정보)
+ */
+export type BadgeCreate_T = {
+  name: string
+  image: string
+  member_count: number
+  authway: BadgeAuthType
+  detail: BadgeDetail_T[]
+}
+
+/**
  * @description 각각의 인증에 대한 정보
  */
 export type BadgeAuthData_T = {

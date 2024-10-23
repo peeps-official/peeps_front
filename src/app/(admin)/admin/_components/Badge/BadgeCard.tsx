@@ -5,7 +5,7 @@ import {
   IsBadgeAuth,
 } from '@/src/app/(userPage)/[user_seq]/_components/Tabs/InfoEdit/Badge/BadgeItemContainer'
 import { axiosWithAuth } from '@/src/common/api/instance'
-import { AdminBadgeList_T, AuthType_T } from '@/src/common/types/admin'
+import { CommonBadge_T } from '@/src/common/types/commonBadge'
 import NextImg from '@/src/common/utils/NextImg'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import Link from 'next/link'
@@ -15,11 +15,12 @@ import Link from 'next/link'
  */
 
 interface Props {
-  badge: AdminBadgeList_T
+  badge: CommonBadge_T
 }
 
 export default function BadgeCard({ badge }: Props) {
   const queryClient = useQueryClient()
+  const { name, image, bdg_id: id } = badge
 
   const { mutate: deleteBadgeReq } = useMutation({
     mutationFn: async (id: number) => await axiosWithAuth.delete(`/admin/badge/${id}`),
@@ -28,7 +29,6 @@ export default function BadgeCard({ badge }: Props) {
       queryClient.invalidateQueries({ queryKey: ['admin', 'badge'] })
     },
   })
-  const { name, image, bdg_id: id } = badge
 
   function deleteBadge(id: number) {
     if (window.confirm('정말 삭제하시겠습니까?')) {
@@ -49,8 +49,8 @@ export default function BadgeCard({ badge }: Props) {
         </div>
         <div className="mt-3 flex gap-1">
           {BadgeTypes.map((type) => {
-            const isAuth: boolean = !!badge.auth[type.id as keyof AuthType_T]
-            return <IsBadgeAuth key={type.id} auth={isAuth} icon={type.icon} />
+            const isAuth: boolean = !!badge.auth[type.id]
+            return <IsBadgeAuth key={type.id} isAuth={isAuth} icon={type.icon} />
           })}
         </div>
       </Link>

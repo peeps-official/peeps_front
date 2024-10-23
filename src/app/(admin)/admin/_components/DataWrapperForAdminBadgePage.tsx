@@ -2,7 +2,7 @@
 
 import { getBadgeList } from '@/src/common/api/adminBadge'
 import { AdminBadgeListAtom } from '@/src/common/recoil/badgeAtom'
-import { AdminBadgeList_T } from '@/src/common/types/admin'
+import { CommonBadge_T } from '@/src/common/types/commonBadge'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useSetRecoilState } from 'recoil'
@@ -12,7 +12,7 @@ type Props = {
 }
 
 export default function DataWrapperForAdminBadgePage({ children }: Props) {
-  const setBadgeData = useSetRecoilState<AdminBadgeList_T[]>(AdminBadgeListAtom)
+  const setBadgeData = useSetRecoilState<CommonBadge_T[]>(AdminBadgeListAtom)
 
   const { data: badgeDataQuery, isSuccess } = useQuery({
     queryKey: ['admin', 'badge'],
