@@ -4,11 +4,8 @@ import {
   BadgeTypes,
   IsBadgeAuth,
 } from '@/src/app/(userPage)/[user_seq]/_components/Tabs/InfoEdit/Badge/BadgeItemContainer'
-import { axiosWithAuth } from '@/src/common/api/instance'
 import { CommonBadge_T } from '@/src/common/types/commonBadge'
 import NextImg from '@/src/common/utils/NextImg'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import Link from 'next/link'
 import { useState } from 'react'
 import EditBadgeModal from '../../badge/_components/EditBadgeModal'
 
@@ -40,7 +37,7 @@ export default function BadgeCard({ badge }: Props) {
         </div>
         <div className="mt-3 flex gap-1">
           {BadgeTypes.map((type) => {
-            const isAuth: boolean = !!badge.auth[type.id]
+            const isAuth: boolean = badge.auth[type.id].isEnabled
             return <IsBadgeAuth key={type.id} isAuth={isAuth} icon={type.icon} />
           })}
         </div>

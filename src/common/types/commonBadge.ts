@@ -10,7 +10,7 @@ export type CommonBadge_T = {
   type: string
   member_count: number
   followingCount: number
-  memo: string
+  description: string
   auth: { [key in BadgeAuthType]: AuthData_T }
 }
 

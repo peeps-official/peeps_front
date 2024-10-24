@@ -122,9 +122,9 @@ export function IsBadgeSpreadInfo({ auth, title, icon, editMode }: IsBadgeSpread
   }
 
   return (
-    <div className="flex flex-col gap-[0.5em]">
+    <div className="flex min-w-96 flex-col gap-[0.5em]">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-[0.5em]">
+        <div className="kr-bold-14 flex items-center gap-[0.5em]">
           {<IsBadgeAuth isAuth={!!auth} icon={icon} />}
           <span>{title}</span>
         </div>

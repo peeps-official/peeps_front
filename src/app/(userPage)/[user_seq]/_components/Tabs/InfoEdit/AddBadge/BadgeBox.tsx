@@ -1,6 +1,5 @@
 import ProfileCircleBadge from '@/src/common/components/Badge/ProfileCircleBadge'
 import { Badge_T, BadgeAuthData_T, BadgeAuthType, BadgeDetail_T } from '@/src/common/types/badge'
-import { Badge_T } from '@/src/common/types/badge'
 import { formatDate } from '@/src/common/utils/Date/formatDate'
 import NextImg from '@/src/common/utils/NextImg'
 import Link from 'next/link'
@@ -127,7 +126,7 @@ function BadgeDetailBox({ AuthDetail }: BadgeDetailBoxProps) {
         const { authDay, detail } = auth[type.key] as BadgeAuthData_T
 
         return (
-          <Fragment key={type.key}>
+          <div className="text-dimgray-lighter0 flex flex-col gap-[12px] rounded-md bg-[#eee] p-4" key={type.key}>
             <BadgeDetail title="인증 방식" content={type.ko} />
             <BadgeDetail title="인증 날짜" content={formatDate(new Date(authDay))} />
             {detail.map((addData: BadgeDetail_T) => (
@@ -135,7 +134,7 @@ function BadgeDetailBox({ AuthDetail }: BadgeDetailBoxProps) {
                 {addData.isPublic && <BadgeDetail title={addData.title} content={addData.content} />}
               </Fragment>
             ))}
-          </Fragment>
+          </div>
         )
       })}
     </div>
