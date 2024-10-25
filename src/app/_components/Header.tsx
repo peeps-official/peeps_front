@@ -16,15 +16,15 @@ export default function Header() {
       <div className="flex h-8 items-center gap-4 text-sm font-bold">
         {isLoggedIn ? (
           <>
-            <Link className="blueBtn h-full" href={`/${userData.user_seq}`}>
-              마이페이지
+            <Link className="blueBtn flex h-full items-center justify-center" href={`/${userData.user_seq}`}>
+              <span>마이페이지</span>
             </Link>
-            <button onClick={logout} className="redBtn h-full font-bold">
+            <button onClick={logout} className="redBtn flex h-full items-center justify-center font-bold">
               로그아웃
             </button>
           </>
         ) : (
-          <Link href="/login" className="blueBtn h-full">
+          <Link href="/login" className="blueBtn flex h-full items-center justify-center">
             로그인
           </Link>
         )}
