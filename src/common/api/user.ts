@@ -5,6 +5,21 @@ import { LogedInUserDefaultData } from '../recoil/userAtom'
 import { OwnerProfile_T } from '../types/owner'
 
 /**
+ * @description 유저 로그아웃
+ */
+export async function handleLogout() {
+  try {
+    const { data } = await axiosWithAuth.post(`/logout`)
+    window.alert('로그아웃 했습니다')
+    return true
+  } catch (error) {
+    console.error('로그아웃 실패:', error)
+    window.alert('로그아웃 중 오류가 발생했습니다.')
+    return false
+  }
+}
+
+/**
  * @description 로그인한 유저의 프로필 데이터를 가져옵니다.
  */
 export async function getLoginUserData() {

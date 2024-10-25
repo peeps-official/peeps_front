@@ -1,7 +1,7 @@
 import { atom } from 'recoil'
-import { LoginUserFollow_T, LoginUserData_T, UserLogin_T } from '../types/user'
 import { AdminUserData_T } from '../types/admin'
-import { Badge_T } from '../types/owner'
+import { Badge_T } from '../types/badge'
+import { LoginUserData_T, LoginUserFollow_T, UserLogin_T } from '../types/user'
 
 // admin
 export const adminDatakey: string = 'adminDataKey'
@@ -59,7 +59,7 @@ export const UserLoginDataStateAtom = atom<UserLogin_T>({
  * @description 로그인 유저 기본 값
  */
 
-export const LogedInUserDefaultData = {
+export const LogedInUserDefaultData: LoginUserData_T = {
   loginState: -1,
   needData: [],
   user_data: {

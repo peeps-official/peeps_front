@@ -2,10 +2,11 @@
 
 import { getLoginUserData } from '@/src/common/api/user'
 import { UserLoginDataStateAtom } from '@/src/common/recoil/userAtom'
+import { UserLogin_T } from '@/src/common/types/user'
 import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 
 interface DataWrapperForProPageProps {
   children: React.ReactNode
@@ -13,7 +14,7 @@ interface DataWrapperForProPageProps {
 
 export default function DataWrapperForProPage({ children }: DataWrapperForProPageProps) {
   const router = useRouter()
-  const [recoilData, setRecoilData] = useRecoilState(UserLoginDataStateAtom)
+  const setUserData = useSetRecoilState<UserLogin_T>(UserLoginDataStateAtom)
 
   const { isSuccess, error, data } = useQuery({
     queryKey: ['login', 'ProPage'],
@@ -22,7 +23,7 @@ export default function DataWrapperForProPage({ children }: DataWrapperForProPag
 
   useEffect(() => {
     if (isSuccess) {
-      setRecoilData(data.user_data)
+      setUserData(data.user_data)
     }
 
     if (error) {

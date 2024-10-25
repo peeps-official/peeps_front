@@ -35,13 +35,15 @@ body {
 * {
   font-family:
     -apple-system,
-    BlinkMacSystemFont,
-    Apple SD Gothic Neo,
-    Helvetica,
-    Arial,
-    NanumGothic,
-    'Noto Sans KR',
-    sans-serif;
+    /* macOS와 iOS */ BlinkMacSystemFont,
+    /* macOS Safari와 Chrome */ 'Segoe UI',
+    /* 윈도우 */ Roboto,
+    /* 안드로이드 및 기타 크롬 */ Oxygen-Sans,
+    /* 리눅스 Ubuntu */ Ubuntu,
+    /* 리눅스 Ubuntu */ Cantarell,
+    /* 리눅스 Gnome */ 'Helvetica Neue',
+    /* macOS 구버전 */ Arial,
+    /* 범용 대체 폰트 */ sans-serif !important;
   margin: 0;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -167,7 +169,6 @@ time,
 mark,
 audio,
 video {
-  font-family: 'Noto Sans KR', sans-serif;
   margin: 0;
   padding: 0;
   border: 0;
