@@ -5,3 +5,8 @@ export const AdminBadgeListAtom = atom<CommonBadge_T[]>({
   key: 'AdminBadgeListAtom',
   default: [],
 })
+
+export const CommonBadgeDataAtom = atom<CommonBadge_T | null>({
+  key: 'CommonBadgeDataAtom',
+  default: null,
+})

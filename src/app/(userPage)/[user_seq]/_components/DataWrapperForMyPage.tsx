@@ -82,6 +82,9 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
   })
 
   useEffect(() => {
+    // 로딩 중
+    if (res.some((query) => query.isLoading)) return
+
     const [
       loginUserRes,
       loginUserFollowList,
@@ -91,11 +94,6 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
       ownerPostList,
       ownerImgList,
     ] = res
-
-    if (loginUserRes.isSuccess)
-      if (res.some((query) => query.isLoading))
-        // 로딩 중
-        return
 
     // 로그인 유저 정보
     if (loginUserRes.isSuccess && loginUserRes.data) {

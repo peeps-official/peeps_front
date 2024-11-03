@@ -33,7 +33,7 @@ export default function GlobalSidebarNarrow() {
           <NarrowBarSubPartWrapper className="mt-[-0.25rem]" title="뱃지">
             {badgeList &&
               badgeList.map((badge) => (
-                <NarrowBarItem href={`/badge/${badge.bdg_id}`} key={badge.bdg_id} image={badge.image} />
+                <NarrowBarItem href={`/circle/${badge.name}`} key={badge.bdg_id} image={badge.image} />
               ))}
           </NarrowBarSubPartWrapper>
 

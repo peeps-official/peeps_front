@@ -38,7 +38,7 @@ export default function GlobalSidebarWide({ onToggleSidebar }: { onToggleSidebar
       <WideBarSubPartWrapper title="팔로잉 뱃지">
         {badgeList &&
           badgeList.map((badge) => (
-            <WideBarItem href={`/badge/${badge.bdg_id}`} key={badge.bdg_id} image={badge.image} name={badge.name} />
+            <WideBarItem href={`/circle/${badge.name}`} key={badge.bdg_id} image={badge.image} name={badge.name} />
           ))}
       </WideBarSubPartWrapper>
 

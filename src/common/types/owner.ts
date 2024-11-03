@@ -12,6 +12,7 @@ import { UserLogin_T } from './user'
 export interface OwnerProfile_T extends UserLogin_T {
   isFollow?: -1 | 0 | 1
   profileMessage: string | ''
+  info_detail: string | null
   follwer_list: { nickname: string; user_id: string }[]
   badge_list: Badge_T[]
 }
