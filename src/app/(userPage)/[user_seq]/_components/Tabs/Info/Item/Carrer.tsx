@@ -18,10 +18,6 @@ export default function Carrer() {
     queryFn: () => getOwnerCareer(user_seq),
   })
 
-  if (data?.length === 0) {
-    return null
-  }
-
   return <BoxItemWrapper title="경력">{isSuccess && <CarrerBox items={data} />}</BoxItemWrapper>
 }
 
