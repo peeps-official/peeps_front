@@ -1,16 +1,58 @@
+import { axiosWithAuth } from '@/src/common/api/instance'
+import { OwnerProfileStateAtom } from '@/src/common/recoil/ownerAtom'
+import { IsOwnerAtom } from '@/src/common/recoil/userHome'
+import { OwnerProfile_T } from '@/src/common/types/owner'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useRef, useState } from 'react'
+import { useRecoilValue } from 'recoil'
+
 export default function Introduce() {
+  const [isEditOpen, setIsEditOpen] = useState(false)
+
+  const isOwner = useRecoilValue<boolean>(IsOwnerAtom)
+  const ownerData = useRecoilValue<OwnerProfile_T>(OwnerProfileStateAtom)
+
+  const textRef = useRef<HTMLTextAreaElement>(null)
+  const queryClient = useQueryClient()
+
+  const { mutate } = useMutation({
+    mutationFn: async (data: string) => await axiosWithAuth.patch(`${ownerData.user_seq}/info`, { info_detail: data }),
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ['userData'] })
+      window.alert('수정되었습니다.')
+      setIsEditOpen(false)
+    },
+  })
+
   return (
     <div className="mx-auto w-full rounded-lg p-4 shadow-popupBox">
-      <div className="mb-4 flex flex-col items-start justify-between">
+      <div className="mb-4 flex items-start justify-between">
         <h1 className="kr-bold-14">소개</h1>
+        {isOwner && (
+          <button
+            className="kr-bold-14 text-blue-600"
+            onClick={() => {
+              if (isEditOpen && textRef?.current) {
+                mutate(textRef.current.value)
+              } else {
+                setIsEditOpen((prev) => !prev)
+              }
+            }}
+          >
+            수정
+          </button>
+        )}
       </div>
-      <div className="kr-regular-14">
-        글로벌 게임 서비스(별이되어라2)의 프론트엔드 개발을 주도하며, NextJS, Docker, TypeScript를 활용할 줄 알며,
-        주단위 개발에 경험이 있고 유저 경험과 성능 최적화를 고민하고 팀에 필요한게 무엇일지 고민하는 개발자입니다.
-        <br />
-        <br />
-        instagram: @jungmin_lee_ <br />
-      </div>
+      {isEditOpen ? (
+        <textarea
+          ref={textRef}
+          defaultValue={ownerData.info_detail ?? ''}
+          placeholder="이곳에 글을 적으실 수 있습니다."
+          className="border-1 w-full border-solid border-gray-100"
+        />
+      ) : (
+        <div className="kr-regular-14">{ownerData.info_detail ?? '-'}</div>
+      )}
     </div>
   )
 }

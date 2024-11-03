@@ -8,13 +8,12 @@ import NextImg from '@/src/common/utils/NextImg'
 import { useRecoilValue } from 'recoil'
 import Introduce from './Introduce'
 import { OwnerProfile_T } from '@/src/common/types/owner'
-import { OwnerProfileStateAtom } from '@/src/common/recoil/ownerAtom'
+import { OwnerBadgeListAtom, OwnerProfileStateAtom } from '@/src/common/recoil/ownerAtom'
+import BadgeBox from '../InfoEdit/AddBadge/BadgeBox'
+import { Badge_T } from '@/src/common/types/badge'
 
 export default function Info() {
-  const ownerData = useRecoilValue<OwnerProfile_T>(OwnerProfileStateAtom)
-  const isOwner = useRecoilValue<boolean>(IsOwnerAtom)
-
-  const { profile, badges, educate, career } = popUpData
+  const ownerBadgeList = useRecoilValue<Badge_T[]>(OwnerBadgeListAtom)
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -54,16 +53,16 @@ export default function Info() {
       <div className="relative left-[-200px] top-[-20px]" ref={sectionRef} />
       <div className="grid items-start gap-[5rem]" style={{ gridTemplateColumns: '4fr 8fr' }}>
         <div className="sticky top-0 flex flex-col gap-5 self-start">
-          <div className="mx-auto w-full rounded-lg p-4 shadow-popupBox">
+          {/* <div className="mx-auto w-full rounded-lg p-4 shadow-popupBox">
             <div className="h-24 w-24 rounded-full">
               <NextImg src="/images/profile/profile.svg" alt="profile image" />
             </div>
             <div>대충 이름</div>
             <div>대충 소개</div>
             <div>대충 관련 링크</div>
-          </div>
+          </div> */}
           <Introduce />
-          <div className="mx-auto w-full rounded-lg p-4 shadow-popupBox">대충 뱃지 종류</div>
+          <BadgeBox badges={ownerBadgeList} />
         </div>
         <div className="flex flex-col gap-5">
           <Education />
