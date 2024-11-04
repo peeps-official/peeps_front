@@ -58,7 +58,7 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
         enabled: !!loginUserData,
       },
       {
-        queryKey: ['LoginUserBadgeList'],
+        queryKey: ['badgeList', { type: 'login' }],
         queryFn: () => getUserBadgeList(loginUserData?.user_seq ?? ''),
         enabled: !!loginUserData,
       },
@@ -67,7 +67,7 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
         queryFn: () => getOwnerUserData(pageOwnerSeq),
       },
       {
-        queryKey: ['ownerBadgeList', pageOwnerSeq],
+        queryKey: ['badgeList', { type: 'admin' }, pageOwnerSeq],
         queryFn: () => getUserBadgeList(pageOwnerSeq),
       },
       {

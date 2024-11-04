@@ -173,7 +173,7 @@ export function MakableBadgeInfo({ stepData, setStepData }: StepProps) {
             setStepData({ step: 0, data: { ...stepData, ...data } })
             setIsSpread(false)
             queryClient.invalidateQueries({ queryKey: ['userData'] })
-            queryClient.invalidateQueries({ queryKey: ['LoginUserBadgeList'] })
+            queryClient.invalidateQueries({ queryKey: ['badgeList'] })
           }
         }}
       >

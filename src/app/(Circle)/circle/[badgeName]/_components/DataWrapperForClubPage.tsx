@@ -38,7 +38,7 @@ export default function DataWrapperForClubPage({ badgeName, children }: DataWrap
         enabled: !!loginUserData,
       },
       {
-        queryKey: ['LoginUserBadgeList'],
+        queryKey: ['badgeList', { type: 'login' }],
         queryFn: () => getUserBadgeList(loginUserData?.user_seq ?? ''),
         enabled: !!loginUserData,
       },
