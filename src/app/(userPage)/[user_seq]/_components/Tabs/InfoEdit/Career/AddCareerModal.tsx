@@ -104,6 +104,7 @@ export default function AddCareerModal({ defaultData, type, setIsOpen }: Props) 
             <Input
               title="입사 날짜"
               type="date"
+              requiredStar={true}
               {...register('startDate', { required: '필수 입력 값 입니다.' })}
               errors={errors}
             />
