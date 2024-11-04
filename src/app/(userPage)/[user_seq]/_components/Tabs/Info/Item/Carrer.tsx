@@ -51,13 +51,21 @@ function CarrerBox({ items }: CarrerBoxProps) {
                 <td className="p-2 align-top">
                   <div className="flex items-center gap-1">
                     <span className="kr-bold-14">{item.teamName}</span>
-                    <span>·</span>
-                    <span className="kr-bold-14">{item.jobTitle}</span>
+                    {item.jobTitle && (
+                      <>
+                        <span>·</span>
+                        <span className="kr-bold-14">{item.jobTitle}</span>
+                      </>
+                    )}
                   </div>
                   <div className="kr-medium-14 flex items-center gap-1 text-gray-400">
                     <span>{item.jobRole}</span>
-                    <span>|</span>
-                    <span className="kr-medium-14">{item.jobType}</span>
+                    {item.jobType && (
+                      <>
+                        <span>|</span>
+                        <span className="kr-medium-14">{item.jobType}</span>
+                      </>
+                    )}
                   </div>
                   <div className="kr-regular-14 mb-8 mt-3">{item.description}</div>
                 </td>

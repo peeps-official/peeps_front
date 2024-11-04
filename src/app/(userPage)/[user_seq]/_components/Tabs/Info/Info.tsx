@@ -53,14 +53,6 @@ export default function Info() {
       <div className="relative left-[-200px] top-[-20px]" ref={sectionRef} />
       <div className="grid items-start gap-[5rem]" style={{ gridTemplateColumns: '4fr 8fr' }}>
         <div className="sticky top-0 flex flex-col gap-5 self-start">
-          {/* <div className="mx-auto w-full rounded-lg p-4 shadow-popupBox">
-            <div className="h-24 w-24 rounded-full">
-              <NextImg src="/images/profile/profile.svg" alt="profile image" />
-            </div>
-            <div>대충 이름</div>
-            <div>대충 소개</div>
-            <div>대충 관련 링크</div>
-          </div> */}
           <Introduce />
           <BadgeBox badges={ownerBadgeList} />
         </div>

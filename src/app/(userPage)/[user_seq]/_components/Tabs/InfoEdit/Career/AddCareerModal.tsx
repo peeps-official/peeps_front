@@ -4,6 +4,7 @@ import { axiosWithAuth } from '@/src/common/api/instance'
 import { Input } from '@/src/common/components/Input/Input'
 import ModalForm from '@/src/common/components/Modal/ModalForm'
 import { OwnerCareer_T } from '@/src/common/types/owner'
+import { useQueryClient } from '@tanstack/react-query'
 import { usePathname } from 'next/navigation'
 import { SubmitHandler, useForm, useWatch } from 'react-hook-form'
 
@@ -14,8 +15,16 @@ type Props = {
 }
 
 export default function AddCareerModal({ defaultData, type, setIsOpen }: Props) {
-  const { register, handleSubmit, control, setValue } = useForm<OwnerCareer_T>({ defaultValues: defaultData })
+  const {
+    register,
+    handleSubmit,
+    control,
+    setValue,
+    formState: { errors },
+  } = useForm<OwnerCareer_T>({ criteriaMode: 'all', defaultValues: defaultData })
   const user_seq = usePathname().slice(1)
+
+  const queryClient = useQueryClient()
 
   const onSubmit: SubmitHandler<OwnerCareer_T> = async (inputVal) => {
     const reqData = {
@@ -45,6 +54,7 @@ export default function AddCareerModal({ defaultData, type, setIsOpen }: Props) 
       alert('이력 추가되었습니다.')
       setIsOpen(false)
     }
+    queryClient.invalidateQueries({ queryKey: ['userData'] })
   }
 
   const is재직 = useWatch({
@@ -64,26 +74,49 @@ export default function AddCareerModal({ defaultData, type, setIsOpen }: Props) 
     >
       <div>
         <fieldset className="flex gap-5">
-          <Input title="회사명" {...register('company')} placeholder="ex) 토스" />
-          <Input title="부서명" {...register('teamName')} placeholder="ex) 개발팀 / 마케팅팀 / 인사팀" />
-          <Input title="직책" {...register('jobRole')} placeholder="ex) 팀장 / 팀원" />
+          <Input
+            title="회사명"
+            requiredStar={true}
+            {...register('company', { required: '필수 입력 값 입니다.' })}
+            placeholder="ex) 토스"
+            errors={errors}
+          />
+          <Input
+            title="부서명"
+            {...register('teamName')}
+            placeholder="ex) 개발팀 / 마케팅팀 / 인사팀"
+            errors={errors}
+          />
+          <Input title="직책" {...register('jobRole')} placeholder="ex) 팀장 / 팀원" errors={errors} />
         </fieldset>
         <fieldset>
-          <Input title="직군" {...register('jobTitle')} placeholder="ex) 프론트엔드 개발" />
-          <Input title="계약 형태" {...register('jobType')} placeholder="ex) 프리랜서 / 정규직 / 계약직" />
+          <Input title="직군" {...register('jobTitle')} placeholder="ex) 프론트엔드 개발" errors={errors} />
+          <Input
+            title="계약 형태"
+            {...register('jobType')}
+            placeholder="ex) 프리랜서 / 정규직 / 계약직"
+            errors={errors}
+          />
         </fieldset>
 
         <div className="flex gap-10">
           <fieldset className="flex flex-1 gap-5">
-            <Input title="입사 날짜" type="date" {...register('startDate')} />
-            <Input title="퇴사 날짜" type="date" {...register('endDate')} disabled={is퇴사일비활성화} />
+            <Input
+              title="입사 날짜"
+              type="date"
+              {...register('startDate', { required: '필수 입력 값 입니다.' })}
+              errors={errors}
+            />
+            <Input title="퇴사 날짜" type="date" {...register('endDate')} disabled={is퇴사일비활성화} errors={errors} />
           </fieldset>
           <fieldset className="flex gap-2">
             <Input title="재직 중" value="checked" type="checkbox" {...register('isCurrently')} />
           </fieldset>
         </div>
-        <Input title="설명" {...register('description')} />
-        <button className="blueBtn mt-5 w-fit font-bold">{type === 'new' ? '생성하기' : '수정하기'}</button>
+        <Input title="설명" {...register('description')} errors={errors} />
+        <button type="submit" className="blueBtn mt-5 w-fit font-bold">
+          {type === 'new' ? '생성하기' : '수정하기'}
+        </button>
       </div>
     </ModalForm>
   )

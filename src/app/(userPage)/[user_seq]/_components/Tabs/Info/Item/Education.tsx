@@ -58,7 +58,7 @@ function HistoryBox({ items }: HistoryBoxProps) {
                     <span className="kr-medium-14">{item.enrollmentStatus}</span>
                   </div>
                   <div className="kr-medium-14 flex items-center gap-1 text-gray-400">
-                    <span>학점: {item.grade}</span>
+                    {item.grade > 0 && <span>학점: {item.grade}</span>}
                   </div>
                   <div className="kr-regular-14 mb-8 mt-3">{item.description}</div>
                 </td>
