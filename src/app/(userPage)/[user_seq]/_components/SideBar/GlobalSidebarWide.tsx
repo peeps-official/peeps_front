@@ -48,7 +48,7 @@ export default function GlobalSidebarWide({ onToggleSidebar }: { onToggleSidebar
         {followList &&
           followList.map((follow: LoginUserFollow_T) => (
             <WideBarItem
-              href={follow.user_sep}
+              href={`/${follow.user_sep}`}
               key={follow.user_sep}
               image={follow.image}
               name={follow.user_id}
