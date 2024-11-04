@@ -3,10 +3,10 @@
 import { getPostList } from '@/src/common/api/post'
 import {
   getLoginUserData,
-  getUserFollowList,
   getOwnerImageList,
   getOwnerUserData,
   getUserBadgeList,
+  getUserFollowList,
 } from '@/src/common/api/user'
 import { OwnerBadgeListAtom, OwnerImgListAtom, OwnerProfileStateAtom } from '@/src/common/recoil/ownerAtom'
 import { LogedInUserReqDataAtom, Login_User_Follow_Atom, LoginUserBadgeListAtom } from '@/src/common/recoil/userAtom'
@@ -18,7 +18,7 @@ import { LoginUserData_T, LoginUserFollow_T, UserLogin_T } from '@/src/common/ty
 
 import { useQueries } from '@tanstack/react-query'
 
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 
@@ -81,6 +81,11 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
     ],
   })
 
+  // 로그인 추가 데이터가 필요한 경우
+  if (res[0].data?.loginState === 300 && res[0].data.needData) {
+    redirect('/needInfo')
+  }
+
   useEffect(() => {
     // 로딩 중
     if (res.some((query) => query.isLoading)) return
@@ -101,7 +106,6 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
       SetLoginUserData(loginUserRes.data.user_data)
     } else {
       console.log('비로그인 상태')
-
       console.log(loginUserRes.isSuccess)
       console.log(loginUserRes.data)
     }

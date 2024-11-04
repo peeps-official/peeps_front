@@ -1,8 +1,8 @@
 import '@/src/app/global.css'
 import '@/src/app/styles.css'
 
-import { Archivo } from 'next/font/google'
-import { DM_Sans } from 'next/font/google'
+import { Metadata } from 'next'
+import { Archivo, DM_Sans } from 'next/font/google'
 import DataContextProvider from './_components/DataContextProvider'
 
 const archivo = Archivo({
@@ -20,7 +20,12 @@ interface layoutProps {
   children: React.ReactNode
 }
 
-export default function DefaultLayout({ children }: layoutProps) {
+export const metadata: Metadata = {
+  title: 'PEEPS',
+  description: 'PEEPS',
+}
+
+export default async function DefaultLayout({ children }: layoutProps) {
   return (
     <html className="w-full">
       <head>

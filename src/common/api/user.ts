@@ -1,3 +1,4 @@
+'use client'
 import { axiosWithAuth } from './instance'
 import { LoginUserData_T } from '../types/user'
 import { changeKey } from '../utils/changKey'

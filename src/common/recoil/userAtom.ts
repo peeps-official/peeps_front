@@ -44,17 +44,6 @@ export const badgeAtom = atom<Array<AdminUserData_T>>({
   ],
 })
 
-export const UserLoginDataStateAtom = atom<UserLogin_T>({
-  key: 'UserLoginDataStateAtom',
-  default: {
-    user_seq: '',
-    user_id: '',
-    user_nickname: '',
-    user_profile_img: '',
-    user_bg_img: '',
-  },
-})
-
 /**
  * @description 로그인 유저 기본 값
  */
@@ -83,6 +72,20 @@ export const LogedInUserReqDataAtom = atom<LoginUserData_T>({
 export const Login_User_Follow_Atom = atom<Array<LoginUserFollow_T>>({
   key: 'Login_User_Follow_Atom',
   default: [],
+})
+
+/**
+ * 로그인 데이터 중 user_data에 대한 데이터
+ */
+export const OnlyLogedInUserData = atom<UserLogin_T>({
+  key: 'OnlyLogedInUserData',
+  default: {
+    user_seq: '',
+    user_id: '',
+    user_nickname: '',
+    user_profile_img: '',
+    user_bg_img: '',
+  },
 })
 
 /**

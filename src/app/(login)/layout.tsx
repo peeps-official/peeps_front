@@ -1,11 +1,7 @@
-import Head from 'next/head'
-
-import { Archivo } from 'next/font/google'
-import { DM_Sans } from 'next/font/google'
+import { Archivo, DM_Sans } from 'next/font/google'
 
 import '@/src/app/global.css'
 import '@/src/app/styles.css'
-import DataContextProvider from '../_components/DataContextProvider'
 
 const archivo = Archivo({
   subsets: ['latin'],
@@ -25,9 +21,7 @@ interface layoutProps {
 export default function DefaultLayout({ children }: layoutProps) {
   return (
     <>
-      <div className={`${archivo.variable + ' ' + dm_sans.variable}`}>
-        {children}
-      </div>
+      <div className={`${archivo.variable + ' ' + dm_sans.variable}`}>{children}</div>
     </>
   )
 }
