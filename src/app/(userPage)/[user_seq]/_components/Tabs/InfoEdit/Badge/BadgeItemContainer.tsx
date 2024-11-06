@@ -26,7 +26,7 @@ export default function BadgeItemContainer({ item, isOwner }: AddAuthContainer_P
   const [editMode, setEditMode] = useState(false)
   const [isSpread, setIsSpread] = useState(false)
 
-  const { name, image, auth } = item
+  const { name, image, auth, isPublic } = item
 
   return (
     <div
@@ -34,7 +34,7 @@ export default function BadgeItemContainer({ item, isOwner }: AddAuthContainer_P
         if (editMode) return
         setIsSpread((prev) => !prev)
       }}
-      className="flex w-full max-w-[40em] flex-col gap-[10px] rounded-[8px] px-[14px] py-[16px] shadow-popupBox duration-200 ease-in hover:translate-y-[-0.2rem]"
+      className="flex w-full max-w-[40em] flex-col gap-[10px] rounded-[8px] px-[14px] pt-[16px] shadow-popupBox duration-200 ease-in hover:translate-y-[-0.2rem]"
     >
       <div className="flex items-center justify-between gap-[2em]">
         <div className="flex items-center gap-[0.3em]">
@@ -68,7 +68,21 @@ export default function BadgeItemContainer({ item, isOwner }: AddAuthContainer_P
           </div>
         )}
       </div>
-      <div className="flex gap-1">
+      {!isPublic && <p className="kr-bold-12 mb-[-1em] text-[#9b111e]">비공개 처리된 뱃지 입니다.</p>}
+      {editMode && (
+        <div className="mb-[-2rem] mt-2 flex justify-between gap-[2em]">
+          <div className="flex-1">
+            <TitleAndContent title="뱃지 공개 여부" content="" />
+          </div>
+          {editMode && (
+            <div className="mb-[0.5em] pr-[10px]">
+              <ToggleButton isEnable={isPublic} />
+            </div>
+          )}
+        </div>
+      )}
+
+      <div className="mt-4 flex gap-1">
         {!isSpread && BadgeTypes.map((type) => <IsBadgeAuth key={type.id} isAuth={!!auth[type.id]} icon={type.icon} />)}
       </div>
       <div className="flex flex-col gap-[2rem]">
@@ -112,15 +126,6 @@ type IsBadgeSpreadInfoProps = {
 export function IsBadgeSpreadInfo({ auth, title, icon, editMode }: IsBadgeSpreadInfoProps) {
   if (!auth) return <></>
 
-  function TitleAndContent({ title, content }: { title: string; content: string }) {
-    return (
-      <tr className="flex items-center justify-between gap-[2em]">
-        <td className="text-[#666]">{title}</td>
-        <td className="font-bold">{content}</td>
-      </tr>
-    )
-  }
-
   return (
     <div className="flex min-w-96 flex-col gap-[0.5em]">
       <div className="flex items-center justify-between">
@@ -137,6 +142,7 @@ export function IsBadgeSpreadInfo({ auth, title, icon, editMode }: IsBadgeSpread
             <TitleAndContent title="설명" content={auth.description} />
           )}
         </div>
+
         <div className="p-[10px]">
           {/* <div className="my-[0.5em] border-b-[1px] border-solid border-slate-400" /> */}
           {auth.detail.map((item: any) => (
@@ -158,5 +164,14 @@ export function IsBadgeSpreadInfo({ auth, title, icon, editMode }: IsBadgeSpread
         </div>
       </div>
     </div>
+  )
+}
+
+function TitleAndContent({ title, content }: { title: string; content: string }) {
+  return (
+    <tr className="flex items-center justify-between gap-[2em]">
+      <td className="text-[#666]">{title}</td>
+      <td className="font-bold">{content}</td>
+    </tr>
   )
 }
