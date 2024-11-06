@@ -37,7 +37,7 @@ export default function BadgeCard({ badge }: Props) {
         </div>
         <div className="mt-3 flex gap-1">
           {BadgeTypes.map((type) => {
-            const isAuth: boolean = badge.auth[type.id].isEnabled
+            const isAuth: boolean = badge.auth[type.id]?.isEnabled
             return <IsBadgeAuth key={type.id} isAuth={isAuth} icon={type.icon} />
           })}
         </div>

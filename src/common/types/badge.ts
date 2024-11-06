@@ -47,6 +47,7 @@ export type BadgeAuthData_T = {
  * @description 인증 상세 정보 (detail에 들어감)
  */
 export type BadgeDetail_T = {
+  id: number
   title: string
   content: string
   isPublic: boolean

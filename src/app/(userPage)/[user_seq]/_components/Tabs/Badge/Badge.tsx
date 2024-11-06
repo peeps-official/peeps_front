@@ -14,7 +14,7 @@ export default function Badge() {
     <div className="flex flex-wrap gap-[1rem]">
       {ownerBadgeList ? (
         ownerBadgeList.map((badge) => (
-          <div>
+          <div key={badge.bdg_id}>
             <BadgeItemContainer item={badge} key={badge.bdg_id} isOwner={isOwner} />
           </div>
         ))

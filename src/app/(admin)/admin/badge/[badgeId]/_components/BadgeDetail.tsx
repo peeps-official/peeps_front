@@ -29,7 +29,7 @@ export default function BadgeDetail({ badgeId }: Props) {
     return <div>오류가 발생했습니다.</div>
   }
 
-  const { bdg_id, name, image, type, member_count, followingCount, memo, auth } = data
+  const { bdg_id, name, image, type, member_count, followingCount, auth, description } = data
   const { email, login, file, blockchain } = auth
 
   return (
@@ -49,7 +49,7 @@ export default function BadgeDetail({ badgeId }: Props) {
           <p className="mt-2 text-gray-600">타입: {type}</p>
           <p className="mt-2 text-gray-600">인증회원 수: {member_count}</p>
           <p className="mt-2 text-gray-600">팔로잉 회원 수: {followingCount}</p>
-          <p className="mt-1 text-gray-600">뱃지 설명: {memo}</p>
+          <p className="mt-1 text-gray-600">뱃지 설명: {description}</p>
         </div>
       </div>
 
@@ -81,8 +81,8 @@ function DataForm({ title, authData, children }: BadgeDetailProps) {
         <h3 className="text-lg font-semibold text-gray-600">{title} 인증</h3>
         {authData && <h4>{authData.method}</h4>}
         {authData ? (
-          <span className={authData.isEnabled ? 'font-bold text-blue-500' : 'text-red-600'}>
-            {authData.isEnabled ? '가능' : '불가능'}
+          <span className={authData?.isEnabled ? 'font-bold text-blue-500' : 'text-red-600'}>
+            {authData?.isEnabled ? '가능' : '불가능'}
           </span>
         ) : (
           <span className={'text-red-600'}>{'불가능'}</span>

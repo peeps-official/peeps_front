@@ -26,7 +26,7 @@ export default function BadgeItemContainer({ item, isOwner }: AddAuthContainer_P
   const [editMode, setEditMode] = useState(false)
   const [isSpread, setIsSpread] = useState(false)
 
-  const { name, image, auth, isPublic } = item
+  const { bdg_id, name, image, auth, isPublic } = item
 
   return (
     <div
@@ -76,7 +76,7 @@ export default function BadgeItemContainer({ item, isOwner }: AddAuthContainer_P
           </div>
           {editMode && (
             <div className="mb-[0.5em] pr-[10px]">
-              <ToggleButton isEnable={isPublic} />
+              <ToggleButton isEnable={isPublic} id={bdg_id} isAll={true} />
             </div>
           )}
         </div>
@@ -146,7 +146,7 @@ export function IsBadgeSpreadInfo({ auth, title, icon, editMode }: IsBadgeSpread
         <div className="p-[10px]">
           {/* <div className="my-[0.5em] border-b-[1px] border-solid border-slate-400" /> */}
           {auth.detail.map((item: any) => (
-            <Fragment key={item.title}>
+            <Fragment key={item.id}>
               {(item.isPublic || editMode) && (
                 <div className="flex justify-between gap-[1em]">
                   <div className="flex-1">
@@ -154,7 +154,7 @@ export function IsBadgeSpreadInfo({ auth, title, icon, editMode }: IsBadgeSpread
                   </div>
                   {editMode && (
                     <div className="mb-[0.5em]">
-                      <ToggleButton isEnable={item.isPublic} />
+                      <ToggleButton isEnable={item.isPublic} id={item.id} />
                     </div>
                   )}
                 </div>
@@ -169,9 +169,9 @@ export function IsBadgeSpreadInfo({ auth, title, icon, editMode }: IsBadgeSpread
 
 function TitleAndContent({ title, content }: { title: string; content: string }) {
   return (
-    <tr className="flex items-center justify-between gap-[2em]">
-      <td className="text-[#666]">{title}</td>
-      <td className="font-bold">{content}</td>
-    </tr>
+    <div className="flex items-center justify-between gap-[2em]">
+      <span className="text-[#666]">{title}</span>
+      <span className="font-bold">{content}</span>
+    </div>
   )
 }
