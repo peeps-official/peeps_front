@@ -16,7 +16,7 @@ export default function BadgeProfile() {
       <div className="relative flex items-center gap-[10px]">
         {setClubInfo && (
           <>
-            <ProfileImage src={setClubInfo.badge.image} alt="profile image" />
+            <ProfileImage src={setClubInfo?.badge.image} alt="profile image" />
             <ProfileInfo circleInfo={setClubInfo} />
           </>
         )}
@@ -33,9 +33,9 @@ type ProfileImageProps = {
 function ProfileImage({ alt, src }: ProfileImageProps) {
   return (
     <>
-      <div className={`h-[140px] w-[140px] rounded-full bg-[white] p-[4px]`}>
+      <div className={`h-[140px] w-[140px] bg-[white] p-[4px]`}>
         <div className="relative h-full w-full">
-          <div className="h-full w-full cursor-pointer overflow-hidden rounded-full object-cover">
+          <div className="h-full w-full cursor-pointer overflow-hidden rounded-lg object-cover">
             <NextImg alt={alt} src={src ?? '/images/profile/profile.svg'} />
           </div>
         </div>

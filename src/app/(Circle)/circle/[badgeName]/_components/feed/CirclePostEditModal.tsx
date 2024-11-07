@@ -1,16 +1,18 @@
 'use client'
 
-import { editPost, uploadPost } from '@/src/common/api/post'
+import { editCirclePost, uploadCirclePost } from '@/src/common/api/circle'
 import BasicCenterModal from '@/src/common/components/Modal/BasicCenterModal'
 import { BundleImage, useContentImage } from '@/src/common/hooks/useContentImage'
+import { CircleDataAtom } from '@/src/common/recoil/circleAtom'
+import { Circle_T } from '@/src/common/types/circle'
 import { Post_T, PostUpload_T } from '@/src/common/types/post'
 import NextImg from '@/src/common/utils/NextImg'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { usePathname } from 'next/navigation'
 import { forwardRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FaXmark } from 'react-icons/fa6'
 import { PiImagesThin } from 'react-icons/pi'
+import { useRecoilValue } from 'recoil'
 
 type Props = {
   isEdit?: boolean // 수정 글 작성인지
@@ -18,10 +20,13 @@ type Props = {
   setIsOpen: (state: boolean) => void
 }
 
-export default function EditModal({ isEdit = false, post, setIsOpen }: Props) {
+/**
+ * [TODO] Edit 모달이랑 로직 공통됨 -> 리팩토링 필요
+ */
+export default function CirclePostEditModal({ isEdit = false, post, setIsOpen }: Props) {
   const [rowsNum, setRowsNum] = useState<number>(2)
   const { register, handleSubmit, reset } = useForm()
-  const owner_user_seq = usePathname().slice(1)
+  const circleInfo = useRecoilValue<Circle_T | null>(CircleDataAtom)
   const queryClient = useQueryClient()
 
   //   수정모드인데 post 정보 없으면 경고창 띄우고 모달 닫기
@@ -37,8 +42,9 @@ export default function EditModal({ isEdit = false, post, setIsOpen }: Props) {
 
   const { mutate } = useMutation({
     mutationFn: async (newPost: PostUpload_T) => {
-      if (isEdit && post) return await editPost(owner_user_seq, post.id, newPost)
-      else return await uploadPost(owner_user_seq, newPost)
+      if (!circleInfo) return alert('서클 정보가 없습니다.')
+      if (isEdit && post) return await editCirclePost(circleInfo.badge.name, post.id, newPost)
+      else return await uploadCirclePost(circleInfo.badge.name, newPost)
     },
 
     onSuccess: () => {
@@ -48,9 +54,6 @@ export default function EditModal({ isEdit = false, post, setIsOpen }: Props) {
       setRowsNum(2)
       setIsOpen(false)
 
-      queryClient.invalidateQueries({
-        queryKey: ['refreshWithPost'],
-      })
       queryClient.invalidateQueries({
         queryKey: ['clubFeed'],
       })

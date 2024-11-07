@@ -44,14 +44,14 @@ export default function GlobalSidebarWide({ onToggleSidebar }: { onToggleSidebar
 
       <DivLine />
 
-      <WideBarSubPartWrapper title="팔로잉 친구">
+      <WideBarSubPartWrapper title="팔로잉한 친구">
         {followList &&
           followList.map((follow: LoginUserFollow_T) => (
             <WideBarItem
               href={`/${follow.user_sep}`}
               key={follow.user_sep}
               image={follow.image}
-              name={follow.user_id}
+              name={follow.nickname}
               content={follow.user_id}
             ></WideBarItem>
           ))}
@@ -83,7 +83,7 @@ function WideBarItem({
   return (
     <SideBarLink href={href}>
       <div className="h-7 w-7">
-        <NextImg src={image} alt={name} styles="relative overflow-hidden rounded-full object-cover" />
+        <NextImg src={image} alt={name} styles="relative overflow-hidden rounded-lg object-cover" />
       </div>
       <div className="relative top-[-1px]">
         <p className="kr-bold-14">{name}</p>

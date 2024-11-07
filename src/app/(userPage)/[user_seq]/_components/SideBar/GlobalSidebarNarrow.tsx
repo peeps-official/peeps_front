@@ -72,7 +72,7 @@ function NarrowBarItem({ href, image }: { href: string; image: string }) {
   return (
     <SideBarLink href={href}>
       <div className="h-7 w-7">
-        <NextImg src={image} alt={href} styles="relative overflow-hidden rounded-full object-cover" />
+        <NextImg src={image} alt={href} styles="relative overflow-hidden rounded-lg object-cover" />
       </div>
     </SideBarLink>
   )

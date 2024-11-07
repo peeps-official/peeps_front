@@ -34,6 +34,9 @@ export default function Post({ post }: Props) {
       queryClient.invalidateQueries({
         queryKey: ['refreshWithPost'],
       })
+      queryClient.invalidateQueries({
+        queryKey: ['clubFeed'],
+      })
     },
   })
 
