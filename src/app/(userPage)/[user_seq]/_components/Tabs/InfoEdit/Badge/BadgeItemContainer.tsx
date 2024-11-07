@@ -76,7 +76,7 @@ export default function BadgeItemContainer({ item, isOwner }: AddAuthContainer_P
           </div>
           {editMode && (
             <div className="mb-[0.5em] pr-[10px]">
-              <ToggleButton isEnable={isPublic} id={bdg_id} isAll={true} />
+              <ToggleButton isEnable={isPublic} id={auth.id} isAll={true} />
             </div>
           )}
         </div>
