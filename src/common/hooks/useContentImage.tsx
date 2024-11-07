@@ -99,7 +99,7 @@ export const useContentImage = (imageUrl: string[] = []) => {
 const upLoadS3 = async (file: File, setImg: Dispatch<SetStateAction<BundleImage[]>>) => {
   const filename = Date.now() + uuidv4()
 
-  const { data, status, statusText } = await axios.get('/api/post/image?file=' + filename)
+  const { data, status } = await axios.get('/api/post/image?file=' + filename)
 
   if (status !== 200) {
     alert('Failed to get signed URL')

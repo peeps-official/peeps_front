@@ -1,21 +1,21 @@
 'use client'
 
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { Table } from './Table'
+import { BadgeIssueRes_T } from '@/src/common/types/adminBadge'
 
-interface AdminTableProps {
+interface AdminTableProps<T> {
   title: string
   des: string
-  data: Array<{ [key: string]: any }>
+  data: { [key: string]: any }[]
   addtionalColumn?: Array<{
     head: string
     btnTitle: string
-    btnAction?: (id: string) => Promise<void>
-    refresh?: () => void
+    btnAction?: Dispatch<SetStateAction<T | null>>
   }>
 }
 
-export default function AdminTable({ title, des, data, addtionalColumn }: AdminTableProps) {
+export default function AdminTable<T>({ title, des, data, addtionalColumn }: AdminTableProps<T>) {
   let keys: string[]
 
   const isDataEmpty = data.length === 0
@@ -30,59 +30,53 @@ export default function AdminTable({ title, des, data, addtionalColumn }: AdminT
   return (
     <div>
       <Table.Title title={title} description={des} />
-      <table className="min-w-full table-fixed divide-y divide-gray-medium overflow-hidden rounded-[5px]">
+      <table className="w-full table-fixed divide-y divide-gray-medium overflow-hidden rounded-[5px]">
         <thead className="bg-pupple-deep">
-          <tr className="flex">
+          <tr>
+            {!isDataEmpty &&
+              addtionalColumn?.map((column, i) => (
+                <th key={i} className="truncate px-[1rem] py-4 text-left text-xs font-medium tracking-wider text-white">
+                  {column?.head}
+                </th>
+              ))}
             {keys.map((key) => (
               <th
                 key={key}
-                className="max-w-[50em] flex-1 truncate px-[1rem] py-4 text-left text-xs font-medium tracking-wider text-white"
+                className="max-w-[50em] truncate px-[1rem] py-4 text-left text-xs font-medium tracking-wider text-white"
               >
                 {key}
               </th>
             ))}
-            {!isDataEmpty &&
-              addtionalColumn?.map((column, i) => (
-                <th
-                  key={i}
-                  className="max-w-[50em] flex-1 truncate px-[1rem] py-4 text-left text-xs font-medium tracking-wider text-white"
-                >
-                  {column.head}
-                </th>
-              ))}
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-medium bg-white">
           {data.map((item, i) => (
-            <tr key={i} className="flex hover:bg-blue-soft">
-              {keys.map((key) => (
-                <td
-                  key={key}
-                  className="max-w-[50em] flex-1 overflow-hidden text-ellipsis whitespace-nowrap px-[1rem] py-4"
-                >
-                  <div className="truncate">{item[key]}</div>
-                </td>
-              ))}
+            <tr key={i} className="hover:bg-blue-soft">
               {!isDataEmpty &&
                 addtionalColumn?.map((column, i) => (
-                  <td
-                    key={i}
-                    className="max-w-[50em] flex-1 overflow-hidden text-ellipsis whitespace-nowrap px-[1rem] py-4"
-                  >
+                  <td key={i} className="overflow-hidden text-ellipsis whitespace-nowrap px-[1rem] py-4">
                     <button
                       className="blueBtn"
-                      onClick={async () => {
-                        if (column.btnAction) {
-                          column.btnAction(item.id).then((data) => {
-                            if (column.refresh) column.refresh()
-                          })
-                        }
+                      onClick={() => {
+                        column?.btnAction && column.btnAction(() => item as T)
                       }}
                     >
                       {column.btnTitle}
                     </button>
                   </td>
                 ))}
+              {keys.map((key) => {
+                let value
+
+                if (typeof item[key] == 'object') value = 'object'
+                else value = item[key]
+
+                return (
+                  <td key={key} className="overflow-hidden text-ellipsis whitespace-nowrap px-[1rem] py-4">
+                    <div className="truncate">{value}</div>
+                  </td>
+                )
+              })}
             </tr>
           ))}
         </tbody>

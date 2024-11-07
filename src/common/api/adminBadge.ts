@@ -1,4 +1,4 @@
-import { BadgeIssue_T } from '../types/badge'
+import { BadgeIssueRes_T } from '../types/adminBadge'
 import { CommonBadge_T } from '../types/commonBadge'
 import { axiosWithAuth } from './instance'
 
@@ -15,7 +15,7 @@ export async function getBadgeList() {
 
 // 리스트 조회
 export async function getBadgeIssueList() {
-  const { data } = await axiosWithAuth.get<BadgeIssue_T[]>('/admin/verify/req')
+  const { data } = await axiosWithAuth.get<BadgeIssueRes_T[]>('/admin/verify/req')
 
   return data
 }
@@ -40,7 +40,7 @@ export async function RejectBadge(id: string) {
 
 // 리스트 조회
 export async function getBadgeApproveList() {
-  const { data } = await axiosWithAuth.get<BadgeIssue_T[]>('/admin/verify/inspect')
+  const { data } = await axiosWithAuth.get<BadgeIssueRes_T[]>('/admin/verify/inspect')
 
   return data
 }

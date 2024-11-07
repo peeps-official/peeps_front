@@ -10,15 +10,7 @@ export type Badge_T = {
   member_count: number
   followingCount?: number
   isPublic: boolean
-  auth: { id: number } & { [key in BadgeAuthType]: BadgeAuthData_T | null }
-}
-
-export interface BadgeIssue_T {
-  bdg_id: number
-  content: string
-  description?: string
-  authDay: string
-  authWay: string
+  auth: { id: number } & { [key in BadgeAuthType]: BadgeAuthData_T | null } // 개인 뱃지 정보 id -> 개인뱃지 아이디
 }
 
 /**

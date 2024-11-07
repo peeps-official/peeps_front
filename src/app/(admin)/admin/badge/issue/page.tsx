@@ -1,16 +1,11 @@
 'use client'
 
-import { BadgeIssue_T } from '@/src/common/types/badge'
-import AdminTable from '../../_components/Table/AdminTable'
-import { useEffect, useState } from 'react'
+import { getBadgeApproveList, getBadgeIssueList } from '@/src/common/api/adminBadge'
+import { BadgeIssueRes_T } from '@/src/common/types/adminBadge'
 import { useQueries, useQueryClient } from '@tanstack/react-query'
-import {
-  ApproveBadge,
-  CancelBadge,
-  getBadgeApproveList,
-  getBadgeIssueList,
-  RejectBadge,
-} from '@/src/common/api/adminBadge'
+import { useEffect, useState } from 'react'
+import AdminTable from '../../_components/Table/AdminTable'
+import BadgeApproveModal from './_components/BadgeApproveModal'
 
 /**
  * 뱃지 발급 페이지 - 뱃지 발급 요청에 관한 페이지 (뱃지 발급 요청 승인, 거절)
@@ -20,8 +15,10 @@ import {
  * -> 서류 인증에 대한 승인 요청만 필요.
  */
 export default function BadgeIssuePage() {
-  const [badgeData, setBadgeData] = useState<BadgeIssue_T[] | null>(null)
-  const [approveData, setApproveData] = useState<BadgeIssue_T[] | null>(null)
+  const [badgeData, setBadgeData] = useState<BadgeIssueRes_T[] | null>(null)
+  const [approveData, setApproveData] = useState<BadgeIssueRes_T[] | null>(null)
+  const [modalData, setModalData] = useState<BadgeIssueRes_T | null>(null) // null: 모달창 닫힘, 나머지: 해당 요청 정보
+
   const res = useQueries({
     queries: [
       {
@@ -37,28 +34,17 @@ export default function BadgeIssuePage() {
   const queryClient = useQueryClient()
 
   useEffect(() => {
+    if (res.some((query) => query.isLoading)) return
     const [badgeDataRes, approveDataRes] = res
-    if (!badgeDataRes || badgeDataRes.isPending || approveDataRes.isPending) return
     if (badgeDataRes.isError || approveDataRes.isError) {
       console.log('error!!')
       return
     }
 
-    if (badgeDataRes.isSuccess) {
-      setBadgeData(badgeDataRes.data)
-    }
+    if (badgeDataRes.isSuccess) setBadgeData(badgeDataRes.data)
 
-    if (approveDataRes.isSuccess) {
-      setApproveData(approveDataRes.data)
-    }
+    if (approveDataRes.isSuccess) setApproveData(approveDataRes.data)
   }, [res])
-
-  function reFreshTable() {
-    queryClient.invalidateQueries({ queryKey: ['badgeData', 'issue'] })
-    queryClient.invalidateQueries({ queryKey: ['badgeData', 'approve'] })
-  }
-
-  console.log(badgeData, approveData)
 
   return (
     <div className="flex flex-col gap-[10rem]">
@@ -71,14 +57,7 @@ export default function BadgeIssuePage() {
             {
               head: '뱃지 승인',
               btnTitle: '승인',
-              btnAction: ApproveBadge,
-              refresh: reFreshTable,
-            },
-            {
-              head: '뱃지 거절',
-              btnTitle: '거절',
-              btnAction: RejectBadge,
-              refresh: reFreshTable,
+              btnAction: setModalData,
             },
           ]}
         />
@@ -90,14 +69,14 @@ export default function BadgeIssuePage() {
           data={approveData}
           addtionalColumn={[
             {
-              head: '뱃지 승인 취소',
-              btnTitle: '승인 취소',
-              btnAction: CancelBadge,
-              refresh: reFreshTable,
+              head: '승인',
+              btnTitle: '보기',
+              btnAction: setModalData,
             },
           ]}
         />
       )}
+      {modalData && <BadgeApproveModal setModalData={setModalData} 뱃지요청정보={modalData} />}
     </div>
   )
 }

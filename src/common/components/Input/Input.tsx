@@ -25,7 +25,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ title, disabled, type = 'text', requiredStar = false, children, errors, ...props }, ref) => {
     return (
-      <div className="mt-[20px] w-full">
+      <div className="mt-[20px] w-full overflow-hidden">
         <p className={`kr-bold-12 mb-[5px] h-[20px] ${requiredStar && `after:ml-1 after:content-['*']`}`}>{title}</p>
 
         <div
