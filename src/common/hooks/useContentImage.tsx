@@ -80,7 +80,9 @@ export const useContentImage = (imageUrl: string[] = []) => {
 
   const removeImage = (url: string) => {
     setImgBundles((prev) => {
-      const newImageUrls = prev.filter((item) => item.tmpUrl !== url || item.s3Url !== url)
+      console.log('prev', prev)
+      console.log('removeImage', url)
+      const newImageUrls = prev.filter((item) => item.tmpUrl !== url && item.s3Url !== url)
       return newImageUrls
     })
 
