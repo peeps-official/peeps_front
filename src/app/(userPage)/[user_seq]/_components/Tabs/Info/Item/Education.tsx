@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import BoxItemWrapper from '../../Feed/BoxItemWrapper'
 import { getOwnerEducation } from '@/src/common/api/user'
 import { usePathname } from 'next/navigation'
@@ -31,6 +31,7 @@ function HistoryBox({ items }: HistoryBoxProps) {
   const user_seq = user_seq_with_slash.slice(1)
 
   const isOwner = useRecoilValue(IsOwnerAtom)
+  const queryClient = useQueryClient()
 
   return (
     <>
@@ -75,6 +76,7 @@ function HistoryBox({ items }: HistoryBoxProps) {
                           const { data, status } = await axiosWithAuth.delete(`/${user_seq}/degree/${item.id}`)
                           if (status === 200) {
                             alert('정상적으로 삭제되었습니다.')
+                            queryClient.invalidateQueries({ queryKey: ['education'] })
                           }
                         }
                       }}

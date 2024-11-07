@@ -11,7 +11,7 @@ export default function ImageTab() {
     <div className="maxWidthWithoutPadding scrollbar-hide mb-8 mt-4 flex h-fit flex-wrap overflow-x-auto">
       {ownerImgList.length > 0 ? (
         ownerImgList.map((img, index) => (
-          <div key={img.post_id} className="mb-2 shrink-0 rounded-lg pr-[6px]">
+          <div key={img.src} className="mb-2 shrink-0 rounded-lg pr-[6px]">
             <img
               src={img.src}
               alt={`Gallery ${index}`}

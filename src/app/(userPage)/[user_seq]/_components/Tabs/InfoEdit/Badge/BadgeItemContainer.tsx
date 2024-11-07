@@ -1,10 +1,12 @@
 'use client'
 
+import { deleteBadge } from '@/src/common/api/userBadge'
 import ToggleButton from '@/src/common/components/Btn/Toggle'
 import { BadgeAuthType } from '@/src/common/types/badge'
 import { Badge_T } from '@/src/common/types/badge'
 import { formatDate } from '@/src/common/utils/Date/formatDate'
 import NextImg from '@/src/common/utils/NextImg'
+import { useQueryClient } from '@tanstack/react-query'
 import { Fragment, ReactElement, useState } from 'react'
 import { GoLock } from 'react-icons/go'
 import { HiOutlineDownload, HiOutlineLink } from 'react-icons/hi'
@@ -27,6 +29,8 @@ export default function BadgeItemContainer({ item, isOwner }: AddAuthContainer_P
   const [isSpread, setIsSpread] = useState(false)
 
   const { bdg_id, name, image, auth, isPublic } = item
+
+  const queryClient = useQueryClient()
 
   return (
     <div
@@ -60,6 +64,8 @@ export default function BadgeItemContainer({ item, isOwner }: AddAuthContainer_P
             <button
               onClick={(e) => {
                 e.stopPropagation()
+                deleteBadge(bdg_id)
+                queryClient.invalidateQueries({ queryKey: ['badgeList'] })
               }}
               className="blueBtn font-bold"
             >

@@ -53,7 +53,7 @@ export default function AddEducationModal({ defaultData, type, setIsOpen }: Prop
       alert('학력이 추가되었습니다.')
       setIsOpen(false)
     }
-    queryClient.invalidateQueries({ queryKey: ['userData'] })
+    queryClient.invalidateQueries({ queryKey: ['education'] })
   }
 
   const is재학 = useWatch({

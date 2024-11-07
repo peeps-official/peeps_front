@@ -1,6 +1,6 @@
 import BoxItemWrapper from '../../Feed/BoxItemWrapper'
 import { usePathname } from 'next/navigation'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { getOwnerCareer } from '@/src/common/api/user'
 import { useRecoilValue } from 'recoil'
 import { IsOwnerAtom } from '@/src/common/recoil/userHome'
@@ -31,6 +31,7 @@ function CarrerBox({ items }: CarrerBoxProps) {
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const isOwner = useRecoilValue(IsOwnerAtom)
+  const queryClient = useQueryClient()
 
   return (
     <div className="flex flex-col gap-[23px]">
@@ -82,6 +83,7 @@ function CarrerBox({ items }: CarrerBoxProps) {
                           const { data, status } = await axiosWithAuth.delete(`/${user_seq}/career/${item.id}`)
                           if (status === 200) {
                             alert('정상적으로 삭제되었습니다.')
+                            queryClient.invalidateQueries({ queryKey: ['carrer'] })
                           }
                         }
                       }}

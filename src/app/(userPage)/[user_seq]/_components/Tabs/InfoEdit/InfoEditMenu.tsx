@@ -16,7 +16,7 @@ export default function InfoEditMenu({ activeTab, setActiveTab }: Props) {
       <Menuitem title="뱃지 관리" onClick={() => setActiveTab('badge')} isSelected={isActive('badge')} />
       <Menuitem title="뱃지 추가" onClick={() => setActiveTab('add_badge')} isSelected={isActive('add_badge')} />
       <Menuitem title="교육" onClick={() => setActiveTab('edu')} isSelected={isActive('edu')} />
-      <Menuitem title="이력" onClick={() => setActiveTab('career')} isSelected={isActive('career')} />
+      <Menuitem title="경력" onClick={() => setActiveTab('career')} isSelected={isActive('career')} />
     </div>
   )
 }
@@ -39,8 +39,4 @@ export function Menuitem({ title, isSelected = false, onClick }: MenuitemProps) 
       <div className="relative flex leading-[34px] tracking-[-0.01em]">{title}</div>
     </button>
   )
-}
-
-interface ClickContainerType {
-  $isSelected?: boolean
 }

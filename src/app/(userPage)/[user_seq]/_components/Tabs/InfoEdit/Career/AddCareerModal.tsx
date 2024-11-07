@@ -54,7 +54,7 @@ export default function AddCareerModal({ defaultData, type, setIsOpen }: Props) 
       alert('이력 추가되었습니다.')
       setIsOpen(false)
     }
-    queryClient.invalidateQueries({ queryKey: ['userData'] })
+    queryClient.invalidateQueries({ queryKey: ['carrer'] })
   }
 
   const is재직 = useWatch({
