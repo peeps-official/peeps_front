@@ -1,4 +1,4 @@
-import { Circle_T } from '../types/circle'
+import { Circle_T, CirCleFollower_T } from '../types/circle'
 import { PostUpload_T } from '../types/post'
 import { axiosWithAuth } from './instance'
 
@@ -14,6 +14,15 @@ export async function getCircleProfile(sep_id: string) {
     return null
   }
 
+  return data
+}
+
+/**
+ * @description 서클 팔로우 리스트 조회
+ */
+
+export async function getCircleFollowList(sep_id: string) {
+  const { data } = await axiosWithAuth.get<CirCleFollower_T[]>(`/circle/${sep_id}/follow`)
   return data
 }
 

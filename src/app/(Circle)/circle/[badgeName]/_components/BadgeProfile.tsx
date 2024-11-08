@@ -2,8 +2,8 @@
 
 import { axiosWithAuth } from '@/src/common/api/instance'
 import Button from '@/src/common/components/Btn/Button'
-import { CircleDataAtom } from '@/src/common/recoil/circleAtom'
-import { Circle_T } from '@/src/common/types/circle'
+import { CircleDataAtom, CirCleFollowerListAtom } from '@/src/common/recoil/circleAtom'
+import { Circle_T, CirCleFollower_T } from '@/src/common/types/circle'
 import NextImg from '@/src/common/utils/NextImg'
 import { useQueryClient } from '@tanstack/react-query'
 import { useRecoilValue } from 'recoil'
@@ -61,8 +61,10 @@ function ProfileInfo({ circleInfo }: Props) {
         </div>
       </div>
       <ProfileMessage message={description ?? '--'} />
-      {/* {badge_list.length > 0 && <BadgeList badges={badge_list} />} */}
-      <FollowAndProfileButton />
+      <div className="flex items-center gap-6">
+        <FollowAndProfileButton />
+        <FollowerList />
+      </div>
     </div>
   )
 }
@@ -138,14 +140,16 @@ export function FollowAndProfileButton() {
     if (isFollow === 0) {
       const { data, status } = await axiosWithAuth.post(`/circle/${setClubInfo?.sep_id}/follow`)
       if (status === 201) {
-        queryClient.invalidateQueries({ queryKey: ['clubProfile'] })
+        queryClient.invalidateQueries({ queryKey: ['circleProfile'] })
         queryClient.invalidateQueries({ queryKey: ['badgeList'] })
+        queryClient.invalidateQueries({ queryKey: ['circleFollower'] })
       }
     } else if (isFollow === 1) {
       const { data, status } = await axiosWithAuth.delete(`/circle/${setClubInfo?.sep_id}/follow`)
       if (status === 200) {
-        queryClient.invalidateQueries({ queryKey: ['clubProfile'] })
+        queryClient.invalidateQueries({ queryKey: ['circleProfile'] })
         queryClient.invalidateQueries({ queryKey: ['badgeList'] })
+        queryClient.invalidateQueries({ queryKey: ['circleFollower'] })
       }
     }
   }
@@ -162,5 +166,27 @@ export function FollowAndProfileButton() {
         }
       />
     </div>
+  )
+}
+
+export function FollowerList() {
+  const setCircleFollowerList = useRecoilValue<CirCleFollower_T[] | null>(CirCleFollowerListAtom)
+
+  if (!setCircleFollowerList || setCircleFollowerList.length < 1) return null
+
+  return (
+    <>
+      <div className="mb-[-1rem] flex h-[40px] w-full -space-x-3 pt-[2px]">
+        {setCircleFollowerList.map((follower, i) => {
+          return (
+            <div
+              className={`relative h-[32px] w-[32px] overflow-hidden rounded-full object-cover ${'shadow-circleBadge'} border-2 border-solid border-white z-[${100 - i}]`}
+            >
+              <NextImg alt="badge of Instagram" src={follower.image} />
+            </div>
+          )
+        })}
+      </div>
+    </>
   )
 }

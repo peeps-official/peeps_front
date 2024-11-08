@@ -8,3 +8,10 @@ export type Circle_T = {
   user: number // 회원 수
   badge: CommonBadge_T // 뱃지 정보
 }
+
+export type CirCleFollower_T = {
+  nickname: string // 닉네임
+  user_id: string
+  user_seq: string
+  image: string // 프로필 이미지
+}

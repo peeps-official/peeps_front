@@ -1,11 +1,11 @@
 'use client'
 
-import { getCircleFeed, getCircleProfile, getMyCirclePost } from '@/src/common/api/circle'
+import { getCircleFeed, getCircleFollowList, getCircleProfile, getMyCirclePost } from '@/src/common/api/circle'
 import { getLoginUserData, getUserBadgeList, getUserFollowCircleList, getUserFollowList } from '@/src/common/api/user'
-import { CircleDataAtom, CircleFeedDataAtom } from '@/src/common/recoil/circleAtom'
+import { CircleDataAtom, CircleFeedDataAtom, CirCleFollowerListAtom } from '@/src/common/recoil/circleAtom'
 import { LogedInUserReqDataAtom, Login_User_Follow_Atom, LoginUserBadgeListAtom } from '@/src/common/recoil/userAtom'
 import { Badge_T } from '@/src/common/types/badge'
-import { Circle_T } from '@/src/common/types/circle'
+import { Circle_T, CirCleFollower_T } from '@/src/common/types/circle'
 import { Post_T } from '@/src/common/types/post'
 import { LoginUserData_T, LoginUserFollow_T, UserLogin_T } from '@/src/common/types/user'
 import { useQueries } from '@tanstack/react-query'
@@ -26,8 +26,9 @@ export default function DataWrapperForClubPage({ badgeName, children }: DataWrap
   const setLoginBadgeList = useSetRecoilState<Badge_T[]>(LoginUserBadgeListAtom)
 
   // 클럽 뱃지 정보
-  const setClubProfile = useSetRecoilState<Circle_T | null>(CircleDataAtom)
-  const setClubFeed = useSetRecoilState<Post_T[] | null>(CircleFeedDataAtom)
+  const setCircleProfile = useSetRecoilState<Circle_T | null>(CircleDataAtom)
+  const setCircleFeed = useSetRecoilState<Post_T[] | null>(CircleFeedDataAtom)
+  const setCircleFollowerList = useSetRecoilState<CirCleFollower_T[] | null>(CirCleFollowerListAtom)
 
   const res = useQueries({
     queries: [
@@ -46,8 +47,12 @@ export default function DataWrapperForClubPage({ badgeName, children }: DataWrap
         enabled: !!loginUserData,
       },
       {
-        queryKey: ['clubProfile', badgeName],
+        queryKey: ['circleProfile', badgeName],
         queryFn: () => getCircleProfile(badgeName),
+      },
+      {
+        queryKey: ['circleFollower', badgeName],
+        queryFn: () => getCircleFollowList(badgeName),
       },
       {
         queryKey: ['clubFeed', badgeName],
@@ -65,7 +70,7 @@ export default function DataWrapperForClubPage({ badgeName, children }: DataWrap
   useEffect(() => {
     if (res.some((query) => query.isLoading)) return
 
-    const [loginUserRes, loginUserFollowList, loginUserBadgeList, circleProfile, clubFeedList] = res
+    const [loginUserRes, loginUserFollowList, loginUserBadgeList, circleProfile, circleFollowerList, clubFeedList] = res
 
     if (loginUserRes.isSuccess && loginUserRes.data) {
       setUserLoginedData(loginUserRes.data)
@@ -88,12 +93,16 @@ export default function DataWrapperForClubPage({ badgeName, children }: DataWrap
     }
 
     if (circleProfile.isSuccess) {
-      setClubProfile(circleProfile.data)
+      setCircleProfile(circleProfile.data)
       setIsFollow(!!circleProfile?.data?.isFollow)
     }
 
+    if (circleFollowerList.isSuccess) {
+      setCircleFollowerList(circleFollowerList.data)
+    }
+
     if (clubFeedList.isSuccess) {
-      setClubFeed(clubFeedList.data)
+      setCircleFeed(clubFeedList.data)
     }
   }, [res])
 
