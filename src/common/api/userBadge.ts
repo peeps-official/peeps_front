@@ -49,12 +49,11 @@ export async function deleteBadge(badgeId: number) {
 }
 
 // [파일] - 파일 인증 요청 보내기
-export async function upLoadFileAuth(file: File, description: string = '') {
-  const formData = new FormData()
-  formData.append('file', file)
-  formData.append('description', description)
-
-  const { data } = await axiosWithAuth.post(`/verify/file/upload`, formData)
+export async function upLoadFileAuth(file: string, description: string = '') {
+  const { data } = await axiosWithAuth.post(`/verify/file/upload`, {
+    content: file,
+    description: description,
+  })
 
   console.log('파일 업로드: ', data)
   return data

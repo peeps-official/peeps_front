@@ -225,7 +225,7 @@ const SelectPublic = ({ register, isEdit, isPublic }: { register: any; isEdit: b
   )
 }
 
-const Ring2 = () => {
+export const Ring2 = () => {
   return (
     <div className="relative h-5 w-5">
       <svg className="animate-spin" viewBox="0 0 40 40" height="20" width="20">

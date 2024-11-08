@@ -2,9 +2,12 @@
 
 import { upLoadFileAuth } from '@/src/common/api/userBadge'
 import { Input, InputBtn } from '@/src/common/components/Input/Input'
-import { ChangeEvent, useRef, useState } from 'react'
+import { useContentImage } from '@/src/common/hooks/useContentImage'
+import { fileAtom } from '@/src/common/recoil/authAtom'
+import { useEffect, useRef, useState } from 'react'
 import { HiOutlineDownload } from 'react-icons/hi'
-import { atom, useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { Ring2 } from '../../../Feed/EditModal'
 import AddAuthContainer, { useAddAuth } from '../AddAuthContainer'
 import { StepProps } from '../Email/StepInput'
 
@@ -26,43 +29,56 @@ export default function GetFileAuth() {
   )
 }
 
-const fileAtom = atom<File | null>({
-  key: 'fileAtom',
-  default: null,
-})
-
 export function File({ stepData, setStepData }: StepProps) {
-  const [file, setFile] = useRecoilState<File | null>(fileAtom)
-  const inputRef = useRef<HTMLInputElement>(null)
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file: File | null = e.target.files ? e.target.files[0] : null
-
-    if (!file) return
-
-    setFile(file)
-    setStepData({ step: 1, data: { ...stepData.data } })
-  }
+  const setFile = useSetRecoilState<string | null>(fileAtom)
+  const [isUploadEnd, setIsUploadEnd] = useState(false)
+  const { imgBundles, contentInputRef, uploadImage, removeImage, removeAllimg } = useContentImage([])
 
   const disabled = stepData.step >= 1
+  console.log('imgBundles', imgBundles.length)
+
+  useEffect(() => {
+    console.log('이펙트')
+    console.log('imgBundles', imgBundles[0])
+
+    if (imgBundles.length > 0) {
+      console.log('imgBundles', imgBundles[0])
+      setStepData({ step: 1, data: { ...stepData.data } })
+      if (imgBundles[0].s3Url) {
+        setFile(imgBundles[0].s3Url)
+        setIsUploadEnd(true)
+      }
+    }
+  }, [imgBundles])
 
   return (
     <div>
       <Input
         title="파일"
-        ref={inputRef}
+        ref={contentInputRef}
         className="hidden"
         disabled={disabled}
         type="file"
         accept="image/*, .pdf"
-        onChange={handleInputChange}
+        onChange={uploadImage}
       >
-        <div>{file && file.name}</div>
+        <div className="flex w-full items-center justify-between overflow-hidden pr-2">
+          {imgBundles[0] && (
+            <>
+              <p className="flex-1 truncate">{imgBundles[0].title}</p>
+              {!isUploadEnd && (
+                <div className="flex-shrink-0">
+                  <Ring2 />
+                </div>
+              )}
+            </>
+          )}
+        </div>
         <InputBtn
-          title="업로드"
+          title={`업로드`}
           disabled={disabled}
           onClick={() => {
-            inputRef.current?.click()
+            contentInputRef.current?.click()
           }}
         />
       </Input>
@@ -76,7 +92,7 @@ export function File({ stepData, setStepData }: StepProps) {
 
 export function AddExplane({ stepData, setStepData }: StepProps) {
   const { setIsSpread } = useAddAuth()
-  const [file, setFile] = useRecoilState<File | null>(fileAtom)
+  const [file, setFile] = useRecoilState<string | null>(fileAtom)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const [disabled, setDisabled] = useState(false)

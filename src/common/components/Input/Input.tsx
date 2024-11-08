@@ -64,7 +64,7 @@ type InputBtnProps = {
 
 export function InputBtn({ disabled, onClick, title }: InputBtnProps) {
   return (
-    <button className={`blueBtn`} disabled={disabled} onClick={onClick}>
+    <button className={`blueBtn w-fit text-nowrap`} disabled={disabled} onClick={onClick}>
       {title}
     </button>
   )
