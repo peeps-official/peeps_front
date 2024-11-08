@@ -64,8 +64,11 @@ export default function BadgeItemContainer({ item, isOwner }: AddAuthContainer_P
             <button
               onClick={(e) => {
                 e.stopPropagation()
-                deleteBadge(auth.id)
-                queryClient.invalidateQueries({ queryKey: ['badgeList'] })
+                const isDelete = confirm('정말 삭제하시겠습니까?')
+                if (!isDelete) return
+                deleteBadge(auth.id).then(() => {
+                  queryClient.invalidateQueries({ queryKey: ['badgeList'] })
+                })
               }}
               className="blueBtn font-bold"
             >
