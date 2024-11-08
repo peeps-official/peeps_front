@@ -8,7 +8,7 @@ export default function Header() {
   const { logout, isLoggedIn, userData } = useLoginUser()
 
   return (
-    <header className="fixed left-0 top-0 z-10 flex h-16 w-full items-center justify-between bg-white px-8 text-white">
+    <header className="border-1 fixed left-0 top-0 z-10 flex h-16 w-full items-center justify-between border-b border-solid border-[#efefef] bg-white px-8 text-white">
       <Link href={'/'} className="flex h-full w-24 items-center py-5">
         <NextImg alt="PEEPS logo" src="/images/logos/peeps.png" styles="object-contain cursor-pointer" />
       </Link>

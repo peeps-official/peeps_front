@@ -46,3 +46,14 @@ export type Login_User_Follow_T = {
   user_sep: string
   image: string
 }
+
+/**
+ * @description 메인 페이지 신규 유저 프로필 데이터 타입
+ */
+export type Main_User_Profile_T = {
+  user_sep: string
+  nickname: string
+  image: string | null
+  user_id: string | null
+  info: string | null
+}
