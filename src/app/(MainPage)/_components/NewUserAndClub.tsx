@@ -32,7 +32,7 @@ export default function NewUserAndClub() {
         <div className="my-8 flex items-start gap-8">
           {newUsers &&
             newUsers.map((user) => (
-              <button onClick={() => router.push(user.user_sep)}>
+              <button key={user.user_sep} onClick={() => router.push(user.user_sep)}>
                 <div className="h-20 w-20 overflow-hidden rounded-full shadow-md hover:shadow-xl">
                   <NextImg src={user.image ?? '/images/profile/profile.svg'} alt="user profile" />
                 </div>
@@ -46,7 +46,7 @@ export default function NewUserAndClub() {
         <div className="my-8 flex gap-8">
           {newCircles &&
             newCircles.map((circle) => (
-              <button onClick={() => router.push(`circle/${circle.badge.name}`)}>
+              <button onClick={() => router.push(`circle/${circle.badge.name}`)} key={circle.sep_id}>
                 <div className="h-20 w-20 overflow-hidden rounded-lg shadow-md hover:shadow-xl">
                   <NextImg src={circle.badge.image ?? '/images/profile/profile.svg'} alt="user profile" />
                 </div>

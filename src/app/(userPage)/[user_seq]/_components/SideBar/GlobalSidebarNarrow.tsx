@@ -40,7 +40,11 @@ export default function GlobalSidebarNarrow() {
           <NarrowBarSubPartWrapper title="팔로우">
             {followList &&
               followList.map((follow: LoginUserFollow_T) => (
-                <NarrowBarItem href={`/${follow.user_sep}`} key={follow.user_sep} image={follow.image}></NarrowBarItem>
+                <NarrowBarItem
+                  href={`/${follow.user_sep}`}
+                  key={follow.user_sep}
+                  image={follow?.image ?? '/images/profile/profile.svg'}
+                ></NarrowBarItem>
               ))}
           </NarrowBarSubPartWrapper>
         </>
