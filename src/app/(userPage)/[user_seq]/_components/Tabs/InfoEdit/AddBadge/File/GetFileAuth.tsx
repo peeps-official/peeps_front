@@ -7,7 +7,7 @@ import { fileAtom } from '@/src/common/recoil/authAtom'
 import { useEffect, useRef, useState } from 'react'
 import { HiOutlineDownload } from 'react-icons/hi'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import { Ring2 } from '../../../Feed/EditModal'
+import { Ring2 } from '../../../Post/EditModal'
 import AddAuthContainer, { useAddAuth } from '../AddAuthContainer'
 import { StepProps } from '../Email/StepInput'
 

@@ -50,7 +50,7 @@ export default function PostDetailModal({ post, setIsOpen }: Props) {
     },
   })
 
-  const movePage = (url: string) => {
+  const moveToUserPage = (url: string) => {
     setIsOpen(false)
     route.push(`/${url}`)
   }
@@ -73,10 +73,16 @@ export default function PostDetailModal({ post, setIsOpen }: Props) {
             <div className="flex flex-col gap-2 overflow-y-auto pb-5">
               {commentList?.map((comment: Comment_T) => (
                 <div key={comment.id} className="flex items-start space-x-4 rounded-lg bg-[#fafafa] p-2 shadow-sm">
-                  <img src={comment.user.profileImage} alt="Profile" className="h-10 w-10 rounded-full object-cover" />
+                  <button onClick={() => moveToUserPage(comment.user.id)}>
+                    <img
+                      src={comment.user.profileImage}
+                      alt="Profile"
+                      className="h-10 w-10 rounded-full object-cover"
+                    />
+                  </button>
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
-                      <button onClick={() => movePage(comment.user.id)} className="kr-bold-14">
+                      <button onClick={() => moveToUserPage(comment.user.id)} className="kr-bold-14">
                         {comment.user.user_id}
                       </button>
                       <p className="kr-regular-12">{formatTimeAgo(comment.create_date)}</p>

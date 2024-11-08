@@ -1,7 +1,7 @@
 'use client'
 import CommentInput from './CommentInput'
 import PhotoGallery from './PhotoGallery'
-import Post from './Post'
+import Post from '../Post/Post'
 
 import { OwnerBadgeListAtom } from '@/src/common/recoil/ownerAtom'
 import { OwnerPostListAtom } from '@/src/common/recoil/userHome'

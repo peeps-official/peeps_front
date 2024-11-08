@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import EditModal from './EditModal'
+import EditModal from '../Post/EditModal'
 
 export default function CommentInput() {
   const [isEdit, setIsEdit] = useState<boolean>(false)

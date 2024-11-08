@@ -1,6 +1,6 @@
 'use client'
 
-import Post from '@/src/app/(userPage)/[user_seq]/_components/Tabs/Feed/Post'
+import Post from '@/src/app/(userPage)/[user_seq]/_components/Tabs/Post/Post'
 import { CircleFeedDataAtom } from '@/src/common/recoil/circleAtom'
 import { Post_T } from '@/src/common/types/post'
 import { useRecoilValue } from 'recoil'

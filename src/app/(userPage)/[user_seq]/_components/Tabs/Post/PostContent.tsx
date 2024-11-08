@@ -6,6 +6,7 @@ import { Post_T } from '@/src/common/types/post'
 import { LoginUserData_T } from '@/src/common/types/user'
 import { formatTimeAgo } from '@/src/common/utils/Date/formatTimeAgo'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 import { Dispatch, SetStateAction } from 'react'
 import { BsThreeDots } from 'react-icons/bs'
 import { FiTrash } from 'react-icons/fi'
@@ -48,6 +49,7 @@ export function PostHeader({ post, isOption, setIsOption, setIsEditPost }: PostH
   const userLoginedData = useRecoilValue<LoginUserData_T>(LogedInUserReqDataAtom)
 
   const queryClient = useQueryClient()
+  const route = useRouter()
 
   const { mutate: deletePost } = useMutation({
     mutationFn: async () => {
@@ -68,7 +70,9 @@ export function PostHeader({ post, isOption, setIsOption, setIsEditPost }: PostH
   return (
     <div className="flex justify-between">
       <div className="flex items-center justify-start gap-2">
-        <h2 className="text-lg font-semibold">{post.user.nickname}</h2>
+        <button onClick={() => route.push(`/${post.user.id}`)}>
+          <h2 className="text-lg font-semibold">{post.user.nickname}</h2>
+        </button>
         <p className="text-sm text-gray-600"> {formatTimeAgo(post.create_date)}</p>
         {post.isPublic === false && (
           <p className="relative top-[-1px] h-[0.875rem] w-[0.875rem]">

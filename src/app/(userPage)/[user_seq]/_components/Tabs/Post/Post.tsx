@@ -1,19 +1,12 @@
 'use client'
 import { Post_T } from '@/src/common/types/post'
-import { formatTimeAgo } from '@/src/common/utils/Date/formatTimeAgo'
-import { BsThreeDots } from 'react-icons/bs'
-import { FiTrash } from 'react-icons/fi'
-import { IoLockClosedOutline } from 'react-icons/io5'
 
-import { axiosWithAuth } from '@/src/common/api/instance'
-import { LogedInUserReqDataAtom } from '@/src/common/recoil/userAtom'
-import { LoginUserData_T } from '@/src/common/types/user'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import EditModal from './EditModal'
+
+import { PostContent, PostHeader } from './PostContent'
 import PostDetailModal from './PostDetailModal'
-import { PostContent, PostHeader } from '../Post/PostContent'
+import { useRouter } from 'next/navigation'
 
 type Props = {
   post: Post_T
@@ -25,11 +18,14 @@ export default function Post({ post }: Props) {
   const [isOption, setIsOption] = useState<boolean>(false)
 
   const { description, image, create_date, comments, boardLike } = post
+  const route = useRouter()
 
   return (
     <div className="w-full rounded-lg bg-white p-4 shadow-popupBox">
       <div className="flex items-start space-x-4">
-        <img src={post.user.profileImage} alt="Profile" className="h-12 w-12 rounded-full object-cover" />
+        <button onClick={() => route.push(`/${post.user.id}`)}>
+          <img src={post.user.profileImage} alt="Profile" className="h-12 w-12 rounded-full object-cover" />
+        </button>
         <div className="flex-1">
           <PostHeader post={post} isOption={isOption} setIsOption={setIsOption} setIsEditPost={setIsEditPost} />
           <PostContent description={description} images={image} />
