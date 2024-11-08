@@ -30,7 +30,7 @@ export default function GlobalHeader({ onToggleSidebar }: GlobalHeaderProps) {
   return (
     <div className="fixed top-0 z-header flex h-header w-full min-w-[847px] flex-1 items-center justify-end bg-white pl-[20px] pr-[20px]">
       {/* 검색 */}
-      <div className="absolute left-1/2 flex h-[36px] w-[321px] translate-x-[-50%] items-center justify-center gap-[6px] rounded-3xs bg-whitesmoke-300 pl-[8px] pr-[20px]">
+      {/* <div className="absolute left-1/2 flex h-[36px] w-[321px] translate-x-[-50%] items-center justify-center gap-[6px] rounded-3xs bg-whitesmoke-300 pl-[8px] pr-[20px]">
         <Link href={'/'} className="h-[20px] w-[20px] pt-[1px]">
           <NextImg alt="search icon" src="/images/header/search.svg" styles="object-cover cursor-pointer" />
         </Link>
@@ -41,11 +41,11 @@ export default function GlobalHeader({ onToggleSidebar }: GlobalHeaderProps) {
           className="h-full w-full flex-1 text-[15px] font-[400] leading-[1.2]"
           onChange={handleSearchValue}
         />
-      </div>
+      </div> */}
 
       {/* 프로필 & 버튼 */}
       <div className="flex items-center gap-[10px]">
-        <div className="h-[50px] w-[50px]">
+        {/* <div className="h-[50px] w-[50px]">
           <NextImg alt="club icon" src="/images/header/club.svg" />
         </div>
         <div className="h-[50px] w-[50px]">
@@ -53,7 +53,7 @@ export default function GlobalHeader({ onToggleSidebar }: GlobalHeaderProps) {
         </div>
         <div className="h-[50px] w-[50px]">
           <NextImg alt="" src="/images/header/alarm.svg" />
-        </div>
+        </div> */}
         {isUserLogedIn ? (
           <Link
             href={`/${logedInUserData.user_seq}`}
