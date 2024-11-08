@@ -31,6 +31,7 @@ export default function NewBadgeModal({ setIsOpen }: Props) {
 
   const onSubmit = handleSubmit((data) => {
     addBadge(data)
+    setIsOpen(false)
     reset()
   })
 
