@@ -14,6 +14,27 @@ export interface Post_T {
   boardLike: number
   comments: number
   user: {
+    id: string // 유저 고유 아이디
+    user_id: string // 유저가 설정한 아이디
+    nickname: string
+    profileImage: string
+    backgroundImage: string
+    info: string
+    mobile: string
+    name: string
+    birthday: string
+    birthyear: string
+  }
+}
+
+export type Comment_T = {
+  id: number
+  isLike: boolean
+  commentLike: number
+  description: string
+  create_date: string
+  end_date: string
+  user: {
     id: string
     user_id: string
     nickname: string
