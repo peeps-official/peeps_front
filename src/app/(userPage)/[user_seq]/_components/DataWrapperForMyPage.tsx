@@ -6,6 +6,7 @@ import {
   getOwnerImageList,
   getOwnerUserData,
   getUserBadgeList,
+  getUserFollowCircleList,
   getUserFollowList,
 } from '@/src/common/api/user'
 import { OwnerBadgeListAtom, OwnerImgListAtom, OwnerProfileStateAtom } from '@/src/common/recoil/ownerAtom'
@@ -59,7 +60,7 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
       },
       {
         queryKey: ['badgeList', { type: 'login' }],
-        queryFn: () => getUserBadgeList(loginUserData?.user_seq ?? ''),
+        queryFn: () => getUserFollowCircleList(),
         enabled: !!loginUserData,
       },
       {

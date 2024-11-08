@@ -1,7 +1,7 @@
 'use client'
 
 import { getCircleFeed, getCircleProfile, getMyCirclePost } from '@/src/common/api/circle'
-import { getLoginUserData, getUserBadgeList, getUserFollowList } from '@/src/common/api/user'
+import { getLoginUserData, getUserBadgeList, getUserFollowCircleList, getUserFollowList } from '@/src/common/api/user'
 import { CircleDataAtom, CircleFeedDataAtom } from '@/src/common/recoil/circleAtom'
 import { LogedInUserReqDataAtom, Login_User_Follow_Atom, LoginUserBadgeListAtom } from '@/src/common/recoil/userAtom'
 import { Badge_T } from '@/src/common/types/badge'
@@ -42,7 +42,7 @@ export default function DataWrapperForClubPage({ badgeName, children }: DataWrap
       },
       {
         queryKey: ['badgeList', { type: 'login' }],
-        queryFn: () => getUserBadgeList(loginUserData?.user_seq ?? ''),
+        queryFn: () => getUserFollowCircleList(),
         enabled: !!loginUserData,
       },
       {

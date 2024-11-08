@@ -139,11 +139,13 @@ export function FollowAndProfileButton() {
       const { data, status } = await axiosWithAuth.post(`/circle/${setClubInfo?.sep_id}/follow`)
       if (status === 201) {
         queryClient.invalidateQueries({ queryKey: ['clubProfile'] })
+        queryClient.invalidateQueries({ queryKey: ['badgeList'] })
       }
     } else if (isFollow === 1) {
       const { data, status } = await axiosWithAuth.delete(`/circle/${setClubInfo?.sep_id}/follow`)
       if (status === 200) {
         queryClient.invalidateQueries({ queryKey: ['clubProfile'] })
+        queryClient.invalidateQueries({ queryKey: ['badgeList'] })
       }
     }
   }

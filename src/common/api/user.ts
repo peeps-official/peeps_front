@@ -40,6 +40,16 @@ export async function getLoginUserData() {
 }
 
 /**
+ * @description 로그인한 유저가 팔로우한 써클 리스트를 가져옵니다.
+ */
+
+export async function getUserFollowCircleList() {
+  const { data } = await axiosWithAuth.get(`/circle/follow`)
+
+  return data
+}
+
+/**
  * @description ${user_seq} 유저의 뱃지 리스트를 가져옵니다.
  */
 export async function getUserBadgeList(user_seq: string) {
