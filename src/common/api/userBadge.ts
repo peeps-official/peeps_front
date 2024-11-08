@@ -40,7 +40,7 @@ export async function makeBadge(resData: AuthData) {
 // 뱃지 삭제 요청
 export async function deleteBadge(badgeId: number) {
   try {
-    const { data, status } = await axiosWithAuth.delete(`/verify/req/${badgeId}`)
+    const { data, status } = await axiosWithAuth.delete(`/badge/user/${badgeId}`, {})
     return { data, status }
   } catch (error) {
     console.error('뱃지 삭제 실패:', error)

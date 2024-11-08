@@ -64,7 +64,7 @@ export default function BadgeItemContainer({ item, isOwner }: AddAuthContainer_P
             <button
               onClick={(e) => {
                 e.stopPropagation()
-                deleteBadge(bdg_id)
+                deleteBadge(auth.id)
                 queryClient.invalidateQueries({ queryKey: ['badgeList'] })
               }}
               className="blueBtn font-bold"

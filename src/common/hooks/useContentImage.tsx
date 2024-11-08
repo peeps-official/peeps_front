@@ -99,7 +99,9 @@ export const useContentImage = (imageUrl: string[] = []) => {
 }
 
 const upLoadS3 = async (file: File, setImg: Dispatch<SetStateAction<BundleImage[]>>) => {
-  const filename = Date.now() + uuidv4()
+  const filename = Date.now() + uuidv4() + '.' + file.name.split('.').pop()
+  console.log('file', file.name)
+  console.log('filename', filename)
 
   const { data, status } = await axios.get('/api/post/image?file=' + filename)
 
