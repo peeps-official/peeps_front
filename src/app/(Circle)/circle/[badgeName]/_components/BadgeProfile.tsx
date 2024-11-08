@@ -180,7 +180,8 @@ export function FollowerList() {
         {setCircleFollowerList.map((follower, i) => {
           return (
             <div
-              className={`relative h-[32px] w-[32px] overflow-hidden rounded-full object-cover ${'shadow-circleBadge'} border-2 border-solid border-white z-[${100 - i}]`}
+              style={{ zIndex: 100 - i }}
+              className={`relative h-[32px] w-[32px] overflow-hidden rounded-full object-cover ${'shadow-circleBadge'} ] border-2 border-solid border-white`}
             >
               <NextImg alt="badge of Instagram" src={follower.image} />
             </div>
