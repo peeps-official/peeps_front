@@ -68,6 +68,7 @@ export default function BadgeItemContainer({ item, isOwner }: AddAuthContainer_P
                 if (!isDelete) return
                 deleteBadge(auth.id).then(() => {
                   queryClient.invalidateQueries({ queryKey: ['badgeList'] })
+                  queryClient.invalidateQueries({ queryKey: ['userData'] })
                 })
               }}
               className="blueBtn font-bold"

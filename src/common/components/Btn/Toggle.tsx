@@ -36,6 +36,7 @@ export default function ToggleButton({ isEnable, id, isAll = false }: ToggleButt
     onSuccess: (data) => {
       const { isPublic } = data
       queryClient.invalidateQueries({ queryKey: ['badgeList'] })
+      queryClient.invalidateQueries({ queryKey: ['userData'] })
       setEnabled(isPublic)
     },
   })

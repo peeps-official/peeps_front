@@ -63,11 +63,11 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
         enabled: !!loginUserData,
       },
       {
-        queryKey: ['userData', { type: 'admin' }, pageOwnerSeq],
+        queryKey: ['userData', { type: 'owner' }, pageOwnerSeq],
         queryFn: () => getOwnerUserData(pageOwnerSeq),
       },
       {
-        queryKey: ['badgeList', { type: 'admin' }, pageOwnerSeq],
+        queryKey: ['badgeList', { type: 'owner' }, pageOwnerSeq],
         queryFn: () => getUserBadgeList(pageOwnerSeq),
       },
       {
