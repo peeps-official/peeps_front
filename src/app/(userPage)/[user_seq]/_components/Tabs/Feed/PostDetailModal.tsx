@@ -59,7 +59,7 @@ export default function PostDetailModal({ post, setIsOpen }: Props) {
 
   return (
     <BasicCenterModal setIsOpen={setIsOpen}>
-      <div className="flex max-h-[80vh] max-w-[90vw] gap-3 overflow-hidden rounded-lg bg-[#fff] shadow-popupBox">
+      <div className="flex max-h-[80vh] min-h-[50vh] max-w-[90vw] gap-3 overflow-hidden rounded-lg bg-[#fff] shadow-popupBox">
         <div className="max-[640px] flex min-w-[420px] items-start space-x-4 overflow-auto rounded-lg p-4">
           <img src={post.user.profileImage} alt="Profile" className="h-12 w-12 rounded-full object-cover" />
           <div className="flex-1 overflow-hidden">
@@ -77,7 +77,7 @@ export default function PostDetailModal({ post, setIsOpen }: Props) {
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <button onClick={() => movePage(comment.user.id)} className="kr-bold-14">
-                        {comment.user.name}
+                        {comment.user.user_id}
                       </button>
                       <p className="kr-regular-12">{formatTimeAgo(comment.create_date)}</p>
                     </div>
