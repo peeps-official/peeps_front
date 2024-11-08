@@ -23,7 +23,7 @@ export default function GlobalSidebarWide({ onToggleSidebar }: { onToggleSidebar
   return (
     <div className="z-sideBar h-screen w-[240px] overflow-y-auto bg-white pl-2 text-mini text-dimgray-100">
       <SideBarPartWrapper>
-        <SideBarLink href="/">
+        <SideBarLink href="/feed">
           <div className="flex items-center gap-3">
             <div className="h-7 w-7">
               <NextImg alt="All" src="/images/sidebar/box.svg" />
@@ -50,9 +50,9 @@ export default function GlobalSidebarWide({ onToggleSidebar }: { onToggleSidebar
             <WideBarItem
               href={`/${follow.user_sep}`}
               key={follow.user_sep}
-              image={follow.image}
+              image={follow.image ?? '/images/profile/profile.svg'}
               name={follow.nickname}
-              content={follow.user_id}
+              content={follow.user_id ?? ''}
             ></WideBarItem>
           ))}
       </WideBarSubPartWrapper>

@@ -17,7 +17,7 @@ export default function Post({ post }: Props) {
   const [isEditPost, setIsEditPost] = useState<boolean>(false)
   const [isOption, setIsOption] = useState<boolean>(false)
 
-  const { description, image, create_date, comments, boardLike } = post
+  const { description, image, create_date, comments, isLike } = post
   const route = useRouter()
 
   return (

@@ -2,6 +2,7 @@ import { atom } from 'recoil'
 import { AdminUserData_T } from '../types/admin'
 import { Badge_T } from '../types/badge'
 import { LoginUserData_T, LoginUserFollow_T, UserLogin_T } from '../types/user'
+import { FEED_POST_T } from '../types/post'
 
 // admin
 export const adminDatakey: string = 'adminDataKey'
@@ -93,5 +94,13 @@ export const OnlyLogedInUserData = atom<UserLogin_T>({
  */
 export const LoginUserBadgeListAtom = atom<Badge_T[]>({
   key: 'LoginUserBadgeListAtom',
+  default: [],
+})
+
+/**
+ * @description 로그인 유저 피드 포스트 리스트
+ */
+export const LoginUserFeedPostListAtom = atom<FEED_POST_T[]>({
+  key: 'LoginUserFeedPostListAtom',
   default: [],
 })

@@ -1,4 +1,4 @@
-import { POST_ARR_T, PostUpload_T } from '../types/post'
+import { FEED_POST_T, POST_ARR_T, PostUpload_T } from '../types/post'
 import { axiosWithAuth } from './instance'
 
 export async function getPostList(pageOwnerSeq: string) {
@@ -24,4 +24,14 @@ export async function editPost(user_seq: string, art_id: number, data: PostUploa
     isPublic,
     image,
   })
+}
+
+/**
+ * @description 피드 포스트 리스트
+ */
+
+export async function getFeedPostList() {
+  const { data: feedData } = await axiosWithAuth.get<FEED_POST_T[]>('/circle/follow/post')
+
+  return feedData
 }

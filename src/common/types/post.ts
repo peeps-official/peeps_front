@@ -11,7 +11,7 @@ export interface Post_T {
   create_date: string // ISO 8601 형식의 날짜 문자열
   end_date: string // ISO 8601 형식의 날짜 문자열
   isPublic: boolean
-  boardLike: number
+  isLike: number
   comments: number
   user: {
     id: string // 유저 고유 아이디
@@ -49,3 +49,7 @@ export type Comment_T = {
 }
 
 export type POST_ARR_T = Post_T[]
+
+export interface FEED_POST_T extends Post_T {
+  circleId: string
+}

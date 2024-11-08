@@ -42,7 +42,7 @@ export default function NewUserAndClub() {
         </div>
       </div>
       <div className="mt-10 flex flex-col items-center justify-center">
-        <p className="kr-bold-20">🎉 새로운 클럽</p>
+        <p className="kr-bold-20">🎉 새로운 써클</p>
         <div className="my-8 flex gap-8">
           {newCircles &&
             newCircles.map((circle) => (

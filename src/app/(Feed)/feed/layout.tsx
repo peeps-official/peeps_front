@@ -11,9 +11,9 @@ import { LoginUserData_T } from '@/src/common/types/user'
 import NextImg from '@/src/common/utils/NextImg'
 import Link from 'next/link'
 import { useRecoilValue } from 'recoil'
-import GlobalHeader from './[user_seq]/_components/Header/GlobalHeader'
-import GlobalSidebarNarrow from './[user_seq]/_components/SideBar/GlobalSidebarNarrow'
-import GlobalSidebarWide from './[user_seq]/_components/SideBar/GlobalSidebarWide'
+import GlobalHeader from '../../(userPage)/[user_seq]/_components/Header/GlobalHeader'
+import GlobalSidebarNarrow from '../../(userPage)/[user_seq]/_components/SideBar/GlobalSidebarNarrow'
+import GlobalSidebarWide from '../../(userPage)/[user_seq]/_components/SideBar/GlobalSidebarWide'
 
 const archivo = Archivo({
   subsets: ['latin'],

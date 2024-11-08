@@ -31,9 +31,11 @@ export interface LoginUserData_T {
  */
 
 export type LoginUserFollow_T = {
-  user_id: string
+  nickname: string
+  user_id: string | null
   user_sep: string
-  image: string
+  image: string | null
+  info: string | null
 }
 
 /**

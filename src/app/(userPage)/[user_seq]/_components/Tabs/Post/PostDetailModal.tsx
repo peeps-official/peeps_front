@@ -19,7 +19,7 @@ export default function PostDetailModal({ post, setIsOpen }: Props) {
   const [isOption, setIsOption] = useState<boolean>(false)
   const [isEditPost, setIsEditPost] = useState<boolean>(false)
 
-  const { id: post_id, description, image, user, create_date, comments, boardLike } = post
+  const { id: post_id, description, image, user, create_date, comments, isLike } = post
   const inputRef = useRef<HTMLInputElement>(null)
   const route = useRouter()
   const queryClient = useQueryClient()

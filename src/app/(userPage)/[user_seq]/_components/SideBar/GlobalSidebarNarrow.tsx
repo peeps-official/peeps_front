@@ -20,7 +20,7 @@ export default function GlobalSidebarNarrow() {
       {isUserLogedIn && (
         <>
           <SideBarPartWrapper className="mt-[-0.75rem]">
-            <SideBarLink href="/">
+            <SideBarLink href="/feed">
               <div className="flex flex-col items-center gap-[4px]">
                 <div className="h-7 w-7">
                   <NextImg alt="All" src="/images/sidebar/box.svg" />
