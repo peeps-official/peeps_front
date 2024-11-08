@@ -31,7 +31,6 @@ export default function BadgeIssuePage() {
       },
     ],
   })
-  const queryClient = useQueryClient()
 
   useEffect(() => {
     if (res.some((query) => query.isLoading)) return

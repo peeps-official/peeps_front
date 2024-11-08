@@ -4,6 +4,11 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  webpack: (config) => {
+    config.resolve.alias.canvas = false
+    return config
+  },
+
   images: {
     domains: ['s3-alpha-sig.figma.com', 'cdn3.iconfinder.com'],
     formats: ['image/avif', 'image/webp'],

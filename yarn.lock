@@ -494,6 +494,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-pdf@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "@types/react-pdf@npm:7.0.0"
+  dependencies:
+    react-pdf: "npm:*"
+  checksum: 10c0/d4336126bf237d2faf6ec561c22db423988c900bd6282f25f30b4d581c7df78b226c53e76ef9f1a442cf4532c237ed8eb7a3227c850576c318905f6f890986da
+  languageName: node
+  linkType: hard
+
 "@types/react-slick@npm:^0.23.13":
   version: 0.23.13
   resolution: "@types/react-slick@npm:0.23.13"
@@ -3446,6 +3455,7 @@ __metadata:
     "@types/node": "npm:^17.0.42"
     "@types/react": "npm:^18.0.28"
     "@types/react-dom": "npm:^18.0.11"
+    "@types/react-pdf": "npm:^7.0.0"
     "@types/react-slick": "npm:^0.23.13"
     "@types/uuid": "npm:^10"
     autoprefixer: "npm:^10.4.8"
@@ -3782,7 +3792,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-pdf@npm:^9.1.1":
+"react-pdf@npm:*, react-pdf@npm:^9.1.1":
   version: 9.1.1
   resolution: "react-pdf@npm:9.1.1"
   dependencies:

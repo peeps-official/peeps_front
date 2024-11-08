@@ -35,14 +35,9 @@ export function File({ stepData, setStepData }: StepProps) {
   const { imgBundles, contentInputRef, uploadImage, removeImage, removeAllimg } = useContentImage([])
 
   const disabled = stepData.step >= 1
-  console.log('imgBundles', imgBundles.length)
 
   useEffect(() => {
-    console.log('이펙트')
-    console.log('imgBundles', imgBundles[0])
-
     if (imgBundles.length > 0) {
-      console.log('imgBundles', imgBundles[0])
       setStepData({ step: 1, data: { ...stepData.data } })
       if (imgBundles[0].s3Url) {
         setFile(imgBundles[0].s3Url)

@@ -11,8 +11,6 @@ export type BadgeIssueRes_T = {
 }
 
 export type BadgeApproveReq_T = {
-  badgeName: string
-  file: {
-    [key: string]: string
-  }
+  bdg_name: string
+  file: Record<string, string>
 }
