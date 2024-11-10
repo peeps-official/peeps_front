@@ -133,7 +133,7 @@ export function FollowAndProfileButton() {
     handleEditProfile()
   }
 
-  const isFollow: isFollow = setClubInfo?.isFollow ? 1 : 0
+  const isFollow: isFollow = setClubInfo?.isFollow === 1 ? 1 : 0
 
   async function handleEditProfile() {
     // isFollow
