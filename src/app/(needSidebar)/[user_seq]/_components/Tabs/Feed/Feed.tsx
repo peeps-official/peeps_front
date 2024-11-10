@@ -4,7 +4,7 @@ import PhotoGallery from './PhotoGallery'
 import Post from '../Post/Post'
 
 import { OwnerBadgeListAtom } from '@/src/common/recoil/ownerAtom'
-import { OwnerPostListAtom } from '@/src/common/recoil/userHome'
+import { IsOwnerAtom, OwnerPostListAtom } from '@/src/common/recoil/userHome'
 import { Badge_T } from '@/src/common/types/badge'
 import { POST_ARR_T } from '@/src/common/types/post'
 import { useRecoilValue } from 'recoil'
@@ -13,11 +13,12 @@ import BadgeBox from '../InfoEdit/AddBadge/BadgeBox'
 export default function Feed() {
   const ownerBadgeList = useRecoilValue<Badge_T[]>(OwnerBadgeListAtom)
   const feedData = useRecoilValue<POST_ARR_T>(OwnerPostListAtom)
+  const isOwner = useRecoilValue(IsOwnerAtom)
 
   return (
     <div className="flex w-full gap-10">
       <div className="flex w-full flex-col">
-        <CommentInput />
+        {isOwner && <CommentInput />}
         <div className="first:mt-0 [&>div]:my-5">
           {feedData.length > 0 ? (
             feedData.map((post) => <Post key={post.id} post={post} />)

@@ -30,7 +30,6 @@ interface DataWrapperForMyPageProps {
 export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWrapperForMyPageProps) {
   const loginUserData = useRecoilValue<LoginUserData_T>(LogedInUserReqDataAtom)
 
-  console.log(loginUserData)
   // 로그인 유저 정보
   const setLoginFollowList = useSetRecoilState<LoginUserFollow_T[]>(Login_User_Follow_Atom)
   const setLoginBadgeList = useSetRecoilState<Badge_T[]>(LoginUserBadgeListAtom)
