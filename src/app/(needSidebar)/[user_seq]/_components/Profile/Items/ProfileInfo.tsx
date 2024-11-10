@@ -27,6 +27,10 @@ export default function ProfileInfo({ isOwner, ownerData }: Props) {
 
   const bundlesIdx = imgBundles.length - 1
 
+  useEffect(() => {
+    setImgSrc(user_bg_img)
+  }, [user_bg_img])
+
   // 프로필 수정 mutation
   const { mutate } = useMutation({
     mutationFn: async (data: OwnerProfile_T) => {
@@ -38,13 +42,6 @@ export default function ProfileInfo({ isOwner, ownerData }: Props) {
     },
   })
 
-  // background image 변경 함수
-  function handleChangeBgImg() {
-    if (imgSrc === null) return
-
-    mutate({ ...ownerData, user_bg_img: imgSrc })
-  }
-
   useEffect(() => {
     if (imgBundles.length > 0) {
       console.log(imgBundles)
@@ -55,6 +52,15 @@ export default function ProfileInfo({ isOwner, ownerData }: Props) {
       }
     }
   }, [imgBundles])
+
+  const handleChangeBgImg = () => {
+    mutate({ ...ownerData, user_profile_img: imgSrc })
+  }
+
+  const onDelete = () => {
+    setImgSrc(null)
+    removeAllimg()
+  }
 
   return (
     <div className="flex flex-1 flex-col gap-[11px]">
@@ -81,6 +87,7 @@ export default function ProfileInfo({ isOwner, ownerData }: Props) {
           src={imgSrc}
           isLoading={imgSrc === imgBundles[bundlesIdx]?.tmpUrl}
           uploadImage={uploadImage}
+          onDelete={onDelete}
           onSubmit={handleChangeBgImg}
         />
       )}

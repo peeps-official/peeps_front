@@ -22,7 +22,6 @@ export default function ProfileImage({ alt, src, isOwner, ownerData }: ProfileIm
   const [imgSrc, setImgSrc] = useState<string | null>(src)
 
   const queryClient = useQueryClient()
-
   const bundlesIdx = imgBundles.length - 1
 
   const { mutate } = useMutation({
@@ -36,8 +35,12 @@ export default function ProfileImage({ alt, src, isOwner, ownerData }: ProfileIm
   })
 
   useEffect(() => {
+    setImgSrc(src)
+  }, [src])
+
+  useEffect(() => {
     if (imgBundles.length > 0) {
-      console.log(imgBundles)
+      console.log('vv:', imgBundles)
       if (imgBundles[bundlesIdx].s3Url) {
         setImgSrc(imgBundles[bundlesIdx].s3Url)
       } else {
@@ -46,9 +49,13 @@ export default function ProfileImage({ alt, src, isOwner, ownerData }: ProfileIm
     }
   }, [imgBundles])
 
-  function handleChangeProfileImg() {
-    if (!imgSrc) return
+  const handleChangeProfileImg = () => {
     mutate({ ...ownerData, user_profile_img: imgSrc })
+  }
+
+  const onDelete = () => {
+    setImgSrc(null)
+    removeAllimg()
   }
 
   return (
@@ -75,6 +82,7 @@ export default function ProfileImage({ alt, src, isOwner, ownerData }: ProfileIm
             src={imgSrc}
             isLoading={imgSrc === imgBundles[bundlesIdx]?.tmpUrl}
             uploadImage={uploadImage}
+            onDelete={onDelete}
             onSubmit={handleChangeProfileImg}
           />
         )}
