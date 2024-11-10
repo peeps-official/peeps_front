@@ -22,7 +22,7 @@ export default function BadgeDetailPage({ params }: BadgeDetailPageParams) {
         <div className="mx-[auto] flex w-full max-w-[1316px] flex-col gap-[17px] px-[23px] py-[20px]">
           <BadgeProfile />
           {/* <Tabs /> -> 내가 올린 글, 댓글 볼 수 있는 부분*/}
-          {circleProfile && circleProfile.isFollow ? (
+          {circleProfile && circleProfile.isFollow === 1 ? (
             <CircleFeed />
           ) : (
             <div className="mt-5">'팔로우한 클럽의 내용만 볼 수 있습니다.'</div>
