@@ -1,24 +1,16 @@
 'use client'
 import { useRecoilValue } from 'recoil'
 
-import { LogedInUserReqDataAtom, Login_User_Follow_Atom, LoginUserBadgeListAtom } from '@/src/common/recoil/userAtom'
+import { IsUserLogedInAtom, Login_User_Follow_Atom, LoginUserBadgeListAtom } from '@/src/common/recoil/userAtom'
 import { Badge_T } from '@/src/common/types/badge'
-import { LoginUserData_T, LoginUserFollow_T } from '@/src/common/types/user'
+import { LoginUserFollow_T } from '@/src/common/types/user'
 import NextImg from '@/src/common/utils/NextImg'
-import { useEffect } from 'react'
 import { DivLine, SideBarLink, SideBarPartWrapper } from './SideBarUtils'
 
-export default function GlobalSidebarWide({ onToggleSidebar }: { onToggleSidebar: () => void }) {
-  const { user_data: logedInUserData } = useRecoilValue<LoginUserData_T>(LogedInUserReqDataAtom)
+export default function GlobalSidebarWide() {
+  const isUserLogedIn = useRecoilValue<boolean>(IsUserLogedInAtom)
   const followList = useRecoilValue<LoginUserFollow_T[]>(Login_User_Follow_Atom)
   const badgeList = useRecoilValue<Badge_T[]>(LoginUserBadgeListAtom)
-
-  const isUserLogedIn = logedInUserData.user_seq === '' ? false : true
-
-  useEffect(() => {
-    if (!isUserLogedIn) return
-    ;(async () => {})()
-  }, [isUserLogedIn])
 
   return (
     <div className="z-sideBar h-screen w-[240px] overflow-y-auto bg-white pl-2 text-mini text-dimgray-100">

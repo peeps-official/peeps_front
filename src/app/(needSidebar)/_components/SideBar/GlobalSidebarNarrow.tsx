@@ -1,19 +1,16 @@
 'use client'
-import Link from 'next/link'
 import { useRecoilValue } from 'recoil'
 
-import { LogedInUserReqDataAtom, Login_User_Follow_Atom, LoginUserBadgeListAtom } from '@/src/common/recoil/userAtom'
+import { IsUserLogedInAtom, Login_User_Follow_Atom, LoginUserBadgeListAtom } from '@/src/common/recoil/userAtom'
 import { Badge_T } from '@/src/common/types/badge'
-import { LoginUserData_T, LoginUserFollow_T } from '@/src/common/types/user'
+import { LoginUserFollow_T } from '@/src/common/types/user'
 import NextImg from '@/src/common/utils/NextImg'
-import { DivLine, SideBarLink, SideBarPartWrapper } from './SideBarUtils'
+import { SideBarLink, SideBarPartWrapper } from './SideBarUtils'
 
 export default function GlobalSidebarNarrow() {
-  const { user_data: logedInUserData } = useRecoilValue<LoginUserData_T>(LogedInUserReqDataAtom)
+  const isUserLogedIn = useRecoilValue<boolean>(IsUserLogedInAtom)
   const followList = useRecoilValue<LoginUserFollow_T[]>(Login_User_Follow_Atom)
   const badgeList = useRecoilValue<Badge_T[]>(LoginUserBadgeListAtom)
-
-  const isUserLogedIn = logedInUserData.user_seq === '' ? false : true
 
   return (
     <div className={'flex h-screen flex-col items-start bg-white pl-2 text-left font-kr text-mini text-dimgray-100'}>

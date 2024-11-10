@@ -2,7 +2,7 @@
 
 import { Archivo, DM_Sans } from 'next/font/google'
 
-import { LogedInUserReqDataAtom } from '@/src/common/recoil/userAtom'
+import { IsUserLogedInAtom, LogedInUserReqDataAtom } from '@/src/common/recoil/userAtom'
 import { LoginUserData_T } from '@/src/common/types/user'
 import NextImg from '@/src/common/utils/NextImg'
 import { useEffect, useState } from 'react'
@@ -33,11 +33,9 @@ interface layoutProps {
 
 export default function WrapperForSideBarLayout({ children }: layoutProps) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true)
+  const isUserLogedIn = useRecoilValue<boolean>(IsUserLogedInAtom)
 
   const setUserLoginedData = useSetRecoilState<LoginUserData_T>(LogedInUserReqDataAtom)
-  const useLoginData = useRecoilValue<LoginUserData_T>(LogedInUserReqDataAtom)
-
-  const isUserLogedIn = useLoginData?.user_data?.user_seq === '' ? false : true
 
   const toggleSidebar = () => {
     setIsSidebarCollapsed((prevState) => !prevState)
@@ -86,7 +84,7 @@ export default function WrapperForSideBarLayout({ children }: layoutProps) {
                 />
               </div>
             </div>
-            {isSidebarCollapsed ? <GlobalSidebarNarrow /> : <GlobalSidebarWide onToggleSidebar={toggleSidebar} />}
+            {isSidebarCollapsed ? <GlobalSidebarNarrow /> : <GlobalSidebarWide />}
           </div>
         </div>
       )}

@@ -3,6 +3,7 @@
 import { axiosWithAuth } from '@/src/common/api/instance'
 import Button from '@/src/common/components/Btn/Button'
 import { CircleDataAtom, CirCleFollowerListAtom } from '@/src/common/recoil/circleAtom'
+import { IsUserLogedInAtom } from '@/src/common/recoil/userAtom'
 import { Circle_T, CirCleFollower_T } from '@/src/common/types/circle'
 import NextImg from '@/src/common/utils/NextImg'
 import { useQueryClient } from '@tanstack/react-query'
@@ -128,9 +129,11 @@ type isFollow = -1 | 0 | 1 // -1: 로그인 안됨, 0: 팔로우 안함, 1: 팔�
 export function FollowAndProfileButton() {
   const queryClient = useQueryClient()
   const setClubInfo = useRecoilValue<Circle_T | null>(CircleDataAtom)
+  const isUserLogedIn = useRecoilValue<boolean>(IsUserLogedInAtom)
 
   const handleFollowClick = () => {
-    handleEditProfile()
+    if (isUserLogedIn) handleEditProfile()
+    else alert('로그인이 필요합니다.')
   }
 
   const isFollow: isFollow = setClubInfo?.isFollow === 1 ? 1 : 0

@@ -1,34 +1,11 @@
-import { atom } from 'recoil'
+import { atom, selector } from 'recoil'
 import { AdminUserData_T } from '../types/admin'
 import { Badge_T } from '../types/badge'
 import { LoginUserData_T, LoginUserFollow_T, UserLogin_T } from '../types/user'
 import { FEED_POST_T } from '../types/post'
 
-// admin
-export const adminDatakey: string = 'adminDataKey'
-
-export const uerDataAtom = atom<Array<AdminUserData_T>>({
-  key: adminDatakey,
-  default: [
-    {
-      id: '',
-      nickname: '',
-      profileImage: null,
-      backgroundImage: null,
-      info: null,
-      mobile: '',
-      name: '',
-      birthday: '',
-      birthyear: '',
-      boards: [],
-    },
-  ],
-})
-
-export const adminBadgeListKey: string = 'adminBadgeListKey'
-
 export const badgeAtom = atom<Array<AdminUserData_T>>({
-  key: adminBadgeListKey,
+  key: 'adminBadgeListKey',
   default: [
     {
       id: '',
@@ -72,6 +49,17 @@ export const LogedInUserDefaultData: LoginUserData_T = {
 export const LogedInUserReqDataAtom = atom<LoginUserData_T>({
   key: 'LoginUserDataStateAtom',
   default: LogedInUserDefaultData,
+})
+
+/**
+ * @description 로그인 여부
+ */
+export const IsUserLogedInAtom = selector<boolean>({
+  key: 'IsUserLogedInAtom',
+  get: ({ get }) => {
+    const loginData = get(LogedInUserReqDataAtom)
+    return loginData?.loginState === 200 ? true : false
+  },
 })
 
 export const Login_User_Follow_Atom = atom<Array<LoginUserFollow_T>>({
