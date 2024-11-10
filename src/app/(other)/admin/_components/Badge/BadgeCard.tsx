@@ -1,13 +1,13 @@
 'use client'
 
-import {
-  BadgeTypes,
-  IsBadgeAuth,
-} from '@/src/app/(userPage)/[user_seq]/_components/Tabs/InfoEdit/Badge/BadgeItemContainer'
 import { CommonBadge_T } from '@/src/common/types/commonBadge'
 import NextImg from '@/src/common/utils/NextImg'
 import { useState } from 'react'
 import EditBadgeModal from '../../badge/_components/EditBadgeModal'
+import {
+  BadgeTypes,
+  IsBadgeAuth,
+} from '@/src/app/(needSidebar)/[user_seq]/_components/Tabs/InfoEdit/Badge/BadgeItemContainer'
 
 /**
  * 뱃지 카드 컴포넌트
