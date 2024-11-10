@@ -3,7 +3,7 @@ import '@/src/app/styles.css'
 
 import { Metadata } from 'next'
 import { Archivo, DM_Sans } from 'next/font/google'
-import DataContextProvider from './_components/DataContextProvider'
+import DataContextProvider from './(other)/(mainPage)/_components/DataContextProvider'
 
 const archivo = Archivo({
   subsets: ['latin'],
@@ -35,10 +35,8 @@ export default async function DefaultLayout({ children }: layoutProps) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
       </head>
-      <body className="w-full">
-        <div className={`w-full ${archivo.variable + ' ' + dm_sans.variable}`}>
-          <DataContextProvider>{children}</DataContextProvider>
-        </div>
+      <body className={`w-full ${archivo.variable + ' ' + dm_sans.variable}`}>
+        <DataContextProvider>{children}</DataContextProvider>
       </body>
     </html>
   )

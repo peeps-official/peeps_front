@@ -1,10 +1,16 @@
-import { atom } from 'recoil'
-import { UserHomeTab_T } from '../types/home'
+import { atom, selector } from 'recoil'
 import { POST_ARR_T } from '../types/post'
+import { OwnerProfileStateAtom } from './ownerAtom'
+import { LogedInUserReqDataAtom } from './userAtom'
 
-export const IsOwnerAtom = atom<boolean>({
+export const IsOwnerAtom = selector({
   key: 'isOwner',
-  default: false,
+  get: ({ get }) => {
+    const loginUser = get(LogedInUserReqDataAtom)
+    const ownerUser = get(OwnerProfileStateAtom)
+
+    return loginUser.user_data.user_seq === ownerUser.user_seq
+  },
 })
 
 export const OwnerPostListAtom = atom<POST_ARR_T>({

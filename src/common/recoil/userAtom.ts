@@ -47,6 +47,10 @@ export const badgeAtom = atom<Array<AdminUserData_T>>({
 
 /**
  * @description 로그인 유저 기본 값
+ * [loginState]
+ *  -1: 비로그인 상태
+ *  200: 모든 정보 있음
+ *  300: 추가로 필요한 정보 있음
  */
 
 export const LogedInUserDefaultData: LoginUserData_T = {
