@@ -22,7 +22,7 @@ export default function AddBadge() {
           <GetLoginAuth />
           <GetEmailAuth />
           <GetFileAuth />
-          <GetBlockChainAuth />
+          {/* <GetBlockChainAuth /> */}
         </div>
       </div>
       <div className="max-w-[30rem]">
