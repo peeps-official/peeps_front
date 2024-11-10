@@ -7,6 +7,7 @@ import EditModal from './EditModal'
 import { PostContent, PostHeader } from './PostContent'
 import PostDetailModal from './PostDetailModal'
 import { useRouter } from 'next/navigation'
+import NextImg from '@/src/common/utils/NextImg'
 
 type Props = {
   post: Post_T
@@ -23,8 +24,11 @@ export default function Post({ post }: Props) {
   return (
     <div className="w-full rounded-lg bg-white p-4 shadow-popupBox">
       <div className="flex items-start space-x-4">
-        <button onClick={() => route.push(`/${post.user.id}`)}>
-          <img src={post.user.profileImage} alt="Profile" className="h-12 w-12 rounded-full object-cover" />
+        <button
+          onClick={() => route.push(`/${post.user.id}`)}
+          className="h-12 w-12 overflow-hidden rounded-full object-cover"
+        >
+          <NextImg src={post.user.profileImage} alt="Profile" />
         </button>
         <div className="flex-1">
           <PostHeader post={post} isOption={isOption} setIsOption={setIsOption} setIsEditPost={setIsEditPost} />

@@ -6,6 +6,7 @@ import { Post_T } from '@/src/common/types/post'
 import { LoginUserData_T } from '@/src/common/types/user'
 import { formatTimeAgo } from '@/src/common/utils/Date/formatTimeAgo'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Dispatch, SetStateAction } from 'react'
 import { BsThreeDots } from 'react-icons/bs'
@@ -26,8 +27,12 @@ export function PostContent({ description, images }: PostContentProps) {
         {images &&
           images.map((src) => (
             <div key={src} id="image" className="mb-2 shrink-0 pr-[6px]">
-              <img
+              <Image
                 src={src}
+                width={500}
+                height={300}
+                layout="responsive"
+                objectFit="cover"
                 alt="feed img"
                 className="max-h-[300px] max-w-full overflow-hidden rounded-lg border-[1px] border-solid border-black/40 object-cover"
               />

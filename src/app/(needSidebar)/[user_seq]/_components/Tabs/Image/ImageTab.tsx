@@ -2,6 +2,7 @@
 
 import { OwnerImgListAtom } from '@/src/common/recoil/ownerAtom'
 import { OwnerImgList_T } from '@/src/common/types/owner'
+import Image from 'next/image'
 import { useRecoilValue } from 'recoil'
 
 export default function ImageTab() {
@@ -12,9 +13,13 @@ export default function ImageTab() {
       {ownerImgList.length > 0 ? (
         ownerImgList.map((img, index) => (
           <div key={img.src} className="mb-2 shrink-0 rounded-lg pr-[6px]">
-            <img
+            <Image
               src={img.src}
               alt={`Gallery ${index}`}
+              width={500}
+              height={300}
+              layout="responsive"
+              objectFit="cover"
               className="max-h-[200px] max-w-full overflow-hidden rounded-lg border-[1px] border-solid border-black/40 object-cover"
             />
           </div>

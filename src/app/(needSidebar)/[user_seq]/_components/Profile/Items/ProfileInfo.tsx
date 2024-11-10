@@ -20,7 +20,7 @@ type Props = {
 export default function ProfileInfo({ isOwner, ownerData }: Props) {
   const { user_id, user_nickname, profileMessage, follwer_list, badge_list, user_bg_img } = ownerData
   const { imgBundles, contentInputRef, uploadImage, removeImage, removeAllimg } = useImage([])
-  const [isModalOpen, setIsModalOpen] = useState(true)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [imgSrc, setImgSrc] = useState<string | null>(user_bg_img)
 
   const queryClient = useQueryClient()

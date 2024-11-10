@@ -17,7 +17,7 @@ type ProfileImageProps = {
 
 export default function ProfileImage({ alt, src, isOwner, ownerData }: ProfileImageProps) {
   const { user_bg_img: isBackground } = ownerData
-  const [isModalOpen, setIsModalOpen] = useState(true)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const { imgBundles, contentInputRef, uploadImage, removeImage, removeAllimg } = useImage([])
   const [imgSrc, setImgSrc] = useState<string | null>(src)
 

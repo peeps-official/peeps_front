@@ -1,5 +1,6 @@
 import { OwnerImgListAtom } from '@/src/common/recoil/ownerAtom'
 import { OwnerImgList_T } from '@/src/common/types/owner'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRecoilValue } from 'recoil'
 
@@ -25,7 +26,15 @@ export default function PhotoGallery() {
           if (6 <= index) return null
           return (
             <div key={img.src} className="overflow-hidden rounded-lg">
-              <img src={img.src} alt={`Gallery ${index}`} className="h-full w-full object-cover" />
+              <Image
+                src={img.src}
+                alt={`Gallery ${index}`}
+                className="h-full w-full object-cover"
+                width={500}
+                height={300}
+                layout="responsive"
+                objectFit="cover"
+              />
             </div>
           )
         })}

@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import { PostContent, PostHeader } from '../Post/PostContent'
 import EditModal from './EditModal'
+import NextImg from '@/src/common/utils/NextImg'
 
 type Props = {
   post: Post_T // 글 정보
@@ -61,7 +62,9 @@ export default function PostDetailModal({ post, setIsOpen }: Props) {
     <BasicCenterModal setIsOpen={setIsOpen}>
       <div className="flex max-h-[80vh] min-h-[50vh] max-w-[90vw] gap-3 overflow-hidden rounded-lg bg-[#fff] shadow-popupBox">
         <div className="max-[640px] flex min-w-[420px] items-start space-x-4 overflow-auto rounded-lg p-4">
-          <img src={post.user.profileImage} alt="Profile" className="h-12 w-12 rounded-full object-cover" />
+          <button className="h-12 w-12 overflow-hidden rounded-full object-cover">
+            <NextImg src={post.user.profileImage} alt="Profile" />
+          </button>
           <div className="flex-1 overflow-hidden">
             <PostHeader post={post} isOption={isOption} setIsOption={setIsOption} setIsEditPost={setIsEditPost} />
             <PostContent description={description} images={image} />
@@ -73,12 +76,11 @@ export default function PostDetailModal({ post, setIsOpen }: Props) {
             <div className="flex flex-col gap-2 overflow-y-auto pb-5">
               {commentList?.map((comment: Comment_T) => (
                 <div key={comment.id} className="flex items-start space-x-4 rounded-lg bg-[#fafafa] p-2 shadow-sm">
-                  <button onClick={() => moveToUserPage(comment.user.id)}>
-                    <img
-                      src={comment.user.profileImage}
-                      alt="Profile"
-                      className="h-10 w-10 rounded-full object-cover"
-                    />
+                  <button
+                    onClick={() => moveToUserPage(comment.user.id)}
+                    className="h-10 w-10 overflow-hidden rounded-full object-cover"
+                  >
+                    <NextImg src={comment.user.profileImage} alt="Profile" />
                   </button>
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
