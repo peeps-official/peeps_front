@@ -1,8 +1,9 @@
 'use client'
 
+import Ring from '@/src/app/_styles/animation/Ring'
 import { editCirclePost, uploadCirclePost } from '@/src/common/api/circle'
 import BasicCenterModal from '@/src/common/components/Modal/BasicCenterModal'
-import { BundleImage, useContentImage } from '@/src/common/hooks/useContentImage'
+import { BundleImage, useImage } from '@/src/common/hooks/useImage'
 import { CircleDataAtom } from '@/src/common/recoil/circleAtom'
 import { Circle_T } from '@/src/common/types/circle'
 import { Post_T, PostUpload_T } from '@/src/common/types/post'
@@ -36,7 +37,7 @@ export default function CirclePostEditModal({ isEdit = false, post, setIsOpen }:
   }
 
   // 수정이면서 post에 이미지가 있으면 이미지 배열을 전달
-  const { imgBundles, contentInputRef, uploadImage, removeImage, removeAllimg } = useContentImage(
+  const { imgBundles, contentInputRef, uploadImage, removeImage, removeAllimg } = useImage(
     isEdit && post?.hasOwnProperty('image') ? [...post.image] : [],
   )
 
@@ -169,7 +170,7 @@ const ImageViewer = ({ imgBundles, removeImage }: ImageViewerProps) => {
             <div className="absolute right-[-8px] top-[-8px] rounded-full bg-white p-[3px]">
               {!isUploadEnd ? (
                 <div>
-                  <Ring2 />
+                  <Ring />
                 </div>
               ) : (
                 <button
@@ -209,7 +210,7 @@ const ImgVideoBtn = forwardRef<HTMLInputElement, ImgVideoBtnProps>(({ handleUplo
         type="file"
         className="hidden"
         multiple
-        accept="image/png, image/jpeg, image/jpg"
+        accept="image/png, image/jpeg, image/jpg, image/webp"
         ref={ref}
         onChange={handleUploadImage}
       />
@@ -224,35 +225,6 @@ const SelectPublic = ({ register, isEdit, isPublic }: { register: any; isEdit: b
         <option value="true">🌎 전체 공개</option>
         <option value="false">🔒 나만 보기</option>
       </select>
-    </div>
-  )
-}
-
-const Ring2 = () => {
-  return (
-    <div className="relative h-5 w-5">
-      <svg className="animate-spin" viewBox="0 0 40 40" height="20" width="20">
-        <circle
-          className="stroke-current opacity-10"
-          cx="20"
-          cy="20"
-          r="17.5"
-          pathLength="100"
-          strokeWidth="5"
-          fill="none"
-        />
-        <circle
-          className="stroke-current"
-          cx="20"
-          cy="20"
-          r="17.5"
-          pathLength="100"
-          strokeWidth="5"
-          fill="none"
-          strokeDasharray="25 75"
-          strokeLinecap="round"
-        />
-      </svg>
     </div>
   )
 }

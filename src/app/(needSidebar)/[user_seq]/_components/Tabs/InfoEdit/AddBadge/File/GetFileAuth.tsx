@@ -1,13 +1,13 @@
 'use client'
 
+import Ring from '@/src/app/_styles/animation/Ring'
 import { upLoadFileAuth } from '@/src/common/api/userBadge'
 import { Input, InputBtn } from '@/src/common/components/Input/Input'
-import { useContentImage } from '@/src/common/hooks/useContentImage'
+import { useImage } from '@/src/common/hooks/useImage'
 import { fileAtom } from '@/src/common/recoil/authAtom'
 import { useEffect, useRef, useState } from 'react'
 import { HiOutlineDownload } from 'react-icons/hi'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import { Ring2 } from '../../../Post/EditModal'
 import AddAuthContainer, { useAddAuth } from '../AddAuthContainer'
 import { StepProps } from '../Email/StepInput'
 
@@ -32,7 +32,7 @@ export default function GetFileAuth() {
 export function File({ stepData, setStepData }: StepProps) {
   const setFile = useSetRecoilState<string | null>(fileAtom)
   const [isUploadEnd, setIsUploadEnd] = useState(false)
-  const { imgBundles, contentInputRef, uploadImage, removeImage, removeAllimg } = useContentImage([])
+  const { imgBundles, contentInputRef, uploadImage, removeImage, removeAllimg } = useImage([])
 
   const disabled = stepData.step >= 1
 
@@ -63,7 +63,7 @@ export function File({ stepData, setStepData }: StepProps) {
               <p className="flex-1 truncate">{imgBundles[0].title}</p>
               {!isUploadEnd && (
                 <div className="flex-shrink-0">
-                  <Ring2 />
+                  <Ring />
                 </div>
               )}
             </>

@@ -8,6 +8,9 @@ import { OwnerProfile_T } from '@/src/common/types/owner'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FaCamera } from 'react-icons/fa'
 import { FollowAndProfileButton } from './FollowAndProfileButton'
+import { useEffect, useState } from 'react'
+import { useImage } from '@/src/common/hooks/useImage'
+import ImageUploadModal from './ImageUploadModal'
 
 type Props = {
   isOwner: boolean
@@ -15,9 +18,14 @@ type Props = {
 }
 
 export default function ProfileInfo({ isOwner, ownerData }: Props) {
+  const { user_id, user_nickname, profileMessage, follwer_list, badge_list, user_bg_img } = ownerData
+  const { imgBundles, contentInputRef, uploadImage, removeImage, removeAllimg } = useImage([])
+  const [isModalOpen, setIsModalOpen] = useState(true)
+  const [imgSrc, setImgSrc] = useState<string | null>(user_bg_img)
+
   const queryClient = useQueryClient()
 
-  const { user_id, user_nickname, profileMessage, follwer_list, badge_list, user_seq } = ownerData
+  const bundlesIdx = imgBundles.length - 1
 
   // 프로필 수정 mutation
   const { mutate } = useMutation({
@@ -25,17 +33,28 @@ export default function ProfileInfo({ isOwner, ownerData }: Props) {
       return editOwnerProfile(data)
     },
     onSuccess: () => {
+      setIsModalOpen(false)
       queryClient.invalidateQueries({ queryKey: ['userData'] })
     },
   })
 
   // background image 변경 함수
   function handleChangeBgImg() {
-    const url = window.prompt('배경 이미지 URL을 입력해주세요. (제거 시 빈칸 입력)')
-    if (url === null) return
+    if (imgSrc === null) return
 
-    mutate({ ...ownerData, user_bg_img: url })
+    mutate({ ...ownerData, user_bg_img: imgSrc })
   }
+
+  useEffect(() => {
+    if (imgBundles.length > 0) {
+      console.log(imgBundles)
+      if (imgBundles[bundlesIdx].s3Url) {
+        setImgSrc(imgBundles[bundlesIdx].s3Url)
+      } else {
+        setImgSrc(imgBundles[bundlesIdx].tmpUrl)
+      }
+    }
+  }, [imgBundles])
 
   return (
     <div className="flex flex-1 flex-col gap-[11px]">
@@ -49,12 +68,22 @@ export default function ProfileInfo({ isOwner, ownerData }: Props) {
           <Button
             icons={<FaCamera />}
             title="커버 사진 수정"
-            onClickFn={handleChangeBgImg}
+            onClickFn={() => setIsModalOpen(true)}
             styles={`bg-gray-dark text-black hover:bg-[#ddd]`}
           />
         )}
       </div>
       {<ProfileMessage message={profileMessage ?? '--'} />}
+      {isModalOpen && (
+        <ImageUploadModal
+          setIsOpen={setIsModalOpen}
+          inputRef={contentInputRef}
+          src={imgSrc}
+          isLoading={imgSrc === imgBundles[bundlesIdx]?.tmpUrl}
+          uploadImage={uploadImage}
+          onSubmit={handleChangeBgImg}
+        />
+      )}
       {badge_list.length > 0 && <BadgeList badges={badge_list} />}
       <FollowAndProfileButton isOwner={isOwner} />
     </div>

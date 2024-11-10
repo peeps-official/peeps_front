@@ -43,20 +43,25 @@ export default function ModalForm({ title, setIsOpen, onSubmit, children }: Moda
 type PictureProps = {
   alt: string
   src: string | null
-  setImgSrc: (src: string | null) => void
+  isLoading: boolean
+  inputRef: React.RefObject<HTMLInputElement>
+  uploadImage: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-function ProfileImg({ alt, src, setImgSrc }: PictureProps) {
+function ProfileImg({ alt, src, isLoading, inputRef, uploadImage }: PictureProps) {
   function handleSetImgBtn() {
-    const url = window.prompt('프로필 이미지 URL을 입력해주세요.')
-
-    if (url) setImgSrc(url)
+    inputRef.current?.click()
   }
 
   return (
     <div className="relative h-[120px] w-[120px] rounded-full bg-[white] p-[4px]">
-      <div className="h-full w-full cursor-pointer overflow-hidden rounded-full object-cover">
+      <div className="relative h-full w-full cursor-pointer overflow-hidden rounded-full object-cover">
         <NextImg alt={alt} src={src ?? '/images/profile/profile.svg'} />
+        {isLoading && (
+          <div className="absolute left-0 top-0 h-full w-full rounded-full bg-white bg-opacity-40">
+            <Ring styles="!absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 " />
+          </div>
+        )}
       </div>
 
       <button
@@ -66,10 +71,18 @@ function ProfileImg({ alt, src, setImgSrc }: PictureProps) {
       >
         <FaCamera className="h-full w-full" />
       </button>
+      <input
+        ref={inputRef}
+        className="hidden"
+        type="file"
+        accept="image/png, image/jpeg, image/jpg, image/webp"
+        onChange={uploadImage}
+      />
     </div>
   )
 }
 
+import Ring from '@/src/app/_styles/animation/Ring'
 import React, { InputHTMLAttributes } from 'react'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -93,9 +106,18 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ title, id, ...props },
   )
 })
 
-function Send({ title }: InputProps) {
+type SendProps = {
+  title: string | React.ReactNode
+  isLoading?: boolean
+}
+
+function Send({ title, isLoading = false }: SendProps) {
   return (
-    <button type="submit" className="w-full rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
+    <button
+      type="submit"
+      className={`h-8 w-full rounded px-4 py-2 font-bold text-white ${!isLoading ? 'bg-blue-500 hover:bg-blue-700' : 'bg-gray-300 hover:bg-gray-300'}`}
+      disabled={isLoading}
+    >
       {title}
     </button>
   )

@@ -1,11 +1,12 @@
 'use client'
 import { editOwnerProfile } from '@/src/common/api/user'
-import { OwnerProfileStateAtom } from '@/src/common/recoil/ownerAtom'
+import ImageUploadModal from '@/src/app/(needSidebar)/[user_seq]/_components/Profile/Items/ImageUploadModal'
 import { OwnerProfile_T } from '@/src/common/types/owner'
 import NextImg from '@/src/common/utils/NextImg'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
 import { FaCamera } from 'react-icons/fa'
-import { useRecoilValue } from 'recoil'
+import { useImage } from '@/src/common/hooks/useImage'
 
 type ProfileImageProps = {
   alt: string
@@ -15,26 +16,39 @@ type ProfileImageProps = {
 }
 
 export default function ProfileImage({ alt, src, isOwner, ownerData }: ProfileImageProps) {
-  const ownerUserData = useRecoilValue<OwnerProfile_T>(OwnerProfileStateAtom)
+  const { user_bg_img: isBackground } = ownerData
+  const [isModalOpen, setIsModalOpen] = useState(true)
+  const { imgBundles, contentInputRef, uploadImage, removeImage, removeAllimg } = useImage([])
+  const [imgSrc, setImgSrc] = useState<string | null>(src)
 
   const queryClient = useQueryClient()
-  const { user_bg_img: isBackground } = ownerData
+
+  const bundlesIdx = imgBundles.length - 1
 
   const { mutate } = useMutation({
     mutationFn: async (data: OwnerProfile_T) => {
       return editOwnerProfile(data)
     },
     onSuccess: () => {
+      setIsModalOpen(false)
       queryClient.invalidateQueries({ queryKey: ['userData'] })
     },
   })
 
+  useEffect(() => {
+    if (imgBundles.length > 0) {
+      console.log(imgBundles)
+      if (imgBundles[bundlesIdx].s3Url) {
+        setImgSrc(imgBundles[bundlesIdx].s3Url)
+      } else {
+        setImgSrc(imgBundles[bundlesIdx].tmpUrl)
+      }
+    }
+  }, [imgBundles])
+
   function handleChangeProfileImg() {
-    const url = window.prompt('프로필 이미지 URL을 입력해주세요.')
-
-    if (!url) return
-
-    mutate({ ...ownerData, user_profile_img: url })
+    if (!imgSrc) return
+    mutate({ ...ownerData, user_profile_img: imgSrc })
   }
 
   return (
@@ -48,12 +62,22 @@ export default function ProfileImage({ alt, src, isOwner, ownerData }: ProfileIm
           {isOwner && (
             <button
               className="absolute bottom-[15px] right-[4px] z-[100] flex h-[36px] w-[36px] items-center justify-center overflow-hidden rounded-full bg-[#E4E6EB] p-[9px] hover:bg-slate-300"
-              onClick={handleChangeProfileImg}
+              onClick={() => setIsModalOpen(true)}
             >
               <FaCamera className="h-full w-full" />
             </button>
           )}
         </div>
+        {isModalOpen && (
+          <ImageUploadModal
+            setIsOpen={setIsModalOpen}
+            inputRef={contentInputRef}
+            src={imgSrc}
+            isLoading={imgSrc === imgBundles[bundlesIdx]?.tmpUrl}
+            uploadImage={uploadImage}
+            onSubmit={handleChangeProfileImg}
+          />
+        )}
       </div>
       {isBackground && <div className="w-[174px]" />}
     </>

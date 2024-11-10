@@ -21,7 +21,7 @@ export type BundleImage = {
   s3Url: string
 }
 
-export const useContentImage = (imageUrl: string[] = []) => {
+export const useImage = (imageUrl: string[] = []) => {
   const [imgBundles, setImgBundles] = useState<BundleImage[]>([])
 
   const contentInputRef = useRef<HTMLInputElement | null>(null)

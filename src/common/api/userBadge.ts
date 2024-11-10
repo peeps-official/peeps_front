@@ -55,6 +55,5 @@ export async function upLoadFileAuth(file: string, description: string = '') {
     description: description,
   })
 
-  console.log('파일 업로드: ', data)
   return data
 }
