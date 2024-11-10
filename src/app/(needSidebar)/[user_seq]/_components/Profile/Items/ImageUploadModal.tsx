@@ -25,7 +25,7 @@ export default function ImageUploadModal({
 }: ImageUploadModalProps) {
   return (
     <BasicCenterModal setIsOpen={setIsOpen}>
-      <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
+      <div className="max-h-[80vh] min-h-[30vh] w-full max-w-md overflow-y-auto rounded-lg bg-white p-6 shadow-lg">
         <h2 className="mb-6 text-2xl font-semibold text-gray-800">이미지 설정</h2>
 
         <div className="mb-6 flex space-x-4">
@@ -56,7 +56,7 @@ export default function ImageUploadModal({
         <div className="mb-6 overflow-hidden rounded-lg border border-gray-200">
           {src ? (
             <div className="relative aspect-video w-full">
-              <Image src={src} alt="Preview" layout="fill" objectFit="cover" />
+              <Image src={src} alt="Preview" width={500} height={300} layout="responsive" objectFit="cover" />
               {isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-70">
                   <LoadingSpinner />
