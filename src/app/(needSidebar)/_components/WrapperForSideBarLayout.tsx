@@ -71,7 +71,7 @@ export default function WrapperForSideBarLayout({ children }: layoutProps) {
         <div
           className={`fixed left-0 top-0 z-sideBarBack w-24 ${archivo.variable} ${dm_sans.variable} ${!isSidebarCollapsed ? sideBarBackground : ''}`}
         >
-          <div className={'relative z-sideBar flex h-screen w-full flex-col overflow-y-hidden bg-white'}>
+          <div className={'relative z-sideBar flex h-screen w-fit flex-col overflow-y-hidden bg-white'}>
             <div className="z-sideBar w-full">
               <div
                 className="h-[64px] w-[64px] py-[10px] pl-[19px] pr-[4px] [&_img]:rounded-[5px] [&_img]:hover:bg-[rgba(0,0,0,.05)]"

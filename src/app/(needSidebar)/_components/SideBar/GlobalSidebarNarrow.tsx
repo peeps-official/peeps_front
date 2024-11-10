@@ -13,7 +13,9 @@ export default function GlobalSidebarNarrow() {
   const badgeList = useRecoilValue<Badge_T[]>(LoginUserBadgeListAtom)
 
   return (
-    <div className={'flex h-screen flex-col items-start bg-white pl-2 text-left font-kr text-mini text-dimgray-100'}>
+    <div
+      className={'flex h-screen w-fit flex-col items-start bg-white px-2 text-left font-kr text-mini text-dimgray-100'}
+    >
       {isUserLogedIn && (
         <>
           <SideBarPartWrapper className="mt-[-0.75rem]">
