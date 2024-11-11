@@ -4,7 +4,6 @@ import { axiosWithAuth } from './common/api/instance'
 export async function middleware(request: NextRequest) {
   let accessToken = request.cookies.get('loginToken')?.value
 
-  console.log(request.nextUrl.pathname.startsWith('/admin'))
   // admin
   if (request.nextUrl.pathname.startsWith('/admin')) {
     // 로그인이 안되어있으면 로그인 페이지로 리다이렉트
@@ -21,8 +20,6 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/login', request.url))
     }
   }
-
-  console.log('middleware 끝')
 }
 
 export const config = {

@@ -1,8 +1,65 @@
+'use client'
+
+import { axiosWithAuth } from '@/src/common/api/instance'
+import { getLoginUserData } from '@/src/common/api/user'
 import { kakaoUrl, naverUrl } from '@/src/common/const/login'
 import NextImg from '@/src/common/utils/NextImg'
+import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 export default function LoginPage() {
+  const {
+    data: loginUserData,
+    isSuccess: loginReqSuccess,
+    isLoading: loginReqLoading,
+  } = useQuery({
+    queryKey: ['userData', { type: 'login' }],
+    queryFn: getLoginUserData,
+  })
+
+  const router = useRouter()
+
+  const handleLogout = () => {
+    axiosWithAuth
+      .post(`/logout`)
+      .then(() => {
+        router.refresh()
+      })
+      .catch((err) => {
+        alert('로그아웃 중 오류가 발생했습니다.')
+        router.replace('/')
+      })
+  }
+
+  if (loginReqLoading)
+    return (
+      <div className="flex h-screen items-center justify-center bg-blue-50 font-semibold text-blue-600">로딩중...</div>
+    )
+
+  if (loginUserData && loginUserData.loginState !== -1) {
+    return (
+      <div className="flex h-screen items-center justify-center gap-20 text-blue-600">
+        <p className="kr-bold-24 mb-4">이미 로그인이 되어있습니다.</p>
+        <div>
+          <button
+            onClick={handleLogout}
+            className="block rounded-md bg-blue-600 px-4 py-3 text-white shadow-sm transition-colors duration-300 hover:bg-blue-700"
+          >
+            로그아웃하고 로그인하기
+          </button>
+          <Link
+            href={`/`}
+            className="border-1 mt-4 block w-full rounded-md border border-solid border-gray-200 bg-[#eee] px-4 py-3 text-center hover:bg-[#ddd]"
+          >
+            메인 페이지로 이동
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="flex min-h-screen items-center justify-center text-center font-kr text-white">
       <div className="flex w-[440px] max-w-md flex-col gap-[34px] rounded-3xs bg-white pb-[34px] shadow-loginBox">
