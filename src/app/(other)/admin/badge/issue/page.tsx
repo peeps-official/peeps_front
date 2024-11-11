@@ -1,11 +1,13 @@
 'use client'
 
-import { getBadgeApproveList, getBadgeIssueList } from '@/src/common/api/adminBadge'
+import { getBadgeApproveList, getBadgeIssueList } from '@/src/common/api/admin'
 import { BadgeIssueRes_T } from '@/src/common/types/adminBadge'
 import { useQueries, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import AdminTable from '../../_components/Table/AdminTable'
 import BadgeApproveModal from './_components/BadgeApproveModal'
+import { useRecoilValue } from 'recoil'
+import { isAdminAtom } from '@/src/common/recoil/adminAtom'
 
 /**
  * 뱃지 발급 페이지 - 뱃지 발급 요청에 관한 페이지 (뱃지 발급 요청 승인, 거절)
@@ -18,16 +20,19 @@ export default function BadgeIssuePage() {
   const [badgeData, setBadgeData] = useState<BadgeIssueRes_T[] | null>(null)
   const [approveData, setApproveData] = useState<BadgeIssueRes_T[] | null>(null)
   const [modalData, setModalData] = useState<BadgeIssueRes_T | null>(null) // null: 모달창 닫힘, 나머지: 해당 요청 정보
+  const isAdmin = useRecoilValue<boolean>(isAdminAtom)
 
   const res = useQueries({
     queries: [
       {
         queryKey: ['badgeData', 'issue'],
         queryFn: getBadgeIssueList,
+        enabled: isAdmin,
       },
       {
         queryKey: ['badgeData', 'approve'],
         queryFn: getBadgeApproveList,
+        enabled: isAdmin,
       },
     ],
   })

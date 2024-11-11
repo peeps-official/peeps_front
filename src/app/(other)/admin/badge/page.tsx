@@ -12,7 +12,7 @@ import { CommonBadge_T } from '@/src/common/types/commonBadge'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import BadgeCard from '../_components/Badge/BadgeCard'
-import DataWrapperForAdminBadgePage from '../_components/DataWrapperForAdminBadgePage'
+import DataWrapperForAdminBadgePage from './_components/DataWrapperForAdminBadgePage'
 import NewBadgeModal from './_components/NewBadgeModal'
 
 export default function AdminBadgePage() {

@@ -2,6 +2,18 @@ import { BadgeIssueRes_T } from '../types/adminBadge'
 import { CommonBadge_T } from '../types/commonBadge'
 import { axiosWithAuth } from './instance'
 
+// Admin 권한 확인
+export async function checkAdmin() {
+  try {
+    const { status } = await axiosWithAuth.get('/admin')
+
+    if (status === 200) return true
+    return false
+  } catch (error) {
+    return false
+  }
+}
+
 // 뱃지 리스트 조회
 export async function getBadgeList() {
   const { data } = await axiosWithAuth.get<CommonBadge_T[]>('/admin/badge')

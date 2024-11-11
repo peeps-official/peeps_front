@@ -3,14 +3,19 @@ import { axiosWithAuth } from '@/src/common/api/instance'
 import AdminTable from './_components/Table/AdminTable'
 import { AdminUserData_T } from '@/src/common/types/admin'
 import { useQuery } from '@tanstack/react-query'
+import { useRecoilValue } from 'recoil'
+import { isAdminAtom } from '@/src/common/recoil/adminAtom'
 
 export default function AdminPage() {
+  const isAdmin = useRecoilValue<boolean>(isAdminAtom)
+
   const { data } = useQuery({
     queryKey: ['admin', 'userList'],
     queryFn: async () => {
       const { data } = await axiosWithAuth.get<AdminUserData_T[]>('/admin/user')
       return data
     },
+    enabled: isAdmin,
   })
 
   if (!data) return <div>로딩중...</div>

@@ -37,9 +37,11 @@ export default async function DefaultLayout({ children }: layoutProps) {
         <link rel="preconnect" href="https://fonts.gstatic.com" />
       </head>
       <body className={`w-full ${archivo.variable + ' ' + dm_sans.variable}`}>
-        <DataContextProvider>{children}</DataContextProvider>
+        <DataContextProvider>
+          {children}
+          <Analytics />
+        </DataContextProvider>
       </body>
-      <Analytics />
     </html>
   )
 }
