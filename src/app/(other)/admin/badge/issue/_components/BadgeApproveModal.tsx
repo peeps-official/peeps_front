@@ -57,7 +57,7 @@ export default function BadgeApproveModal({ setModalData, 뱃지요청정보 }: 
   async function deleteBadgeReq(id: number) {
     if (window.confirm('정말 거절하시겠습니까?')) {
       const { data } = await axiosWithAuth.delete(`/admin/verify/req/${id}`)
-      console.log('삭제완료:', data)
+
       setModalData(null)
       alert('요청이 거절되었습니다.')
       queryClient.invalidateQueries({ queryKey: ['badgeData'] })
@@ -93,8 +93,6 @@ export default function BadgeApproveModal({ setModalData, 뱃지요청정보 }: 
       return
     }
 
-    console.log('data:', data)
-
     const fileRecord: Record<string, string> = {}
     data.files.forEach((input) => {
       fileRecord[input.key] = input.value
@@ -104,7 +102,6 @@ export default function BadgeApproveModal({ setModalData, 뱃지요청정보 }: 
       file: fileRecord,
     }
 
-    console.log('submitData:', submitData)
     approveBadge(submitData)
   })
 

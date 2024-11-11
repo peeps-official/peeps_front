@@ -19,7 +19,6 @@ export default function NewBadgeModal({ setIsOpen }: Props) {
   const { mutate: addBadge } = useMutation({
     mutationFn: async (data: CreateCommonBadge_T) => await axiosWithAuth.post('/admin/badge', data),
     onSuccess: (variables) => {
-      console.log(variables)
       window.alert(JSON.stringify(variables.data.name) + '뱃지가 추가되었습니다.')
       queryClient.invalidateQueries({ queryKey: ['admin', 'badge'] })
     },

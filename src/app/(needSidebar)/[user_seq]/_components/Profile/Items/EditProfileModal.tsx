@@ -23,7 +23,6 @@ export default function EditProfileModal({ setIsOpen }: { setIsOpen: (isOpen: bo
 
   useEffect(() => {
     if (imgBundles.length > 0) {
-      console.log(imgBundles)
       if (imgBundles[bundlesIdx].s3Url) {
         setImgSrc(imgBundles[bundlesIdx].s3Url)
       } else {

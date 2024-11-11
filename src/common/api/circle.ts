@@ -7,7 +7,6 @@ import { axiosWithAuth } from './instance'
  * @param sep_id 뱃지 이름
  */
 export async function getCircleProfile(sep_id: string) {
-  console.log(sep_id)
   const { data, status } = await axiosWithAuth.get<Circle_T>(`/circle/${sep_id}`)
 
   if (status === 404) {

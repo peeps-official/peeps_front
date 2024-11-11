@@ -32,8 +32,6 @@ export async function makeBadge(resData: AuthData) {
     email: resData.email,
   })
 
-  console.log(data)
-  console.log(status)
   return data
 }
 

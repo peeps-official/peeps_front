@@ -80,8 +80,6 @@ export const useImage = (imageUrl: string[] = []) => {
 
   const removeImage = (url: string) => {
     setImgBundles((prev) => {
-      console.log('prev', prev)
-      console.log('removeImage', url)
       const newImageUrls = prev.filter((item) => item.tmpUrl !== url && item.s3Url !== url)
       return newImageUrls
     })
@@ -100,8 +98,6 @@ export const useImage = (imageUrl: string[] = []) => {
 
 const upLoadS3 = async (file: File, setImg: Dispatch<SetStateAction<BundleImage[]>>) => {
   const filename = Date.now() + uuidv4() + '.' + file.name.split('.').pop()
-  console.log('file', file.name)
-  console.log('filename', filename)
 
   const { data, status } = await axios.get('/api/post/image?file=' + filename)
 

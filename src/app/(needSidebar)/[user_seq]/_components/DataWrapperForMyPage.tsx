@@ -93,7 +93,6 @@ export default function DataWrapperForMyPage({ children, pageOwnerSeq }: DataWra
     if (ownerUserData.isSuccess) {
       setOwnerUserData(ownerUserData.data)
     } else if (ownerUserData.isError) {
-      console.log('error: ', ownerUserData.error)
       window.alert('존재하지 않는 회원입니다.')
 
       router.replace('/')

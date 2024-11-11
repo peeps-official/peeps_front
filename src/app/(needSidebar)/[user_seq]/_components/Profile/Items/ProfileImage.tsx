@@ -40,7 +40,6 @@ export default function ProfileImage({ alt, src, isOwner, ownerData }: ProfileIm
 
   useEffect(() => {
     if (imgBundles.length > 0) {
-      console.log('vv:', imgBundles)
       if (imgBundles[bundlesIdx].s3Url) {
         setImgSrc(imgBundles[bundlesIdx].s3Url)
       } else {

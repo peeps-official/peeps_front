@@ -56,8 +56,6 @@ export default function PostDetailModal({ post, setIsOpen }: Props) {
     route.push(`/${url}`)
   }
 
-  if (isSuccess) console.log(commentList)
-
   return (
     <BasicCenterModal setIsOpen={setIsOpen}>
       <div className="flex max-h-[80vh] min-h-[50vh] max-w-[90vw] gap-3 overflow-hidden rounded-lg bg-[#fff] shadow-popupBox">

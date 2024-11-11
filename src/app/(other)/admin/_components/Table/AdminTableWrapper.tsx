@@ -17,12 +17,7 @@ const fetchUrlDatas = async (url: string) => {
   return data
 }
 
-export default function AdminTableDataWrapper({
-  dataKey,
-  url,
-  children,
-  recoilState,
-}: AdminTableWrapperProps) {
+export default function AdminTableDataWrapper({ dataKey, url, children, recoilState }: AdminTableWrapperProps) {
   const { isSuccess, error, data } = useQuery({
     queryKey: ['table', dataKey],
     queryFn: () => fetchUrlDatas(url),
@@ -31,8 +26,7 @@ export default function AdminTableDataWrapper({
 
   useEffect(() => {
     if (isSuccess) setRecoilData(data)
-    console.log(data)
   }, [isSuccess])
 
-  return <div className="bg-white rounded-lg shadow">{children}</div>
+  return <div className="rounded-lg bg-white shadow">{children}</div>
 }
