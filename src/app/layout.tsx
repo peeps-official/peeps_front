@@ -4,6 +4,7 @@ import '@/src/app/styles.css'
 import { Metadata } from 'next'
 import { Archivo, DM_Sans } from 'next/font/google'
 import DataContextProvider from './(other)/(mainPage)/_components/DataContextProvider'
+import { Analytics } from '@vercel/analytics/react'
 
 const archivo = Archivo({
   subsets: ['latin'],
@@ -38,6 +39,7 @@ export default async function DefaultLayout({ children }: layoutProps) {
       <body className={`w-full ${archivo.variable + ' ' + dm_sans.variable}`}>
         <DataContextProvider>{children}</DataContextProvider>
       </body>
+      <Analytics />
     </html>
   )
 }
