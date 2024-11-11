@@ -6,6 +6,7 @@ export type BadgeAuthType = 'email' | 'file' | 'blockchain' | 'login'
 export type Badge_T = {
   bdg_id: number
   name: string
+  type: string
   image: string
   member_count: number
   followingCount?: number

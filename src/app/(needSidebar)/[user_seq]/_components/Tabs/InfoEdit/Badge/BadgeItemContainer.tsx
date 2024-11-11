@@ -38,7 +38,7 @@ export default function BadgeItemContainer({ item, isOwner }: AddAuthContainer_P
         if (editMode) return
         setIsSpread((prev) => !prev)
       }}
-      className="flex w-full max-w-[40em] flex-col gap-[10px] rounded-[8px] px-[14px] pt-[16px] shadow-popupBox duration-200 ease-in hover:translate-y-[-0.2rem]"
+      className="flex w-fit max-w-[40em] flex-col gap-[10px] rounded-[8px] px-[14px] pt-[16px] shadow-popupBox duration-200 ease-in hover:translate-y-[-0.2rem]"
     >
       <div className="flex items-center justify-between gap-[2em]">
         <div className="flex items-center gap-[0.3em]">
