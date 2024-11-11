@@ -4,6 +4,7 @@ import { axiosWithAuth } from './common/api/instance'
 export async function middleware(request: NextRequest) {
   let accessToken = request.cookies.get('loginToken')?.value
 
+  console.log('all cookies:', request.cookies.getAll())
   console.log('accessToken:', accessToken)
   console.log('is Path Admin: ', request.nextUrl.pathname.startsWith('/admin'))
   // admin
