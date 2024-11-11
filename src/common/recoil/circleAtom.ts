@@ -1,8 +1,8 @@
 import { atom } from 'recoil'
-import { Circle_T, CirCleFollower_T } from '../types/circle'
+import { CircleProfile_T, CirCleFollower_T } from '../types/circle'
 import { Post_T } from '../types/post'
 
-export const CircleDataAtom = atom<Circle_T | null>({
+export const CircleDataAtom = atom<CircleProfile_T | null>({
   key: 'CircleDataAtom',
   default: null,
 })

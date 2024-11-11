@@ -5,7 +5,7 @@ import { editCirclePost, uploadCirclePost } from '@/src/common/api/circle'
 import BasicCenterModal from '@/src/common/components/Modal/BasicCenterModal'
 import { BundleImage, useImage } from '@/src/common/hooks/useImage'
 import { CircleDataAtom } from '@/src/common/recoil/circleAtom'
-import { Circle_T } from '@/src/common/types/circle'
+import { CircleProfile_T } from '@/src/common/types/circle'
 import { Post_T, PostUpload_T } from '@/src/common/types/post'
 import NextImg from '@/src/common/utils/NextImg'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -27,7 +27,7 @@ type Props = {
 export default function CirclePostEditModal({ isEdit = false, post, setIsOpen }: Props) {
   const [rowsNum, setRowsNum] = useState<number>(2)
   const { register, handleSubmit, reset } = useForm()
-  const circleInfo = useRecoilValue<Circle_T | null>(CircleDataAtom)
+  const circleInfo = useRecoilValue<CircleProfile_T | null>(CircleDataAtom)
   const queryClient = useQueryClient()
 
   //   수정모드인데 post 정보 없으면 경고창 띄우고 모달 닫기

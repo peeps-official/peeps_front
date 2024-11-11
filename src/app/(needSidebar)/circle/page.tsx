@@ -1,7 +1,7 @@
 'use client'
 
 import { axiosWithAuth } from '@/src/common/api/instance'
-import { Circle_T } from '@/src/common/types/circle'
+import { CircleProfile_T } from '@/src/common/types/circle'
 import NextImg from '@/src/common/utils/NextImg'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 import DataWrapperForCircle from './_components/DataWrapperForCircle'
 
 export default function page() {
-  const [써클s정보, set써클s정보] = useState<Circle_T[]>([])
+  const [써클s정보, set써클s정보] = useState<CircleProfile_T[]>([])
 
   const searchParams = useSearchParams()
   const search = searchParams.get('name')

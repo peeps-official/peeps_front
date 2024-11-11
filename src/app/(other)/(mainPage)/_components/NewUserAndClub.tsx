@@ -1,7 +1,7 @@
 'use client'
 
 import { axiosWithAuth } from '@/src/common/api/instance'
-import { Circle_T } from '@/src/common/types/circle'
+import { CircleProfile_T } from '@/src/common/types/circle'
 import { Main_User_Profile_T } from '@/src/common/types/user'
 import NextImg from '@/src/common/utils/NextImg'
 import { useRouter } from 'next/navigation'
@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 
 export default function NewUserAndClub() {
   const [newUsers, setNewUsers] = useState<Main_User_Profile_T[]>([])
-  const [newCircles, setNewCircles] = useState<Circle_T[]>([])
+  const [newCircles, setNewCircles] = useState<CircleProfile_T[]>([])
   const router = useRouter()
 
   useEffect(() => {

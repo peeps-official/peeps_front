@@ -1,7 +1,7 @@
 'use client'
 
 import { CircleDataAtom } from '@/src/common/recoil/circleAtom'
-import { Circle_T } from '@/src/common/types/circle'
+import { CircleProfile_T } from '@/src/common/types/circle'
 import { useRecoilValue } from 'recoil'
 import BadgeProfile from './_components/BadgeProfile'
 import DataWrapperForClubPage from './_components/DataWrapperForClubPage'
@@ -14,7 +14,7 @@ type BadgeDetailPageParams = {
 }
 
 export default function BadgeDetailPage({ params }: BadgeDetailPageParams) {
-  const circleProfile = useRecoilValue<Circle_T | null>(CircleDataAtom)
+  const circleProfile = useRecoilValue<CircleProfile_T | null>(CircleDataAtom)
 
   return (
     <DataWrapperForClubPage badgeName={params.badgeName}>

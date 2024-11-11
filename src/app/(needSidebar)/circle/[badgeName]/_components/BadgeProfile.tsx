@@ -4,13 +4,13 @@ import { axiosWithAuth } from '@/src/common/api/instance'
 import Button from '@/src/common/components/Btn/Button'
 import { CircleDataAtom, CirCleFollowerListAtom } from '@/src/common/recoil/circleAtom'
 import { IsUserLogedInAtom } from '@/src/common/recoil/userAtom'
-import { Circle_T, CirCleFollower_T } from '@/src/common/types/circle'
+import { CircleProfile_T, CirCleFollower_T } from '@/src/common/types/circle'
 import NextImg from '@/src/common/utils/NextImg'
 import { useQueryClient } from '@tanstack/react-query'
 import { useRecoilValue } from 'recoil'
 
 export default function BadgeProfile() {
-  const setClubInfo = useRecoilValue<Circle_T | null>(CircleDataAtom)
+  const setClubInfo = useRecoilValue<CircleProfile_T | null>(CircleDataAtom)
 
   return (
     <div className="box-border flex max-w-full flex-1 flex-col gap-[20px]">
@@ -46,7 +46,7 @@ function ProfileImage({ alt, src }: ProfileImageProps) {
 }
 
 type Props = {
-  circleInfo: Circle_T
+  circleInfo: CircleProfile_T
 }
 
 function ProfileInfo({ circleInfo }: Props) {
@@ -128,7 +128,7 @@ type isFollow = -1 | 0 | 1 // -1: 로그인 안됨, 0: 팔로우 안함, 1: 팔�
 
 export function FollowAndProfileButton() {
   const queryClient = useQueryClient()
-  const setClubInfo = useRecoilValue<Circle_T | null>(CircleDataAtom)
+  const setClubInfo = useRecoilValue<CircleProfile_T | null>(CircleDataAtom)
   const isUserLogedIn = useRecoilValue<boolean>(IsUserLogedInAtom)
 
   const handleFollowClick = () => {

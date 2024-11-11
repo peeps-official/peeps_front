@@ -1,4 +1,4 @@
-import { Circle_T, CirCleFollower_T } from '../types/circle'
+import { CircleProfile_T, CirCleFollower_T } from '../types/circle'
 import { PostUpload_T } from '../types/post'
 import { axiosWithAuth } from './instance'
 
@@ -7,7 +7,7 @@ import { axiosWithAuth } from './instance'
  * @param sep_id 뱃지 이름
  */
 export async function getCircleProfile(sep_id: string) {
-  const { data, status } = await axiosWithAuth.get<Circle_T>(`/circle/${sep_id}`)
+  const { data, status } = await axiosWithAuth.get<CircleProfile_T>(`/circle/${sep_id}`)
 
   if (status === 404) {
     return null

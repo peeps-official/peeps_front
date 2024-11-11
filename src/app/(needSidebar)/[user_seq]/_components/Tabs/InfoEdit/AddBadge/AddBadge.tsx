@@ -1,15 +1,12 @@
 'use client'
 
-import { IsOwnerAtom } from '@/src/common/recoil/userHome'
-import { popUpData } from '@/src/tmp_data/dummy'
+import { OwnerBadgeListAtom } from '@/src/common/recoil/ownerAtom'
+import { Badge_T } from '@/src/common/types/badge'
 import { useRecoilValue } from 'recoil'
 import BadgeBox from './BadgeBox'
-import GetBlockChainAuth from './BlockChain/GetBlockChainAuth'
 import GetEmailAuth from './Email/GetEmailAuth'
 import GetFileAuth from './File/GetFileAuth'
 import GetLoginAuth from './Login/GetLoginAuth'
-import { OwnerBadgeListAtom } from '@/src/common/recoil/ownerAtom'
-import { Badge_T } from '@/src/common/types/badge'
 
 export default function AddBadge() {
   const ownerBadgeList = useRecoilValue<Badge_T[]>(OwnerBadgeListAtom)
