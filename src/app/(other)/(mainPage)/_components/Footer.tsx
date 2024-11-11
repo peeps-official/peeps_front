@@ -1,13 +1,11 @@
 'use client'
 
 import { axiosWithAuth } from '@/src/common/api/instance'
-import { OnlyLogedInUserData } from '@/src/common/recoil/userAtom'
+import { OnlyLogedInUserDataAtom } from '@/src/common/recoil/userAtom'
 import { useRecoilValue } from 'recoil'
 
 export default function Footer() {
-  const setUserData = useRecoilValue(OnlyLogedInUserData)
-
-  console.log(setUserData)
+  const setUserData = useRecoilValue(OnlyLogedInUserDataAtom)
 
   return (
     <footer className="bg-white py-8">

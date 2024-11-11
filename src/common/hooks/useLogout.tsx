@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { handleLogout } from '../api/user'
-import { LogedInUserDefaultData, OnlyLogedInUserData } from '../recoil/userAtom'
+import { LogedInUserDefaultData, OnlyLogedInUserDataAtom } from '../recoil/userAtom'
 import { UserLogin_T } from '../types/user'
 
 /**
  * @description 아래의 경우에만 사용가능합니다.
- * - OnlyLogedInUserData로 감싸진 경우
+ * - LogedInUserReqDataAtom 감싸진 경우
  */
 
 export function useLoginUser() {
-  const [userData, setUserData] = useRecoilState<UserLogin_T>(OnlyLogedInUserData)
+  const [userData, setUserData] = useRecoilState<UserLogin_T>(OnlyLogedInUserDataAtom)
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
 
   useEffect(() => {

@@ -19,7 +19,7 @@ export interface UserLogin_T {
 
 type UserLogin_Key_T = keyof UserLogin_T
 
-export interface LoginUserData_T {
+export type LoginUserData_T = {
   loginState: number
   needData?: UserLogin_Key_T[]
   user_data: UserLogin_T

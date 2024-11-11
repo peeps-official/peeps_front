@@ -4,14 +4,17 @@ import Ring from '@/src/app/_styles/animation/Ring'
 import { editPost, uploadPost } from '@/src/common/api/post'
 import BasicCenterModal from '@/src/common/components/Modal/BasicCenterModal'
 import { BundleImage, useImage } from '@/src/common/hooks/useImage'
+import { OnlyLogedInUserDataAtom } from '@/src/common/recoil/userAtom'
+
 import { Post_T, PostUpload_T } from '@/src/common/types/post'
+import { UserLogin_T } from '@/src/common/types/user'
 import NextImg from '@/src/common/utils/NextImg'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { usePathname } from 'next/navigation'
 import { forwardRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FaXmark } from 'react-icons/fa6'
 import { PiImagesThin } from 'react-icons/pi'
+import { useRecoilValue } from 'recoil'
 
 type Props = {
   isEdit?: boolean // 수정 글 작성인지
@@ -22,10 +25,13 @@ type Props = {
 export default function EditModal({ isEdit = false, post, setIsOpen }: Props) {
   const [rowsNum, setRowsNum] = useState<number>(2)
   const { register, handleSubmit, reset } = useForm()
-  const owner_user_seq = usePathname().slice(1)
+  const loggedInUserData = useRecoilValue<UserLogin_T>(OnlyLogedInUserDataAtom)
+
+  const { user_seq } = loggedInUserData
+
   const queryClient = useQueryClient()
 
-  //   수정모드인데 post 정보 없으면 경고창 띄우고 모달 닫기
+  // 수정모드인데 post 정보 없으면 경고창 띄우고 모달 닫기
   if (isEdit && (!post || !post.id)) {
     alert('게시글 정보가 없습니다.')
     setIsOpen(false)
@@ -38,8 +44,9 @@ export default function EditModal({ isEdit = false, post, setIsOpen }: Props) {
 
   const { mutate } = useMutation({
     mutationFn: async (newPost: PostUpload_T) => {
-      if (isEdit && post) return await editPost(owner_user_seq, post.id, newPost)
-      else return await uploadPost(owner_user_seq, newPost)
+      console.log('newPost', newPost)
+      if (isEdit && post) return await editPost(user_seq, post.id, newPost)
+      else return await uploadPost(user_seq, newPost)
     },
 
     onSuccess: () => {
@@ -89,12 +96,17 @@ export default function EditModal({ isEdit = false, post, setIsOpen }: Props) {
     const text = e.target.value
     const rows = text.split('\n').length + 1
 
-    setRowsNum(rows)
+    if (rows < 2) setRowsNum(2)
+    else if (rows > 10) setRowsNum(10)
+    else setRowsNum(rows)
   }
 
   return (
     <BasicCenterModal setIsOpen={setIsOpen}>
-      <form className="w-[468px] rounded-lg bg-white p-4 shadow-popupBox" onSubmit={onSubmit}>
+      <form
+        className="max-h-[80vh] w-[468px] overflow-y-auto rounded-lg bg-white p-4 shadow-popupBox"
+        onSubmit={onSubmit}
+      >
         <h1 className="kr-bold-16 mb-3">게시글 등록</h1>
         <InputTextArea
           isEdit={isEdit}

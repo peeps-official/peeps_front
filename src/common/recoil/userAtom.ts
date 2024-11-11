@@ -52,6 +52,23 @@ export const LogedInUserReqDataAtom = atom<LoginUserData_T>({
 })
 
 /**
+ * 로그인 데이터 중 user_data에 대한 데이터
+ */
+export const OnlyLogedInUserDataAtom = selector<UserLogin_T>({
+  key: 'OnlyLogedInUserDataAtom',
+  get: ({ get }) => {
+    const loginData = get(LogedInUserReqDataAtom)
+    return loginData.user_data
+  },
+  set: ({ set }, newValue) => {
+    set(LogedInUserReqDataAtom, (prev: LoginUserData_T) => ({
+      ...prev,
+      user_data: { ...prev.user_data, ...newValue },
+    }))
+  },
+})
+
+/**
  * @description 로그인 여부
  */
 export const IsUserLogedInAtom = selector<boolean>({
@@ -61,24 +78,12 @@ export const IsUserLogedInAtom = selector<boolean>({
     return loginData?.loginState === 200 ? true : false
   },
 })
-
+/**
+ * @description 로그인 유저 팔로우 리스트
+ */
 export const Login_User_Follow_Atom = atom<Array<LoginUserFollow_T>>({
   key: 'Login_User_Follow_Atom',
   default: [],
-})
-
-/**
- * 로그인 데이터 중 user_data에 대한 데이터
- */
-export const OnlyLogedInUserData = atom<UserLogin_T>({
-  key: 'OnlyLogedInUserData',
-  default: {
-    user_seq: '',
-    user_id: '',
-    user_nickname: '',
-    user_profile_img: '',
-    user_bg_img: '',
-  },
 })
 
 /**
