@@ -2,6 +2,7 @@
 
 import { axiosWithAuth } from '@/src/common/api/instance'
 import { LogedInUserReqDataAtom } from '@/src/common/recoil/userAtom'
+import { IsOwnerAtom } from '@/src/common/recoil/userHome'
 import { Post_T } from '@/src/common/types/post'
 import { LoginUserData_T } from '@/src/common/types/user'
 import { formatTimeAgo } from '@/src/common/utils/Date/formatTimeAgo'
@@ -52,6 +53,8 @@ type PostHeaderProps = {
 
 export function PostHeader({ post, isOption, setIsOption, setIsEditPost }: PostHeaderProps) {
   const userLoginedData = useRecoilValue<LoginUserData_T>(LogedInUserReqDataAtom)
+  const isOwner = useRecoilValue<boolean>(IsOwnerAtom)
+  const isLogedIn = userLoginedData.user_data.user_seq !== ''
 
   const queryClient = useQueryClient()
   const route = useRouter()
@@ -90,35 +93,49 @@ export function PostHeader({ post, isOption, setIsOption, setIsEditPost }: PostH
           className="h-full w-full cursor-pointer text-gray-600"
           onClick={() => setIsOption((prev) => !prev)}
         />
-        {isOption && (
-          <>
+        {isOption &&
+          (isOwner ? (
+            <>
+              <div className={`absolute right-0 top-8 z-pop w-56 rounded-lg bg-white p-[16px] shadow-popupBox`}>
+                <button
+                  className="kr-bold-18 flex w-full rounded-md p-2 text-center text-gray-600 hover:bg-[#eee]"
+                  onClick={() => {
+                    setIsOption(false)
+                    setIsEditPost(true)
+                  }}
+                >
+                  <span>수정</span>
+                  <div className="h-5 w-5"></div>
+                </button>
+                <button
+                  onClick={() => {
+                    const res = confirm('삭제하시겠습니까?')
+                    if (res) deletePost()
+                  }}
+                  className="kr-bold-18 flex w-full justify-between rounded-md p-2 text-center text-red-600 hover:bg-[#eee]"
+                >
+                  <span>삭제</span>
+                  <div className="h-5 w-5">
+                    <FiTrash className="h-full w-full" />
+                  </div>
+                </button>
+              </div>
+              <button className={sideBarBackground} onClick={() => setIsOption(false)} />
+            </>
+          ) : (
             <div className={`absolute right-0 top-8 z-pop w-56 rounded-lg bg-white p-[16px] shadow-popupBox`}>
               <button
                 className="kr-bold-18 flex w-full rounded-md p-2 text-center text-gray-600 hover:bg-[#eee]"
                 onClick={() => {
-                  setIsOption(false)
-                  setIsEditPost(true)
+                  if (!isLogedIn) alert('로그인이 필요합니다.')
+                  else alert('신고가 접수되었습니다.')
                 }}
               >
-                <span>수정</span>
+                <span>신고하기</span>
                 <div className="h-5 w-5"></div>
               </button>
-              <button
-                onClick={() => {
-                  const res = confirm('삭제하시겠습니까?')
-                  if (res) deletePost()
-                }}
-                className="kr-bold-18 flex w-full justify-between rounded-md p-2 text-center text-red-600 hover:bg-[#eee]"
-              >
-                <span>삭제</span>
-                <div className="h-5 w-5">
-                  <FiTrash className="h-full w-full" />
-                </div>
-              </button>
             </div>
-            <button className={sideBarBackground} onClick={() => setIsOption(false)} />
-          </>
-        )}
+          ))}
       </div>
     </div>
   )
