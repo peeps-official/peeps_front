@@ -175,17 +175,22 @@ export function FollowAndProfileButton() {
 }
 
 export function AuthButton() {
+  const isUserLogedIn = useRecoilValue<boolean>(IsUserLogedInAtom)
   const [isOpen, setIsOpen] = useState(false)
 
   // 모달 만들기 -> 인증하기 버튼 클릭시 모달 띄우기
   // 인증하기 버튼 클릭시 -> 해당 공통 뱃지 정보 불러오는 api 호출
   // 해당 공통 뱃지 정보 불러오기 -> 해당 공통 뱃지 정보를 토대로 모달에 인증 가능 정보 띄우기 및 자동 완성
+
   return (
     <>
       <div className="mt-[1rem] flex items-center gap-[10px] text-center">
         <Button
           title="인증하기"
-          onClickFn={() => setIsOpen(true)}
+          onClickFn={() => {
+            if (isUserLogedIn) setIsOpen(true)
+            else alert('로그인이 필요합니다.')
+          }}
           styles="bg-gray-200 text-gray-700 cursor-pointer hover:bg-gray-300"
         />
       </div>
