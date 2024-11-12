@@ -7,7 +7,9 @@ import { IsUserLogedInAtom } from '@/src/common/recoil/userAtom'
 import { CircleProfile_T, CirCleFollower_T } from '@/src/common/types/circle'
 import NextImg from '@/src/common/utils/NextImg'
 import { useQueryClient } from '@tanstack/react-query'
+import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
+import AddAuth from './AddAuth'
 
 export default function BadgeProfile() {
   const setClubInfo = useRecoilValue<CircleProfile_T | null>(CircleDataAtom)
@@ -50,7 +52,7 @@ type Props = {
 }
 
 function ProfileInfo({ circleInfo }: Props) {
-  const { badge, user, board, follow } = circleInfo
+  const { badge, user, board, follow, isAuth } = circleInfo
   const { bdg_id, name, image, type, member_count, followingCount, description, auth } = badge
 
   return (
@@ -63,7 +65,7 @@ function ProfileInfo({ circleInfo }: Props) {
       </div>
       <ProfileMessage message={description ?? '--'} />
       <div className="flex items-center gap-6">
-        <FollowAndProfileButton />
+        {isAuth === 1 ? <FollowAndProfileButton /> : <AuthButton />}
         <FollowerList />
       </div>
     </div>
@@ -172,17 +174,38 @@ export function FollowAndProfileButton() {
   )
 }
 
+export function AuthButton() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  // 모달 만들기 -> 인증하기 버튼 클릭시 모달 띄우기
+  // 인증하기 버튼 클릭시 -> 해당 공통 뱃지 정보 불러오는 api 호출
+  // 해당 공통 뱃지 정보 불러오기 -> 해당 공통 뱃지 정보를 토대로 모달에 인증 가능 정보 띄우기 및 자동 완성
+  return (
+    <>
+      <div className="mt-[1rem] flex items-center gap-[10px] text-center">
+        <Button
+          title="인증하기"
+          onClickFn={() => setIsOpen(true)}
+          styles="bg-gray-200 text-gray-700 cursor-pointer hover:bg-gray-300"
+        />
+      </div>
+      {isOpen && <AddAuth setIsOpen={setIsOpen} />}
+    </>
+  )
+}
+
 export function FollowerList() {
   const setCircleFollowerList = useRecoilValue<CirCleFollower_T[] | null>(CirCleFollowerListAtom)
 
   if (!setCircleFollowerList || setCircleFollowerList.length < 1) return null
 
+  console.log(setCircleFollowerList)
   return (
     <>
       <div className="mb-[-1rem] flex h-[40px] w-full -space-x-3 pt-[2px]">
         {setCircleFollowerList.map((follower, i) => (
           <div
-            key={follower.user_seq}
+            key={follower.user_id}
             style={{ zIndex: 100 - i }}
             className={`relative h-[32px] w-[32px] overflow-hidden rounded-full object-cover ${'shadow-circleBadge'} ] border-2 border-solid border-white`}
           >

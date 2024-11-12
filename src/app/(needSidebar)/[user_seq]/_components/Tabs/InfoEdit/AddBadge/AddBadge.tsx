@@ -4,9 +4,9 @@ import { OwnerBadgeListAtom } from '@/src/common/recoil/ownerAtom'
 import { Badge_T } from '@/src/common/types/badge'
 import { useRecoilValue } from 'recoil'
 import BadgeBox from './BadgeBox'
+import GetLoginAuth from './Login/GetLoginAuth'
 import GetEmailAuth from './Email/GetEmailAuth'
 import GetFileAuth from './File/GetFileAuth'
-import GetLoginAuth from './Login/GetLoginAuth'
 
 export default function AddBadge() {
   const ownerBadgeList = useRecoilValue<Badge_T[]>(OwnerBadgeListAtom)

@@ -31,7 +31,7 @@ export default function Badge() {
         Object.entries(tagGruop).map(([key, value]) => (
           <div key={key}>
             <h2 className="kr-bold-18 mb-3">{key} 인증</h2>
-            <div className="flex flex-wrap gap-[1rem]">
+            <div className="flex w-fit flex-wrap gap-[1rem]">
               {value.map((badge) => (
                 <BadgeItemContainer key={badge.bdg_id} item={badge} isOwner={isOwner} />
               ))}

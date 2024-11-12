@@ -24,8 +24,10 @@ export default function BadgeDetailPage({ params }: BadgeDetailPageParams) {
           {/* <Tabs /> -> 내가 올린 글, 댓글 볼 수 있는 부분*/}
           {circleProfile && circleProfile.isFollow === 1 ? (
             <CircleFeed />
-          ) : (
+          ) : circleProfile?.isAuth ? (
             <div className="mt-5">'팔로우한 클럽의 내용만 볼 수 있습니다.'</div>
+          ) : (
+            <div className="mt-5">'관련 인증 후에 이용 가능합니다.'</div>
           )}
         </div>
       </div>
