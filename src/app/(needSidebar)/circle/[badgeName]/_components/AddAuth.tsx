@@ -10,6 +10,7 @@ import { useRecoilValue } from 'recoil'
 import GetLoginAuth from './addAuth/Login/GetLoginAuth'
 import GetEmailAuth from './addAuth/Email/GetEmailAuth'
 import GetFileAuth from './addAuth/File/GetFileAuth'
+import { IsUserLogedInAtom } from '@/src/common/recoil/userAtom'
 
 export default function AddAuth({ setIsOpen }: { setIsOpen: (isOpen: boolean) => void }) {
   const [commonBadge, setCommonBadge] = useState<CommonBadge_T | null>(null)
@@ -32,9 +33,6 @@ export default function AddAuth({ setIsOpen }: { setIsOpen: (isOpen: boolean) =>
     })()
   }, [])
 
-  console.log(commonBadge)
-  console.log(commonBadge?.name)
-  console.log(commonBadge?.auth.email.memo)
   if (!commonBadge) return null
 
   return (

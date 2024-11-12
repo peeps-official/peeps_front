@@ -1,12 +1,10 @@
 'use client'
 
 import { OwnerBadgeListAtom } from '@/src/common/recoil/ownerAtom'
+import { IsOwnerAtom } from '@/src/common/recoil/userHome'
 import { Badge_T } from '@/src/common/types/badge'
 import { useRecoilValue } from 'recoil'
 import BadgeItemContainer from '../InfoEdit/Badge/BadgeItemContainer'
-import { IsOwnerAtom } from '@/src/common/recoil/userHome'
-import { Console } from 'console'
-import { Fragment } from 'react'
 
 export default function Badge() {
   const ownerBadgeList = useRecoilValue<Badge_T[]>(OwnerBadgeListAtom)

@@ -1,5 +1,6 @@
 import ProfileCircleBadge from '@/src/common/components/Badge/ProfileCircleBadge'
 import { Badge_T, BadgeAuthData_T, BadgeAuthType, BadgeDetail_T } from '@/src/common/types/badge'
+import { CommonBadge_T } from '@/src/common/types/commonBadge'
 import { formatDate } from '@/src/common/utils/Date/formatDate'
 import NextImg from '@/src/common/utils/NextImg'
 import Link from 'next/link'
@@ -68,7 +69,7 @@ export function CanSelectBadgeList({ badges, selectedBadgeId = -1, setSelectedBa
  * @description 선택된 뱃지의 전체 정보
  */
 
-function GlobalBadgeInfo({ selectedBadge }: { selectedBadge: Badge_T }) {
+export function GlobalBadgeInfo({ selectedBadge }: { selectedBadge: Badge_T | CommonBadge_T }) {
   return (
     <div className="flex justify-between gap-[20px]">
       <div className="flex gap-[10px]">

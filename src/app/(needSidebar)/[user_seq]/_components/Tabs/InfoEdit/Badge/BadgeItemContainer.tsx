@@ -14,7 +14,7 @@ import { MdAlternateEmail } from 'react-icons/md'
 
 type AddAuthContainer_Props = {
   item: Badge_T
-  isOwner: boolean
+  isOwner?: boolean
 }
 
 export const BadgeTypes = [
@@ -24,7 +24,7 @@ export const BadgeTypes = [
   { id: 'blockchain', title: '블록체인 인증', icon: <HiOutlineLink style={{ height: 'fit-content' }} /> },
 ] as { id: BadgeAuthType; title: string; icon: ReactElement }[]
 
-export default function BadgeItemContainer({ item, isOwner }: AddAuthContainer_Props) {
+export default function BadgeItemContainer({ item, isOwner = false }: AddAuthContainer_Props) {
   const [editMode, setEditMode] = useState(false)
   const [isSpread, setIsSpread] = useState(false)
 
